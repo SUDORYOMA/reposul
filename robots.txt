@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sudoryoma.github.io/reposul/sitemap.xml
+Sitemap: https://lp.reposul.com/sitemap.xml
