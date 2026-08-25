@@ -774,14 +774,15 @@ footer a:hover{color:#fff;}
       <div class="contact-card"><div class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1c9d68" stroke-width="1.8"><path d="M21 15a2 2 0 01-2 2H8l-5 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div><div><div class="t">LINEで簡単にお問い合わせ</div><div class="v">友だち追加して、そのままトークで相談できます</div></div></div>
       <a class="btn btn-primary" href="https://lin.ee/vdqIVphA" target="_blank" rel="noopener" style="width:100%; background:#06C755; box-shadow:0 10px 24px -8px rgba(6,199,85,.55);">LINEで友だち追加してお問い合わせ →</a>
     </div>
-    <div class="form-panel">
-      <div class="field"><label>会社名</label><input type="text" placeholder="株式会社◯◯"></div>
-      <div class="field"><label>ご担当者名</label><input type="text" placeholder="山田 太郎"></div>
-      <div class="field"><label>電話番号 or メールアドレス</label><input type="text" placeholder="000-0000-0000 / mail@example.com"></div>
-      <div class="field"><label>ご相談内容</label><textarea placeholder="現場数・協力会社数などお聞かせください"></textarea></div>
-      <button class="btn btn-primary" style="width:100%;" type="button">お問い合わせを送信</button>
-      <div class="form-note">※デザインモックアップです。実装時はフォーム送信処理を実装してください。</div>
-    </div>
+    <form class="form-panel" id="contact-form" action="https://formspree.io/f/mljryprd" method="POST">
+      <input type="hidden" name="_subject" value="【レポスル】ウェブサイトからのお問い合わせ">
+      <div class="field"><label>会社名</label><input type="text" name="company" placeholder="株式会社◯◯" required></div>
+      <div class="field"><label>ご担当者名</label><input type="text" name="name" placeholder="山田 太郎" required></div>
+      <div class="field"><label>電話番号 or メールアドレス</label><input type="text" name="contact" placeholder="000-0000-0000 / mail@example.com" required></div>
+      <div class="field"><label>ご相談内容</label><textarea name="message" placeholder="現場数・協力会社数などお聞かせください"></textarea></div>
+      <button class="btn btn-primary" style="width:100%;" type="submit">お問い合わせを送信</button>
+      <div class="form-status" id="contact-form-status" role="status" style="display:none; margin-top:12px; font-size:13.5px; font-weight:700;"></div>
+    </form>
   </div>
 </section>
 
@@ -854,6 +855,42 @@ new IntersectionObserver((entries)=>{ entries.forEach(e=>{ mfab.classList.toggle
 const toggle = document.querySelector('.nav-toggle');
 const navLinks = document.querySelector('.nav-links');
 toggle.addEventListener('click', ()=>{ navLinks.classList.toggle('open'); });
+
+// contact form submission (Formspree AJAX)
+const contactForm = document.getElementById('contact-form');
+if(contactForm){
+  const statusEl = document.getElementById('contact-form-status');
+  const submitBtn = contactForm.querySelector('button[type="submit"]');
+  contactForm.addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    submitBtn.disabled = true;
+    submitBtn.textContent = '送信中...';
+    statusEl.style.display = 'none';
+    try{
+      const res = await fetch(contactForm.action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { 'Accept': 'application/json' }
+      });
+      if(res.ok){
+        statusEl.textContent = 'お問い合わせありがとうございます。担当者より折り返しご連絡いたします。';
+        statusEl.style.color = 'var(--c-green-700)';
+        statusEl.style.display = 'block';
+        contactForm.reset();
+        submitBtn.textContent = 'お問い合わせを送信';
+      } else {
+        throw new Error('submission failed');
+      }
+    } catch(err){
+      statusEl.textContent = '送信に失敗しました。お手数ですがLINEまたはお電話でお問い合わせください。';
+      statusEl.style.color = 'var(--c-orange-500)';
+      statusEl.style.display = 'block';
+      submitBtn.textContent = 'お問い合わせを送信';
+    } finally {
+      submitBtn.disabled = false;
+    }
+  });
+}
 
 // 3D tilt on mousemove for elements with .tilt
 if(!reduceMotion){
