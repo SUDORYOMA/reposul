@@ -415,6 +415,15 @@ footer a:hover{color:#fff;}
 
 .breadcrumb{font-family:var(--f-mono); font-size:12px; color:var(--c-ink-soft); margin:110px 0 -20px;}
 .breadcrumb a{color:var(--c-green-700); text-decoration:none;}
+
+.post-teaser-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:8px;}
+@media (max-width:700px){ .post-teaser-grid{grid-template-columns:1fr;} }
+.post-teaser-card{display:block; text-decoration:none; background:#fff; border:1px solid var(--c-line); border-radius:16px; padding:26px; transition:transform .2s var(--ease), box-shadow .2s var(--ease);}
+.post-teaser-card:hover{transform:translateY(-4px); box-shadow:0 18px 30px -16px rgba(18,51,36,.3);}
+.post-teaser-tag{display:inline-block; font-family:var(--f-mono); font-size:11px; font-weight:700; color:var(--c-orange-500); background:var(--c-orange-100); border-radius:999px; padding:3px 10px; margin-bottom:10px;}
+.post-teaser-title{font-family:var(--f-display); font-size:18px; font-weight:900; color:var(--c-green-900); margin:0 0 8px; line-height:1.5;}
+.post-teaser-excerpt{font-size:13.5px; color:var(--c-ink-soft); margin:0;}
+.post-teaser-more{display:flex; justify-content:center; margin-top:32px;}
 </style>
 </head>
 <body>
@@ -762,6 +771,30 @@ footer a:hover{color:#fff;}
   </div>
 </section>
 
+<!-- ============ BLOG TEASER ============ -->
+<section class="section section-alt" id="blog">
+  <div class="wrap">
+    <div class="eyebrow">BLOG</div>
+    <h2>人気の記事</h2>
+    <p class="lede">建設業の日報・工数管理・協力会社連携に関するお役立ち情報をお届けします。</p>
+    <div class="post-teaser-grid">
+      <a class="post-teaser-card" href="blog/company-linkage-difference.html">
+        <span class="post-teaser-tag">レポスルの特徴</span>
+        <h3 class="post-teaser-title">レポスルと他社日報アプリの違い｜会社間連携という選択肢</h3>
+        <p class="post-teaser-excerpt">工数管理アプリの多くは自社内の集計で完結します。レポスルが「協力会社との連携」にこだわる理由を解説します。</p>
+      </a>
+      <a class="post-teaser-card" href="blog/case-study-kyoryoku-gaisha.html">
+        <span class="post-teaser-tag">導入事例</span>
+        <h3 class="post-teaser-title">協力会社を巻き込んだ工数管理はどう変わるか｜レポスル導入事例</h3>
+        <p class="post-teaser-excerpt">紙日報の提出漏れ・遅れをなくし、協力会社を含めた工数管理をリアルタイム化した建設会社の事例をご紹介します。</p>
+      </a>
+    </div>
+    <div class="post-teaser-more">
+      <a class="btn btn-secondary" href="blog/">記事一覧を見る →</a>
+    </div>
+  </div>
+</section>
+
 <!-- ============ CONTACT ============ -->
 <section class="section final-cta" id="contact">
   <div class="wrap">
@@ -798,7 +831,7 @@ footer a:hover{color:#fff;}
       <img src="reposul-logo.png" alt="レポスル ロゴ" style="height:24px; filter:brightness(0) invert(1); margin-bottom:14px;">
       <p style="max-width:260px; color:rgba(255,255,255,.6);">建設業向け日報・工数管理アプリ「レポスル」<br>提供：株式会社SIXMATE</p>
     </div>
-    <div><h4>Service</h4><ul><li><a href="#solution">レポスルとは</a></li><li><a href="#product">できること</a></li><li><a href="#case">導入事例</a></li><li><a href="#flow">導入の流れ</a></li></ul></div>
+    <div><h4>Service</h4><ul><li><a href="#solution">レポスルとは</a></li><li><a href="#product">できること</a></li><li><a href="#case">導入事例</a></li><li><a href="#flow">導入の流れ</a></li><li><a href="blog/">ブログ</a></li></ul></div>
     <div><h4>Support</h4><ul><li><a href="#faq">よくある質問</a></li><li><a href="#contact">お問い合わせ</a></li><li><a href="agent.html">代理店募集</a></li></ul></div>
     <div><h4>Company</h4><ul><li><a href="#">株式会社SIXMATE</a></li><li><a href="#">プライバシーポリシー</a></li><li><a href="#">利用規約</a></li></ul></div>
   </div>
