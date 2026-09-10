@@ -96,6 +96,12 @@ header{position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(255,
 .post-title{font-size:18px; font-weight:900; color:var(--c-green-900); margin-bottom:8px; line-height:1.5;}
 .post-excerpt{font-size:13.5px; color:var(--c-ink-soft); margin:0;}
 
+.cat-filter{display:flex; flex-wrap:wrap; gap:10px; margin:8px 0 28px;}
+.cat-btn{font-family:var(--f-mono); font-size:12.5px; font-weight:700; padding:8px 16px; border-radius:999px; border:1.5px solid var(--c-line); background:#fff; color:var(--c-ink-soft); cursor:pointer; transition:all .2s var(--ease);}
+.cat-btn:hover{border-color:var(--c-green-500); color:var(--c-green-700);}
+.cat-btn.active{background:var(--c-green-900); border-color:var(--c-green-900); color:#fff;}
+.post-card[hidden]{display:none;}
+
 footer{background:var(--c-ink); color:rgba(255,255,255,.8); padding:52px 0 24px; font-size:13.5px;}
 footer .wrap{display:grid; grid-template-columns:1.3fr 1fr 1fr 1fr; gap:32px;}
 @media (max-width:760px){ footer .wrap{grid-template-columns:1fr 1fr;} }
@@ -133,30 +139,64 @@ footer a:hover{color:#fff;}
     <h1>ブログ</h1>
     <p class="lede">建設業の日報・工数管理・協力会社連携に関するお役立ち情報や、レポスルの使い方・料金・導入事例をご紹介します。</p>
 
+    <div class="cat-filter">
+      <button class="cat-btn active" data-cat="all">すべて</button>
+      <button class="cat-btn" data-cat="feature">レポスルの特徴</button>
+      <button class="cat-btn" data-cat="case">導入事例</button>
+      <button class="cat-btn" data-cat="howto">使い方</button>
+      <button class="cat-btn" data-cat="scope">できること・できないこと</button>
+      <button class="cat-btn" data-cat="basics">日報の基礎知識</button>
+      <button class="cat-btn" data-cat="labor">工数管理</button>
+    </div>
+
     <div class="post-grid">
-      <a class="post-card" href="company-linkage-difference.html">
-        <div class="post-date">2026.09.10</div>
+      <a class="post-card" data-cat="feature" href="company-linkage-difference.html">
+        <div class="post-date">公開日 2026.09.10／更新日 2026.09.10</div>
         <span class="post-tag">レポスルの特徴</span>
         <h2 class="post-title">レポスルと他社日報アプリの違い｜会社間連携という選択肢</h2>
         <p class="post-excerpt">工数管理アプリの多くは自社内の集計で完結します。レポスルが「協力会社との連携」にこだわる理由を解説します。</p>
       </a>
-      <a class="post-card" href="case-study-kyoryoku-gaisha.html">
-        <div class="post-date">2026.09.10</div>
+      <a class="post-card" data-cat="case" href="case-study-kyoryoku-gaisha.html">
+        <div class="post-date">公開日 2026.09.10／更新日 2026.09.10</div>
         <span class="post-tag">導入事例</span>
         <h2 class="post-title">協力会社を巻き込んだ工数管理はどう変わるか｜レポスル導入事例</h2>
         <p class="post-excerpt">紙日報の提出漏れ・遅れをなくし、協力会社を含めた工数管理をリアルタイム化した建設会社の事例をご紹介します。</p>
       </a>
-      <a class="post-card" href="getting-started.html">
-        <div class="post-date">2026.09.10</div>
+      <a class="post-card" data-cat="howto" href="getting-started.html">
+        <div class="post-date">公開日 2026.09.10／更新日 2026.09.10</div>
         <span class="post-tag">使い方</span>
         <h2 class="post-title">レポスルの始め方｜アカウント発行から初回の日報提出まで</h2>
         <p class="post-excerpt">レポスルの初期設定は30分〜1時間ほどで完了します。管理者が行う手順と、作業員が覚える4つの操作を解説します。</p>
       </a>
-      <a class="post-card" href="what-you-can-and-cannot-do.html">
-        <div class="post-date">2026.09.10</div>
+      <a class="post-card" data-cat="scope" href="what-you-can-and-cannot-do.html">
+        <div class="post-date">公開日 2026.09.10／更新日 2026.09.10</div>
         <span class="post-tag">できること・できないこと</span>
         <h2 class="post-title">レポスルでできること・できないこと｜導入前に知っておきたい範囲</h2>
         <p class="post-excerpt">日報作成から工数集計、請求書連動、協力会社連携までできることと、導入前に知っておきたい制限事項をまとめました。</p>
+      </a>
+      <a class="post-card" data-cat="basics labor" href="construction-labor-management.html">
+        <div class="post-date">公開日 2026.09.10／更新日 2026.09.10</div>
+        <span class="post-tag">工数管理</span>
+        <h2 class="post-title">建設業の工数管理は「日報の集計」で決まる</h2>
+        <p class="post-excerpt">建設業の工数管理で本当に時間を奪っているのは入力ではなく集計です。月20時間の集計作業がなぜ生まれるのか、根本の考え方を解説します。</p>
+      </a>
+      <a class="post-card" data-cat="basics" href="ninku-nippou.html">
+        <div class="post-date">公開日 2026.09.12／更新日 2026.09.12</div>
+        <span class="post-tag">日報の基礎知識</span>
+        <h2 class="post-title">人工日報とは？出面・出面表との違いと、月末に困らない書き方</h2>
+        <p class="post-excerpt">人工日報・出面・出面表の違いと、必ず入れるべき7項目、社内で統一すべき人工の刻み方まで解説します。</p>
+      </a>
+      <a class="post-card" data-cat="basics" href="genba-nippou-howto.html">
+        <div class="post-date">公開日 2026.09.14／更新日 2026.09.14</div>
+        <span class="post-tag">日報の基礎知識</span>
+        <h2 class="post-title">現場日報の書き方｜記入すべき9項目と、書かなくていい項目</h2>
+        <p class="post-excerpt">現場日報に書くべき9項目と、書かない方がよい項目を整理。天候の書き方から人工日報との二重記入を防ぐコツまで解説します。</p>
+      </a>
+      <a class="post-card" data-cat="basics labor" href="koji-nippou-daicho.html">
+        <div class="post-date">公開日 2026.09.16／更新日 2026.09.16</div>
+        <span class="post-tag">工数管理</span>
+        <h2 class="post-title">工事日報とは？作業日報との違いと、工事台帳・原価管理への繋げ方</h2>
+        <p class="post-excerpt">工事日報と現場日報・作業日報の違い、工事台帳へつなげる手順、よくある3つの失敗まで解説します。</p>
       </a>
     </div>
   </div>
@@ -170,7 +210,7 @@ footer a:hover{color:#fff;}
     </div>
     <div><h4>Service</h4><ul><li><a href="../index.html#solution">レポスルとは</a></li><li><a href="../index.html#product">できること</a></li><li><a href="../case.html">導入事例</a></li><li><a href="./">ブログ</a></li></ul></div>
     <div><h4>Support</h4><ul><li><a href="../index.html#faq">よくある質問</a></li><li><a href="../index.html#contact">お問い合わせ</a></li><li><a href="../agent.html">代理店募集</a></li></ul></div>
-    <div><h4>Company</h4><ul><li><a href="#">株式会社SIXMATE</a></li><li><a href="#">プライバシーポリシー</a></li><li><a href="#">利用規約</a></li></ul></div>
+    <div><h4>Company</h4><ul><li><a href="../company.html">株式会社SIXMATE</a></li><li><a href="../privacy.html">プライバシーポリシー</a></li><li><a href="../terms.html">利用規約</a></li></ul></div>
   </div>
   <div class="wrap bottom-bar"><span>© 株式会社SIXMATE</span><span>最終更新日：2026年9月</span></div>
 </footer>
@@ -179,6 +219,20 @@ footer a:hover{color:#fff;}
 const toggle=document.querySelector('.nav-toggle');
 const links=document.querySelector('.nav-links');
 if(toggle) toggle.addEventListener('click',()=>links.classList.toggle('open'));
+
+const catBtns = document.querySelectorAll('.cat-btn');
+const postCards = document.querySelectorAll('.post-card');
+catBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    catBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const cat = btn.dataset.cat;
+    postCards.forEach(card => {
+      const cats = (card.dataset.cat || '').split(' ');
+      card.hidden = cat !== 'all' && !cats.includes(cat);
+    });
+  });
+});
 </script>
 </body>
 </html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>工事日報とは？作業日報との違いと、工事台帳・原価管理への繋げ方｜レポスル</title>
+<meta name="description" content="工事日報と現場日報・作業日報の違い、工事台帳へつなげる手順、よくある3つの失敗まで、建設業の原価管理の実務を解説します。">
+<link rel="canonical" href="https://lp.reposul.com/blog/koji-nippou-daicho.html">
+<link rel="icon" type="image/png" href="../favicon.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta name="theme-color" content="#123324">
+<meta property="og:type" content="article">
+<meta property="og:title" content="工事日報とは？作業日報との違いと、工事台帳・原価管理への繋げ方">
+<meta property="og:description" content="工事日報と現場日報・作業日報の違い、工事台帳へつなげる手順、よくある3つの失敗まで、建設業の原価管理の実務を解説します。">
+<meta property="og:url" content="https://lp.reposul.com/blog/koji-nippou-daicho.html">
+<meta property="og:site_name" content="レポスル">
+<meta property="og:image" content="https://lp.reposul.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="工事日報とは？作業日報との違いと、工事台帳・原価管理への繋げ方">
+<meta name="twitter:description" content="工事日報と現場日報・作業日報の違い、工事台帳へつなげる手順、よくある3つの失敗まで、建設業の原価管理の実務を解説します。">
+<meta name="twitter:image" content="https://lp.reposul.com/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"TOP","item":"https://lp.reposul.com/"},
+    {"@type":"ListItem","position":2,"name":"ブログ","item":"https://lp.reposul.com/blog/"},
+    {"@type":"ListItem","position":3,"name":"工事日報とは？作業日報との違いと、工事台帳・原価管理への繋げ方","item":"https://lp.reposul.com/blog/koji-nippou-daicho.html"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "工事日報とは？作業日報との違いと、工事台帳・原価管理への繋げ方",
+  "description": "工事日報と現場日報・作業日報の違い、工事台帳へつなげる手順、よくある3つの失敗まで、建設業の原価管理の実務を解説します。",
+  "datePublished": "2026-09-16",
+  "dateModified": "2026-09-16",
+  "author": { "@type": "Organization", "name": "株式会社SIXMATE" },
+  "publisher": { "@type": "Organization", "name": "株式会社SIXMATE", "logo": { "@type": "ImageObject", "url": "https://lp.reposul.com/reposul-logo.png" } },
+  "mainEntityOfPage": "https://lp.reposul.com/blog/koji-nippou-daicho.html",
+  "image": "https://lp.reposul.com/og-image.png"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"工事日報と工事台帳は同じものですか？","acceptedAnswer":{"@type":"Answer","text":"違います。工事日報は日々の投入記録（インプット）、工事台帳は工事ごとに原価を集計した帳簿（アウトプット）です。日報を工事番号ごとに積み上げた結果が台帳になります。"}},
+    {"@type":"Question","name":"工事台帳の作成に法的な義務はありますか？","acceptedAnswer":{"@type":"Answer","text":"工事台帳そのものを作れという直接の規定はありません。ただし建設業法上、建設業者には帳簿の備付け・保存義務（原則5年、新築住宅は10年）があり、税務上も工事ごとの原価を把握できる状態が求められます。"}},
+    {"@type":"Question","name":"未成工事支出金との関係は？","acceptedAnswer":{"@type":"Answer","text":"完成前の工事に投入した原価は、決算時点で未成工事支出金として資産計上されます。この金額の根拠になるのが工事台帳です。"}},
+    {"@type":"Question","name":"小規模な会社でも工事日報は必要ですか？","acceptedAnswer":{"@type":"Answer","text":"工事が同時に2件以上動いているなら必要です。1件しか動いていない会社であれば、全社の経費がその工事の原価になるため簡易な管理でも成立します。"}},
+    {"@type":"Question","name":"現場日報と工事日報を両方書かせるのは負担が大きいのですが。","acceptedAnswer":{"@type":"Answer","text":"分けて書かせる必要はありません。1枚の様式に両方の項目を持たせ、集計先だけを分けるのが正しい設計です。"}}
+  ]
+}
+</script>
+<style>
+:root{
+  --c-green-900:#123324; --c-green-700:#1c9d68; --c-green-500:#2dcb86; --c-green-100:#eaf6ef;
+  --c-orange-500:#ff7a1a; --c-orange-100:#fff1e6; --c-ink:#16211c; --c-ink-soft:#4a5a52;
+  --c-paper:#ffffff; --c-paper-warm:#f6faf7; --c-line:#dbe8e1;
+  --f-display:'Zen Kaku Gothic New', sans-serif; --f-body:'Noto Sans JP', sans-serif; --f-mono:'JetBrains Mono', monospace;
+  --maxw:1120px; --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box;}
+body{margin:0; font-family:var(--f-body); color:var(--c-ink); background:var(--c-paper); line-height:1.75; -webkit-font-smoothing:antialiased;}
+h1,h2,h3{font-family:var(--f-display); color:var(--c-green-900); line-height:1.4; margin:0;}
+a{color:var(--c-green-700);}
+img{max-width:100%; display:block;}
+.wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; font-weight:700; font-size:15px; padding:15px 28px; border-radius:999px; border:none; cursor:pointer; text-decoration:none; transition:transform .25s var(--ease); white-space:nowrap;}
+.btn-primary{background:var(--c-orange-500); color:#fff;}
+.btn:hover{transform:translateY(-3px) scale(1.02);}
+
+header{position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(255,255,255,.9); backdrop-filter:blur(10px); border-bottom:1px solid var(--c-line);}
+.nav{display:flex; align-items:center; justify-content:space-between; height:84px;}
+.nav-logo img{height:56px;}
+.nav-links{display:flex; align-items:center; gap:28px; font-size:14px; font-weight:500;}
+.nav-links a{text-decoration:none; color:var(--c-ink);}
+.nav-toggle{display:none; background:none; border:none; font-size:22px; cursor:pointer;}
+@media (max-width:1024px){ .nav-links{display:none;} .nav-toggle{display:block;} }
+@media (max-width:1024px){
+  .nav-links.open{display:flex; position:fixed; top:84px; left:0; right:0; flex-direction:column; align-items:flex-start; gap:0; background:#fff; padding:8px 24px 20px; border-bottom:1px solid var(--c-line); box-shadow:0 14px 26px -14px rgba(0,0,0,.18); z-index:99;}
+  .nav-links.open a{width:100%; padding:14px 2px; border-bottom:1px solid var(--c-line); font-size:16px;}
+}
+@media (max-width:700px){ .nav-cta .btn{display:none;} }
+
+.breadcrumb{font-family:var(--f-mono); font-size:12px; color:var(--c-ink-soft); margin:110px 0 0;}
+.breadcrumb a{color:var(--c-green-700); text-decoration:none;}
+
+article{max-width:720px; margin:0 auto; padding:32px 24px 100px;}
+.post-meta{font-family:var(--f-mono); font-size:12px; color:var(--c-ink-soft); margin:18px 0 10px;}
+article h1{font-size:clamp(24px,4vw,34px); font-weight:900; margin-bottom:24px;}
+article h2{font-size:21px; font-weight:900; margin:44px 0 16px;}
+article h3{font-size:16.5px; font-weight:900; margin:28px 0 10px;}
+article p{font-size:16px; color:var(--c-ink); margin:0 0 20px;}
+article ul, article ol{font-size:16px; color:var(--c-ink); padding-left:22px; margin:0 0 20px;}
+article li{margin-bottom:8px;}
+table.diff{width:100%; border-collapse:collapse; font-size:14.5px; margin:24px 0;}
+table.diff th, table.diff td{padding:14px 16px; text-align:left; border-bottom:1px solid var(--c-line); vertical-align:top;}
+table.diff thead th{font-family:var(--f-mono); font-size:11px; letter-spacing:.05em; text-transform:uppercase; color:var(--c-ink-soft); border-bottom:2px solid var(--c-green-900);}
+.callout{background:var(--c-green-100); border-left:4px solid var(--c-green-500); padding:18px 22px; border-radius:0 10px 10px 0; margin:32px 0; font-weight:700; color:var(--c-green-900);}
+.related{background:var(--c-paper-warm); border:1px solid var(--c-line); border-radius:14px; padding:22px 24px; margin:36px 0;}
+.related h3{margin-top:0; font-size:14px;}
+.related ul{margin:0; padding-left:20px;}
+.article-cta{background:var(--c-paper-warm); border:1px solid var(--c-line); border-radius:16px; padding:32px; text-align:center; margin-top:48px;}
+.article-cta p{margin:0 0 18px; color:var(--c-ink-soft);}
+
+footer{background:var(--c-ink); color:rgba(255,255,255,.8); padding:52px 0 24px; font-size:13.5px;}
+footer .wrap{display:grid; grid-template-columns:1.3fr 1fr 1fr 1fr; gap:32px;}
+@media (max-width:760px){ footer .wrap{grid-template-columns:1fr 1fr;} }
+footer h4{color:#fff; font-size:12.5px; font-family:var(--f-mono); text-transform:uppercase; letter-spacing:.06em; margin:0 0 12px;}
+footer ul{list-style:none; margin:0; padding:0;}
+footer li{margin-bottom:9px;}
+footer a{text-decoration:none; color:rgba(255,255,255,.75);}
+footer a:hover{color:#fff;}
+.bottom-bar{border-top:1px solid rgba(255,255,255,.14); margin-top:36px; padding-top:18px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; color:rgba(255,255,255,.5); font-size:12px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="nav-logo" href="../index.html"><img src="../reposul-logo.png" alt="レポスル"></a>
+    <nav class="nav-links">
+      <a href="../index.html#solution">レポスルとは</a>
+      <a href="../index.html#product">できること</a>
+      <a href="../case.html">導入事例</a>
+      <a href="./">ブログ</a>
+      <a href="../agent.html">代理店募集</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-primary" href="../index.html#contact">お問い合わせ・資料請求</a>
+      <button class="nav-toggle" aria-label="メニュー">☰</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="breadcrumb"><a href="../index.html">TOP</a> ／ <a href="./">ブログ</a> ／ 工事日報とは？作業日報との違いと、工事台帳・原価管理への繋げ方</div>
+</div>
+
+<article>
+  <div class="post-meta">2026.09.16 公開</div>
+  <h1>工事日報とは？作業日報との違いと、工事台帳・原価管理への繋げ方</h1>
+
+  <p>別の記事では現場日報の話を書きました。安全と進捗に向かう書類です。今回は<b>工事日報</b>。同じ「日報」でも、向かう先がまったく違います。<b>工事日報が向かう先は、お金です。</b></p>
+  <p>そして、ここでほとんどの会社がつまずきます。「日報は毎日書かせている。でも、あの現場が儲かったのかどうかは、決算まで分からない」。これは日報を書いていないから起きるのではありません。<b>日報が工事台帳につながっていないから</b>起きます。今回はその接続部分の話をします。</p>
+
+  <h2>工事日報とは</h2>
+  <p><b>工事日報とは、工事（案件）を主語にして、その日に投入した労務・材料・外注・機材を工事番号に紐づけて記録する書類</b>です。現場日報との違いは、主語です。</p>
+  <table class="diff">
+    <thead><tr><th>種類</th><th>例</th><th>集計先</th></tr></thead>
+    <tbody>
+      <tr><td>現場日報</td><td>A現場で今日、8人が入場し、2階の配管を敷設した</td><td>進捗</td></tr>
+      <tr><td>工事日報</td><td>工事番号2026-014に、労務8人工・配管材○m・重機1日を投入した</td><td>原価</td></tr>
+    </tbody>
+  </table>
+  <p>同じ1日を記録していても、<b>現場日報は「進捗」に、工事日報は「原価」に集計されます。</b></p>
+  <h3>作業日報との違い</h3>
+  <p>よく混同されるので整理します。<b>作業日報</b>は、建設業に限らず製造業・保守業などでも使われる<b>最も広い総称</b>です。「その日、誰が何をしたか」を記録する書類全般を指します。つまり、作業日報＝総称（親カテゴリ）、現場日報・工事日報・人工日報＝目的別の具体形（子カテゴリ）という関係になります。「作業日報を導入したい」と言われたとき、実際に解決したいのが進捗管理なのか、原価管理なのか、請求なのかで、作るべき書類は変わります。</p>
+
+  <h2>なぜ工事日報が原価管理の起点になるのか</h2>
+  <p>建設業の工事原価は、<b>材料費・労務費・外注費・経費</b>の4つで構成されます。このうち、<b>請求書が来るのは材料費・外注費・経費だけ</b>です。労務費には請求書が来ません。自社の作業員がどの工事に何人工入ったかは、<b>日報から拾うしかない</b>のです。</p>
+  <p>材料費と外注費は、請求書を工事番号ごとに仕分ければ集計できます。しかし労務費は、日報がなければ永久に工事ごとに割り振れません。<b>「あの現場、儲かった？」に答えられない会社の大半は、労務費が工事に紐づいていません。</b></p>
+
+  <h2>工事日報から工事台帳へ、つなげる手順</h2>
+  <p>工事台帳とは、<b>工事ごとに原価を集計した帳簿</b>です。実行予算と実際原価を比較し、利益が出ているかを判断するための土台になります。</p>
+  <h3>ステップ1：工事番号を先に発番する</h3>
+  <p>すべての起点はここです。受注が決まった時点、あるいは見積を出した時点で工事番号を発番します。「〇〇邸新築」のような呼称だけで運用すると、同じ現場を人によって別名で呼ぶ、追加工事を別工事にすべきか判断できない、集計時に名寄せが必要になる、といった問題が起きます。番号は、会社に1つのルールで発番してください。年度＋連番（2026-014）程度で十分です。</p>
+  <h3>ステップ2：日報の全項目を工事番号に紐づける</h3>
+  <p>労務も、材料も、外注も、機材も、すべて工事番号を持たせます。<b>紐づけられないものが1つでもあると、そこだけ手作業が残ります。</b>実務では「材料は工事番号で仕分けているが、労務だけExcelで別管理」というパターンが最も多く見られます。</p>
+  <h3>ステップ3：日ごとに集計する（月末にまとめない）</h3>
+  <p>月末に1か月分をまとめて集計しようとすると、記憶が曖昧になり、精度が落ちます。しかも作業が月末に集中します。日報が上がった時点で工事番号ごとに積み上がっていく状態が理想です。</p>
+  <h3>ステップ4：実行予算と突き合わせる</h3>
+  <p>工事台帳の価値は、<b>実行予算との差異が見えること</b>にあります。例えば予定労務費120人工に対し、工事の6割時点で実績96人工なら、このペースで160人工＝40人工の超過見込みだと分かります。これが<b>工事の途中で</b>分かることに意味があります。完成後に分かっても、打つ手はありません。工事台帳は決算のための書類ではなく、<b>工期中に軌道修正するための道具です。</b></p>
+
+  <h2>工事日報に記入すべき項目</h2>
+  <p>現場日報より項目は少なくて構いません。金額に関わるものだけです。</p>
+  <ol>
+    <li><b>日付</b></li>
+    <li><b>工事番号</b>（必須。現場名だけでは不可）</li>
+    <li><b>投入労務</b>（作業員名または人数と人工数）</li>
+    <li><b>協力会社と投入人工</b>（外注費の根拠）</li>
+    <li><b>使用材料と数量</b>（金額が動くもののみ）</li>
+    <li><b>使用機材・重機</b>（リース料が発生するもの）</li>
+    <li><b>その他経費</b>（運搬費、駐車場代など現場で発生したもの）</li>
+  </ol>
+  <p>記入しなくてよいもの：作業内容の詳細・安全指示・KY（現場日報の役割）、単価・金額（<b>現場に書かせない</b>）。現場は「数量」だけを記録し、単価をかけるのは事務所の仕事にしてください。現場に単価情報を持たせると、協力会社に金額が見える、単価改定のたびに現場へ周知が必要になる、といった問題が生じます。</p>
+
+  <h2>よくある3つの失敗</h2>
+  <p><b>①共通費が配賦されない</b>：複数現場を回る職長の人件費、事務所経費、共通仮設。これらを工事に配賦していないと、個別工事は黒字なのに全社では赤字という状態が起きます。配賦ルールは複雑にせず、人工数按分などシンプルで継続できる方法を1つ決めてください。<b>精緻さより継続性です。</b></p>
+  <p><b>②追加工事が本工事に混ざる</b>：追加工事を本工事の工事番号で処理すると、追加分の採算が分からなくなります。追加請求の根拠も曖昧になります。<b>枝番（2026-014-1）で分ける</b>運用が確実です。</p>
+  <p><b>③期ズレが起きる</b>：協力会社の請求書が翌月に届く、材料の納品と請求のタイミングがずれる。これにより、日報上の原価と会計上の原価が合わなくなります。日報ベースの原価は「速報値」、会計上の原価は「確定値」と割り切り、<b>速報値で判断し、確定値で締める</b>運用が現実的です。</p>
+
+  <h2>エクセルで工事台帳を作るときの限界</h2>
+  <p>多くの会社がExcelで工事台帳を運用しています。限界が来るサインは3つです。</p>
+  <ul>
+    <li><b>工事が20件を超えた</b>：シート数が増え、集計マクロが複雑化する</li>
+    <li><b>労務費だけ別管理になっている</b>：日報からの転記が毎月発生している</li>
+    <li><b>実行予算との比較が月次でしかできない</b>：差異が見えるのが遅すぎる</li>
+  </ul>
+  <p>特に2つ目が本質的な問題です。<b>日報という原価の最大の情報源が、台帳と分断されている状態</b>では、どれだけ台帳を精緻に作っても手作業が消えません。人手による工数集計にかかる時間は月20時間以上（自社調査）とされます。この時間の多くが、この「分断」の橋渡しに使われています。</p>
+
+  <h2>よくある質問</h2>
+  <p><b>Q. 工事日報と工事台帳は同じものですか？</b><br>A. 違います。工事日報は日々の投入記録（インプット）、工事台帳は工事ごとに原価を集計した帳簿（アウトプット）です。日報を工事番号ごとに積み上げた結果が台帳になります。</p>
+  <p><b>Q. 工事台帳の作成に法的な義務はありますか？</b><br>A. 工事台帳そのものを作れという直接の規定はありません。ただし建設業法上、建設業者には帳簿の備付け・保存義務（原則5年、新築住宅は10年）があり、また税務上も工事ごとの原価を把握できる状態が求められます。実務上は作成が前提と考えてください。</p>
+  <p><b>Q. 未成工事支出金との関係は？</b><br>A. 完成前の工事に投入した原価は、決算時点で未成工事支出金として資産計上されます。この金額の根拠になるのが工事台帳です。工事ごとの原価が積み上がっていないと、決算時に工事別の按分作業が発生します。</p>
+  <p><b>Q. 小規模な会社でも工事日報は必要ですか？</b><br>A. 工事が同時に2件以上動いているなら必要です。1件しか動いていない会社であれば、全社の経費＝その工事の原価なので、簡易な管理でも成立します。逆に、同時進行の工事が増えた瞬間に必要性が跳ね上がります。</p>
+  <p><b>Q. 現場日報と工事日報を両方書かせるのは負担が大きいのですが。</b><br>A. 分けて書かせる必要はありません。1枚の様式に両方の項目を持たせ、集計先だけを分けるのが正しい設計です。現場は1回書き、事務所側で進捗と原価に振り分けます。二重記入は運用が破綻する最大の原因です。</p>
+
+  <div class="related">
+    <h3>関連記事</h3>
+    <ul>
+      <li><a href="genba-nippou-howto.html">現場日報の書き方｜記入すべき9項目と、書かなくていい項目</a></li>
+      <li><a href="ninku-nippou.html">人工日報とは？出面・出面表との違いと、月末に困らない書き方</a></li>
+      <li><a href="construction-labor-management.html">建設業の工数管理は「日報の集計」で決まる</a></li>
+    </ul>
+  </div>
+
+  <div class="article-cta">
+    <p>工事台帳と日報の接続について、個別のご相談も承っています。</p>
+    <a class="btn btn-primary" href="../index.html#contact">お問い合わせ・資料請求 →</a>
+  </div>
+</article>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <img src="../reposul-logo.png" alt="レポスル" style="height:34px; margin-bottom:14px; filter:brightness(0) invert(1);">
+      <p style="max-width:260px; color:rgba(255,255,255,.6);">建設業向け日報・工数管理アプリ「レポスル」<br>提供：株式会社SIXMATE</p>
+    </div>
+    <div><h4>Service</h4><ul><li><a href="../index.html#solution">レポスルとは</a></li><li><a href="../index.html#product">できること</a></li><li><a href="../case.html">導入事例</a></li><li><a href="./">ブログ</a></li></ul></div>
+    <div><h4>Support</h4><ul><li><a href="../index.html#faq">よくある質問</a></li><li><a href="../index.html#contact">お問い合わせ</a></li><li><a href="../agent.html">代理店募集</a></li></ul></div>
+    <div><h4>Company</h4><ul><li><a href="../company.html">株式会社SIXMATE</a></li><li><a href="../privacy.html">プライバシーポリシー</a></li><li><a href="../terms.html">利用規約</a></li></ul></div>
+  </div>
+  <div class="wrap bottom-bar"><span>© 株式会社SIXMATE</span><span>最終更新日：2026年9月</span></div>
+</footer>
+
+<script>
+const toggle=document.querySelector('.nav-toggle');
+const links=document.querySelector('.nav-links');
+if(toggle) toggle.addEventListener('click',()=>links.classList.toggle('open'));
+</script>
+</body>
+</html>

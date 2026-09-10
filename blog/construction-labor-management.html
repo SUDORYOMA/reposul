@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>建設業の工数管理は「日報の集計」で決まる｜レポスル</title>
+<meta name="description" content="建設業の工数管理で本当に時間を奪っているのは入力ではなく集計です。月20時間の集計作業がなぜ生まれるのか、根本の考え方を解説します。">
+<link rel="canonical" href="https://lp.reposul.com/blog/construction-labor-management.html">
+<link rel="icon" type="image/png" href="../favicon.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta name="theme-color" content="#123324">
+<meta property="og:type" content="article">
+<meta property="og:title" content="建設業の工数管理は「日報の集計」で決まる">
+<meta property="og:description" content="建設業の工数管理で本当に時間を奪っているのは入力ではなく集計です。月20時間の集計作業がなぜ生まれるのか、根本の考え方を解説します。">
+<meta property="og:url" content="https://lp.reposul.com/blog/construction-labor-management.html">
+<meta property="og:site_name" content="レポスル">
+<meta property="og:image" content="https://lp.reposul.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="建設業の工数管理は「日報の集計」で決まる">
+<meta name="twitter:description" content="建設業の工数管理で本当に時間を奪っているのは入力ではなく集計です。月20時間の集計作業がなぜ生まれるのか、根本の考え方を解説します。">
+<meta name="twitter:image" content="https://lp.reposul.com/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"TOP","item":"https://lp.reposul.com/"},
+    {"@type":"ListItem","position":2,"name":"ブログ","item":"https://lp.reposul.com/blog/"},
+    {"@type":"ListItem","position":3,"name":"建設業の工数管理は「日報の集計」で決まる","item":"https://lp.reposul.com/blog/construction-labor-management.html"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "建設業の工数管理は「日報の集計」で決まる",
+  "description": "建設業の工数管理で本当に時間を奪っているのは入力ではなく集計です。月20時間の集計作業がなぜ生まれるのか、根本の考え方を解説します。",
+  "datePublished": "2026-09-10",
+  "dateModified": "2026-09-10",
+  "author": { "@type": "Organization", "name": "株式会社SIXMATE" },
+  "publisher": { "@type": "Organization", "name": "株式会社SIXMATE", "logo": { "@type": "ImageObject", "url": "https://lp.reposul.com/reposul-logo.png" } },
+  "mainEntityOfPage": "https://lp.reposul.com/blog/construction-labor-management.html",
+  "image": "https://lp.reposul.com/og-image.png"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"工数管理と勤怠管理は何が違うのですか？","acceptedAnswer":{"@type":"Answer","text":"勤怠管理は「その人が何時から何時まで働いたか」を管理するもので、労務・給与のための記録です。工数管理は「その人がどの現場に何人工投入されたか」を管理するもので、原価と請求のための記録です。建設業では両方必要ですが、月末に会社を苦しめるのは後者です。"}},
+    {"@type":"Question","name":"現場の職人がスマホ入力に対応できるか不安です。","acceptedAnswer":{"@type":"Answer","text":"ポイントは入力項目を自由記述にしないことです。現場名・作業員・人工を選択形式にし、前日の日報を引用できるようにすれば、実質タップ数回で完了します。"}},
+    {"@type":"Question","name":"Excelで頑張れば十分ではないですか？","acceptedAnswer":{"@type":"Answer","text":"現場数と協力会社が少ないうちは十分です。現場・協力会社・作業員が増えると、関数の複雑化と属人化として限界が現れます。"}},
+    {"@type":"Question","name":"現場日報と工事日報は、どちらを使うべきですか？","acceptedAnswer":{"@type":"Answer","text":"目的で決まります。進捗と安全を管理したいなら現場日報、原価と工事台帳を作りたいなら工事日報です。1回の入力から両方の集計を出す設計にするのが現実的です。"}},
+    {"@type":"Question","name":"人工日報と出面表は同じものですか？","acceptedAnswer":{"@type":"Answer","text":"ほぼ同じ意味で使われます。誰が、どの現場に、何人工入ったかを記録するもので、地域や会社によって呼び方が変わります。共通しているのは常用請求と給与計算の根拠になる点です。"}},
+    {"@type":"Question","name":"協力会社にも同じシステムを使ってもらう必要がありますか？","acceptedAnswer":{"@type":"Answer","text":"製品によります。会社間連携に対応した製品であれば、連携申請をするだけで作業員名簿の同期や集計結果の共有ができ、請求確認の手作業がなくなります。"}}
+  ]
+}
+</script>
+<style>
+:root{
+  --c-green-900:#123324; --c-green-700:#1c9d68; --c-green-500:#2dcb86; --c-green-100:#eaf6ef;
+  --c-orange-500:#ff7a1a; --c-orange-100:#fff1e6; --c-ink:#16211c; --c-ink-soft:#4a5a52;
+  --c-paper:#ffffff; --c-paper-warm:#f6faf7; --c-line:#dbe8e1;
+  --f-display:'Zen Kaku Gothic New', sans-serif; --f-body:'Noto Sans JP', sans-serif; --f-mono:'JetBrains Mono', monospace;
+  --maxw:1120px; --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box;}
+body{margin:0; font-family:var(--f-body); color:var(--c-ink); background:var(--c-paper); line-height:1.75; -webkit-font-smoothing:antialiased;}
+h1,h2,h3{font-family:var(--f-display); color:var(--c-green-900); line-height:1.4; margin:0;}
+a{color:var(--c-green-700);}
+img{max-width:100%; display:block;}
+.wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; font-weight:700; font-size:15px; padding:15px 28px; border-radius:999px; border:none; cursor:pointer; text-decoration:none; transition:transform .25s var(--ease); white-space:nowrap;}
+.btn-primary{background:var(--c-orange-500); color:#fff;}
+.btn:hover{transform:translateY(-3px) scale(1.02);}
+
+header{position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(255,255,255,.9); backdrop-filter:blur(10px); border-bottom:1px solid var(--c-line);}
+.nav{display:flex; align-items:center; justify-content:space-between; height:84px;}
+.nav-logo img{height:56px;}
+.nav-links{display:flex; align-items:center; gap:28px; font-size:14px; font-weight:500;}
+.nav-links a{text-decoration:none; color:var(--c-ink);}
+.nav-toggle{display:none; background:none; border:none; font-size:22px; cursor:pointer;}
+@media (max-width:1024px){ .nav-links{display:none;} .nav-toggle{display:block;} }
+@media (max-width:1024px){
+  .nav-links.open{display:flex; position:fixed; top:84px; left:0; right:0; flex-direction:column; align-items:flex-start; gap:0; background:#fff; padding:8px 24px 20px; border-bottom:1px solid var(--c-line); box-shadow:0 14px 26px -14px rgba(0,0,0,.18); z-index:99;}
+  .nav-links.open a{width:100%; padding:14px 2px; border-bottom:1px solid var(--c-line); font-size:16px;}
+}
+@media (max-width:700px){ .nav-cta .btn{display:none;} }
+
+.breadcrumb{font-family:var(--f-mono); font-size:12px; color:var(--c-ink-soft); margin:110px 0 0;}
+.breadcrumb a{color:var(--c-green-700); text-decoration:none;}
+
+article{max-width:720px; margin:0 auto; padding:32px 24px 100px;}
+.post-meta{font-family:var(--f-mono); font-size:12px; color:var(--c-ink-soft); margin:18px 0 10px;}
+article h1{font-size:clamp(24px,4vw,34px); font-weight:900; margin-bottom:24px;}
+article h2{font-size:21px; font-weight:900; margin:44px 0 16px;}
+article h3{font-size:16.5px; font-weight:900; margin:28px 0 10px;}
+article p{font-size:16px; color:var(--c-ink); margin:0 0 20px;}
+article ul, article ol{font-size:16px; color:var(--c-ink); padding-left:22px; margin:0 0 20px;}
+article li{margin-bottom:8px;}
+table.diff{width:100%; border-collapse:collapse; font-size:14.5px; margin:24px 0;}
+table.diff th, table.diff td{padding:14px 16px; text-align:left; border-bottom:1px solid var(--c-line); vertical-align:top;}
+table.diff thead th{font-family:var(--f-mono); font-size:11px; letter-spacing:.05em; text-transform:uppercase; color:var(--c-ink-soft); border-bottom:2px solid var(--c-green-900);}
+.callout{background:var(--c-green-100); border-left:4px solid var(--c-green-500); padding:18px 22px; border-radius:0 10px 10px 0; margin:32px 0; font-weight:700; color:var(--c-green-900);}
+.note-src{font-size:12.5px; color:var(--c-ink-soft);}
+.related{background:var(--c-paper-warm); border:1px solid var(--c-line); border-radius:14px; padding:22px 24px; margin:36px 0;}
+.related h3{margin-top:0; font-size:14px;}
+.related ul{margin:0; padding-left:20px;}
+.article-cta{background:var(--c-paper-warm); border:1px solid var(--c-line); border-radius:16px; padding:32px; text-align:center; margin-top:48px;}
+.article-cta p{margin:0 0 18px; color:var(--c-ink-soft);}
+
+footer{background:var(--c-ink); color:rgba(255,255,255,.8); padding:52px 0 24px; font-size:13.5px;}
+footer .wrap{display:grid; grid-template-columns:1.3fr 1fr 1fr 1fr; gap:32px;}
+@media (max-width:760px){ footer .wrap{grid-template-columns:1fr 1fr;} }
+footer h4{color:#fff; font-size:12.5px; font-family:var(--f-mono); text-transform:uppercase; letter-spacing:.06em; margin:0 0 12px;}
+footer ul{list-style:none; margin:0; padding:0;}
+footer li{margin-bottom:9px;}
+footer a{text-decoration:none; color:rgba(255,255,255,.75);}
+footer a:hover{color:#fff;}
+.bottom-bar{border-top:1px solid rgba(255,255,255,.14); margin-top:36px; padding-top:18px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; color:rgba(255,255,255,.5); font-size:12px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="nav-logo" href="../index.html"><img src="../reposul-logo.png" alt="レポスル"></a>
+    <nav class="nav-links">
+      <a href="../index.html#solution">レポスルとは</a>
+      <a href="../index.html#product">できること</a>
+      <a href="../case.html">導入事例</a>
+      <a href="./">ブログ</a>
+      <a href="../agent.html">代理店募集</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-primary" href="../index.html#contact">お問い合わせ・資料請求</a>
+      <button class="nav-toggle" aria-label="メニュー">☰</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="breadcrumb"><a href="../index.html">TOP</a> ／ <a href="./">ブログ</a> ／ 建設業の工数管理は「日報の集計」で決まる</div>
+</div>
+
+<article>
+  <div class="post-meta">2026.09.10 公開</div>
+  <h1>建設業の工数管理は「日報の集計」で決まる｜月20時間の集計作業をゼロにする考え方</h1>
+
+  <p>月末になると、事務所の電気だけが遅くまで点いている。現場は17時に上がっているのに、事務員さんは紙の日報とExcelを行ったり来たりしている。数字が合わない。あの現場の人工（にんく）が1つ足りない。協力会社から届いた請求書と、うちの集計が合わない。</p>
+
+  <p>建設業の会社なら、どこでも見たことのある光景だと思います。結論から言います。<b>問題は「日報」ではありません。「集計」です。</b></p>
+
+  <h2>建設業の工数管理とは何か</h2>
+  <p><b>建設業における工数管理とは、「どの現場に、誰が、何日（何人工）投入されたか」を記録・集計し、原価と請求の根拠にすること</b>を指します。</p>
+  <p>製造業やIT業界の「工数管理」が時間（マンアワー）単位で語られるのに対し、建設業では<b>「人工（にんく）」＝作業員1人が1日働いた単位</b>で数えるのが一般的です。0.5人工（半日）、1.25人工（残業込み）といった扱いをする会社も多くあります。</p>
+  <p>そして建設業の工数管理には、他業種にはない3つの特徴があります。</p>
+  <ul>
+    <li><b>現場が毎日変わる</b>：同じ作業員が、週の中で3つも4つも現場を移動する</li>
+    <li><b>協力会社が入る</b>：自社の人工だけでなく、二次・三次の協力会社の人工も把握しないと請求が確定しない</li>
+    <li><b>請求に直結する</b>：常用（じょうよう）契約なら、工数の集計結果がそのまま請求金額になる</li>
+  </ul>
+  <p>つまり建設業の工数管理は、<b>単なる「勤怠の記録」ではなく「売上の計算」そのもの</b>です。ここがズレると、お金がズレます。</p>
+
+  <h2>現場日報・工事日報・人工日報・作業日報は、何が違うのか</h2>
+  <p>建設業の現場では、同じ紙を指しているのに会社によって呼び方が違います。「うちは現場日報」「うちは工事日報」「人工日報を出して」。厳密な定義があるわけではありませんが、実務上は次のように使い分けられています。</p>
+  <table class="diff">
+    <thead><tr><th>呼び方</th><th>主語</th><th>集計先</th></tr></thead>
+    <tbody>
+      <tr><td>作業日報</td><td>業種横断の総称</td><td>（上記3つの総称）</td></tr>
+      <tr><td>現場日報</td><td>現場</td><td>進捗管理・安全管理</td></tr>
+      <tr><td>工事日報</td><td>工事（案件）</td><td>工事台帳・原価管理</td></tr>
+      <tr><td>人工日報／出面表</td><td>人（労務）</td><td>常用請求・給与計算</td></tr>
+    </tbody>
+  </table>
+  <p>呼び方は違っても、記録している中身は同じです。<b>「誰が・どの現場に・何人工」</b>の3点。この3点さえ正確に取れていれば、常用請求も給与計算も原価計算も、あとは計算するだけになります。</p>
+  <p>大事なのは、この4つが「同じ書類の別名」ではなく、<b>集計される先が違う</b>という点です。多くの会社で月末が地獄になる原因はここにあります。<b>1枚の紙を、3つの違う目的のために、3回集計し直している。</b>逆に言えば、<b>入力を1回にして、集計先を3つに自動で振り分けられれば、月末の作業はほぼ消えます。</b>これが工数管理システムの本質的な役割です。</p>
+
+  <h2>なぜ月末の集計は終わらないのか</h2>
+  <p>多くの会社が「日報アプリを入れれば楽になる」と考えます。でも実際に入れてみると、思ったほど楽にならない。理由ははっきりしています。<b>時間を奪っているのは「入力」ではなく「集計」だからです。</b></p>
+  <p>紙の日報を使っている会社の、月末の作業を分解してみてください。</p>
+  <ol>
+    <li>日報を回収する（現場から事務所へ、あるいはLINEで届く写真を保存する）</li>
+    <li>手書きの文字を読む（読めない字は電話で確認する）</li>
+    <li>Excelに転記する</li>
+    <li>現場別・作業員別・協力会社別に集計する</li>
+    <li>協力会社から届いた請求書と突き合わせる</li>
+    <li>請求明細を作成する</li>
+    <li>請求書を発行する</li>
+  </ol>
+  <p>現場の作業員がやっているのは、この7工程のうち最初の1つだけです。残り6つは、全部事務所の仕事です。日報アプリの多くは、この「最初の1つ」を電子化します。だから現場は少し楽になる。でも<b>事務所の6工程はほとんど残ったまま</b>なので、月末残業は消えません。</p>
+
+  <h3>数字で見る、建設業の事務負担</h3>
+  <ul>
+    <li>紙の日報の作成にかかる時間は、<b>1回あたり平均10分</b>（現場数・人数に比例して増える、自社調査）</li>
+    <li>人手による工数集計にかかる時間は、<b>月20時間以上</b>（自社調査）</li>
+    <li>紙日報の購入費用は、<b>月5,000円〜</b>（現場数により変動）</li>
+    <li>建設業の経営者の<b>54%以上が、毎日2時間以上を事務作業に使っている</b>（出典：朝日新聞「Beyond Borders」建設業経営者調査）</li>
+  </ul>
+  <p>月20時間。年間で240時間です。事務員さんの人件費に換算すれば、それだけで年間数十万円が集計作業に消えている計算になります。</p>
+
+  <h2>集計が属人化すると、会社のリスクになる</h2>
+  <p>もうひとつ、あまり語られない問題があります。<b>集計できるのが1人しかいない</b>という状態です。複雑なExcel関数、独自のシート構成、「あのファイルはあの人しか触れない」。中小の建設会社では珍しくありません。</p>
+  <p>この状態で、その事務員さんが辞めたらどうなるか。あるいは1週間入院したらどうなるか。<b>請求書が出せなくなります。</b>工数管理の属人化は、業務効率の問題ではなく、<b>キャッシュフローが止まるリスク</b>です。</p>
+
+  <h2>建設業を取り巻く環境は、待ってくれない</h2>
+  <ul>
+    <li>建設業の有効求人倍率は<b>5.04倍</b>（令和7年7月／全産業平均は約1.2倍）→ 1人の求職者を5社が奪い合っている</li>
+    <li>就業者数はピーク685万人（1997年）から<b>477万人（2024年）へ約30%減</b></li>
+    <li>就業者に占める<b>55歳以上の割合は36.7%</b>、29歳以下は約12% → 10年後、約4分の1の技能者が一斉に引退する</li>
+    <li>それに対し、建設業の<b>DX取り組み率は20.7%</b>。約8割が未着手</li>
+  </ul>
+  <p class="note-src">（出典：厚生労働省「一般職業紹介状況」令和7年7月分／日本建設業連合会「建設業ハンドブック2024」／PR TIMES「建設業のDXに関する調査」株式会社C-mind, 2024）</p>
+  <p>人は減る。高齢化する。それでも現場は回さないといけない。このとき、<b>月20時間を集計作業に使い続ける会社</b>と、<b>その20時間を人材採用や現場管理に回せる会社</b>では、5年後にとんでもない差がつきます。</p>
+
+  <h2>紙・Excel・システム、それぞれの限界</h2>
+  <table class="diff">
+    <thead><tr><th>手段</th><th>良い点</th><th>限界</th></tr></thead>
+    <tbody>
+      <tr><td>紙の日報</td><td>導入費用がほぼゼロ、誰でも使える、現場に馴染んでいる</td><td>手書きミスと紛失、集計は完全に人力、過去日報の検索が不可能、保管場所が必要</td></tr>
+      <tr><td>Excel</td><td>紙より検索できる、自由に設計できる</td><td>転記作業が発生する、関数が複雑化して属人化する、二重入力とミス、月末に作業が集中する</td></tr>
+      <tr><td>一般的な日報システム</td><td>オンライン保存で紛失ゼロ、入力が電子化される</td><td>導入費用が高額（10万円〜のケースも）、集計まで自動化されていない製品がある、会社をまたいだ連携ができない</td></tr>
+    </tbody>
+  </table>
+  <p>最後の「会社をまたげない」が、建設業では地味に効きます。多重下請け構造の中で、元請け・一次・二次がそれぞれ別々にシステムを入れても、<b>会社と会社の間だけは紙かLINEのまま</b>。だから協力会社の請求確認は、いつまでたっても手作業のままです。</p>
+
+  <h2>工数管理を自動化すると、立場ごとに何が変わるか</h2>
+  <h3>職人・作業員</h3>
+  <ul>
+    <li>スマホで30秒、日報を入力するだけ</li>
+    <li>前日日報の引用や選択形式なら、同じ現場・同じメンバーの入力を省略できる</li>
+    <li>事務所に日報を提出しに戻る必要がない（提出忘れも起きない）</li>
+  </ul>
+  <h3>事務員</h3>
+  <ul>
+    <li>転記作業がゼロになる</li>
+    <li>集計作業がゼロになる（入力された瞬間に集計されている）</li>
+    <li>請求明細が工数データから自動で作れる</li>
+    <li>月末に作業が集中しない</li>
+  </ul>
+  <h3>社長・経営者</h3>
+  <ul>
+    <li>現場ごとの投入工数がリアルタイムで見える</li>
+    <li>人員配置の判断材料が数字で手に入る</li>
+    <li>協力会社からの請求が正しいか、突き合わせずに確認できる</li>
+    <li>業務が属人化しないので、退職リスクが下がる</li>
+  </ul>
+  <div class="callout">日報を電子化することがゴールではありません。集計をなくすことがゴールです。</div>
+
+  <h2>よくある質問</h2>
+  <p><b>Q. 工数管理と勤怠管理は何が違うのですか？</b><br>A. 勤怠管理は「その人が何時から何時まで働いたか」を管理するもので、労務・給与のための記録です。工数管理は「その人がどの現場に何人工投入されたか」を管理するもので、原価と請求のための記録です。建設業では両方必要ですが、月末に会社を苦しめるのは後者です。</p>
+  <p><b>Q. 現場の職人がスマホ入力に対応できるか不安です。</b><br>A. ポイントは「入力項目を自由記述にしないこと」。現場名・作業員・人工を選択形式にし、前日の日報を引用できるようにすれば、実質タップ数回で完了します。紙の日報と同じ見た目・同じ並びにしておくと、抵抗感はさらに減ります。</p>
+  <p><b>Q. Excelで頑張れば十分ではないですか？</b><br>A. 現場数と協力会社が少ないうちは十分です。ただし、現場・協力会社・作業員が増えると、Excelの限界は関数の複雑化と属人化として現れます。「今のExcelを、明日から別の人が引き継げるか」を基準に判断するのが分かりやすいと思います。</p>
+  <p><b>Q. 現場日報と工事日報は、どちらを使うべきですか？</b><br>A. どちらか一方ではなく、目的で決まります。進捗と安全を管理したいなら現場日報、原価と工事台帳を作りたいなら工事日報です。ただし紙で両方運用すると現場の負担が倍になるため、1回の入力から両方の集計を出す設計にするのが現実的です。</p>
+  <p><b>Q. 人工日報と出面表は同じものですか？</b><br>A. ほぼ同じ意味で使われます。「誰が、どの現場に、何人工入ったか」を記録するもので、地域や会社によって「人工日報」「出面（でづら）」「出面表」「出勤簿」と呼び方が変わります。共通しているのは、常用請求と給与計算の根拠になるという点です。</p>
+  <p><b>Q. 協力会社にも同じシステムを使ってもらう必要がありますか？</b><br>A. 製品によります。多くの日報システムは自社内で完結する設計のため、協力会社とのやり取りは紙やLINEのまま残ります。会社間連携に対応した製品であれば、連携申請をするだけで作業員名簿の同期や集計結果の共有ができ、請求確認の手作業がなくなります。</p>
+
+  <div class="related">
+    <h3>関連記事</h3>
+    <ul>
+      <li><a href="ninku-nippou.html">人工日報とは？出面・出面表との違いと、月末に困らない書き方</a></li>
+      <li><a href="genba-nippou-howto.html">現場日報の書き方｜記入すべき9項目と、書かなくていい項目</a></li>
+      <li><a href="koji-nippou-daicho.html">工事日報とは？作業日報との違いと、工事台帳・原価管理への繋げ方</a></li>
+    </ul>
+  </div>
+
+  <div class="article-cta">
+    <p>工数管理や日報のことでお困りのことがあれば、お気軽にご相談ください。</p>
+    <a class="btn btn-primary" href="../index.html#contact">お問い合わせ・資料請求 →</a>
+  </div>
+</article>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <img src="../reposul-logo.png" alt="レポスル" style="height:34px; margin-bottom:14px; filter:brightness(0) invert(1);">
+      <p style="max-width:260px; color:rgba(255,255,255,.6);">建設業向け日報・工数管理アプリ「レポスル」<br>提供：株式会社SIXMATE</p>
+    </div>
+    <div><h4>Service</h4><ul><li><a href="../index.html#solution">レポスルとは</a></li><li><a href="../index.html#product">できること</a></li><li><a href="../case.html">導入事例</a></li><li><a href="./">ブログ</a></li></ul></div>
+    <div><h4>Support</h4><ul><li><a href="../index.html#faq">よくある質問</a></li><li><a href="../index.html#contact">お問い合わせ</a></li><li><a href="../agent.html">代理店募集</a></li></ul></div>
+    <div><h4>Company</h4><ul><li><a href="../company.html">株式会社SIXMATE</a></li><li><a href="../privacy.html">プライバシーポリシー</a></li><li><a href="../terms.html">利用規約</a></li></ul></div>
+  </div>
+  <div class="wrap bottom-bar"><span>© 株式会社SIXMATE</span><span>最終更新日：2026年9月</span></div>
+</footer>
+
+<script>
+const toggle=document.querySelector('.nav-toggle');
+const links=document.querySelector('.nav-links');
+if(toggle) toggle.addEventListener('click',()=>links.classList.toggle('open'));
+</script>
+</body>
+</html>
