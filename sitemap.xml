@@ -26,7 +26,7 @@
   </url>
   <url>
     <loc>https://lp.reposul.com/blog/</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-09-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -93,6 +93,12 @@
   <url>
     <loc>https://lp.reposul.com/blog/sagyou-nippou-howto.html</loc>
     <lastmod>2026-09-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://lp.reposul.com/blog/nippou-collection.html</loc>
+    <lastmod>2026-09-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
