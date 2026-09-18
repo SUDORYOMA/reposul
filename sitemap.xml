@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  lp.reposul.com サイトマップ（全21ページ）
+  lp.reposul.com サイトマップ（全22ページ）
   最終更新: 2026-09-18
 
   【運用ルール】
@@ -28,6 +28,13 @@
     <loc>https://lp.reposul.com/agent.html</loc>
     <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://lp.reposul.com/news.html</loc>
+    <lastmod>2026-09-18</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
 
