@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>事務員が1人辞めたら請求書が出せない会社の話｜工数管理の属人化リスク｜レポスル</title>
+<meta name="description" content="工数管理の属人化は業務効率ではなくキャッシュフローの問題です。属人化しやすい5つの理由、チェックリスト、引き継げる状態を作る4段階の対策を解説します。">
+<link rel="canonical" href="https://lp.reposul.com/blog/zokujinka-risk.html">
+<link rel="icon" type="image/png" href="../favicon.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta name="theme-color" content="#123324">
+<meta property="og:type" content="article">
+<meta property="og:title" content="事務員が1人辞めたら請求書が出せない会社の話｜工数管理の属人化リスク">
+<meta property="og:description" content="工数管理の属人化は業務効率ではなくキャッシュフローの問題です。属人化しやすい5つの理由、チェックリスト、引き継げる状態を作る4段階の対策を解説します。">
+<meta property="og:url" content="https://lp.reposul.com/blog/zokujinka-risk.html">
+<meta property="og:site_name" content="レポスル">
+<meta property="og:image" content="https://lp.reposul.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="事務員が1人辞めたら請求書が出せない会社の話｜工数管理の属人化リスク">
+<meta name="twitter:description" content="工数管理の属人化は業務効率ではなくキャッシュフローの問題です。属人化しやすい5つの理由、チェックリスト、引き継げる状態を作る4段階の対策を解説します。">
+<meta name="twitter:image" content="https://lp.reposul.com/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"TOP","item":"https://lp.reposul.com/"},
+    {"@type":"ListItem","position":2,"name":"ブログ","item":"https://lp.reposul.com/blog/"},
+    {"@type":"ListItem","position":3,"name":"事務員が1人辞めたら請求書が出せない会社の話｜工数管理の属人化リスク","item":"https://lp.reposul.com/blog/zokujinka-risk.html"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "事務員が1人辞めたら請求書が出せない会社の話｜工数管理の属人化リスク",
+  "description": "工数管理の属人化は業務効率ではなくキャッシュフローの問題です。属人化しやすい5つの理由、チェックリスト、引き継げる状態を作る4段階の対策を解説します。",
+  "datePublished": "2026-09-30",
+  "dateModified": "2026-09-30",
+  "author": { "@type": "Organization", "name": "株式会社SIXMATE" },
+  "publisher": { "@type": "Organization", "name": "株式会社SIXMATE", "logo": { "@type": "ImageObject", "url": "https://lp.reposul.com/reposul-logo.png" } },
+  "mainEntityOfPage": "https://lp.reposul.com/blog/zokujinka-risk.html",
+  "image": "https://lp.reposul.com/og-image.png"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"まず何から始めるべきですか？","acceptedAnswer":{"@type":"Answer","text":"レベル1（手順の書き出し）です。1時間で終わり、費用もかかりません。担当者に「もし急に休むことになったら困るので」と依頼すれば、協力を得やすいです。"}},
+    {"@type":"Question","name":"担当者が引き継ぎに非協力的な場合は？","acceptedAnswer":{"@type":"Answer","text":"「評価されなくなる」「立場がなくなる」という不安があるケースが多いです。属人化の解消は担当者を守る施策であること、休みを取りやすくするための取り組みであることを先に伝えてください。実際、多くの担当者は休めない状態に負担を感じています。"}},
+    {"@type":"Question","name":"小規模な会社で、そもそも事務が1人しかいないのですが。","acceptedAnswer":{"@type":"Answer","text":"その場合こそ、レベル1と2が重要です。代わりの人が社内にいなくても、手順書と例外処理の一覧があれば、経営者や外部の支援で一時的にしのげます。何もない状態とは大きく違います。"}},
+    {"@type":"Question","name":"システムを入れれば解決しますか？","acceptedAnswer":{"@type":"Answer","text":"部分的には解決します。集計ロジックが製品側にあるため、独自Excelよりは引き継ぎやすくなります。ただし、運用ルールと例外処理が文書化されていなければ、システムが変わるだけで属人化は残ります。"}},
+    {"@type":"Question","name":"どのくらいの期間で改善できますか？","acceptedAnswer":{"@type":"Answer","text":"レベル1と2は1日で着手できます。レベル3は1〜2ヶ月。レベル4は製品選定を含めて3〜6ヶ月が目安です。重要なのは、レベル1を今週中に終わらせることです。"}}
+  ]
+}
+</script>
+<style>
+:root{
+  --c-green-900:#123324; --c-green-700:#1c9d68; --c-green-500:#2dcb86; --c-green-100:#eaf6ef;
+  --c-orange-500:#ff7a1a; --c-orange-100:#fff1e6; --c-ink:#16211c; --c-ink-soft:#4a5a52;
+  --c-paper:#ffffff; --c-paper-warm:#f6faf7; --c-line:#dbe8e1;
+  --f-display:'Zen Kaku Gothic New', sans-serif; --f-body:'Noto Sans JP', sans-serif; --f-mono:'JetBrains Mono', monospace;
+  --maxw:1120px; --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box;}
+body{margin:0; font-family:var(--f-body); color:var(--c-ink); background:var(--c-paper); line-height:1.75; -webkit-font-smoothing:antialiased;}
+h1,h2,h3{font-family:var(--f-display); color:var(--c-green-900); line-height:1.4; margin:0;}
+a{color:var(--c-green-700);}
+img{max-width:100%; display:block;}
+.wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; font-weight:700; font-size:15px; padding:15px 28px; border-radius:999px; border:none; cursor:pointer; text-decoration:none; transition:transform .25s var(--ease); white-space:nowrap;}
+.btn-primary{background:var(--c-orange-500); color:#fff;}
+.btn:hover{transform:translateY(-3px) scale(1.02);}
+
+header{position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(255,255,255,.9); backdrop-filter:blur(10px); border-bottom:1px solid var(--c-line);}
+.nav{display:flex; align-items:center; justify-content:space-between; height:84px;}
+.nav-logo img{height:56px;}
+.nav-links{display:flex; align-items:center; gap:28px; font-size:14px; font-weight:500;}
+.nav-links a{text-decoration:none; color:var(--c-ink);}
+.nav-toggle{display:none; background:none; border:none; font-size:22px; cursor:pointer;}
+@media (max-width:1024px){ .nav-links{display:none;} .nav-toggle{display:block;} }
+@media (max-width:1024px){
+  .nav-links.open{display:flex; position:fixed; top:84px; left:0; right:0; flex-direction:column; align-items:flex-start; gap:0; background:#fff; padding:8px 24px 20px; border-bottom:1px solid var(--c-line); box-shadow:0 14px 26px -14px rgba(0,0,0,.18); z-index:99;}
+  .nav-links.open a{width:100%; padding:14px 2px; border-bottom:1px solid var(--c-line); font-size:16px;}
+}
+@media (max-width:700px){ .nav-cta .btn{display:none;} }
+
+.breadcrumb{font-family:var(--f-mono); font-size:12px; color:var(--c-ink-soft); margin:110px 0 0;}
+.breadcrumb a{color:var(--c-green-700); text-decoration:none;}
+
+article{max-width:720px; margin:0 auto; padding:32px 24px 100px;}
+.post-meta{font-family:var(--f-mono); font-size:12px; color:var(--c-ink-soft); margin:18px 0 10px;}
+article h1{font-size:clamp(24px,4vw,34px); font-weight:900; margin-bottom:24px;}
+article h2{font-size:21px; font-weight:900; margin:44px 0 16px;}
+article h3{font-size:16.5px; font-weight:900; margin:28px 0 10px;}
+article p{font-size:16px; color:var(--c-ink); margin:0 0 20px;}
+article ul, article ol{font-size:16px; color:var(--c-ink); padding-left:22px; margin:0 0 20px;}
+article li{margin-bottom:8px;}
+.callout{background:var(--c-green-100); border-left:4px solid var(--c-green-500); padding:18px 22px; border-radius:0 10px 10px 0; margin:32px 0; font-weight:700; color:var(--c-green-900);}
+.warn{background:var(--c-orange-100); border-left:4px solid var(--c-orange-500); padding:18px 22px; border-radius:0 10px 10px 0; margin:32px 0; font-weight:700; color:var(--c-orange-500);}
+.note-src{font-size:12.5px; color:var(--c-ink-soft);}
+.related{background:var(--c-paper-warm); border:1px solid var(--c-line); border-radius:14px; padding:22px 24px; margin:36px 0;}
+.related h3{margin-top:0; font-size:14px;}
+.related ul{margin:0; padding-left:20px;}
+.article-cta{background:var(--c-paper-warm); border:1px solid var(--c-line); border-radius:16px; padding:32px; text-align:center; margin-top:48px;}
+.article-cta p{margin:0 0 18px; color:var(--c-ink-soft);}
+
+footer{background:var(--c-ink); color:rgba(255,255,255,.8); padding:52px 0 24px; font-size:13.5px;}
+footer .wrap{display:grid; grid-template-columns:1.3fr 1fr 1fr 1fr; gap:32px;}
+@media (max-width:760px){ footer .wrap{grid-template-columns:1fr 1fr;} }
+footer h4{color:#fff; font-size:12.5px; font-family:var(--f-mono); text-transform:uppercase; letter-spacing:.06em; margin:0 0 12px;}
+footer ul{list-style:none; margin:0; padding:0;}
+footer li{margin-bottom:9px;}
+footer a{text-decoration:none; color:rgba(255,255,255,.75);}
+footer a:hover{color:#fff;}
+.bottom-bar{border-top:1px solid rgba(255,255,255,.14); margin-top:36px; padding-top:18px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; color:rgba(255,255,255,.5); font-size:12px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="nav-logo" href="../index.html"><img src="../reposul-logo.png" alt="レポスル"></a>
+    <nav class="nav-links">
+      <a href="../index.html#solution">レポスルとは</a>
+      <a href="../index.html#price">料金</a>
+      <a href="../case.html">導入事例</a>
+      <a href="./">ブログ</a>
+      <a href="../agent.html">代理店募集</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-primary" href="../index.html#contact">お問い合わせ・資料請求</a>
+      <button class="nav-toggle" aria-label="メニュー">☰</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="breadcrumb"><a href="../index.html">TOP</a> ／ <a href="./">ブログ</a> ／ 事務員が1人辞めたら請求書が出せない会社の話｜工数管理の属人化リスク</div>
+</div>
+
+<article>
+  <div class="post-meta">2026.09.30 公開</div>
+  <h1>事務員が1人辞めたら請求書が出せない会社の話｜工数管理の属人化リスク</h1>
+
+  <p>月末の金曜日、事務の方から連絡が入ります。「すみません、来週から入院することになりました」。</p>
+  <p>そのとき、会社が最初に考えることは何でしょうか。本人の体調でしょうか。それとも、<b>「今月の請求書、誰が出すんだ」</b>でしょうか。後者が頭をよぎった会社は、すでに属人化のリスクを抱えています。</p>
+  <p><a href="genba-kosu-kashika.html">前回は、工数が見えると何が判断できるかを書きました。</a>今回はその裏返しです。<b>その数字を出せる人が、1人しかいない</b>という問題を扱います。</p>
+  <p>結論を先に書きます。<b>工数管理の属人化は、業務効率の問題ではありません。キャッシュフローが止まるリスクです。</b></p>
+
+  <h2>「あの人しか分からない」が意味すること</h2>
+  <p>まず、何が起きるかを具体的にします。工数の集計と請求書の発行を1人が担当している会社で、その人が2週間不在になると、次のようなことが起きます。</p>
+  <ul>
+    <li>現場から上がった日報が処理されない</li>
+    <li>協力会社への支払額が確定しない</li>
+    <li><b>請求書が発行できない</b></li>
+    <li>入金が1ヶ月遅れる</li>
+  </ul>
+  <p>売上が立っていても、請求書を出さなければ入金はありません。<b>黒字の会社でも、資金が止まります。</b>そして、これは「辞める」だけの話ではありません。入院、家族の介護、産休、忌引き。<b>予定できないことの方が多い</b>のが実情です。</p>
+
+  <h2>なぜ工数管理は属人化しやすいのか</h2>
+  <p>他の業務と比べても、ここは特に属人化しやすい領域です。理由が5つあります。</p>
+  <h3>①Excelが自由すぎる</h3>
+  <p>誰でも自分の使いやすい形に設計できます。これは長所ですが、<b>設計思想が本人の頭の中にしかない</b>という短所と表裏一体です。シート間の参照、独自の関数、特定のセルにだけ入っている定数。作った本人には自明でも、他人が読み解くのは困難です。</p>
+  <h3>②業務が月1回しか発生しない</h3>
+  <p>日次業務なら、隣の人が見ていて自然に覚えます。<b>月次業務は、引き継ぎの機会そのものが少ない。</b>年に12回しか発生しない作業を、他の人が覚えるのは現実的に難しいのです。</p>
+  <h3>③例外処理が異常に多い</h3>
+  <p>工数の集計は、例外の塊です。<a href="kyoryoku-seikyu-check.html">A社は20日締め、B社は月末締め</a>、C社だけ単価が2種類ある、D現場は元請けの様式で出す必要がある、4月から単価が変わったが3月分は旧単価、あの作業員は雇用形態が違うので別扱い。<b>これらは、どこにも書かれていません。</b>担当者の記憶の中にあります。</p>
+  <h3>④暗黙知が文書化されていない</h3>
+  <p>「この現場のことは◯◯さんに聞けば分かる」という運用が定着していると、記録に残りません。聞けば解決するので、誰も困らない。<b>その人がいる間だけは。</b></p>
+  <h3>⑤担当者が優秀である</h3>
+  <p>逆説的ですが、これが最大の要因です。正確に、早く、文句も言わずにこなす人がいると、会社は安心して任せきります。<b>属人化は、優秀な担当者がいる会社ほど進行します。</b>問題が表面化しないまま、依存だけが深まっていきます。</p>
+
+  <h2>属人化度チェック</h2>
+  <p>自社の状態を確認してみてください。<b>3つ以上当てはまったら、対策を始める時期です。</b></p>
+  <ul>
+    <li>工数集計用のExcelを作った人と、いま使っている人が同じ</li>
+    <li>そのファイルの関数を修正できる人が1人しかいない</li>
+    <li>協力会社ごとの締め日・単価が、どこにも一覧化されていない</li>
+    <li>例外的な処理について、書かれた手順書がない</li>
+    <li>請求書の発行を担当できる人が1人だけ</li>
+    <li>その人が休んだ月に、請求が遅れたことがある</li>
+    <li>「あの人に聞けば分かる」が口癖になっている</li>
+    <li>担当者が3日以上の連続休暇を取ったことがない</li>
+  </ul>
+  <p>最後の項目は、見落とされがちですが重要です。<b>本人が休めない状態は、すでに属人化が進んでいる証拠です。</b></p>
+
+  <h2>引き継げない状態を作る3つの要素</h2>
+  <p>対策を考える前に、何が引き継ぎを妨げているかを整理します。</p>
+  <p><b>①独自Excel</b><br>本人以外に構造が分からないファイル。</p>
+  <p><b>②暗黙のルール</b><br><a href="ninku-nippou.html">0.5人工の判定基準</a>、残業の扱い、掛け持ちの分け方。口頭で伝わっているだけのルール。</p>
+  <p><b>③記録されていない例外処理</b><br>締め日、単価、様式の違い。取引先ごとの個別対応。</p>
+  <p>この3つが揃うと、引き継ぎには<b>実務を3ヶ月並走する</b>しかなくなります。現実的には不可能です。</p>
+
+  <h2>今日からできる対策（4段階）</h2>
+  <p>一気に解決しようとせず、段階を踏んでください。</p>
+  <h3>レベル1：手順を書き出す（所要1時間）</h3>
+  <p>担当者に、<b>月次の作業を箇条書きで書き出してもらいます。</b>何日に、何をして、どのファイルを開いて、何を確認するか。きれいな手順書を作る必要はありません。箇条書きのメモで十分です。<b>これだけで、引き継ぎの難易度は大きく下がります。</b></p>
+  <p>ポイントは、<b>担当者本人に書いてもらうこと</b>。上司が観察して書くと、暗黙知が漏れます。</p>
+  <h3>レベル2：例外処理を一覧化する（所要2〜3時間）</h3>
+  <p>協力会社ごとに、締め日／単価（職種別に分かれている場合はすべて）／単価の改定履歴と適用時期／請求書の様式指定の有無／支払条件／その他の個別対応を、1枚の表にまとめます。<b>この1枚があるだけで、他の人でも処理できる範囲が大きく広がります。</b></p>
+  <h3>レベル3：ルールとマスタを、ファイルから分離する</h3>
+  <p>Excelの中にだけ存在しているルールを、外に出します。人工の刻みルールをA4一枚にまとめて現場と事務所で共有する、作業員・現場・工事番号のマスタを独立したシートにする、計算式の中に定数を直接書かない（単価などはマスタ参照にする）。<b>「ファイルを読めばルールが分かる」状態を目指してください。</b></p>
+  <h3>レベル4：仕組みに移す</h3>
+  <p>最終的には、Excelから<a href="../index.html">業務システムへの移行</a>が選択肢になります。ただし注意点があります。<b>システムを入れれば属人化が解決するわけではありません。</b>レベル1〜3を飛ばして導入すると、「そのシステムを使いこなせるのが1人だけ」という状態になるだけです。<b>手順と例外処理が文書化されていることが、移行の前提条件</b>です。</p>
+
+  <h2>「辞める」以外のリスク</h2>
+  <p>属人化の問題は、退職だけではありません。</p>
+  <h3>業務改善が止まる</h3>
+  <p>担当者以外に構造が見えないため、<b>改善提案が誰からも出てきません。</b>非効率な作業が10年続いていても、社内の誰も気づけない状態になります。</p>
+  <h3>チェックが効かない</h3>
+  <p>1人で完結している業務は、<b>第三者の確認が入りません。</b>これは担当者を疑うという話ではありません。<b>ミスに気づく機会がない</b>という構造の問題です。過払いや請求漏れが発生しても、発見されないまま終わります。</p>
+  <h3>担当者本人が苦しい</h3>
+  <p>見落とされがちですが、<b>属人化は担当者にとっても負担です。</b>休めない、体調が悪くても出社する、辞めたくても言い出せない。「自分が抜けたら会社が困る」という状態は、本人にとって重圧です。<b>属人化の解消は、担当者を守る施策でもあります。</b>この視点で担当者に提案すると、協力を得やすくなります。</p>
+
+  <div class="callout">工数管理の属人化は、業務効率ではなくキャッシュフローの問題です。請求書が出せなければ、黒字でも入金は止まります。</div>
+
+  <h2>建設業では、特に急を要します</h2>
+  <p>背景として、建設業の人材状況があります。建設業の有効求人倍率は<b>5.04倍</b>（令和7年7月／出典：厚生労働省「一般職業紹介状況」）。就業者数はピーク685万人（1997年）から<b>477万人（2024年）へ約30%減。</b>就業者に占める<b>55歳以上の割合は36.7%</b>、29歳以下は約12%です<span class="note-src">（出典：日本建設業連合会「建設業ハンドブック2024」）</span>。</p>
+  <p><b>事務職の採用も、決して容易ではありません。</b>辞めてから探し始めても、すぐには埋まらないのが現実です。人手による工数集計にかかる時間は月20時間以上（自社調査）。この20時間を1人で抱えている状態は、<b>その人が会社の資金繰りを個人で背負っている</b>のと同じです。</p>
+
+  <h2>よくある質問</h2>
+  <p><b>Q. まず何から始めるべきですか？</b><br>A. レベル1（手順の書き出し）です。1時間で終わり、費用もかかりません。担当者に「もし急に休むことになったら困るので」と依頼すれば、協力を得やすいです。</p>
+  <p><b>Q. 担当者が引き継ぎに非協力的な場合は？</b><br>A. 「評価されなくなる」「立場がなくなる」という不安があるケースが多いです。属人化の解消は担当者を守る施策であること、休みを取りやすくするための取り組みであることを先に伝えてください。実際、多くの担当者は休めない状態に負担を感じています。</p>
+  <p><b>Q. 小規模な会社で、そもそも事務が1人しかいないのですが。</b><br>A. その場合こそ、レベル1と2が重要です。代わりの人が社内にいなくても、手順書と例外処理の一覧があれば、経営者や外部の支援で一時的にしのげます。何もない状態とは大きく違います。</p>
+  <p><b>Q. システムを入れれば解決しますか？</b><br>A. 部分的には解決します。集計ロジックが製品側にあるため、独自Excelよりは引き継ぎやすくなります。ただし、運用ルールと例外処理が文書化されていなければ、システムが変わるだけで属人化は残ります。</p>
+  <p><b>Q. どのくらいの期間で改善できますか？</b><br>A. レベル1と2は1日で着手できます。レベル3は1〜2ヶ月。レベル4は製品選定を含めて3〜6ヶ月が目安です。重要なのは、レベル1を今週中に終わらせることです。</p>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li><b>工数管理の属人化は、業務効率ではなくキャッシュフローの問題。</b>請求書が出せなければ入金が止まる</li>
+    <li>属人化しやすい理由は5つ。中でも<b>「担当者が優秀だから任せきる」</b>が最大の要因</li>
+    <li>引き継ぎを妨げるのは、独自Excel／暗黙のルール／記録されていない例外処理</li>
+    <li>対策は4段階。<b>レベル1（手順の書き出し）は1時間、費用ゼロ</b></li>
+    <li>システム導入は最後。<b>手順と例外処理の文書化が前提条件</b></li>
+    <li>属人化の解消は、<b>担当者を守る施策でもある</b></li>
+  </ul>
+
+  <div class="related">
+    <h3>関連記事</h3>
+    <ul>
+      <li><a href="genba-kosu-kashika.html">現場別の工数を見える化すると、何が判断できるようになるか</a></li>
+      <li><a href="ninku-excel.html">人工日報・出面表をエクセルで管理する方法｜作り方と、破綻する5つのサイン</a></li>
+      <li><a href="kyoryoku-seikyu-check.html">協力会社の請求確認を楽にする3つの方法｜突き合わせに半日かかる状態をなくす</a></li>
+      <li><a href="ninku-nippou.html">人工日報とは？出面・出面表との違いと、月末に困らない書き方</a></li>
+    </ul>
+  </div>
+
+  <p>工数管理の引き継ぎや、Excelからの移行についてのご相談も承っています。</p>
+
+  <div class="article-cta">
+    <p>工数管理の引き継ぎや、Excelからの移行について相談してみませんか？</p>
+    <a class="btn btn-primary" href="../index.html#contact">お問い合わせ・資料請求 →</a>
+  </div>
+</article>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <img src="../reposul-logo.png" alt="レポスル" style="height:34px; margin-bottom:14px; filter:brightness(0) invert(1);">
+      <p style="max-width:260px; color:rgba(255,255,255,.6);">建設業向け日報・工数管理アプリ「レポスル」<br>提供：株式会社SIXMATE</p>
+    </div>
+    <div><h4>Service</h4><ul><li><a href="../index.html#solution">レポスルとは</a></li><li><a href="../index.html#price">料金</a></li><li><a href="../case.html">導入事例</a></li><li><a href="./">ブログ</a></li></ul></div>
+    <div><h4>Support</h4><ul><li><a href="../index.html#faq">よくある質問</a></li><li><a href="../index.html#contact">お問い合わせ</a></li><li><a href="../agent.html">代理店募集</a></li></ul></div>
+    <div><h4>Company</h4><ul><li><a href="https://kiyac.app/privacypolicy/1K6dfxRiVLMv65ehghqd" target="_blank" rel="noopener">プライバシーポリシー</a></li><li><a href="https://kiyac.app/termsOfService/kDlBBv0IaSKvolhOjDOI" target="_blank" rel="noopener">利用規約</a></li><li><a href="https://kiyac.app/SCTLaw/2GcPZqoLQobE5Mkfmidn" target="_blank" rel="noopener">特定商取引法に基づく表示</a></li></ul></div>
+  </div>
+  <div class="wrap bottom-bar"><span>© 株式会社SIXMATE</span><span>最終更新日：2026年9月</span></div>
+</footer>
+
+<script>
+const toggle=document.querySelector('.nav-toggle');
+const links=document.querySelector('.nav-links');
+if(toggle) toggle.addEventListener('click',()=>links.classList.toggle('open'));
+</script>
+</body>
+</html>
