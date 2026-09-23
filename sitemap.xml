@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  lp.reposul.com サイトマップ（全25ページ）
-  最終更新: 2026-09-22
+  lp.reposul.com サイトマップ（全26ページ）
+  最終更新: 2026-09-23
 
   【運用ルール】
   1. 公開済み・HTTP 200 を返すURLのみ記載する。未公開URLを入れると404となり評価を下げる
@@ -40,128 +40,134 @@
 
   <url>
     <loc>https://lp.reposul.com/blog/</loc>
-    <lastmod>2026-09-22</lastmod>
+    <lastmod>2026-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://lp.reposul.com/blog/jinde-busoku-suji.html</loc>
-    <lastmod>2026-09-19</lastmod>
+    <lastmod>2026-09-23</lastmod>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://lp.reposul.com/blog/dx-susumanai.html</loc>
-    <lastmod>2026-09-22</lastmod>
+    <lastmod>2026-09-23</lastmod>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://lp.reposul.com/blog/genka-kosu-chigai.html</loc>
-    <lastmod>2026-09-22</lastmod>
+    <lastmod>2026-09-23</lastmod>
     <priority>0.8</priority>
   </url>
 
   <url>
+    <loc>https://lp.reposul.com/blog/nippou-app-erabikata.html</loc>
+    <lastmod>2026-09-23</lastmod>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
     <loc>https://lp.reposul.com/blog/pricing.html</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-09-23</lastmod>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://lp.reposul.com/blog/cancellation.html</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-09-23</lastmod>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://lp.reposul.com/blog/ninku-nippou.html</loc>
-    <lastmod>2026-09-22</lastmod>
+    <lastmod>2026-09-23</lastmod>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://lp.reposul.com/blog/ninku-excel.html</loc>
-    <lastmod>2026-09-21</lastmod>
+    <lastmod>2026-09-23</lastmod>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://lp.reposul.com/blog/construction-labor-management.html</loc>
-    <lastmod>2026-09-21</lastmod>
+    <lastmod>2026-09-23</lastmod>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://lp.reposul.com/blog/genba-nippou-howto.html</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-09-23</lastmod>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://lp.reposul.com/blog/koji-nippou-daicho.html</loc>
-    <lastmod>2026-09-22</lastmod>
+    <lastmod>2026-09-23</lastmod>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://lp.reposul.com/blog/sagyou-nippou-howto.html</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-09-23</lastmod>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://lp.reposul.com/blog/nippou-collection.html</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-09-23</lastmod>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://lp.reposul.com/blog/jouyou-invoice.html</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-09-23</lastmod>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://lp.reposul.com/blog/kyoryoku-seikyu-check.html</loc>
-    <lastmod>2026-09-21</lastmod>
+    <lastmod>2026-09-23</lastmod>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://lp.reposul.com/blog/genba-kosu-kashika.html</loc>
-    <lastmod>2026-09-22</lastmod>
+    <lastmod>2026-09-23</lastmod>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://lp.reposul.com/blog/zokujinka-risk.html</loc>
-    <lastmod>2026-09-21</lastmod>
+    <lastmod>2026-09-23</lastmod>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://lp.reposul.com/blog/company-linkage-difference.html</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-09-23</lastmod>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://lp.reposul.com/blog/getting-started.html</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-09-23</lastmod>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://lp.reposul.com/blog/what-you-can-and-cannot-do.html</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-09-23</lastmod>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://lp.reposul.com/blog/case-study-kyoryoku-gaisha.html</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-09-23</lastmod>
     <priority>0.7</priority>
   </url>
 
