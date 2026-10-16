@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  lp.reposul.com サイトマップ（全41ページ）
-  最終更新: 2026-10-15
+  lp.reposul.com サイトマップ（全42ページ）
+  最終更新: 2026-10-16
 
   【運用ルール】
   1. 公開済み・HTTP 200 を返すURLのみ記載する。未公開URLを入れると404となり評価を下げる
@@ -40,7 +40,7 @@
 
   <url>
     <loc>https://lp.reposul.com/blog/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -71,7 +71,7 @@
 
   <url>
     <loc>https://lp.reposul.com/blog/teichaku.html</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <priority>0.8</priority>
   </url>
 
@@ -160,6 +160,12 @@
   </url>
 
   <url>
+    <loc>https://lp.reposul.com/blog/genba-yoteihyou.html</loc>
+    <lastmod>2026-10-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://lp.reposul.com/blog/pricing.html</loc>
     <lastmod>2026-09-29</lastmod>
     <priority>0.9</priority>
@@ -185,13 +191,13 @@
 
   <url>
     <loc>https://lp.reposul.com/blog/construction-labor-management.html</loc>
-    <lastmod>2026-10-09</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://lp.reposul.com/blog/genba-nippou-howto.html</loc>
-    <lastmod>2026-09-23</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <priority>0.8</priority>
   </url>
 
@@ -233,7 +239,7 @@
 
   <url>
     <loc>https://lp.reposul.com/blog/zokujinka-risk.html</loc>
-    <lastmod>2026-09-23</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <priority>0.8</priority>
   </url>
 
