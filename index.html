@@ -354,27 +354,14 @@ table.compare tbody tr:hover{background:var(--c-paper-warm);}
 @media (max-width:640px){ .news-item{flex-wrap:wrap; gap:4px 24px;} .news-item .n-date{width:auto;} .news-item .n-title{flex:1 0 100%;} }
 .news-more{display:flex; justify-content:center; margin-top:32px;}
 
-/* シン・レポスル coming soon teaser */
-.shin-teaser{padding:48px 0;}
-.shin-teaser-card{display:flex; align-items:center; gap:28px; flex-wrap:wrap; background:var(--c-paper-warm); border:1px solid var(--c-line); border-radius:var(--radius); padding:30px 36px;}
-.shin-teaser-logo{height:42px; width:auto; max-width:100%; object-fit:contain; flex:0 0 auto; align-self:center;}
-@media (max-width:760px){ .shin-teaser-logo{align-self:flex-start;} }
-.shin-teaser-body{display:flex; align-items:center; gap:18px; flex-wrap:wrap; flex:1 1 280px; min-width:0;}
-.shin-teaser-badge{font-family:var(--f-mono); font-size:11px; letter-spacing:.1em; font-weight:700; color:#fff; background:var(--c-orange-500); border-radius:999px; padding:5px 14px; text-transform:uppercase; flex:0 0 auto;}
-.shin-teaser-text{font-size:15px; color:var(--c-ink-soft); margin:0; flex:1 1 220px; min-width:0;}
-.shin-teaser-cta-group{display:flex; flex-wrap:wrap; gap:12px; flex:0 0 auto;}
-.shin-teaser-cta{flex:0 0 auto; white-space:nowrap;}
-.shin-teaser-cta-line{background:#06C755; box-shadow:0 10px 24px -8px rgba(6,199,85,.55);}
-@media (max-width:760px){
-  .shin-teaser-card{flex-direction:column; align-items:flex-start; padding:26px 24px;}
-  .shin-teaser-body{flex:0 0 auto; flex-direction:column; align-items:flex-start; gap:12px; width:100%;}
-  .shin-teaser-text{width:100%;}
-  .shin-teaser-cta-group{flex-direction:column; width:100%;}
-  .shin-teaser-cta{text-align:center; white-space:normal;}
-}
-
-/* シン・レポスル 新機能チラ見せ（タブ） */
-.sp-section{padding:24px 0 96px;}
+/* シン・レポスル（COMING SOON＋新機能チラ見せ・タブ） */
+.sp-section{padding:88px 0 96px;}
+.sp-brand{display:flex; align-items:center; flex-wrap:wrap; gap:12px 16px; margin-bottom:16px;}
+.sp-brand-logo{height:52px; width:auto; display:block;}
+.sp-badge{font-family:var(--f-mono); font-size:11px; letter-spacing:.1em; font-weight:700; color:#fff; background:var(--c-orange-500); border-radius:999px; padding:5px 14px; text-transform:uppercase;}
+.sp-cta-group{display:flex; flex-wrap:wrap; gap:12px;}
+.sp-cta{white-space:nowrap;}
+.sp-cta-line{background:#06C755; box-shadow:0 10px 24px -8px rgba(6,199,85,.55);}
 .sp-section h2{font-size:clamp(26px,3.4vw,38px); font-weight:900; margin-bottom:12px;}
 .sp-section .lede{margin-bottom:28px;}
 .sp-tabs{display:inline-flex; gap:4px; padding:5px; background:#fff; border:1px solid var(--c-line); border-radius:999px; max-width:100%; overflow-x:auto; scrollbar-width:none;}
@@ -407,7 +394,11 @@ table.compare tbody tr:hover{background:var(--c-paper-warm);}
   .sp-phones .sp-phone:only-child{width:min(240px, 64vw);}
   .sp-phones .sp-phone + .sp-phone{margin-top:24px;}
   .sp-tab{font-size:14px; padding:9px 15px;}
-  .sp-foot{flex-direction:column; align-items:flex-start;}
+  .sp-foot{flex-direction:column; align-items:stretch;}
+  .sp-cta-group{flex-direction:column;}
+  .sp-cta{white-space:normal; text-align:center;}
+  .sp-section{padding:64px 0 80px;}
+  .sp-brand-logo{height:44px;}
 }
 @media (max-width:480px){
   .sp-tabs{display:flex; gap:2px; padding:4px;}
@@ -609,29 +600,15 @@ footer a:hover{color:#fff;}
   </div>
 </section>
 
-<!-- ============ SHIN REPOSUL TEASER ============ -->
-<section class="shin-teaser" id="shin-reposul">
+<!-- ============ SHIN REPOSUL（COMING SOON＋新機能チラ見せ・タブ） ============ -->
+<section class="sp-section" id="shin-reposul">
   <div class="wrap">
-    <div class="shin-teaser-card reveal">
-      <img class="shin-teaser-logo" src="shin-reposul-logo.jpg" alt="シン・レポスル">
-      <div class="shin-teaser-body">
-        <span class="shin-teaser-badge">COMING SOON</span>
-        <p class="shin-teaser-text">新しい「シン・レポスル」を準備中です。正式リリースに先立ち、デモ版を公開しています。</p>
-      </div>
-      <div class="shin-teaser-cta-group">
-        <a class="btn btn-primary shin-teaser-cta" href="https://reposul-next.vercel.app/demo" target="_blank" rel="noopener">先にデモ版を触ってみよう →</a>
-        <a class="btn btn-primary shin-teaser-cta shin-teaser-cta-line" href="https://lin.ee/Z3VbIBi" target="_blank" rel="noopener">公式LINEをフォローして公開を待とう →</a>
-      </div>
+    <div class="sp-brand">
+      <img class="sp-brand-logo" src="shin-reposul-logo.jpg" width="2000" height="867" alt="シン・レポスル">
+      <span class="sp-badge">COMING SOON</span>
     </div>
-  </div>
-</section>
-
-<!-- ============ SHIN REPOSUL PREVIEW（新機能チラ見せ・タブ） ============ -->
-<section class="sp-section" id="shin-preview">
-  <div class="wrap">
-    <div class="eyebrow">SNEAK PEEK</div>
     <h2 class="reveal">新機能をチラ見せ</h2>
-    <p class="lede reveal">開発中の「シン・レポスル」の画面を、ひと足先にご紹介します。</p>
+    <p class="lede reveal">新しい「シン・レポスル」を準備中です。開発中の画面を、ひと足先にご紹介します。</p>
 
     <div class="sp-tabs reveal" role="tablist" aria-label="シン・レポスルの新機能">
       <button class="sp-tab" type="button" role="tab" id="sp-tab-home" aria-controls="sp-panel-home" aria-selected="true">HOME</button>
@@ -719,7 +696,10 @@ footer a:hover{color:#fff;}
 
     <div class="sp-foot">
       <p class="sp-note">※開発中の画面です。表示しているのはデモ用のデータです。正式版では画面や機能が変わる場合があります。</p>
-      <a class="btn btn-secondary" href="https://reposul-next.vercel.app/demo" target="_blank" rel="noopener">デモで実際に触ってみる →</a>
+      <div class="sp-cta-group">
+        <a class="btn btn-primary sp-cta" href="https://reposul-next.vercel.app/demo" target="_blank" rel="noopener">先にデモ版を触ってみよう →</a>
+        <a class="btn btn-primary sp-cta sp-cta-line" href="https://lin.ee/Z3VbIBi" target="_blank" rel="noopener">公式LINEをフォローして公開を待とう →</a>
+      </div>
     </div>
   </div>
 </section>
