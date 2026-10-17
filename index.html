@@ -357,7 +357,8 @@ table.compare tbody tr:hover{background:var(--c-paper-warm);}
 /* シン・レポスル coming soon teaser */
 .shin-teaser{padding:48px 0;}
 .shin-teaser-card{display:flex; align-items:center; gap:28px; flex-wrap:wrap; background:var(--c-paper-warm); border:1px solid var(--c-line); border-radius:var(--radius); padding:30px 36px;}
-.shin-teaser-logo{height:42px; width:auto; flex:0 0 auto;}
+.shin-teaser-logo{height:42px; width:auto; max-width:100%; object-fit:contain; flex:0 0 auto; align-self:center;}
+@media (max-width:760px){ .shin-teaser-logo{align-self:flex-start;} }
 .shin-teaser-body{display:flex; align-items:center; gap:18px; flex-wrap:wrap; flex:1 1 280px; min-width:0;}
 .shin-teaser-badge{font-family:var(--f-mono); font-size:11px; letter-spacing:.1em; font-weight:700; color:#fff; background:var(--c-orange-500); border-radius:999px; padding:5px 14px; text-transform:uppercase; flex:0 0 auto;}
 .shin-teaser-text{font-size:15px; color:var(--c-ink-soft); margin:0; flex:1 1 220px; min-width:0;}
@@ -365,7 +366,7 @@ table.compare tbody tr:hover{background:var(--c-paper-warm);}
 .shin-teaser-cta{flex:0 0 auto; white-space:nowrap;}
 .shin-teaser-cta-line{background:#06C755; box-shadow:0 10px 24px -8px rgba(6,199,85,.55);}
 @media (max-width:760px){
-  .shin-teaser-card{flex-direction:column; align-items:stretch; padding:26px 24px;}
+  .shin-teaser-card{flex-direction:column; align-items:flex-start; padding:26px 24px;}
   .shin-teaser-body{flex-direction:column; align-items:flex-start; gap:12px; width:100%;}
   .shin-teaser-text{width:100%;}
   .shin-teaser-cta-group{flex-direction:column; width:100%;}
