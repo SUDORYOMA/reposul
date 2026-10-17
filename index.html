@@ -354,6 +354,24 @@ table.compare tbody tr:hover{background:var(--c-paper-warm);}
 @media (max-width:640px){ .news-item{flex-wrap:wrap; gap:4px 24px;} .news-item .n-date{width:auto;} .news-item .n-title{flex:1 0 100%;} }
 .news-more{display:flex; justify-content:center; margin-top:32px;}
 
+/* シン・レポスル coming soon teaser */
+.shin-teaser{padding:48px 0;}
+.shin-teaser-card{display:flex; align-items:center; gap:28px; flex-wrap:wrap; background:var(--c-paper-warm); border:1px solid var(--c-line); border-radius:var(--radius); padding:30px 36px;}
+.shin-teaser-logo{height:42px; width:auto; flex:0 0 auto;}
+.shin-teaser-body{display:flex; align-items:center; gap:18px; flex-wrap:wrap; flex:1 1 280px; min-width:0;}
+.shin-teaser-badge{font-family:var(--f-mono); font-size:11px; letter-spacing:.1em; font-weight:700; color:#fff; background:var(--c-orange-500); border-radius:999px; padding:5px 14px; text-transform:uppercase; flex:0 0 auto;}
+.shin-teaser-text{font-size:15px; color:var(--c-ink-soft); margin:0; flex:1 1 220px; min-width:0;}
+.shin-teaser-cta-group{display:flex; flex-wrap:wrap; gap:12px; flex:0 0 auto;}
+.shin-teaser-cta{flex:0 0 auto; white-space:nowrap;}
+.shin-teaser-cta-line{background:#06C755; box-shadow:0 10px 24px -8px rgba(6,199,85,.55);}
+@media (max-width:760px){
+  .shin-teaser-card{flex-direction:column; align-items:stretch; padding:26px 24px;}
+  .shin-teaser-body{flex-direction:column; align-items:flex-start; gap:12px; width:100%;}
+  .shin-teaser-text{width:100%;}
+  .shin-teaser-cta-group{flex-direction:column; width:100%;}
+  .shin-teaser-cta{text-align:center; white-space:normal;}
+}
+
 /* case studies */
 .case-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:8px;}
 @media (max-width:900px){ .case-grid{grid-template-columns:1fr 1fr;} }
@@ -544,6 +562,23 @@ footer a:hover{color:#fff;}
     </div>
     <div class="news-more reveal">
       <a class="btn btn-secondary" href="news.html">お知らせをもっと見る →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SHIN REPOSUL TEASER ============ -->
+<section class="shin-teaser" id="shin-reposul">
+  <div class="wrap">
+    <div class="shin-teaser-card reveal">
+      <img class="shin-teaser-logo" src="shin-reposul-logo.jpg" alt="シン・レポスル">
+      <div class="shin-teaser-body">
+        <span class="shin-teaser-badge">COMING SOON</span>
+        <p class="shin-teaser-text">新しい「シン・レポスル」を準備中です。正式リリースに先立ち、デモ版を公開しています。</p>
+      </div>
+      <div class="shin-teaser-cta-group">
+        <a class="btn btn-primary shin-teaser-cta" href="https://reposul-next.vercel.app/demo" target="_blank" rel="noopener">先にデモ版を触ってみよう →</a>
+        <a class="btn btn-primary shin-teaser-cta shin-teaser-cta-line" href="https://lin.ee/vdqIVphA" target="_blank" rel="noopener">公式LINEをフォローして公開を待とう →</a>
+      </div>
     </div>
   </div>
 </section>
