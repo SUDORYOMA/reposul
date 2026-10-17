@@ -367,10 +367,52 @@ table.compare tbody tr:hover{background:var(--c-paper-warm);}
 .shin-teaser-cta-line{background:#06C755; box-shadow:0 10px 24px -8px rgba(6,199,85,.55);}
 @media (max-width:760px){
   .shin-teaser-card{flex-direction:column; align-items:flex-start; padding:26px 24px;}
-  .shin-teaser-body{flex-direction:column; align-items:flex-start; gap:12px; width:100%;}
+  .shin-teaser-body{flex:0 0 auto; flex-direction:column; align-items:flex-start; gap:12px; width:100%;}
   .shin-teaser-text{width:100%;}
   .shin-teaser-cta-group{flex-direction:column; width:100%;}
   .shin-teaser-cta{text-align:center; white-space:normal;}
+}
+
+/* シン・レポスル 新機能チラ見せ（タブ） */
+.sp-section{padding:24px 0 96px;}
+.sp-section h2{font-size:clamp(26px,3.4vw,38px); font-weight:900; margin-bottom:12px;}
+.sp-section .lede{margin-bottom:28px;}
+.sp-tabs{display:inline-flex; gap:4px; padding:5px; background:#fff; border:1px solid var(--c-line); border-radius:999px; max-width:100%; overflow-x:auto; scrollbar-width:none;}
+.sp-tabs::-webkit-scrollbar{display:none;}
+.sp-tab{flex:0 0 auto; border:none; background:transparent; color:var(--c-ink-soft); font-family:var(--f-display); font-weight:700; font-size:15px; padding:10px 20px; border-radius:999px; cursor:pointer; white-space:nowrap; transition:background .2s var(--ease), color .2s var(--ease);}
+.sp-tab:hover{color:var(--c-green-900); background:var(--c-green-100);}
+.sp-tab[aria-selected="true"]{background:var(--c-green-900); color:#fff;}
+.sp-tab:focus-visible{outline:3px solid var(--c-green-500); outline-offset:2px;}
+.sp-panel{display:grid; grid-template-columns:1fr 1.1fr; gap:48px; align-items:center; margin-top:36px;}
+.sp-panel[hidden]{display:none;}
+.sp-panel.is-entering{animation:spFade .45s var(--ease);}
+@keyframes spFade{from{opacity:0; transform:translateY(12px);} to{opacity:1; transform:none;}}
+.sp-copy h3{font-size:clamp(21px,2.4vw,26px); font-weight:900; margin-bottom:14px;}
+.sp-copy p{font-size:16px; color:var(--c-ink-soft); margin:0 0 18px;}
+.sp-copy ul{list-style:none; margin:0; padding:0;}
+.sp-copy li{position:relative; padding-left:26px; margin-bottom:10px; font-size:15px; color:var(--c-ink);}
+.sp-copy li::before{content:"✓"; position:absolute; left:0; color:var(--c-orange-500); font-weight:900;}
+.sp-phones{display:flex; justify-content:center; align-items:flex-start; gap:22px; min-height:500px;}
+.sp-phone{margin:0; width:240px; border:7px solid var(--c-green-900); border-radius:28px; overflow:hidden; background:#fff; box-shadow:0 40px 60px -28px rgba(18,51,36,.45);}
+.sp-phone img{display:block; width:100%; height:auto;}
+.sp-phones .sp-phone + .sp-phone{margin-top:40px;}
+.sp-foot{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px; margin-top:44px; padding-top:22px; border-top:1px solid var(--c-line);}
+.sp-note{font-size:12.5px; color:var(--c-ink-soft); margin:0;}
+@media (prefers-reduced-motion:reduce){ .sp-panel.is-entering{animation:none;} }
+@media (max-width:860px){
+  .sp-panel{grid-template-columns:1fr; gap:28px; margin-top:28px;}
+  .sp-phones{min-height:0; gap:12px;}
+  .sp-phone{width:min(240px, 62vw); border-width:5px; border-radius:22px;}
+  .sp-phones .sp-phone{width:calc(50% - 6px); max-width:220px;}
+  .sp-phones .sp-phone:only-child{width:min(240px, 64vw);}
+  .sp-phones .sp-phone + .sp-phone{margin-top:24px;}
+  .sp-tab{font-size:14px; padding:9px 15px;}
+  .sp-foot{flex-direction:column; align-items:flex-start;}
+}
+@media (max-width:480px){
+  .sp-tabs{display:flex; gap:2px; padding:4px;}
+  .sp-tab{flex:1 1 auto; font-size:13px; padding:9px 8px;}
+  .sp-tab-long{display:none;}
 }
 
 /* case studies */
@@ -580,6 +622,104 @@ footer a:hover{color:#fff;}
         <a class="btn btn-primary shin-teaser-cta" href="https://reposul-next.vercel.app/demo" target="_blank" rel="noopener">先にデモ版を触ってみよう →</a>
         <a class="btn btn-primary shin-teaser-cta shin-teaser-cta-line" href="https://lin.ee/Z3VbIBi" target="_blank" rel="noopener">公式LINEをフォローして公開を待とう →</a>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SHIN REPOSUL PREVIEW（新機能チラ見せ・タブ） ============ -->
+<section class="sp-section" id="shin-preview">
+  <div class="wrap">
+    <div class="eyebrow">SNEAK PEEK</div>
+    <h2 class="reveal">新機能をチラ見せ</h2>
+    <p class="lede reveal">開発中の「シン・レポスル」の画面を、ひと足先にご紹介します。</p>
+
+    <div class="sp-tabs reveal" role="tablist" aria-label="シン・レポスルの新機能">
+      <button class="sp-tab" type="button" role="tab" id="sp-tab-home" aria-controls="sp-panel-home" aria-selected="true">HOME</button>
+      <button class="sp-tab" type="button" role="tab" id="sp-tab-schedule" aria-controls="sp-panel-schedule" aria-selected="false" tabindex="-1">予定表</button>
+      <button class="sp-tab" type="button" role="tab" id="sp-tab-qr" aria-controls="sp-panel-qr" aria-selected="false" tabindex="-1">QR<span class="sp-tab-long">で日報</span></button>
+      <button class="sp-tab" type="button" role="tab" id="sp-tab-line" aria-controls="sp-panel-line" aria-selected="false" tabindex="-1"><span class="sp-tab-long">公式</span>LINE</button>
+      <button class="sp-tab" type="button" role="tab" id="sp-tab-ranking" aria-controls="sp-panel-ranking" aria-selected="false" tabindex="-1">ランキング</button>
+    </div>
+
+    <div class="sp-panel" role="tabpanel" id="sp-panel-home" aria-labelledby="sp-tab-home">
+      <div class="sp-copy">
+        <h3>開いてすぐ、今日やることが分かる</h3>
+        <p>ホーム画面に、その日の日報の状況と、今日入る現場をまとめて表示します。</p>
+        <ul>
+          <li>今日作成した日報・書きかけ・未作成の件数</li>
+          <li>今日の現場ごとに、元請け・時間・人数と日報の作成状況</li>
+          <li>今月のランキング（日報作成数・出勤日数）</li>
+        </ul>
+      </div>
+      <div class="sp-phones">
+        <figure class="sp-phone"><img src="shin-preview/home.webp" width="600" height="1010" alt="シン・レポスルのホーム画面。今日作成の日報・書きかけ・未作成の件数と、今日の現場が表示されている"></figure>
+      </div>
+    </div>
+
+    <div class="sp-panel" role="tabpanel" id="sp-panel-schedule" aria-labelledby="sp-tab-schedule" hidden>
+      <div class="sp-copy">
+        <h3>誰が、どの現場に、いつ入るか</h3>
+        <p>予定表で、現場と人の配置を共有できます。月の表示と、日ごとの表示を切り替えられます。</p>
+        <ul>
+          <li>日ごとの現場と、日報の作成状況（まだ・一時保存・作成済み・未作成）を色分け</li>
+          <li>予定の工数から、その月の稼働日数を合計（0.5工なら0.5日）</li>
+          <li>日ごとに、現場別の時間・人数と、空いている人数を表示</li>
+        </ul>
+      </div>
+      <div class="sp-phones">
+        <figure class="sp-phone"><img src="shin-preview/schedule-month.webp" width="600" height="1066" loading="lazy" alt="予定表の月表示。日ごとの現場名が日報の作成状況で色分けされている"></figure>
+        <figure class="sp-phone"><img src="shin-preview/schedule-day.webp" width="600" height="1127" loading="lazy" alt="予定表の日ごとの表示。現場ごとの時間・人数・元請けと、空き人数が表示されている"></figure>
+      </div>
+    </div>
+
+    <div class="sp-panel" role="tabpanel" id="sp-panel-qr" aria-labelledby="sp-tab-qr" hidden>
+      <div class="sp-copy">
+        <h3>作業員は、QRを見せるだけ</h3>
+        <p>作業員はスマホに自分のQRを表示します。日報を作る人がそのQRを読み取ると、その作業員が日報に入ります。</p>
+        <ul>
+          <li>読み取りは続けて行えるので、複数人でもまとめて追加</li>
+          <li>ヘルメットに貼ったQRシールなども読み取り可能</li>
+          <li>作業員ごとに勤務時間・休憩時間・工数を表示</li>
+        </ul>
+      </div>
+      <div class="sp-phones">
+        <figure class="sp-phone"><img src="shin-preview/qr-mine.webp" width="600" height="1008" loading="lazy" alt="作業員の「自分のQR」画面。日報を作る人に見せるQRコードが表示されている"></figure>
+        <figure class="sp-phone"><img src="shin-preview/qr-scan.webp" width="600" height="1059" loading="lazy" alt="日報登録画面で作業員のQRを読み取るカメラ画面"></figure>
+      </div>
+    </div>
+
+    <div class="sp-panel" role="tabpanel" id="sp-panel-line" aria-labelledby="sp-tab-line" hidden>
+      <div class="sp-copy">
+        <h3>LINEのメニューから開ける</h3>
+        <p>公式LINEのメニューから、よく使う画面をすぐに開けます。</p>
+        <ul>
+          <li>日報を作る・予定表を見る・日報を見る・QRを表示</li>
+          <li>はじめての1回だけ個人IDとパスワードを入れれば、次からはボタンを押すだけ</li>
+        </ul>
+      </div>
+      <div class="sp-phones">
+        <figure class="sp-phone"><img src="shin-preview/line.webp" width="600" height="1064" loading="lazy" alt="公式LINEの画面の見本。日報を作る・予定表を見る・日報を見る・QRを表示のメニューが並んでいる"></figure>
+      </div>
+    </div>
+
+    <div class="sp-panel" role="tabpanel" id="sp-panel-ranking" aria-labelledby="sp-tab-ranking" hidden>
+      <div class="sp-copy">
+        <h3>日報の提出状況が、数字で見える</h3>
+        <p>日報がいつ提出されたかを集計し、提出率として表示します。</p>
+        <ul>
+          <li>当日・1日遅れ・2〜6日遅れ・7日以上遅れの割合</li>
+          <li>自社の日報と協力会社の日報を分けて表示</li>
+          <li>個人別の日報作成数と出勤日数（月計・年計・累計）</li>
+        </ul>
+      </div>
+      <div class="sp-phones">
+        <figure class="sp-phone"><img src="shin-preview/ranking.webp" width="600" height="1127" loading="lazy" alt="ランキング画面。自社と協力会社の日報の提出率と、個人別の日報作成数が表示されている"></figure>
+      </div>
+    </div>
+
+    <div class="sp-foot">
+      <p class="sp-note">※開発中の画面です。表示しているのはデモ用のデータです。正式版では画面や機能が変わる場合があります。</p>
+      <a class="btn btn-secondary" href="https://reposul-next.vercel.app/demo" target="_blank" rel="noopener">デモで実際に触ってみる →</a>
     </div>
   </div>
 </section>
@@ -980,6 +1120,35 @@ const hero = document.getElementById('hero');
 new IntersectionObserver((entries)=>{ entries.forEach(e=>{ mfab.classList.toggle('show', !e.isIntersecting); }); },{threshold:0}).observe(hero);
 
 // mobile nav toggle
+// シン・レポスル チラ見せタブ
+(function(){
+  const tabs = Array.from(document.querySelectorAll('.sp-tab'));
+  if(!tabs.length) return;
+  function select(tab, focus){
+    tabs.forEach(t=>{
+      const on = t === tab;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      const panel = document.getElementById(t.getAttribute('aria-controls'));
+      panel.hidden = !on;
+      panel.classList.toggle('is-entering', on);
+    });
+    if(focus) tab.focus();
+    tab.scrollIntoView({block:'nearest', inline:'nearest'});
+  }
+  tabs.forEach((t,i)=>{
+    t.addEventListener('click', ()=>select(t, false));
+    t.addEventListener('keydown', e=>{
+      let n = null;
+      if(e.key === 'ArrowRight') n = tabs[(i+1) % tabs.length];
+      else if(e.key === 'ArrowLeft') n = tabs[(i-1+tabs.length) % tabs.length];
+      else if(e.key === 'Home') n = tabs[0];
+      else if(e.key === 'End') n = tabs[tabs.length-1];
+      if(n){ e.preventDefault(); select(n, true); }
+    });
+  });
+})();
+
 const toggle = document.querySelector('.nav-toggle');
 const navLinks = document.querySelector('.nav-links');
 toggle.addEventListener('click', ()=>{ navLinks.classList.toggle('open'); });
