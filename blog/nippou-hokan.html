@@ -123,6 +123,7 @@ footer a{text-decoration:none; color:rgba(255,255,255,.75);}
 footer a:hover{color:#fff;}
 .bottom-bar{border-top:1px solid rgba(255,255,255,.14); margin-top:36px; padding-top:18px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; color:rgba(255,255,255,.5); font-size:12px;}
 </style>
+<link rel="stylesheet" href="../site-chrome.css">
 </head>
 <body>
 
@@ -189,7 +190,7 @@ footer a:hover{color:#fff;}
   <p><b>②誰が判断するか</b>：現場代理人や事務担当が個別に判断すると、必要なものまで捨てられます。判断者を1人決めてください。</p>
   <p><b>③捨てたことを記録するか</b>：「いつ、何年度分を廃棄したか」を残しておくと、後から「あの年の分がない」と言われたときに説明できます。逆に記録がないと、<b>紛失なのか廃棄なのかが分かりません。</b> これは説明責任の問題になります。</p>
 
-  <div class="callout">具体的な保存年数は、事業形態と何の根拠にしているかによって変わります。断定は避け、税理士・社会保険労務士に確認してください。</div>
+  <div class="sc-alert">具体的な保存年数は、事業形態と何の根拠にしているかによって変わります。断定は避け、税理士・社会保険労務士に確認してください。</div>
 
   <h2>よくある質問</h2>
   <p><b>Q. 日報に保存義務はないと聞きました。捨ててよいですか？</b><br>A. 日報そのものを対象とした保存規定は見当たりませんが、請求・賃金・原価の根拠資料として機能しているなら、関連する法定書類の保存期間を考慮すべきです。自社の日報が何の根拠になっているかを確認したうえで、税理士・社会保険労務士に相談してください。</p>
@@ -247,5 +248,6 @@ const toggle=document.querySelector('.nav-toggle');
 const links=document.querySelector('.nav-links');
 if(toggle) toggle.addEventListener('click',()=>links.classList.toggle('open'));
 </script>
+<script src="../site-chrome.js"></script>
 </body>
 </html>

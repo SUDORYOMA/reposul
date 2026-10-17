@@ -221,6 +221,18 @@ p,li{line-break:strict;}
 .check-item{display:flex; align-items:center; gap:12px; font-size:15.5px; font-weight:500; padding:13px 0; border-bottom:1px solid var(--c-line); transition:transform .2s ease, color .2s ease;}
 .check-item:hover{transform:translateX(6px); color:var(--c-orange-500);}
 .check-item svg{flex:none;}
+.check-item{position:relative; cursor:pointer; user-select:none; -webkit-tap-highlight-color:transparent;}
+.check-item input{position:absolute; opacity:0; width:1px; height:1px; margin:0;}
+.check-item svg .bx{transition:fill .15s ease;}
+.check-item svg .ck{opacity:0; transition:opacity .15s ease;}
+.check-item input:checked ~ svg .bx{fill:var(--c-orange-500);}
+.check-item input:checked ~ svg .ck{opacity:1;}
+.check-item input:checked ~ span{color:var(--c-green-900); font-weight:700;}
+.check-item input:focus-visible ~ svg{outline:3px solid var(--c-green-500); outline-offset:2px; border-radius:6px;}
+.check-result{grid-column:1 / -1; margin:14px 0 0; padding:14px 18px; border-radius:12px; background:var(--c-paper-warm); border:1px dashed var(--c-line); color:var(--c-ink-soft); font-size:15px; font-weight:700;}
+.check-result.has{background:var(--c-green-100); border:1px solid var(--c-green-500); color:var(--c-green-900);}
+.check-result a{color:var(--c-orange-500); text-decoration:none; margin-left:6px; white-space:nowrap;}
+.check-result a:hover{text-decoration:underline;}
 .flow-strip{display:flex; flex-wrap:wrap; align-items:center; gap:10px; font-family:var(--f-mono); font-size:13px; color:var(--c-ink-soft); margin-top:36px; padding-top:26px; border-top:1px dashed var(--c-line);}
 .flow-strip .arrow{color:var(--c-orange-500); font-weight:700;}
 
@@ -324,7 +336,10 @@ table.compare tbody tr:hover{background:var(--c-paper-warm);}
 @media (max-width:800px){ .flow-steps{grid-template-columns:1fr;} }
 .flow-step{background:#fff; border:1px solid var(--c-line); border-radius:14px; padding:24px 20px; transition:transform .2s ease, box-shadow .2s ease;}
 .flow-step:hover{transform:translateY(-8px); box-shadow:0 18px 28px -14px rgba(18,51,36,.3);}
-.flow-step .num{font-family:var(--f-display); font-weight:900; font-size:32px; color:var(--c-green-100); -webkit-text-stroke:1.5px var(--c-green-500); margin-bottom:8px;}
+.flow-step .num{display:grid; place-items:center; width:46px; height:46px; border-radius:50%; background:var(--c-green-700); color:#fff; font-family:var(--f-mono); font-weight:700; font-size:16px; margin-bottom:14px;}
+.flow-step{position:relative;}
+.flow-step:not(:last-child)::after{content:""; position:absolute; top:46px; right:-21px; width:22px; height:2px; background:var(--c-green-500); z-index:1;}
+@media (max-width:800px){ .flow-step:not(:last-child)::after{top:auto; right:auto; left:42px; bottom:-21px; width:2px; height:22px;} }
 .flow-step h3{font-size:15.5px; margin-bottom:6px;}
 .flow-step p{margin:0; font-size:13px; color:var(--c-ink-soft);}
 
@@ -381,7 +396,8 @@ table.compare tbody tr:hover{background:var(--c-paper-warm);}
 .sp-copy li::before{content:"✓"; position:absolute; left:0; color:var(--c-orange-500); font-weight:900;}
 .sp-phones{display:flex; justify-content:center; align-items:flex-start; gap:22px; min-height:500px;}
 .sp-phone{margin:0; width:240px; border:7px solid var(--c-green-900); border-radius:28px; overflow:hidden; background:#fff; box-shadow:0 40px 60px -28px rgba(18,51,36,.45);}
-.sp-phone img{display:block; width:100%; height:auto;}
+.sp-phone img{display:block; width:100%; height:auto; cursor:zoom-in;}
+.sp-phone img:focus-visible{outline:3px solid var(--c-green-500); outline-offset:-3px;}
 .sp-phones .sp-phone + .sp-phone{margin-top:40px;}
 .sp-foot{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px; margin-top:44px; padding-top:22px; border-top:1px solid var(--c-line);}
 .sp-note{font-size:12.5px; color:var(--c-ink-soft); margin:0;}
@@ -503,6 +519,7 @@ footer a:hover{color:#fff;}
 .price-note{font-size:12px; color:var(--c-ink-soft); margin-top:24px; line-height:1.9;}
 .price-cta{display:flex; justify-content:center; gap:16px; flex-wrap:wrap; margin-top:32px;}
 </style>
+<link rel="stylesheet" href="site-chrome.css">
 </head>
 <body>
 <div class="scroll-progress" id="scrollProgress"></div>
@@ -712,14 +729,15 @@ footer a:hover{color:#fff;}
     <p class="lede reveal">こんなお悩みありませんか？</p>
     <div class="problem-layout">
       <div class="check-grid reveal">
-        <div class="check-item"><svg width="20" height="20" viewBox="0 0 20 20"><rect x="1" y="1" width="18" height="18" rx="5" fill="none" stroke="#ff7a1a" stroke-width="2"/></svg>日報が紙</div>
-        <div class="check-item"><svg width="20" height="20" viewBox="0 0 20 20"><rect x="1" y="1" width="18" height="18" rx="5" fill="none" stroke="#ff7a1a" stroke-width="2"/></svg>LINEで送られてくる</div>
-        <div class="check-item"><svg width="20" height="20" viewBox="0 0 20 20"><rect x="1" y="1" width="18" height="18" rx="5" fill="none" stroke="#ff7a1a" stroke-width="2"/></svg>日報回収に時間がかかる</div>
-        <div class="check-item"><svg width="20" height="20" viewBox="0 0 20 20"><rect x="1" y="1" width="18" height="18" rx="5" fill="none" stroke="#ff7a1a" stroke-width="2"/></svg>月末の工数集計が大変</div>
-        <div class="check-item"><svg width="20" height="20" viewBox="0 0 20 20"><rect x="1" y="1" width="18" height="18" rx="5" fill="none" stroke="#ff7a1a" stroke-width="2"/></svg>協力会社請求の確認が面倒</div>
-        <div class="check-item"><svg width="20" height="20" viewBox="0 0 20 20"><rect x="1" y="1" width="18" height="18" rx="5" fill="none" stroke="#ff7a1a" stroke-width="2"/></svg>現場ごとの投入工数が見えない</div>
-        <div class="check-item"><svg width="20" height="20" viewBox="0 0 20 20"><rect x="1" y="1" width="18" height="18" rx="5" fill="none" stroke="#ff7a1a" stroke-width="2"/></svg>事務員しか集計できない</div>
-        <div class="check-item"><svg width="20" height="20" viewBox="0 0 20 20"><rect x="1" y="1" width="18" height="18" rx="5" fill="none" stroke="#ff7a1a" stroke-width="2"/></svg>月末だけ残業になる</div>
+        <label class="check-item"><input type="checkbox" name="pain" value="日報が紙"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><rect class="bx" x="1" y="1" width="18" height="18" rx="5" fill="none" stroke="#ff7a1a" stroke-width="2"/><path class="ck" d="M5.5 10.5l3 3 6-6.5" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>日報が紙</span></label>
+        <label class="check-item"><input type="checkbox" name="pain" value="LINEで送られてくる"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><rect class="bx" x="1" y="1" width="18" height="18" rx="5" fill="none" stroke="#ff7a1a" stroke-width="2"/><path class="ck" d="M5.5 10.5l3 3 6-6.5" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>LINEで送られてくる</span></label>
+        <label class="check-item"><input type="checkbox" name="pain" value="日報回収に時間がかかる"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><rect class="bx" x="1" y="1" width="18" height="18" rx="5" fill="none" stroke="#ff7a1a" stroke-width="2"/><path class="ck" d="M5.5 10.5l3 3 6-6.5" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>日報回収に時間がかかる</span></label>
+        <label class="check-item"><input type="checkbox" name="pain" value="月末の工数集計が大変"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><rect class="bx" x="1" y="1" width="18" height="18" rx="5" fill="none" stroke="#ff7a1a" stroke-width="2"/><path class="ck" d="M5.5 10.5l3 3 6-6.5" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>月末の工数集計が大変</span></label>
+        <label class="check-item"><input type="checkbox" name="pain" value="協力会社請求の確認が面倒"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><rect class="bx" x="1" y="1" width="18" height="18" rx="5" fill="none" stroke="#ff7a1a" stroke-width="2"/><path class="ck" d="M5.5 10.5l3 3 6-6.5" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>協力会社請求の確認が面倒</span></label>
+        <label class="check-item"><input type="checkbox" name="pain" value="現場ごとの投入工数が見えない"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><rect class="bx" x="1" y="1" width="18" height="18" rx="5" fill="none" stroke="#ff7a1a" stroke-width="2"/><path class="ck" d="M5.5 10.5l3 3 6-6.5" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>現場ごとの投入工数が見えない</span></label>
+        <label class="check-item"><input type="checkbox" name="pain" value="事務員しか集計できない"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><rect class="bx" x="1" y="1" width="18" height="18" rx="5" fill="none" stroke="#ff7a1a" stroke-width="2"/><path class="ck" d="M5.5 10.5l3 3 6-6.5" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>事務員しか集計できない</span></label>
+        <label class="check-item"><input type="checkbox" name="pain" value="月末だけ残業になる"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><rect class="bx" x="1" y="1" width="18" height="18" rx="5" fill="none" stroke="#ff7a1a" stroke-width="2"/><path class="ck" d="M5.5 10.5l3 3 6-6.5" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>月末だけ残業になる</span></label>
+        <p class="check-result" id="check-result" aria-live="polite">当てはまるものを押してください。</p>
       </div>
       <div class="problem-illust reveal">
         <img src="feature-shot-1.png" alt="日報や集計に困っている社長・事務員">
@@ -1100,6 +1118,25 @@ const hero = document.getElementById('hero');
 new IntersectionObserver((entries)=>{ entries.forEach(e=>{ mfab.classList.toggle('show', !e.isIntersecting); }); },{threshold:0}).observe(hero);
 
 // mobile nav toggle
+// よくある課題のセルフチェック
+(function(){
+  const boxes = Array.from(document.querySelectorAll('.check-item input'));
+  const out = document.getElementById('check-result');
+  if(!boxes.length || !out) return;
+  const update = ()=>{
+    const n = boxes.filter(b=>b.checked).length;
+    out.classList.toggle('has', n > 0);
+    if(n === 0){ out.textContent = '当てはまるものを押してください。'; return; }
+    out.textContent = n + 'つ当てはまります。';
+    const a = document.createElement('a');
+    a.href = '#solution';
+    a.textContent = '解決の方法を見る ↓';
+    out.appendChild(a);
+  };
+  boxes.forEach(b=>b.addEventListener('change', update));
+  update();
+})();
+
 // シン・レポスル チラ見せタブ
 (function(){
   const tabs = Array.from(document.querySelectorAll('.sp-tab'));
@@ -1239,18 +1276,26 @@ if(progressEl){
 const lightbox = document.getElementById('lightbox');
 if(lightbox){
   const lbImg = lightbox.querySelector('img');
-  document.querySelectorAll('.fs-media img').forEach(img=>{
-    img.addEventListener('click', ()=>{
+  document.querySelectorAll('.fs-media img, .sp-phone img').forEach(img=>{
+    const openLb = ()=>{
       lbImg.src = img.src;
       lbImg.alt = img.alt;
       lightbox.classList.add('open');
       document.body.style.overflow = 'hidden';
-    });
+    };
+    img.addEventListener('click', openLb);
+    if(img.closest('.sp-phone')){
+      img.tabIndex = 0;
+      img.setAttribute('role', 'button');
+      img.setAttribute('aria-label', img.alt + '（拡大して表示）');
+      img.addEventListener('keydown', e=>{ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openLb(); } });
+    }
   });
   const closeLb = ()=>{ lightbox.classList.remove('open'); document.body.style.overflow = ''; };
   lightbox.addEventListener('click', closeLb);
   document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeLb(); });
 }
 </script>
+<script src="site-chrome.js"></script>
 </body>
 </html>

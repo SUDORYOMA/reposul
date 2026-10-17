@@ -123,6 +123,7 @@ footer a{text-decoration:none; color:rgba(255,255,255,.75);}
 footer a:hover{color:#fff;}
 .bottom-bar{border-top:1px solid rgba(255,255,255,.14); margin-top:36px; padding-top:18px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; color:rgba(255,255,255,.5); font-size:12px;}
 </style>
+<link rel="stylesheet" href="../site-chrome.css">
 </head>
 <body>
 
@@ -184,7 +185,7 @@ footer a:hover{color:#fff;}
   <h3>現場をまたぐ日と、共通作業の扱いを決める</h3>
   <p>現場の掛け持ちがある日は、実際の担当先ごとに投入量を残します。後から記憶で分ける前提にせず、その日のうちに内訳を確認できる運用を考えます。</p>
   <p>特定の工事だけに結び付かない作業は、無理に近い現場へ寄せる必要はありません。社内共通の区分などでいったん把握し、必要に応じて管理目的に沿った配分方法を決めます。元の事実の記録と、後から管理上の判断で配分した値を区別できることが重要です。</p>
-  <p>移動や待機などは、日報上の作業区分と、勤怠上の扱いを同じ判断で決めないようにします。ここで提案するのは記録を分けて確認する運用であり、個別の労働時間や給与計算の判定ではありません。そうした判定は実態を整理し、社会保険労務士などの専門家へ確認してください。労働時間の把握については、<a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/roudoukijun/roudouzikan/070614-2.html" target="_blank" rel="noopener">厚生労働省のガイドライン</a>も参照してください。</p>
+  <p class="sc-alert">移動や待機などは、日報上の作業区分と、勤怠上の扱いを同じ判断で決めないようにします。ここで提案するのは記録を分けて確認する運用であり、個別の労働時間や給与計算の判定ではありません。そうした判定は実態を整理し、社会保険労務士などの専門家へ確認してください。労働時間の把握については、<a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/roudoukijun/roudouzikan/070614-2.html" target="_blank" rel="noopener">厚生労働省のガイドライン</a>も参照してください。</p>
   <h3>差が出たら、元の記録まで戻れるようにする</h3>
   <p>照合では、まず対象の日付と人を揃えます。そのうえで、日報が揃っているか、同じ記録が重複していないか、単位や換算方法が共通かを確認します。</p>
   <p>照合する列には、その値が時間なのか人工なのか、何を含むのかが分かる名前を付けます。「実績」という見出しだけでは、勤務の実績なのか、現場投入の実績なのかを後から判断できません。</p>
@@ -254,5 +255,6 @@ const toggle=document.querySelector('.nav-toggle');
 const links=document.querySelector('.nav-links');
 if(toggle) toggle.addEventListener('click',()=>links.classList.toggle('open'));
 </script>
+<script src="../site-chrome.js"></script>
 </body>
 </html>

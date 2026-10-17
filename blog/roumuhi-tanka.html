@@ -123,6 +123,7 @@ footer a{text-decoration:none; color:rgba(255,255,255,.75);}
 footer a:hover{color:#fff;}
 .bottom-bar{border-top:1px solid rgba(255,255,255,.14); margin-top:36px; padding-top:18px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; color:rgba(255,255,255,.5); font-size:12px;}
 </style>
+<link rel="stylesheet" href="../site-chrome.css">
 </head>
 <body>
 
@@ -174,7 +175,7 @@ footer a:hover{color:#fff;}
   <p>国土交通省は、公共工事設計労務単価を公共工事の工事費の積算に用いるものと説明しています。また、法定福利費の事業主負担分などの諸経費は含まれていません。公表値を、そのまま会社が負担する費用の総額と読むことはできません。</p>
   <p class="note-src">出典：<a href="https://www.mlit.go.jp/totikensangyo/const/1_6_bt_000217.html" target="_blank" rel="noopener">国土交通省「公共事業労務費調査・公共工事設計労務単価について」</a>。</p>
   <p>外部の単価を参考にする際は、資料の用途、対象地域・職種、適用時期、含む費用を確認します。自社の換算単価と金額だけを並べても、範囲が違えば同じ条件での比較になりません。</p>
-  <p>社内管理の単価を整理することと、賃金や契約上の取扱いを決めることも別です。法令上の扱いや保険料の算定は社会保険労務士、会計処理は税理士、契約条件は必要に応じて弁護士へ確認してください。本記事では、具体的な相場額や法令上の算定要件は扱いません。</p>
+  <p class="sc-alert">社内管理の単価を整理することと、賃金や契約上の取扱いを決めることも別です。法令上の扱いや保険料の算定は社会保険労務士、会計処理は税理士、契約条件は必要に応じて弁護士へ確認してください。本記事では、具体的な相場額や法令上の算定要件は扱いません。</p>
 
   <h2>日報と確認作業の負担にも目を向ける</h2>
   <p>現場TECH「施工管理アプリの導入・活用実態に関する調査」（2026年3月）では、業務負荷が高い作業として、関係者との連絡・調整が17.4%、日報・報告書作成が16.0%でした。いずれも複数回答の結果です。</p>
@@ -249,5 +250,6 @@ const toggle=document.querySelector('.nav-toggle');
 const links=document.querySelector('.nav-links');
 if(toggle) toggle.addEventListener('click',()=>links.classList.toggle('open'));
 </script>
+<script src="../site-chrome.js"></script>
 </body>
 </html>

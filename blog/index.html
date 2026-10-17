@@ -101,6 +101,26 @@ header{position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(255,
 .cat-btn:hover{border-color:var(--c-green-500); color:var(--c-green-700);}
 .cat-btn.active{background:var(--c-green-900); border-color:var(--c-green-900); color:#fff;}
 .post-card[hidden]{display:none;}
+.cat-btn .cnt{margin-left:6px; opacity:.6; font-weight:500;}
+
+.post-search{margin:8px 0 18px; max-width:560px;}
+.post-search-label{display:block; font-size:13px; font-weight:700; color:var(--c-ink-soft); margin-bottom:6px;}
+.post-search-box{position:relative; display:flex; align-items:center; gap:8px; background:#fff; border:1.5px solid var(--c-line); border-radius:12px; padding:0 14px; color:var(--c-ink-soft); transition:border-color .2s var(--ease);}
+.post-search-box:focus-within{border-color:var(--c-green-500); box-shadow:0 0 0 3px var(--c-green-100);}
+.post-search-box svg{flex:none;}
+.post-search-box input{flex:1; min-width:0; border:none; outline:none; background:transparent; font:inherit; font-size:16px; color:var(--c-ink); padding:12px 0;}
+.post-sugg{position:absolute; left:-1.5px; right:-1.5px; top:calc(100% + 6px); z-index:20; list-style:none; margin:0; padding:6px; background:#fff; border:1px solid var(--c-line); border-radius:12px; box-shadow:0 18px 30px -16px rgba(18,51,36,.35); max-height:320px; overflow-y:auto;}
+.post-sugg li{padding:10px 12px; border-radius:8px; cursor:pointer; color:var(--c-ink); font-size:14.5px; line-height:1.55;}
+.post-sugg li small{display:block; font-family:var(--f-mono); font-size:11px; color:var(--c-orange-500);}
+.post-sugg li[aria-selected="true"], .post-sugg li:hover{background:var(--c-green-100);}
+.post-sugg mark{background:var(--c-orange-100); color:var(--c-orange-500); padding:0 1px; border-radius:3px;}
+.post-status{margin:8px 0 0; font-size:13px; color:var(--c-ink-soft); min-height:1.2em;}
+.post-empty{text-align:center; padding:40px 16px; border:1px dashed var(--c-line); border-radius:16px; color:var(--c-ink-soft);}
+.post-empty p{margin:0 0 14px;}
+.post-clear, .post-more{font:inherit; font-weight:700; font-size:14.5px; cursor:pointer; border-radius:999px; padding:12px 26px; background:#fff; color:var(--c-green-700); border:1.5px solid var(--c-green-500); transition:background .2s var(--ease);}
+.post-clear:hover, .post-more:hover{background:var(--c-green-100);}
+.post-more-wrap{display:flex; justify-content:center; margin-top:28px;}
+.post-more[hidden]{display:none;}
 
 footer{background:var(--c-ink); color:rgba(255,255,255,.8); padding:52px 0 24px; font-size:13.5px;}
 footer .wrap{display:grid; grid-template-columns:1.3fr 1fr 1fr 1fr; gap:32px;}
@@ -112,6 +132,7 @@ footer a{text-decoration:none; color:rgba(255,255,255,.75);}
 footer a:hover{color:#fff;}
 .bottom-bar{border-top:1px solid rgba(255,255,255,.14); margin-top:36px; padding-top:18px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; color:rgba(255,255,255,.5); font-size:12px;}
 </style>
+<link rel="stylesheet" href="../site-chrome.css">
 </head>
 <body>
 
@@ -139,6 +160,16 @@ footer a:hover{color:#fff;}
     <div class="eyebrow" style="margin-top:34px;">BLOG</div>
     <h1>ブログ</h1>
     <p class="lede">建設業の日報・工数管理・協力会社連携に関するお役立ち情報や、レポスルの使い方・料金・導入事例をご紹介します。</p>
+
+    <div class="post-search">
+      <label class="post-search-label" for="post-q">記事を探す</label>
+      <div class="post-search-box">
+        <svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M13 13l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <input id="post-q" type="search" placeholder="例：保管、人工、請求書" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="post-sugg">
+        <ul class="post-sugg" id="post-sugg" role="listbox" aria-label="記事の候補" hidden></ul>
+      </div>
+      <p class="post-status" id="post-status" aria-live="polite"></p>
+    </div>
 
     <div class="cat-filter">
       <button class="cat-btn active" data-cat="all">すべて</button>
@@ -375,6 +406,11 @@ footer a:hover{color:#fff;}
         <p class="post-excerpt">解約の申し出期限、データの取り扱い、違約金の有無、一時停止という選択肢まで解説します。</p>
       </a>
     </div>
+    <div class="post-empty" id="post-empty" hidden>
+      <p>該当する記事が見つかりませんでした。言葉を変えるか、カテゴリを「すべて」にしてお試しください。</p>
+      <button type="button" class="post-clear" id="post-clear">検索と絞り込みを解除する</button>
+    </div>
+    <div class="post-more-wrap"><button type="button" class="post-more" id="post-more" hidden></button></div>
   </div>
 </section>
 
@@ -396,19 +432,119 @@ const toggle=document.querySelector('.nav-toggle');
 const links=document.querySelector('.nav-links');
 if(toggle) toggle.addEventListener('click',()=>links.classList.toggle('open'));
 
-const catBtns = document.querySelectorAll('.cat-btn');
-const postCards = document.querySelectorAll('.post-card');
-catBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    catBtns.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    const cat = btn.dataset.cat;
-    postCards.forEach(card => {
-      const cats = (card.dataset.cat || '').split(' ');
-      card.hidden = cat !== 'all' && !cats.includes(cat);
+(function(){
+  const PAGE = 12;
+  const catBtns = Array.from(document.querySelectorAll('.cat-btn'));
+  const norm = s => (s || '').normalize('NFKC').toLowerCase();
+  const cards = Array.from(document.querySelectorAll('.post-card')).map(el => ({
+    el,
+    cats: (el.dataset.cat || '').split(' '),
+    title: el.querySelector('.post-title').textContent.trim(),
+    tag: (el.querySelector('.post-tag') || {}).textContent || '',
+    text: norm(el.querySelector('.post-title').textContent + ' ' + ((el.querySelector('.post-excerpt') || {}).textContent || ''))
+  }));
+  const input = document.getElementById('post-q');
+  const sugg = document.getElementById('post-sugg');
+  const status = document.getElementById('post-status');
+  const more = document.getElementById('post-more');
+  const empty = document.getElementById('post-empty');
+  let cat = 'all', expanded = false, active = -1, options = [];
+
+  catBtns.forEach(btn => {
+    const c = btn.dataset.cat;
+    const n = c === 'all' ? cards.length : cards.filter(x => x.cats.includes(c)).length;
+    btn.insertAdjacentHTML('beforeend', '<span class="cnt">' + n + '</span>');
+    btn.setAttribute('aria-pressed', btn.classList.contains('active') ? 'true' : 'false');
+  });
+
+  const terms = () => norm(input.value).split(/\s+/).filter(Boolean);
+  const matches = () => {
+    const t = terms();
+    return cards.filter(x => (cat === 'all' || x.cats.includes(cat)) && t.every(w => x.text.includes(w)));
+  };
+  const esc = s => s.replace(/[&<>"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
+  const highlight = title => {
+    let out = esc(title);
+    terms().forEach(w => {
+      const src = title.normalize('NFKC').toLowerCase();
+      const i = src.indexOf(w);
+      if(i < 0 || title.length !== src.length) return;
+      const part = esc(title.substr(i, w.length));
+      out = out.replace(part, '<mark>' + part + '</mark>');
+    });
+    return out;
+  };
+
+  function render(){
+    const list = matches();
+    const filtered = cat !== 'all' || terms().length > 0;
+    const limit = (filtered || expanded) ? list.length : PAGE;
+    const shown = new Set(list.slice(0, limit).map(x => x.el));
+    cards.forEach(x => { x.el.hidden = !shown.has(x.el); });
+    const rest = list.length - Math.min(limit, list.length);
+    more.hidden = rest <= 0;
+    if(rest > 0) more.textContent = 'もっと見る（あと' + rest + '件）';
+    empty.hidden = list.length > 0;
+    status.textContent = terms().length ? '「' + input.value.trim() + '」を含む記事：' + list.length + '件' : '';
+  }
+
+  function closeSugg(){ sugg.hidden = true; input.setAttribute('aria-expanded', 'false'); input.removeAttribute('aria-activedescendant'); active = -1; }
+  function renderSugg(){
+    if(!terms().length){ closeSugg(); return; }
+    options = matches().slice(0, 6);
+    if(!options.length){ closeSugg(); return; }
+    sugg.innerHTML = options.map((x, i) => '<li role="option" id="post-opt-' + i + '" aria-selected="false"><small>' + esc(x.tag) + '</small>' + highlight(x.title) + '</li>').join('');
+    sugg.hidden = false;
+    input.setAttribute('aria-expanded', 'true');
+    active = -1;
+  }
+  function setActive(i){
+    const items = sugg.querySelectorAll('li');
+    items.forEach((li, j) => li.setAttribute('aria-selected', j === i ? 'true' : 'false'));
+    active = i;
+    if(i >= 0){ input.setAttribute('aria-activedescendant', 'post-opt-' + i); items[i].scrollIntoView({block:'nearest'}); }
+    else input.removeAttribute('aria-activedescendant');
+  }
+  const go = i => { if(options[i]) location.href = options[i].el.getAttribute('href'); };
+
+  input.addEventListener('input', () => { render(); renderSugg(); });
+  input.addEventListener('keydown', e => {
+    if(sugg.hidden) { if(e.key === 'ArrowDown'){ renderSugg(); } return; }
+    const n = options.length;
+    if(e.key === 'ArrowDown'){ e.preventDefault(); setActive((active + 1) % n); }
+    else if(e.key === 'ArrowUp'){ e.preventDefault(); setActive(active <= 0 ? n - 1 : active - 1); }
+    else if(e.key === 'Enter'){ if(active >= 0){ e.preventDefault(); go(active); } else { closeSugg(); } }
+    else if(e.key === 'Escape'){ closeSugg(); }
+  });
+  input.addEventListener('blur', () => setTimeout(closeSugg, 150));
+  input.addEventListener('focus', renderSugg);
+  sugg.addEventListener('mousedown', e => { const li = e.target.closest('li'); if(li){ e.preventDefault(); go(Array.from(sugg.children).indexOf(li)); } });
+
+  catBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      catBtns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-pressed', 'false'); });
+      btn.classList.add('active');
+      btn.setAttribute('aria-pressed', 'true');
+      cat = btn.dataset.cat;
+      render();
+      renderSugg();
+      if(document.activeElement !== input) closeSugg();
     });
   });
-});
+  more.addEventListener('click', () => {
+    const firstHidden = cards.find(x => x.el.hidden);
+    expanded = true;
+    render();
+    if(firstHidden && !firstHidden.el.hidden) firstHidden.el.focus();
+  });
+  document.getElementById('post-clear').addEventListener('click', () => {
+    input.value = '';
+    catBtns[0].click();
+    input.focus();
+  });
+  render();
+})();
 </script>
+<script src="../site-chrome.js"></script>
 </body>
 </html>
