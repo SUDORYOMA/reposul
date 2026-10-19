@@ -416,11 +416,17 @@ table.compare tbody tr:hover{background:var(--c-paper-warm);}
   .sp-section{padding:64px 0 80px;}
   .sp-brand-logo{height:44px;}
 }
-@media (max-width:480px){
-  .sp-tabs{display:flex; gap:2px; padding:4px;}
-  .sp-tab{flex:1 1 auto; font-size:13px; padding:9px 8px;}
-  .sp-tab-long{display:none;}
+@media (max-width:560px){
+  .sp-tabs{display:grid; grid-template-columns:repeat(3,1fr); gap:4px; padding:5px; border-radius:18px; width:100%;}
+  .sp-tab{font-size:13.5px; padding:10px 4px; border-radius:13px;}
 }
+.sp-panel--wide{grid-template-columns:1fr 1.35fr;}
+.sp-sheets{display:grid; gap:18px; min-width:0;}
+.sp-sheet{margin:0; background:#fff; border:1px solid var(--c-line); border-radius:12px; overflow:hidden; box-shadow:0 30px 50px -30px rgba(18,51,36,.4);}
+.sp-sheet img{display:block; width:100%; height:auto; cursor:zoom-in;}
+.sp-sheet img:focus-visible{outline:3px solid var(--c-green-500); outline-offset:-3px;}
+.sp-sheet figcaption{padding:8px 14px; font-size:12.5px; font-weight:700; color:var(--c-ink-soft); border-top:1px solid var(--c-line); background:var(--c-paper-warm);}
+@media (max-width:860px){ .sp-panel--wide{grid-template-columns:1fr;} }
 
 /* case studies */
 .case-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:8px;}
@@ -633,6 +639,7 @@ footer a:hover{color:#fff;}
       <button class="sp-tab" type="button" role="tab" id="sp-tab-qr" aria-controls="sp-panel-qr" aria-selected="false" tabindex="-1">QR<span class="sp-tab-long">で日報</span></button>
       <button class="sp-tab" type="button" role="tab" id="sp-tab-line" aria-controls="sp-panel-line" aria-selected="false" tabindex="-1"><span class="sp-tab-long">公式</span>LINE</button>
       <button class="sp-tab" type="button" role="tab" id="sp-tab-ranking" aria-controls="sp-panel-ranking" aria-selected="false" tabindex="-1">ランキング</button>
+      <button class="sp-tab" type="button" role="tab" id="sp-tab-roster" aria-controls="sp-panel-roster" aria-selected="false" tabindex="-1">作業員名簿</button>
     </div>
 
     <div class="sp-panel" role="tabpanel" id="sp-panel-home" aria-labelledby="sp-tab-home">
@@ -718,6 +725,24 @@ footer a:hover{color:#fff;}
       </div>
       <div class="sp-phones">
         <figure class="sp-phone"><img src="shin-preview/ranking.webp" width="600" height="1127" loading="lazy" alt="ランキング画面。自社と協力会社の日報の提出率と、個人別の日報作成数が表示されている"></figure>
+      </div>
+    </div>
+
+    <div class="sp-panel sp-panel--wide" role="tabpanel" id="sp-panel-roster" aria-labelledby="sp-tab-roster" hidden>
+      <div class="sp-copy">
+        <h3>作業員名簿も、選ぶだけでPDFに</h3>
+        <p>全建統一様式第5号の作業員名簿を、登録している作業員から選んで作れます。足りない項目は薄い赤で分かります。</p>
+        <ul>
+          <li>自社社員・協力会社の作業員から選ぶだけ。登録情報が入る</li>
+          <li>足りない項目は薄い赤。入力すると色が消える</li>
+          <li>A4横・1枚8名のPDF（様式どおり）</li>
+          <li>過去の名簿を検索・コピーして作り直し</li>
+          <li>名簿からそのまま予定表に登録</li>
+        </ul>
+      </div>
+      <div class="sp-sheets">
+        <figure class="sp-sheet"><img src="shin-preview/roster-form.webp" width="1200" height="751" loading="lazy" alt="作業員名簿の入力画面。足りない項目（事業所の名称・所長名）が薄い赤で表示され、下に「足りない項目 2件」と出ている"><figcaption>入力画面</figcaption></figure>
+        <figure class="sp-sheet"><img src="shin-preview/roster-pdf.webp" width="1200" height="844" loading="lazy" alt="出力した作業員名簿のPDF。全建統一様式第5号の形式で、作業員4名の氏名・職種・保険・教育資格などが入っている"><figcaption>出力したPDF（全建統一様式第5号）</figcaption></figure>
       </div>
     </div>
 
@@ -1286,7 +1311,7 @@ if(progressEl){
 const lightbox = document.getElementById('lightbox');
 if(lightbox){
   const lbImg = lightbox.querySelector('img');
-  document.querySelectorAll('.fs-media img, .sp-phone img').forEach(img=>{
+  document.querySelectorAll('.fs-media img, .sp-phone img, .sp-sheet img').forEach(img=>{
     const openLb = ()=>{
       lbImg.src = img.src;
       lbImg.alt = img.alt;
@@ -1294,7 +1319,7 @@ if(lightbox){
       document.body.style.overflow = 'hidden';
     };
     img.addEventListener('click', openLb);
-    if(img.closest('.sp-phone')){
+    if(img.closest('.sp-phone, .sp-sheet')){
       img.tabIndex = 0;
       img.setAttribute('role', 'button');
       img.setAttribute('aria-label', img.alt + '（拡大して表示）');
