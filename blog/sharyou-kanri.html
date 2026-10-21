@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>作業車・社用車の管理｜台帳と鍵と日報が、バラバラになっている｜レポスル</title>
+<meta name="description" content="作業車の管理が難しいのは台数が多いからではなく、台帳・鍵・利用記録が3か所に分かれ照合できないから。日報に車両欄を足すだけの対策と、車両費を現場別に割る考え方を解説します。">
+<link rel="canonical" href="https://lp.reposul.com/blog/sharyou-kanri.html">
+<link rel="icon" type="image/png" href="../favicon.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta name="theme-color" content="#123324">
+<meta property="og:type" content="article">
+<meta property="og:title" content="作業車・社用車の管理｜台帳と鍵と日報が、バラバラになっている">
+<meta property="og:description" content="作業車の管理が難しいのは台数が多いからではなく、台帳・鍵・利用記録が3か所に分かれ照合できないから。日報に車両欄を足すだけの対策と、車両費を現場別に割る考え方を解説します。">
+<meta property="og:url" content="https://lp.reposul.com/blog/sharyou-kanri.html">
+<meta property="og:site_name" content="レポスル">
+<meta property="og:image" content="https://lp.reposul.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="作業車・社用車の管理｜台帳と鍵と日報が、バラバラになっている">
+<meta name="twitter:description" content="作業車の管理が難しいのは台数が多いからではなく、台帳・鍵・利用記録が3か所に分かれ照合できないから。日報に車両欄を足すだけの対策と、車両費を現場別に割る考え方を解説します。">
+<meta name="twitter:image" content="https://lp.reposul.com/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"TOP","item":"https://lp.reposul.com/"},
+    {"@type":"ListItem","position":2,"name":"ブログ","item":"https://lp.reposul.com/blog/"},
+    {"@type":"ListItem","position":3,"name":"作業車・社用車の管理","item":"https://lp.reposul.com/blog/sharyou-kanri.html"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "作業車・社用車の管理｜台帳と鍵と日報が、バラバラになっている",
+  "description": "作業車の管理が難しいのは台数が多いからではなく、台帳・鍵・利用記録が3か所に分かれ照合できないから。日報に車両欄を足すだけの対策と、車両費を現場別に割る考え方を解説します。",
+  "datePublished": "2026-10-21",
+  "dateModified": "2026-10-21",
+  "author": { "@type": "Organization", "name": "株式会社SIXMATE" },
+  "publisher": { "@type": "Organization", "name": "株式会社SIXMATE", "logo": { "@type": "ImageObject", "url": "https://lp.reposul.com/reposul-logo.png" } },
+  "mainEntityOfPage": "https://lp.reposul.com/blog/sharyou-kanri.html",
+  "image": "https://lp.reposul.com/og-image.png"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"日報に車両欄を足すと、現場が嫌がりませんか？","acceptedAnswer":{"@type":"Answer","text":"選択式にすれば、1タップです。嫌がられるのは自由記述にしたときです。そして「項目を足すなら、同じだけ引く」を守ってください。車両欄を足すなら、ほとんど使われていない欄を1つ消す。合計が増えないなら、現場の負担は変わりません。"}},
+    {"@type":"Question","name":"自家用車で現場に行く人がいる場合は、どうしますか？","acceptedAnswer":{"@type":"Answer","text":"「自家用」という選択肢を1つ作ってください。空欄にすると、書き忘れと区別がつきません。なお、業務で自家用車を使う場合の取り扱い（保険、手当、使用の許可）については、社会保険労務士など専門家に確認することをおすすめします。会社ごとに判断が分かれる部分です。"}},
+    {"@type":"Question","name":"リース車と所有車で、管理を分けるべきですか？","acceptedAnswer":{"@type":"Answer","text":"台帳の中では分けてください。契約の満了日という、所有車にはない期限があるためです。ただし運行の記録では分ける必要はありません。乗る側にとっては同じ車です。"}},
+    {"@type":"Question","name":"協力会社の車は、どこまで把握すべきですか？","acceptedAnswer":{"@type":"Answer","text":"入場する車両の台数とナンバーまでです。多くの現場で、入場管理の一部として求められます。協力会社の車両の整備状況や運行管理まで元請けが管理しようとすると、別の論点（指揮命令の範囲）に入ります。この線引きは社会保険労務士に確認してください。"}},
+    {"@type":"Question","name":"ガソリン代を現場別に出すことに、意味はありますか？","acceptedAnswer":{"@type":"Answer","text":"会社によります。遠方の現場を持つ会社では、見積に反映できる差が出ます。近場だけの会社では、按分で十分です。意味があるかどうかは、現場間の移動距離の差で決まります。全社一律で細かくする必要はありません。"}}
+  ]
+}
+</script>
+<style>
+:root{
+  --c-green-900:#123324; --c-green-700:#1c9d68; --c-green-500:#2dcb86; --c-green-100:#eaf6ef;
+  --c-orange-500:#ff7a1a; --c-orange-100:#fff1e6; --c-ink:#16211c; --c-ink-soft:#4a5a52;
+  --c-paper:#ffffff; --c-paper-warm:#f6faf7; --c-line:#dbe8e1;
+  --f-display:'Zen Kaku Gothic New', sans-serif; --f-body:'Noto Sans JP', sans-serif; --f-mono:'JetBrains Mono', monospace;
+  --maxw:1120px; --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box;}
+body{margin:0; font-family:var(--f-body); color:var(--c-ink); background:var(--c-paper); line-height:1.75; -webkit-font-smoothing:antialiased;}
+h1,h2,h3{font-family:var(--f-display); color:var(--c-green-900); line-height:1.4; margin:0;}
+a{color:var(--c-green-700);}
+img{max-width:100%; display:block;}
+.wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; font-weight:700; font-size:15px; padding:15px 28px; border-radius:999px; border:none; cursor:pointer; text-decoration:none; transition:transform .25s var(--ease); white-space:nowrap;}
+.btn-primary{background:var(--c-orange-500); color:#fff;}
+.btn:hover{transform:translateY(-3px) scale(1.02);}
+
+header{position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(255,255,255,.9); backdrop-filter:blur(10px); border-bottom:1px solid var(--c-line);}
+.nav{display:flex; align-items:center; justify-content:space-between; height:84px;}
+.nav-logo img{height:56px;}
+.nav-links{display:flex; align-items:center; gap:28px; font-size:14px; font-weight:500;}
+.nav-links a{text-decoration:none; color:var(--c-ink);}
+.nav-toggle{display:none; background:none; border:none; font-size:22px; cursor:pointer;}
+@media (max-width:1024px){ .nav-links{display:none;} .nav-toggle{display:block;} }
+@media (max-width:1024px){
+  .nav-links.open{display:flex; position:fixed; top:84px; left:0; right:0; flex-direction:column; align-items:flex-start; gap:0; background:#fff; padding:8px 24px 20px; border-bottom:1px solid var(--c-line); box-shadow:0 14px 26px -14px rgba(0,0,0,.18); z-index:99;}
+  .nav-links.open a{width:100%; padding:14px 2px; border-bottom:1px solid var(--c-line); font-size:16px;}
+}
+@media (max-width:700px){ .nav-cta .btn{display:none;} }
+
+.breadcrumb{font-family:var(--f-mono); font-size:12px; color:var(--c-ink-soft); margin:110px 0 0;}
+.breadcrumb a{color:var(--c-green-700); text-decoration:none;}
+
+article{max-width:720px; margin:0 auto; padding:32px 24px 100px;}
+.post-meta{font-family:var(--f-mono); font-size:12px; color:var(--c-ink-soft); margin:18px 0 10px;}
+article h1{font-size:clamp(24px,4vw,34px); font-weight:900; margin-bottom:24px;}
+article h2{font-size:21px; font-weight:900; margin:44px 0 16px;}
+article h3{font-size:16.5px; font-weight:900; margin:28px 0 10px;}
+article p{font-size:16px; color:var(--c-ink); margin:0 0 20px;}
+article ul, article ol{font-size:16px; color:var(--c-ink); padding-left:22px; margin:0 0 20px;}
+article li{margin-bottom:8px;}
+.callout{background:var(--c-green-100); border-left:4px solid var(--c-green-500); padding:18px 22px; border-radius:0 10px 10px 0; margin:32px 0; font-weight:700; color:var(--c-green-900);}
+.note-src{font-size:12.5px; color:var(--c-ink-soft);}
+table.diff{width:100%; border-collapse:collapse; margin:24px 0; font-size:14.5px;}
+table.diff th, table.diff td{border:1px solid var(--c-line); padding:10px 14px; text-align:left;}
+table.diff th{background:var(--c-paper-warm); font-family:var(--f-display); color:var(--c-green-900);}
+.related{background:var(--c-paper-warm); border:1px solid var(--c-line); border-radius:14px; padding:22px 24px; margin:36px 0;}
+.related h3{margin-top:0; font-size:14px;}
+.related ul{margin:0; padding-left:20px;}
+.article-cta{background:var(--c-paper-warm); border:1px solid var(--c-line); border-radius:16px; padding:32px; text-align:center; margin-top:48px;}
+.article-cta p{margin:0 0 18px; color:var(--c-ink-soft);}
+
+footer{background:var(--c-ink); color:rgba(255,255,255,.8); padding:52px 0 24px; font-size:13.5px;}
+footer .wrap{display:grid; grid-template-columns:1.3fr 1fr 1fr 1fr; gap:32px;}
+@media (max-width:760px){ footer .wrap{grid-template-columns:1fr 1fr;} }
+footer h4{color:#fff; font-size:12.5px; font-family:var(--f-mono); text-transform:uppercase; letter-spacing:.06em; margin:0 0 12px;}
+footer ul{list-style:none; margin:0; padding:0;}
+footer li{margin-bottom:9px;}
+footer a{text-decoration:none; color:rgba(255,255,255,.75);}
+footer a:hover{color:#fff;}
+.bottom-bar{border-top:1px solid rgba(255,255,255,.14); margin-top:36px; padding-top:18px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; color:rgba(255,255,255,.5); font-size:12px;}
+</style>
+<link rel="stylesheet" href="../site-chrome.css">
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="nav-logo" href="../index.html"><img src="../reposul-logo.png" alt="レポスル"></a>
+    <nav class="nav-links">
+      <a href="../index.html#solution">レポスルとは</a>
+      <a href="../index.html#price">料金</a>
+      <a href="../case.html">導入事例</a>
+      <a href="./">ブログ</a>
+      <a href="../agent.html">代理店募集</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-primary" href="../index.html#contact">お問い合わせ・資料請求</a>
+      <button class="nav-toggle" aria-label="メニュー">☰</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="breadcrumb"><a href="../index.html">TOP</a> ／ <a href="./">ブログ</a> ／ 作業車・社用車の管理</div>
+</div>
+
+<article>
+  <div class="post-meta">2026.10.21 公開</div>
+  <h1>作業車・社用車の管理｜台帳と鍵と日報が、バラバラになっている</h1>
+
+  <p>2号車の鍵が、いまどこにあるか。これは分かります。キーボックスを見ればいい。では、<b>先週の火曜日、その2号車に誰が乗っていたか。</b></p>
+  <p>ここで止まる会社がほとんどです。<a href="sagyouin-haichi.html">前回は、人の配置の話</a>を書きました。今回は車の話です。</p>
+  <p>結論から書きます。<b>作業車の管理が難しいのは、台数が多いからではありません。情報が3か所に分かれていて、照合できないからです。</b></p>
+
+  <h2>作業車の管理とは、何を管理することか</h2>
+  <p>作業車の管理とは、車両そのものの情報と、誰がいつ何に使ったかの記録を、両方持つことです。この2つは性質がまったく違います。</p>
+  <table class="diff">
+    <thead><tr><th></th><th>内容</th><th>更新頻度</th></tr></thead>
+    <tbody>
+      <tr><td><b>車両の情報（台帳）</b></td><td>車種、ナンバー、所有かリースか、保険、各種期限</td><td><b>ほとんど変わらない</b></td></tr>
+      <tr><td><b>利用の記録（運行）</b></td><td>いつ・誰が・どの現場へ</td><td><b>毎日変わる</b></td></tr>
+    </tbody>
+  </table>
+  <p>多くの会社は、前者だけを持っています。台帳はある。きちんと作られている。けれど「誰がいつ乗ったか」は、どこにも残っていません。管理という言葉で一括りにされがちですが、困りごとが起きるのは、たいてい後者がないときです。</p>
+
+  <h2>情報が3か所に分かれている</h2>
+  <p>典型的な状態はこうです。</p>
+  <h3>①台帳 — 事務所のPCの中</h3>
+  <p>Excelで作られています。ナンバー、車種、年式、保険の満期。よくできた台帳ほど、事務所から出ません。</p>
+  <h3>②鍵 — ホワイトボードかキーボックス</h3>
+  <p>いま誰が持っているかは分かります。ただし分かるのは「いま」だけです。昨日の状態は残っていません。</p>
+  <h3>③誰が乗ったか — どこにもない</h3>
+  <p>日報に書く欄があればまだいいほうで、多くの日報に車両の欄はありません。</p>
+  <p>この3つが別の場所にあるので、照合ができません。「先週の火曜の2号車」を調べるには、3か所を突き合わせる必要があり、しかも②と③には過去が残っていません。</p>
+  <p>台帳がExcelにあること自体は、おかしなことではありません。現場TECHの調査では、管理手段として「Excel等のPCソフト中心」が68.5%、クラウド型アプリ中心は8.5%でした。</p>
+  <p class="note-src">出典：<a href="https://kensetsu.gemba-tech.jp/research/survey-sekokanriapps-2026/" target="_blank" rel="noopener">現場TECH「施工管理アプリの導入・活用実態に関する調査」</a>（2026年3月、n=426）。</p>
+  <p><b>問題は、Excelであることではなく、記録が片方しかないことです。</b></p>
+
+  <h2>誰が乗ったか分からないと、何が困るか</h2>
+  <p>5つあります。上の2つは、他と比べて質が違います。</p>
+  <p><b>①事故が起きたときに、運転者を特定できない</b></p>
+  <p><b>②違反の通知が届いたときに、誰か分からない</b>：駐車違反、速度超過。通知は会社に届きます。そこから「いつ、誰が乗っていたか」を遡れないと、社内で押し付け合いになります。</p>
+  <p><b>③車両の損傷が、いつ誰のときに起きたか分からない</b>：擦り傷が増えていく。誰も名乗り出ない。記録がないので、責める材料も、かばう材料もありません。</p>
+  <p><b>④燃料費・高速代を現場に割り振れない</b>：後述します。</p>
+  <p><b>⑤台数が足りているのか、余っているのか判断できない</b>：増車すべきか、減らすべきか。稼働の記録がないと、感覚でしか判断できません。「足りない気がする」で増やした車が、月の半分止まっていることもあります。</p>
+
+  <h3>法令に関わる部分について</h3>
+  <p class="sc-alert">一定の台数以上の自動車を使用する事業所には、法令上、安全運転の管理体制について定めがあります。点呼や確認の記録が求められる場合もあります。自社が該当するか、何をどこまで記録すべきかは、所管の警察署、または社会保険労務士や行政書士などの専門家に確認してください。台数の基準や必要な手続きは、この記事では扱いません。</p>
+  <p>該当するかどうかにかかわらず、「誰が乗ったか」の記録を持っておくこと自体に、実務上の意味があります。</p>
+
+  <h2>日報に、1項目足すだけでいい</h2>
+  <p>新しい台帳を作る必要はありません。日報に「車両」の欄を1つ足してください。選択式で、号車かナンバーの下4桁を選ぶだけです。</p>
+  <p>理由は単純です。日報はすでに「誰が」「どこで」「何をしたか」を持っています。そこに「何で行ったか」を足せば、それがそのまま運行の記録になります。</p>
+  <ul>
+    <li>新しいアプリを増やさない</li>
+    <li>新しい記入のタイミングを増やさない</li>
+    <li><b>すでに毎日書かれているものに乗せる</b></li>
+  </ul>
+  <p>記録のための記録を1つ増やすと、まず続きません。これは日報そのもので何度も起きてきたことです。</p>
+  <h3>選択式にしてください</h3>
+  <p>自由記述にすると、「2号車」「２号車」「ハイエース」「白いやつ」が混在します。<a href="ninku-excel.html">表記がゆれた瞬間に、集計できなくなります</a>。</p>
+  <h3>1日に複数台使った日は</h3>
+  <p>行を分けるか、主に使った1台だけにするか、どちらかです。会社として決めて、統一してください。人によって運用が違うほうが、精度より問題になります。</p>
+
+  <h2>車両費は、現場に紐づく原価です</h2>
+  <p>ここが、この連載の本筋とつながる部分です。工事原価のうち、材料費と外注費には請求書が届きます。そこに金額も、たいていは現場名も書かれています。</p>
+  <p><a href="koji-nippou-daicho.html">労務費だけは請求書が来ません。だから日報から拾うしかない</a>。これは連載で何度も書いてきました。<b>車両費は、その中間にあります。</b></p>
+  <p>請求書やレシートは届きます。ガソリン代、ETCの利用明細、リース料。ただし、そこに現場名は書かれていません。</p>
+  <ul>
+    <li>ガソリンのレシートに書いてあるのは、日付と金額と店舗名</li>
+    <li>ETC明細に書いてあるのは、日付と区間と金額</li>
+    <li><b>どの現場のための移動だったかは、どこにも書かれていない</b></li>
+  </ul>
+  <p>日報に車両が紐づいていれば、<a href="genka-kosu-chigai.html">日付と車両で突き合わせて、現場別に割れます</a>。</p>
+  <h3>ただし、完璧を求めないでください</h3>
+  <p>ここは正直に書きます。すべての会社がここまでやる必要はありません。</p>
+  <ul>
+    <li>現場が近接していて、移動費の差が小さい会社</li>
+    <li>車両費が原価全体の中で小さい会社</li>
+  </ul>
+  <p>こうした会社は、按分で十分です。全社の車両費を、現場別の投入人工で割り振る。それで実態から大きく外れません。</p>
+  <p><b>細かく割ることに意味があるのは、現場間の移動距離に差がある会社です。</b> 遠方の現場を持っている、県をまたぐ、という場合は、按分だと実態とずれます。</p>
+
+  <h2>規模別に、どこまでやるか</h2>
+  <table class="diff">
+    <thead><tr><th>台数</th><th>やること</th></tr></thead>
+    <tbody>
+      <tr><td><b>3台以下</b></td><td>日報に車両欄を足すだけ。台帳はExcelで十分</td></tr>
+      <tr><td><b>5〜10台</b></td><td>「誰が乗ったか」の記録が実務上必須になる。鍵の運用もルール化する</td></tr>
+      <tr><td><b>10台超</b></td><td>台帳と運行記録を同じ場所に置かないと照合が破綻する。別管理の限界</td></tr>
+    </tbody>
+  </table>
+  <p>台数が増えると、照合の手間が台数の二乗で効いてきます。3台なら頭の中で突き合わせられますが、12台になると不可能です。</p>
+  <p>現場TECHの調査では、<a href="construction-labor-management.html">ツールを導入した後でも62.5%がExcel中心</a>という結果が出ています。入れただけでは、置き換わらない。どこまでをどこで管理するかを決めないまま増やすと、管理する場所が1つ増えるだけになります。</p>
+  <p class="note-src">出典：<a href="https://kensetsu.gemba-tech.jp/" target="_blank" rel="noopener">現場TECH「施工管理DX実態調査」</a>。</p>
+
+  <div class="callout">対策は1つだけ。日報に車両欄を選択式で足す。新しい台帳は作らない。</div>
+
+  <h2>よくある質問</h2>
+  <p><b>Q. 日報に車両欄を足すと、現場が嫌がりませんか？</b><br>A. 選択式にすれば、1タップです。嫌がられるのは自由記述にしたときです。そして「項目を足すなら、同じだけ引く」を守ってください。車両欄を足すなら、ほとんど使われていない欄を1つ消す。合計が増えないなら、現場の負担は変わりません。</p>
+  <p><b>Q. 自家用車で現場に行く人がいる場合は、どうしますか？</b><br>A. 「自家用」という選択肢を1つ作ってください。空欄にすると、書き忘れと区別がつきません。なお、業務で自家用車を使う場合の取り扱い（保険、手当、使用の許可）については、社会保険労務士など専門家に確認することをおすすめします。会社ごとに判断が分かれる部分です。</p>
+  <p><b>Q. リース車と所有車で、管理を分けるべきですか？</b><br>A. 台帳の中では分けてください。契約の満了日という、所有車にはない期限があるためです。ただし運行の記録では分ける必要はありません。乗る側にとっては同じ車です。</p>
+  <p><b>Q. 協力会社の車は、どこまで把握すべきですか？</b><br>A. 入場する車両の台数とナンバーまでです。多くの現場で、入場管理の一部として求められます。協力会社の車両の整備状況や運行管理まで元請けが管理しようとすると、別の論点（指揮命令の範囲）に入ります。この線引きは社会保険労務士に確認してください。</p>
+  <p><b>Q. ガソリン代を現場別に出すことに、意味はありますか？</b><br>A. 会社によります。遠方の現場を持つ会社では、見積に反映できる差が出ます。近場だけの会社では、按分で十分です。意味があるかどうかは、現場間の移動距離の差で決まります。全社一律で細かくする必要はありません。</p>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li><b>作業車の管理は2つに分かれる。</b> 車両の情報（台帳・ほぼ変わらない）と、利用の記録（運行・毎日変わる）</li>
+    <li>多くの会社は台帳だけを持っていて、運行の記録がない</li>
+    <li>情報が3か所にある。台帳は事務所のPC、鍵はキーボックス、誰が乗ったかはどこにもない</li>
+    <li>困るのは5つ。事故・違反・損傷・原価配賦・増減車の判断</li>
+    <li>対策は1つだけ。<b>日報に車両欄を選択式で足す。</b> 新しい台帳は作らない</li>
+    <li>車両費は、請求書は来るが現場名が書かれていない原価。日報に車両が紐づいていれば現場別に割れる</li>
+    <li>ただし完璧を求めない。移動距離に差がない会社は按分で十分</li>
+    <li>10台を超えると、台帳と運行記録を別管理する限界が来る</li>
+  </ul>
+
+  <div class="related">
+    <h3>関連記事</h3>
+    <ul>
+      <li><a href="sagyouin-haichi.html">作業員の配置管理｜誰がどう決めているかが、1人の頭の中にある問題</a></li>
+      <li><a href="koji-nippou-daicho.html">工事日報とは？作業日報との違いと、工事台帳・原価管理への繋げ方</a></li>
+      <li><a href="genka-kosu-chigai.html">建設業の原価管理と工数管理の違い｜工数を取っているのに、利益が分からない理由</a></li>
+      <li><a href="ninku-excel.html">人工日報・出面表をエクセルで管理する方法｜作り方と、破綻する5つのサイン</a></li>
+      <li><a href="construction-labor-management.html">建設業の工数管理は「日報の集計」で決まる</a></li>
+    </ul>
+  </div>
+
+  <p>日報の項目設計や、現場別の原価の積み上げ方について、ご相談も承っています。資料をご希望の方はお気軽にお問い合わせください。</p>
+
+  <div class="article-cta">
+    <p>日報に車両欄を足す設計について、相談してみませんか？</p>
+    <a class="btn btn-primary" href="../index.html#contact">お問い合わせ・資料請求 →</a>
+  </div>
+</article>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <img src="../reposul-logo.png" alt="レポスル" style="height:34px; margin-bottom:14px; filter:brightness(0) invert(1);">
+      <p style="max-width:260px; color:rgba(255,255,255,.6);">建設業向け日報・工数管理アプリ「レポスル」<br>提供：株式会社SIXMATE</p>
+    </div>
+    <div><h4>Service</h4><ul><li><a href="../index.html#solution">レポスルとは</a></li><li><a href="../index.html#price">料金</a></li><li><a href="../case.html">導入事例</a></li><li><a href="./">ブログ</a></li></ul></div>
+    <div><h4>Support</h4><ul><li><a href="../index.html#faq">よくある質問</a></li><li><a href="../index.html#contact">お問い合わせ</a></li><li><a href="../agent.html">代理店募集</a></li></ul></div>
+    <div><h4>Company</h4><ul><li><a href="https://kiyac.app/privacypolicy/1K6dfxRiVLMv65ehghqd" target="_blank" rel="noopener">プライバシーポリシー</a></li><li><a href="https://kiyac.app/termsOfService/kDlBBv0IaSKvolhOjDOI" target="_blank" rel="noopener">利用規約</a></li><li><a href="https://kiyac.app/SCTLaw/2GcPZqoLQobE5Mkfmidn" target="_blank" rel="noopener">特定商取引法に基づく表示</a></li></ul></div>
+  </div>
+  <div class="wrap bottom-bar"><span>© 株式会社SIXMATE</span><span>最終更新日：2026年10月</span></div>
+</footer>
+
+<script>
+const toggle=document.querySelector('.nav-toggle');
+const links=document.querySelector('.nav-links');
+if(toggle) toggle.addEventListener('click',()=>links.classList.toggle('open'));
+</script>
+<script src="../site-chrome.js"></script>
+</body>
+</html>
