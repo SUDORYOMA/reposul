@@ -385,6 +385,7 @@ table.compare tbody tr:hover{background:var(--c-paper-warm);}
 .sp-tab:hover{color:var(--c-green-900); background:var(--c-green-100);}
 .sp-tab[aria-selected="true"]{background:var(--c-green-900); color:#fff;}
 .sp-tab:focus-visible{outline:3px solid var(--c-green-500); outline-offset:2px;}
+.sp-demo{margin-top:20px;}
 .sp-panel{display:grid; grid-template-columns:1fr 1.1fr; gap:48px; align-items:center; margin-top:36px;}
 .sp-panel[hidden]{display:none;}
 .sp-panel.is-entering{animation:spFade .45s var(--ease);}
@@ -403,7 +404,9 @@ table.compare tbody tr:hover{background:var(--c-paper-warm);}
 .sp-note{font-size:12.5px; color:var(--c-ink-soft); margin:0;}
 @media (prefers-reduced-motion:reduce){ .sp-panel.is-entering{animation:none;} }
 @media (max-width:860px){
-  .sp-panel{grid-template-columns:1fr; gap:28px; margin-top:28px;}
+  .sp-demo{margin-top:16px;}
+  .sp-demo .sp-cta{display:flex; justify-content:center; width:100%;}
+  .sp-panel{grid-template-columns:1fr; gap:28px; margin-top:24px;}
   .sp-panel .sp-phones, .sp-panel .sp-sheets{order:-1;}
   .sp-phones{min-height:0; gap:12px;}
   .sp-phone{width:min(240px, 62vw); border-width:5px; border-radius:22px;}
@@ -643,6 +646,10 @@ footer a:hover{color:#fff;}
       <button class="sp-tab" type="button" role="tab" id="sp-tab-roster" aria-controls="sp-panel-roster" aria-selected="false" tabindex="-1">作業員名簿</button>
     </div>
 
+    <div class="sp-demo reveal">
+      <a class="btn btn-primary sp-cta" href="https://reposul-next.vercel.app/demo" target="_blank" rel="noopener">先にデモ版を触ってみよう →</a>
+    </div>
+
     <div class="sp-panel" role="tabpanel" id="sp-panel-home" aria-labelledby="sp-tab-home">
       <div class="sp-copy">
         <h3>今日やることが、ひと目で分かる</h3>
@@ -750,7 +757,6 @@ footer a:hover{color:#fff;}
     <div class="sp-foot">
       <p class="sp-note">※開発中の画面です。表示しているのはデモ用のデータです。正式版では画面や機能が変わる場合があります。</p>
       <div class="sp-cta-group">
-        <a class="btn btn-primary sp-cta" href="https://reposul-next.vercel.app/demo" target="_blank" rel="noopener">先にデモ版を触ってみよう →</a>
         <a class="btn btn-primary sp-cta sp-cta-line" href="https://lin.ee/Z3VbIBi" target="_blank" rel="noopener">公式LINEをフォローして公開を待とう →</a>
       </div>
     </div>
