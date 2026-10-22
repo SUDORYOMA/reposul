@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>車検・点検の期限管理｜Excelでやると、いつか必ず切れる理由｜レポスル</title>
+<meta name="description" content="期限管理は何も起きていない期間を管理するため、止まっても気づけない。Excelが破綻する3つの理由と、1台1行・実施日を記録・プッシュ型の場所に置くという3つの対策を解説します。">
+<link rel="canonical" href="https://lp.reposul.com/blog/shaken-excel.html">
+<link rel="icon" type="image/png" href="../favicon.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta name="theme-color" content="#123324">
+<meta property="og:type" content="article">
+<meta property="og:title" content="車検・点検の期限管理｜Excelでやると、いつか必ず切れる理由">
+<meta property="og:description" content="期限管理は何も起きていない期間を管理するため、止まっても気づけない。Excelが破綻する3つの理由と、1台1行・実施日を記録・プッシュ型の場所に置くという3つの対策を解説します。">
+<meta property="og:url" content="https://lp.reposul.com/blog/shaken-excel.html">
+<meta property="og:site_name" content="レポスル">
+<meta property="og:image" content="https://lp.reposul.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="車検・点検の期限管理｜Excelでやると、いつか必ず切れる理由">
+<meta name="twitter:description" content="期限管理は何も起きていない期間を管理するため、止まっても気づけない。Excelが破綻する3つの理由と、1台1行・実施日を記録・プッシュ型の場所に置くという3つの対策を解説します。">
+<meta name="twitter:image" content="https://lp.reposul.com/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"TOP","item":"https://lp.reposul.com/"},
+    {"@type":"ListItem","position":2,"name":"ブログ","item":"https://lp.reposul.com/blog/"},
+    {"@type":"ListItem","position":3,"name":"車検・点検の期限管理","item":"https://lp.reposul.com/blog/shaken-excel.html"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "車検・点検の期限管理｜Excelでやると、いつか必ず切れる理由",
+  "description": "期限管理は何も起きていない期間を管理するため、止まっても気づけない。Excelが破綻する3つの理由と、1台1行・実施日を記録・プッシュ型の場所に置くという3つの対策を解説します。",
+  "datePublished": "2026-10-22",
+  "dateModified": "2026-10-22",
+  "author": { "@type": "Organization", "name": "株式会社SIXMATE" },
+  "publisher": { "@type": "Organization", "name": "株式会社SIXMATE", "logo": { "@type": "ImageObject", "url": "https://lp.reposul.com/reposul-logo.png" } },
+  "mainEntityOfPage": "https://lp.reposul.com/blog/shaken-excel.html",
+  "image": "https://lp.reposul.com/og-image.png"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"整備工場からハガキが来るので、大丈夫ではないですか？","acceptedAnswer":{"@type":"Answer","text":"届く範囲が限られます。付き合いのある工場が把握している車両の、把握している期限だけです。保険の更新、リースの満了、他社から買った車は届きません。届くものと届かないものを一覧にしてみてください。思ったより穴があります。"}},
+    {"@type":"Question","name":"リース車なら、リース会社が管理してくれますよね？","acceptedAnswer":{"@type":"Answer","text":"契約によります。メンテナンスリースなら含まれることが多く、ファイナンスリースなら使用者側の管理になるのが一般的です。自社の契約がどちらかを、契約書で確認してください。「リースだから大丈夫」が一番危ない思い込みです。"}},
+    {"@type":"Question","name":"誰が管理すべきですか。事務ですか、現場ですか？","acceptedAnswer":{"@type":"Answer","text":"台帳は事務、実施は現場が現実的です。ただし通知は両方に届くようにしてください。事務だけに届くと、現場の都合で先延ばしになったまま忘れられます。現場だけに届くと、支出の計画が立ちません。"}},
+    {"@type":"Question","name":"通知は何か月前がいいですか？","acceptedAnswer":{"@type":"Answer","text":"2回に分けることをおすすめします。1回目は余裕をもって（予約と予算の段取りのため）、2回目は直前（実行の確認のため）。1回だけだと、「まだ先だ」と思った1回目で終わります。具体的な月数は、整備工場の予約の取りやすさで決めてください。"}},
+    {"@type":"Question","name":"期限が切れた状態で走ってしまったら、どうなりますか？","acceptedAnswer":{"@type":"Answer","text":"法令上の問題が生じます。保険の適用にも影響する場合があります。まずその車両の使用を止めてください。そのうえで、具体的な取り扱いや必要な手続きは、所管の警察署・運輸支局、保険会社、整備工場に確認してください。罰則や処分の内容は、状況によって異なるため、この記事では扱いません。"}}
+  ]
+}
+</script>
+<style>
+:root{
+  --c-green-900:#123324; --c-green-700:#1c9d68; --c-green-500:#2dcb86; --c-green-100:#eaf6ef;
+  --c-orange-500:#ff7a1a; --c-orange-100:#fff1e6; --c-ink:#16211c; --c-ink-soft:#4a5a52;
+  --c-paper:#ffffff; --c-paper-warm:#f6faf7; --c-line:#dbe8e1;
+  --f-display:'Zen Kaku Gothic New', sans-serif; --f-body:'Noto Sans JP', sans-serif; --f-mono:'JetBrains Mono', monospace;
+  --maxw:1120px; --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box;}
+body{margin:0; font-family:var(--f-body); color:var(--c-ink); background:var(--c-paper); line-height:1.75; -webkit-font-smoothing:antialiased;}
+h1,h2,h3{font-family:var(--f-display); color:var(--c-green-900); line-height:1.4; margin:0;}
+a{color:var(--c-green-700);}
+img{max-width:100%; display:block;}
+.wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; font-weight:700; font-size:15px; padding:15px 28px; border-radius:999px; border:none; cursor:pointer; text-decoration:none; transition:transform .25s var(--ease); white-space:nowrap;}
+.btn-primary{background:var(--c-orange-500); color:#fff;}
+.btn:hover{transform:translateY(-3px) scale(1.02);}
+
+header{position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(255,255,255,.9); backdrop-filter:blur(10px); border-bottom:1px solid var(--c-line);}
+.nav{display:flex; align-items:center; justify-content:space-between; height:84px;}
+.nav-logo img{height:56px;}
+.nav-links{display:flex; align-items:center; gap:28px; font-size:14px; font-weight:500;}
+.nav-links a{text-decoration:none; color:var(--c-ink);}
+.nav-toggle{display:none; background:none; border:none; font-size:22px; cursor:pointer;}
+@media (max-width:1024px){ .nav-links{display:none;} .nav-toggle{display:block;} }
+@media (max-width:1024px){
+  .nav-links.open{display:flex; position:fixed; top:84px; left:0; right:0; flex-direction:column; align-items:flex-start; gap:0; background:#fff; padding:8px 24px 20px; border-bottom:1px solid var(--c-line); box-shadow:0 14px 26px -14px rgba(0,0,0,.18); z-index:99;}
+  .nav-links.open a{width:100%; padding:14px 2px; border-bottom:1px solid var(--c-line); font-size:16px;}
+}
+@media (max-width:700px){ .nav-cta .btn{display:none;} }
+
+.breadcrumb{font-family:var(--f-mono); font-size:12px; color:var(--c-ink-soft); margin:110px 0 0;}
+.breadcrumb a{color:var(--c-green-700); text-decoration:none;}
+
+article{max-width:720px; margin:0 auto; padding:32px 24px 100px;}
+.post-meta{font-family:var(--f-mono); font-size:12px; color:var(--c-ink-soft); margin:18px 0 10px;}
+article h1{font-size:clamp(24px,4vw,34px); font-weight:900; margin-bottom:24px;}
+article h2{font-size:21px; font-weight:900; margin:44px 0 16px;}
+article h3{font-size:16.5px; font-weight:900; margin:28px 0 10px;}
+article p{font-size:16px; color:var(--c-ink); margin:0 0 20px;}
+article ul, article ol{font-size:16px; color:var(--c-ink); padding-left:22px; margin:0 0 20px;}
+article li{margin-bottom:8px;}
+.callout{background:var(--c-green-100); border-left:4px solid var(--c-green-500); padding:18px 22px; border-radius:0 10px 10px 0; margin:32px 0; font-weight:700; color:var(--c-green-900);}
+.note-src{font-size:12.5px; color:var(--c-ink-soft);}
+table.diff{width:100%; border-collapse:collapse; margin:24px 0; font-size:14.5px;}
+table.diff th, table.diff td{border:1px solid var(--c-line); padding:10px 14px; text-align:left;}
+table.diff th{background:var(--c-paper-warm); font-family:var(--f-display); color:var(--c-green-900);}
+.related{background:var(--c-paper-warm); border:1px solid var(--c-line); border-radius:14px; padding:22px 24px; margin:36px 0;}
+.related h3{margin-top:0; font-size:14px;}
+.related ul{margin:0; padding-left:20px;}
+.article-cta{background:var(--c-paper-warm); border:1px solid var(--c-line); border-radius:16px; padding:32px; text-align:center; margin-top:48px;}
+.article-cta p{margin:0 0 18px; color:var(--c-ink-soft);}
+
+footer{background:var(--c-ink); color:rgba(255,255,255,.8); padding:52px 0 24px; font-size:13.5px;}
+footer .wrap{display:grid; grid-template-columns:1.3fr 1fr 1fr 1fr; gap:32px;}
+@media (max-width:760px){ footer .wrap{grid-template-columns:1fr 1fr;} }
+footer h4{color:#fff; font-size:12.5px; font-family:var(--f-mono); text-transform:uppercase; letter-spacing:.06em; margin:0 0 12px;}
+footer ul{list-style:none; margin:0; padding:0;}
+footer li{margin-bottom:9px;}
+footer a{text-decoration:none; color:rgba(255,255,255,.75);}
+footer a:hover{color:#fff;}
+.bottom-bar{border-top:1px solid rgba(255,255,255,.14); margin-top:36px; padding-top:18px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; color:rgba(255,255,255,.5); font-size:12px;}
+</style>
+<link rel="stylesheet" href="../site-chrome.css">
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="nav-logo" href="../index.html"><img src="../reposul-logo.png" alt="レポスル"></a>
+    <nav class="nav-links">
+      <a href="../index.html#solution">レポスルとは</a>
+      <a href="../index.html#price">料金</a>
+      <a href="../case.html">導入事例</a>
+      <a href="./">ブログ</a>
+      <a href="../agent.html">代理店募集</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-primary" href="../index.html#contact">お問い合わせ・資料請求</a>
+      <button class="nav-toggle" aria-label="メニュー">☰</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="breadcrumb"><a href="../index.html">TOP</a> ／ <a href="./">ブログ</a> ／ 車検・点検の期限管理</div>
+</div>
+
+<article>
+  <div class="post-meta">2026.10.22 公開</div>
+  <h1>車検・点検の期限管理｜Excelでやると、いつか必ず切れる理由</h1>
+
+  <p>期限が切れた話は、たいてい「気づいたら」から始まります。<b>気づいたら、先週で切れていた。</b></p>
+  <p>誰かがサボったわけではありません。Excelの台帳もきちんと作られていました。それでも切れます。</p>
+  <p><a href="sharyou-kanri.html">前回は、誰がどの車に乗ったかという運行の記録</a>を扱いました。今回は同じ車両の、別の軸 — 期限 — の話です。</p>
+  <p>結論から書きます。<b>Excelの期限管理が破綻するのは、更新が面倒だからではありません。「誰かが毎月開く」という前提に乗っているからです。</b></p>
+
+  <h2>期限管理は、何も起きていない期間を管理している</h2>
+  <p>期限管理とは、何も起きていない期間を管理することです。これが、他の管理と決定的に違います。</p>
+  <table class="diff">
+    <thead><tr><th></th><th>止まったとき</th><th>気づくか</th></tr></thead>
+    <tbody>
+      <tr><td>日報</td><td>集計ができなくなる</td><td><b>気づく</b></td></tr>
+      <tr><td>請求</td><td>入金がない</td><td><b>気づく</b></td></tr>
+      <tr><td>給与計算</td><td>従業員から指摘が来る</td><td><b>気づく</b></td></tr>
+      <tr><td><b>期限管理</b></td><td><b>何も起きない</b></td><td><b>切れるまで気づかない</b></td></tr>
+    </tbody>
+  </table>
+  <p>日報が止まれば、月末に集計ができなくて気づきます。請求が止まれば、入金がなくて気づきます。<b>期限管理だけは、止まっても何も起きません。</b></p>
+  <p>機能していない状態と、機能している状態が、外から見て同じに見える。壊れたことに気づけるのが、壊れた後だけ。これが期限管理の難しさの本質です。「ちゃんと管理している」と「3か月開いていない」の区別が、本人にもつきません。</p>
+
+  <h2>1台につき、期限はいくつあるか</h2>
+  <p>数えてみてください。おそらく、思っているより多いはずです。</p>
+  <ul>
+    <li>車検</li>
+    <li>法定点検</li>
+    <li>自賠責保険</li>
+    <li>任意保険の更新</li>
+    <li>リースまたはローンの満了</li>
+    <li>消耗品の交換目安（タイヤ、バッテリー、オイル）</li>
+    <li>作業装置を積んでいる車両は、その点検や資格</li>
+  </ul>
+  <p><b>1台で5つ以上あります。</b> 10台なら50以上。これを、1枚のExcelと、1人の記憶で持っている。これが多くの会社の実態です。</p>
+  <p class="sc-alert">車検や法定点検の周期は、車種・用途・車両総重量などによって異なります。自社の車がどれに該当するかは、車検証の記載と、整備工場や所管の運輸支局に確認してください。この記事では周期の具体的な数字は扱いません。</p>
+  <p><b>大事なのは周期そのものより、「自社に何の期限がいくつあるか」を一覧にすることです。</b> ここが抜けている会社は、まずそこからです。</p>
+
+  <h2>Excelが破綻する3つの理由</h2>
+  <h3>①開かないと、何も教えてくれない</h3>
+  <p>Excelはプル型です。こちらから開きに行かないと、情報が出てきません。カレンダーのように通知は来ません。メールも来ません。毎月開くという人間の習慣だけが、仕組みを支えています。そして習慣は、忙しい月に飛びます。飛んだことにも気づきません。</p>
+  <h3>②担当者1人に依存する</h3>
+  <p>開く習慣は、その人にしかありません。<a href="zokujinka-risk.html">これは配置の話とまったく同じ構造です</a>。判断や習慣が1人に閉じていて、その人が休むと止まる。しかも期限管理の場合、止まったことが誰にも見えません。</p>
+  <p>引き継ぎのとき、「このファイルを毎月見てください」とは伝わります。毎月見る習慣は、引き継げません。</p>
+  <h3>③更新したかどうかが、記録されない</h3>
+  <p>これが一番危険です。車検を通したあと、Excelの「次回車検日」を書き換えます。書き換え忘れると、どうなるか。</p>
+  <p>Excel上では、まだ先の日付が入ったままになります。つまり「安全に見える」。間違ったデータが、正しいデータとまったく同じ顔をしています。見ても気づけません。</p>
+  <p>逆に、二重に書き換えてしまった場合も同じです。実施したかどうかの記録がないため、台帳の数字が正しいことを、台帳自身が証明できません。</p>
+
+  <h2>「切れる」以外に起きること</h2>
+  <p>期限管理が緩い会社で起きるのは、切れることだけではありません。</p>
+  <p><b>①直前に慌てる</b>：3日前に気づく。整備工場の予約が埋まっている。代車が手配できない。現場が1日止まります。</p>
+  <p><b>②繁忙期に重なる</b>：期限は、こちらの都合を聞いてくれません。工程が詰まっている月に車検が来ると、どちらかを崩すことになります。余裕のある月に前倒しできるのは、先が見えている会社だけです。</p>
+  <p><b>③まとめて切れる</b>：見落とされがちですが、影響は大きい部分です。同じ時期に買った車は、同じ時期に期限が来ます。事業拡大のタイミングで3台まとめて導入した会社は、2年後も3年後も、その月に3台分の支出が集中します。</p>
+  <p>これは車両管理の問題ではなく、資金繰りの問題です。見えていれば平準化できますが、見えていなければ毎回その月に驚くことになります。</p>
+
+  <h2>最低限やること、3つ</h2>
+  <p>完璧な仕組みは必要ありません。3つで十分です。</p>
+  <h3>①1台1行、期限は列に並べる</h3>
+  <p>縦に車両、横に期限の種類。1台の状態が1行で分かる形にします。</p>
+  <p>期限ごとにシートを分けている台帳をときどき見ますが、<a href="ninku-excel.html">1台の全体像が見えなくなります</a>。車検のシートと保険のシートを突き合わせる作業が発生し、その時点で続きません。</p>
+  <h3>②「次回日付」ではなく、「実施日」を記録する</h3>
+  <p><b>これが最も効きます。</b> 多くの台帳は「次回車検日」だけを持っています。しかし、</p>
+  <ul>
+    <li>実施日があれば、次回は計算できる</li>
+    <li>次回日付だけだと、実施したかどうかが分からない</li>
+  </ul>
+  <p>前述の③の問題は、実施日を記録するだけで消えます。実施日が空欄なら、まだやっていない。入っていれば、やった。書き換え忘れが、空欄として見えるようになります。列を1つ増やすだけです。</p>
+  <h3>③プッシュ型の場所に置く</h3>
+  <p>Excelは開かないと教えてくれません。なので、向こうから来る場所に期限を置きます。</p>
+  <ul>
+    <li>共有カレンダーに予定として入れる</li>
+    <li>通知が届く場所に登録する</li>
+    <li>毎週必ず見るものの中に混ぜる</li>
+  </ul>
+  <p>「開く」に依存している限り、いつか飛びます。人の記憶力の問題ではなく、仕組みの形の問題です。</p>
+
+  <div class="callout">最も効くのは、「次回日付」ではなく「実施日」を記録すること。列を1つ増やすだけで、書き換え忘れが空欄として見えるようになります。</div>
+
+  <h2>Excelをやめるべきか</h2>
+  <p><b>やめなくていいです。</b> 台帳そのものはExcelで十分機能します。情報を並べて保存することに関して、Excelは優秀です。<b>足りないのは、台帳の機能ではなく通知です。</b></p>
+  <p>現実的な選択肢は3つあります。</p>
+  <table class="diff">
+    <thead><tr><th>選択肢</th><th>内容</th><th>向く規模</th></tr></thead>
+    <tbody>
+      <tr><td><b>A</b></td><td>Excelのまま、期限を共有カレンダーに手で入れる</td><td>〜5台</td></tr>
+      <tr><td><b>B</b></td><td>期限の管理そのものを共有カレンダーに寄せる</td><td>5〜10台</td></tr>
+      <tr><td><b>C</b></td><td>車両の情報を、日々使うものと同じ場所に置く</td><td>10台〜</td></tr>
+    </tbody>
+  </table>
+  <p>Aは二重管理ですが、通知は来ます。二重管理を嫌って何もしないより、はるかにましです。台数が少ないうちは、これで十分成立します。</p>
+  <p>Cについては<a href="sharyou-kanri.html">前回書いたとおり</a>で、台帳と、日々の運行の記録が別の場所にあると、台数が増えたときに照合が破綻します。</p>
+  <p>現場TECHの調査では、デジタル化が「十分に進んでいる」と回答した割合は1.6%でした。</p>
+  <p class="note-src">出典：<a href="https://kensetsu.gemba-tech.jp/research/survey-sekokanriapps-2026/" target="_blank" rel="noopener">現場TECH「施工管理アプリの導入・活用実態に関する調査」</a>（2026年3月、n=426）。</p>
+  <p><b>進んでいないのが普通です。</b> いきなりCを目指す必要はありません。Aから始めて構いません。</p>
+
+  <h2>よくある質問</h2>
+  <p><b>Q. 整備工場からハガキが来るので、大丈夫ではないですか？</b><br>A. 届く範囲が限られます。付き合いのある工場が把握している車両の、把握している期限だけです。保険の更新、リースの満了、他社から買った車は届きません。届くものと届かないものを一覧にしてみてください。思ったより穴があります。</p>
+  <p><b>Q. リース車なら、リース会社が管理してくれますよね？</b><br>A. 契約によります。メンテナンスリースなら含まれることが多く、ファイナンスリースなら使用者側の管理になるのが一般的です。自社の契約がどちらかを、契約書で確認してください。「リースだから大丈夫」が一番危ない思い込みです。</p>
+  <p><b>Q. 誰が管理すべきですか。事務ですか、現場ですか？</b><br>A. 台帳は事務、実施は現場が現実的です。ただし通知は両方に届くようにしてください。事務だけに届くと、現場の都合で先延ばしになったまま忘れられます。現場だけに届くと、支出の計画が立ちません。</p>
+  <p><b>Q. 通知は何か月前がいいですか？</b><br>A. 2回に分けることをおすすめします。1回目は余裕をもって（予約と予算の段取りのため）、2回目は直前（実行の確認のため）。1回だけだと、「まだ先だ」と思った1回目で終わります。具体的な月数は、整備工場の予約の取りやすさで決めてください。</p>
+  <p><b>Q. 期限が切れた状態で走ってしまったら、どうなりますか？</b><br>A. 法令上の問題が生じます。保険の適用にも影響する場合があります。まずその車両の使用を止めてください。そのうえで、具体的な取り扱いや必要な手続きは、所管の警察署・運輸支局、保険会社、整備工場に確認してください。罰則や処分の内容は、状況によって異なるため、この記事では扱いません。</p>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li><b>期限管理とは、何も起きていない期間を管理すること。</b> 止まっても何も起きないため、切れるまで気づけない</li>
+    <li>「ちゃんと管理している」と「3か月開いていない」の区別が、本人にもつかない</li>
+    <li><b>1台につき期限は5つ以上。</b> 10台なら50以上を、1枚のExcelと1人の記憶で持っている</li>
+    <li>Excelが破綻する理由は3つ。開かないと教えてくれない／担当者1人に依存する／更新したかが記録されない</li>
+    <li>最も危ないのは3つ目。書き換え忘れたExcelは「まだ先」に見える。間違ったデータが正しい顔をしている</li>
+    <li>切れる以外にも起きる。直前の慌て／繁忙期との重複／まとめて切れて支出が集中する</li>
+    <li>対策は3つ。<b>1台1行／「次回日付」ではなく「実施日」を記録／プッシュ型の場所に置く</b></li>
+    <li>Excelをやめる必要はない。足りないのは台帳の機能ではなく、通知</li>
+  </ul>
+
+  <div class="related">
+    <h3>関連記事</h3>
+    <ul>
+      <li><a href="sharyou-kanri.html">作業車・社用車の管理｜台帳と鍵と日報が、バラバラになっている</a></li>
+      <li><a href="zokujinka-risk.html">事務員が1人辞めたら請求書が出せない会社の話｜工数管理の属人化リスク</a></li>
+      <li><a href="ninku-excel.html">人工日報・出面表をエクセルで管理する方法｜作り方と、破綻する5つのサイン</a></li>
+      <li><a href="construction-labor-management.html">建設業の工数管理は「日報の集計」で決まる</a></li>
+    </ul>
+  </div>
+
+  <p>日報や台帳の項目設計について、ご相談も承っています。資料をご希望の方はお気軽にお問い合わせください。</p>
+
+  <div class="article-cta">
+    <p>車両台帳の項目設計について、相談してみませんか？</p>
+    <a class="btn btn-primary" href="../index.html#contact">お問い合わせ・資料請求 →</a>
+  </div>
+</article>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <img src="../reposul-logo.png" alt="レポスル" style="height:34px; margin-bottom:14px; filter:brightness(0) invert(1);">
+      <p style="max-width:260px; color:rgba(255,255,255,.6);">建設業向け日報・工数管理アプリ「レポスル」<br>提供：株式会社SIXMATE</p>
+    </div>
+    <div><h4>Service</h4><ul><li><a href="../index.html#solution">レポスルとは</a></li><li><a href="../index.html#price">料金</a></li><li><a href="../case.html">導入事例</a></li><li><a href="./">ブログ</a></li></ul></div>
+    <div><h4>Support</h4><ul><li><a href="../index.html#faq">よくある質問</a></li><li><a href="../index.html#contact">お問い合わせ</a></li><li><a href="../agent.html">代理店募集</a></li></ul></div>
+    <div><h4>Company</h4><ul><li><a href="https://kiyac.app/privacypolicy/1K6dfxRiVLMv65ehghqd" target="_blank" rel="noopener">プライバシーポリシー</a></li><li><a href="https://kiyac.app/termsOfService/kDlBBv0IaSKvolhOjDOI" target="_blank" rel="noopener">利用規約</a></li><li><a href="https://kiyac.app/SCTLaw/2GcPZqoLQobE5Mkfmidn" target="_blank" rel="noopener">特定商取引法に基づく表示</a></li></ul></div>
+  </div>
+  <div class="wrap bottom-bar"><span>© 株式会社SIXMATE</span><span>最終更新日：2026年10月</span></div>
+</footer>
+
+<script>
+const toggle=document.querySelector('.nav-toggle');
+const links=document.querySelector('.nav-links');
+if(toggle) toggle.addEventListener('click',()=>links.classList.toggle('open'));
+</script>
+<script src="../site-chrome.js"></script>
+</body>
+</html>
