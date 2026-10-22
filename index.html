@@ -407,7 +407,7 @@ table.compare tbody tr:hover{background:var(--c-paper-warm);}
   .sp-demo{margin-top:16px;}
   .sp-demo .sp-cta{display:flex; justify-content:center; width:100%;}
   .sp-panel{grid-template-columns:1fr; gap:28px; margin-top:24px;}
-  .sp-panel .sp-phones, .sp-panel .sp-sheets, .sp-panel .sp-shot{order:-1;}
+  .sp-panel .sp-phones, .sp-panel .sp-sheets, .sp-panel .sp-shot, .sp-panel .sp-mixed{order:-1;}
   .sp-phones{min-height:0; gap:12px;}
   .sp-phone{width:min(240px, 62vw); border-width:5px; border-radius:22px;}
   .sp-phones .sp-phone{width:calc(50% - 6px); max-width:220px;}
@@ -426,6 +426,9 @@ table.compare tbody tr:hover{background:var(--c-paper-warm);}
 }
 .sp-panel--wide{grid-template-columns:1fr 1.35fr;}
 .sp-sheets{display:grid; gap:18px; min-width:0;}
+.sp-mixed{display:flex; flex-direction:column; align-items:center; gap:22px; min-width:0;}
+.sp-mixed .fs-media{width:100%;}
+.sp-phone--inline{margin:0;}
 .sp-sheet{margin:0; background:#fff; border:1px solid var(--c-line); border-radius:12px; overflow:hidden; box-shadow:0 30px 50px -30px rgba(18,51,36,.4);}
 .sp-sheet img{display:block; width:100%; height:auto; cursor:zoom-in;}
 .sp-sheet img:focus-visible{outline:3px solid var(--c-green-500); outline-offset:-3px;}
@@ -644,6 +647,8 @@ footer a:hover{color:#fff;}
       <button class="sp-tab" type="button" role="tab" id="sp-tab-line" aria-controls="sp-panel-line" aria-selected="false" tabindex="-1"><span class="sp-tab-long">公式</span>LINE</button>
       <button class="sp-tab" type="button" role="tab" id="sp-tab-ranking" aria-controls="sp-panel-ranking" aria-selected="false" tabindex="-1">ランキング</button>
       <button class="sp-tab" type="button" role="tab" id="sp-tab-roster" aria-controls="sp-panel-roster" aria-selected="false" tabindex="-1">作業員名簿</button>
+      <button class="sp-tab" type="button" role="tab" id="sp-tab-summary" aria-controls="sp-panel-summary" aria-selected="false" tabindex="-1">集計閲覧</button>
+      <button class="sp-tab" type="button" role="tab" id="sp-tab-more" aria-controls="sp-panel-more" aria-selected="false" tabindex="-1">その他</button>
     </div>
 
     <div class="sp-demo reveal">
@@ -749,6 +754,42 @@ footer a:hover{color:#fff;}
       <div class="sp-sheets">
         <figure class="sp-sheet"><img src="shin-preview/roster-form.webp" width="1200" height="751" loading="lazy" alt="作業員名簿の入力画面。足りない項目（事業所の名称・所長名）が薄い赤で表示され、下に「足りない項目 2件」と出ている"><figcaption>入力画面</figcaption></figure>
         <figure class="sp-sheet"><img src="shin-preview/roster-pdf.webp" width="1200" height="844" loading="lazy" alt="出力した作業員名簿のPDF。全建統一様式第5号の形式で、作業員4名の氏名・職種・保険・教育資格などが入っている"><figcaption>出力したPDF（全建統一様式第5号）</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="sp-panel sp-panel--wide" role="tabpanel" id="sp-panel-summary" aria-labelledby="sp-tab-summary" hidden>
+      <div class="sp-copy">
+        <h3>日報を書けば、出勤簿も出面帳もできあがる</h3>
+        <p>日報の工数を、レポスルが自動で集計します。初めての方は「かんたん」で、知りたいことを選ぶだけ。慣れた方は「くわしく」で、条件を自由に組み合わせて表で確かめられます。</p>
+        <ul>
+          <li>かんたん：「元請会社ごとの工数は？」など、質問を選ぶだけで答えが出る</li>
+          <li>かんたん：文中の緑の言葉を押すと、期間・人・切り口を変えられる</li>
+          <li>くわしく：期間・元請会社・現場・所属会社・作業員・常用/請負・日勤/夜勤を自由に組み合わせ</li>
+          <li>日報の抜け・入れ間違い（予定があるのに日報が無い・同じ日に2現場など）も自動でチェック</li>
+          <li>出勤簿・出面帳はExcel・PDFで、一覧はCSV・Excel・PDFで出力</li>
+        </ul>
+      </div>
+      <div class="sp-sheets">
+        <figure class="sp-sheet"><img src="shin-preview/summary-shukeibo.webp" width="1600" height="1042" loading="lazy" alt="集計閲覧「くわしく」の出勤簿。作業員ごとに日付別の工数・残業・深夜・弁当が並び、車両の台数・経費・距離も集計されている"><figcaption>出勤簿（くわしく）</figcaption></figure>
+        <figure class="sp-sheet"><img src="shin-preview/summary-demenchou.webp" width="1600" height="1045" loading="lazy" alt="集計閲覧「くわしく」の出面帳。1人分の日付ごとの出勤・元請会社・現場・工数・残業・深夜・弁当が一覧で表示されている"><figcaption>出面帳（くわしく）</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="sp-panel sp-panel--wide" role="tabpanel" id="sp-panel-more" aria-labelledby="sp-tab-more" hidden>
+      <div class="sp-copy">
+        <h3>AIに聞くだけで、今月の工数が分かる</h3>
+        <p>レポスルのデータを、AIや会計ソフト、社内チャットにつなげられるようになります。ChatGPT・Claudeなどに「今月の工数は？」と聞けば、レポスルのデータをもとに答えてくれます。日報が完成したら、社内のチャットにもお知らせが届きます。</p>
+        <ul>
+          <li>AI連携：ChatGPT・Claudeなどに「今月の工数は？」と聞くだけで、レポスルのデータをもとに答えが返る</li>
+          <li>API連携：会計ソフト・原価管理ソフトなど、自社のシステムに日報・工数・作業員・現場・予定を取り込める</li>
+          <li>日報のお知らせ：日報が完成したら、Slack・Teamsなどの社内チャットに「〇〇現場の日報が届きました」と届く（LINEは対応予定）</li>
+          <li>お知らせからワンタップで日報を開ける。修正・削除のお知らせも選べる</li>
+          <li>読むだけの連携なので、外からデータが書き換わる心配はなし</li>
+        </ul>
+      </div>
+      <div class="sp-mixed">
+        <div class="fs-media wide"><img src="shin-preview/ai-chat.webp" loading="lazy" alt="ChatGPTでレポスルのAPIに聞いた例。「レポスルとapi連携していて、今月何工数？と質問したときの返しを見せて」に対し、今月の工数は128時間（16人日）ですと回答している（数値はサンプル）"></div>
+        <figure class="sp-phone sp-phone--inline"><img src="shin-preview/webhook-chat.webp" loading="lazy" alt="社内チャットに日報完成のお知らせが届いている画面。「品川駅前再開発（A棟）の日報が届きました。山田一郎さんが日報を作成しました」という通知が表示されている"></figure>
       </div>
     </div>
 
