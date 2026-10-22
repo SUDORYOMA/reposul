@@ -404,6 +404,7 @@ table.compare tbody tr:hover{background:var(--c-paper-warm);}
 @media (prefers-reduced-motion:reduce){ .sp-panel.is-entering{animation:none;} }
 @media (max-width:860px){
   .sp-panel{grid-template-columns:1fr; gap:28px; margin-top:28px;}
+  .sp-panel .sp-phones, .sp-panel .sp-sheets{order:-1;}
   .sp-phones{min-height:0; gap:12px;}
   .sp-phone{width:min(240px, 62vw); border-width:5px; border-radius:22px;}
   .sp-phones .sp-phone{width:calc(50% - 6px); max-width:220px;}
