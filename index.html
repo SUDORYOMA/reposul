@@ -427,7 +427,7 @@ table.compare tbody tr:hover{background:var(--c-paper-warm);}
 .sp-panel--wide{grid-template-columns:1fr 1.35fr;}
 .sp-sheets{display:grid; gap:18px; min-width:0;}
 .sp-mixed{display:flex; flex-direction:column; align-items:center; gap:22px; min-width:0;}
-.sp-mixed .fs-media{width:100%;}
+.sp-mixed .fs-media, .sp-mixed .sp-sheets{width:100%;}
 .sp-phone--inline{margin:0;}
 .sp-sheet{margin:0; background:#fff; border:1px solid var(--c-line); border-radius:12px; overflow:hidden; box-shadow:0 30px 50px -30px rgba(18,51,36,.4);}
 .sp-sheet img{display:block; width:100%; height:auto; cursor:zoom-in;}
@@ -648,7 +648,8 @@ footer a:hover{color:#fff;}
       <button class="sp-tab" type="button" role="tab" id="sp-tab-ranking" aria-controls="sp-panel-ranking" aria-selected="false" tabindex="-1">ランキング</button>
       <button class="sp-tab" type="button" role="tab" id="sp-tab-roster" aria-controls="sp-panel-roster" aria-selected="false" tabindex="-1">作業員名簿</button>
       <button class="sp-tab" type="button" role="tab" id="sp-tab-summary" aria-controls="sp-panel-summary" aria-selected="false" tabindex="-1">集計閲覧</button>
-      <button class="sp-tab" type="button" role="tab" id="sp-tab-more" aria-controls="sp-panel-more" aria-selected="false" tabindex="-1">その他</button>
+      <button class="sp-tab" type="button" role="tab" id="sp-tab-ai" aria-controls="sp-panel-ai" aria-selected="false" tabindex="-1">AI連携</button>
+      <button class="sp-tab" type="button" role="tab" id="sp-tab-chat" aria-controls="sp-panel-chat" aria-selected="false" tabindex="-1">チャット通知</button>
     </div>
 
     <div class="sp-demo reveal">
@@ -769,27 +770,42 @@ footer a:hover{color:#fff;}
           <li>出勤簿・出面帳はExcel・PDFで、一覧はCSV・Excel・PDFで出力</li>
         </ul>
       </div>
-      <div class="sp-sheets">
-        <figure class="sp-sheet"><img src="shin-preview/summary-shukeibo.webp" width="1600" height="1042" loading="lazy" alt="集計閲覧「くわしく」の出勤簿。作業員ごとに日付別の工数・残業・深夜・弁当が並び、車両の台数・経費・距離も集計されている"><figcaption>出勤簿（くわしく）</figcaption></figure>
-        <figure class="sp-sheet"><img src="shin-preview/summary-demenchou.webp" width="1600" height="1045" loading="lazy" alt="集計閲覧「くわしく」の出面帳。1人分の日付ごとの出勤・元請会社・現場・工数・残業・深夜・弁当が一覧で表示されている"><figcaption>出面帳（くわしく）</figcaption></figure>
+      <div class="sp-mixed">
+        <figure class="sp-phone sp-phone--inline"><img src="shin-preview/summary-kantan.webp" width="600" height="1127" loading="lazy" alt="集計閲覧「かんたん」の画面。「何を知りたいですか？」の質問一覧（元請会社ごとの工数・元請会社/現場ごとの工数・協力会社ごとの工数・社員ごとの工数・1人の出面帳・日報におかしな所はない？）が並んでいる"><figcaption>かんたん</figcaption></figure>
+        <div class="sp-sheets">
+          <figure class="sp-sheet"><img src="shin-preview/summary-shukeibo.webp" width="1600" height="1042" loading="lazy" alt="集計閲覧「くわしく」の出勤簿。作業員ごとに日付別の工数・残業・深夜・弁当が並び、車両の台数・経費・距離も集計されている"><figcaption>出勤簿（くわしく）</figcaption></figure>
+          <figure class="sp-sheet"><img src="shin-preview/summary-demenchou.webp" width="1600" height="1045" loading="lazy" alt="集計閲覧「くわしく」の出面帳。1人分の日付ごとの出勤・元請会社・現場・工数・残業・深夜・弁当が一覧で表示されている"><figcaption>出面帳（くわしく）</figcaption></figure>
+        </div>
       </div>
     </div>
 
-    <div class="sp-panel sp-panel--wide" role="tabpanel" id="sp-panel-more" aria-labelledby="sp-tab-more" hidden>
+    <div class="sp-panel sp-panel--wide" role="tabpanel" id="sp-panel-ai" aria-labelledby="sp-tab-ai" hidden>
       <div class="sp-copy">
         <h3>AIに聞くだけで、今月の工数が分かる</h3>
-        <p>レポスルのデータを、AIや会計ソフト、社内チャットにつなげられるようになります。ChatGPT・Claudeなどに「今月の工数は？」と聞けば、レポスルのデータをもとに答えてくれます。日報が完成したら、社内のチャットにもお知らせが届きます。</p>
+        <p>レポスルのデータを、AIや会計ソフトにつなげられるようになります。ChatGPT・Claudeなどに「今月の工数は？」と聞けば、レポスルのデータをもとに答えてくれます。</p>
         <ul>
-          <li>AI連携：ChatGPT・Claudeなどに「今月の工数は？」と聞くだけで、レポスルのデータをもとに答えが返る</li>
+          <li>AI連携：ChatGPT・Claudeなどに「今月の工数は？」「山田さんの10月の残業は？」と聞くだけで、レポスルのデータをもとに答えが返る</li>
           <li>API連携：会計ソフト・原価管理ソフトなど、自社のシステムに日報・工数・作業員・現場・予定を取り込める</li>
-          <li>日報のお知らせ：日報が完成したら、Slack・Teamsなどの社内チャットに「〇〇現場の日報が届きました」と届く（LINEは対応予定）</li>
-          <li>お知らせからワンタップで日報を開ける。修正・削除のお知らせも選べる</li>
           <li>読むだけの連携なので、外からデータが書き換わる心配はなし</li>
+          <li>企業アカウントの「設定→API連携」からAPIキーを作成。いつでも止められる</li>
         </ul>
       </div>
-      <div class="sp-mixed">
-        <div class="fs-media wide"><img src="shin-preview/ai-chat.webp" loading="lazy" alt="ChatGPTでレポスルのAPIに聞いた例。「レポスルとapi連携していて、今月何工数？と質問したときの返しを見せて」に対し、今月の工数は128時間（16人日）ですと回答している（数値はサンプル）"></div>
-        <figure class="sp-phone sp-phone--inline"><img src="shin-preview/webhook-chat.webp" loading="lazy" alt="社内チャットに日報完成のお知らせが届いている画面。「品川駅前再開発（A棟）の日報が届きました。山田一郎さんが日報を作成しました」という通知が表示されている"></figure>
+      <div class="fs-media wide sp-shot"><img src="shin-preview/ai-chat.webp" loading="lazy" alt="ChatGPTでレポスルのAPIに聞いた例。「レポスルとapi連携していて、今月何工数？と質問したときの返しを見せて」に対し、今月の工数は128時間（16人日）ですと回答している（数値はサンプル）"></div>
+    </div>
+
+    <div class="sp-panel" role="tabpanel" id="sp-panel-chat" aria-labelledby="sp-tab-chat" hidden>
+      <div class="sp-copy">
+        <h3>日報が届いたら、チャットにお知らせ</h3>
+        <p>日報が完成したら、社内のチャットに自動でお知らせが届きます。わざわざ確認しに行かなくても、誰の日報が届いたかがすぐ分かります。</p>
+        <ul>
+          <li>日報が完成したら、Slack・Teamsなどの社内チャットに「〇〇現場の日報が届きました」と届く（LINEは対応予定）</li>
+          <li>日報を修正・削除したときのお知らせも選べる</li>
+          <li>お知らせからワンタップで日報を開ける</li>
+          <li>送れなかったときは、最大8回まで自動で送り直す</li>
+        </ul>
+      </div>
+      <div class="sp-phones">
+        <figure class="sp-phone"><img src="shin-preview/webhook-chat.webp" width="600" height="942" loading="lazy" alt="社内チャットに日報完成のお知らせが届いている画面。「品川駅前再開発（A棟）の日報が届きました。山田一郎さんが日報を作成しました」という通知が表示されている"></figure>
       </div>
     </div>
 
