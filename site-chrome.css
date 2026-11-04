@@ -20,6 +20,8 @@ header.sc-compact .nav-logo img{height:40px;}
 /* P4 メニューの「シン・レポスル NEW」 */
 .sc-new{display:inline-block; margin-left:5px; padding:2px 6px; border-radius:999px; background:#ff7a1a; color:#fff; font-family:'JetBrains Mono', ui-monospace, monospace; font-size:9.5px; font-weight:700; letter-spacing:.06em; line-height:1.3; vertical-align:2px;}
 @media (min-width:1025px){ .nav-links .sc-new-link.sc-no-room{display:none;} }
+.nav-login{position:relative;}
+.nav-login-badge{position:absolute; top:50%; right:-7px; transform:translateY(-50%); padding:1px 6px; border-radius:999px; background:var(--c-ink-soft); color:#fff; font-family:var(--f-mono); font-size:9.5px; font-weight:700; letter-spacing:.02em; line-height:1.5; box-shadow:0 0 0 2px #fff;}
 header .nav-logo{flex-shrink:0;}
 header .nav-links{min-width:0;}
 
@@ -39,10 +41,11 @@ header .nav-links{min-width:0;}
 .sc-drawer-x{width:40px; height:40px; border:none; background:transparent; font-size:26px; line-height:1; color:#123324; cursor:pointer; border-radius:8px;}
 .sc-drawer-x:hover{background:#eaf6ef;}
 .sc-drawer nav{flex:1; overflow-y:auto; padding:8px 12px;}
-.sc-drawer nav a{display:flex; align-items:center; padding:14px 10px; border-radius:10px; color:#16211c; text-decoration:none; font-weight:700; font-size:16px;}
+.sc-drawer nav a{position:relative; display:flex; align-items:center; padding:14px 10px; border-radius:10px; color:#16211c; text-decoration:none; font-weight:700; font-size:16px;}
 .sc-drawer nav a:hover{background:#f6faf7;}
 .sc-drawer nav a[aria-current]{background:#eaf6ef; color:#1c9d68;}
 .sc-drawer nav a.sc-sub{font-weight:500; font-size:14.5px; color:#4a5a52;}
+.sc-drawer .nav-login-badge{position:static; display:inline-block; margin-left:7px; transform:none; box-shadow:none;}
 .sc-drawer-cta{padding:14px 16px 18px; border-top:1px solid #dbe8e1;}
 .sc-drawer-cta a{display:flex; justify-content:center; width:100%;}
 body.sc-lock{overflow:hidden;}

@@ -385,6 +385,10 @@ table.compare tbody tr:hover{background:var(--c-paper-warm);}
 .sp-tab:hover{color:var(--c-green-900); background:var(--c-green-100);}
 .sp-tab[aria-selected="true"]{background:var(--c-green-900); color:#fff;}
 .sp-tab:focus-visible{outline:3px solid var(--c-green-500); outline-offset:2px;}
+.sp-schedule{margin:24px 0 32px;}
+.sp-schedule-label{font-family:var(--f-mono); font-size:12px; font-weight:700; letter-spacing:.08em; color:var(--c-ink-soft); margin:0 0 14px;}
+.sp-schedule .flow-steps{grid-template-columns:repeat(3,1fr);}
+@media (max-width:800px){ .sp-schedule .flow-steps{grid-template-columns:1fr;} }
 .sp-demo{margin-top:20px;}
 .sp-panel{display:grid; grid-template-columns:1fr 1.1fr; gap:48px; align-items:center; margin-top:36px;}
 .sp-panel[hidden]{display:none;}
@@ -549,7 +553,7 @@ footer a:hover{color:#fff;}
       <a href="blog/">ブログ</a>
       <a href="#faq">よくある質問</a>
       <a href="agent.html">代理店募集</a>
-      <a class="nav-login" href="https://reposul.com/mobile_ver-daily_report?Pages=%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3%E3%83%BB%E6%96%B0%E8%A6%8F%E4%BC%9A%E5%93%A1%E7%99%BB%E9%8C%B2&amp;Status=%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3" target="_blank" rel="noopener">ログイン</a>
+      <a class="nav-login" href="https://reposul.com/mobile_ver-daily_report?Pages=%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3%E3%83%BB%E6%96%B0%E8%A6%8F%E4%BC%9A%E5%93%A1%E7%99%BB%E9%8C%B2&amp;Status=%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3" target="_blank" rel="noopener">ログイン<span class="nav-login-badge">旧</span></a>
     </nav>
     <div class="nav-cta">
       <a class="btn btn-primary" href="#contact">お問い合わせ・資料請求</a>
@@ -635,10 +639,19 @@ footer a:hover{color:#fff;}
   <div class="wrap">
     <div class="sp-brand">
       <img class="sp-brand-logo" src="shin-reposul-logo.jpg" width="2000" height="867" alt="シン・レポスル">
-      <span class="sp-badge">COMING SOON</span>
+      <span class="sp-badge">11/5 プレ利用開始</span>
     </div>
     <h2 class="reveal">新機能をチラ見せ</h2>
-    <p class="lede reveal">新しい「シン・レポスル」を準備中です。開発中の画面を、ひと足先にご紹介します。</p>
+    <p class="lede reveal">新しい「シン・レポスル」は、11月5日からプレ利用を開始します。開発中の画面を、ひと足先にご紹介します。</p>
+
+    <div class="sp-schedule reveal">
+      <p class="sp-schedule-label">利用開始までの予定</p>
+      <div class="flow-steps">
+        <div class="flow-step"><div class="num">01</div><h3>プレ利用開始</h3><p>11月5日〜。先行して、シン・レポスルをお試しいただけます。</p></div>
+        <div class="flow-step"><div class="num">02</div><h3>データ移行</h3><p>〜11月15日。既存のお客様のデータを、順次シン・レポスルへ移します。</p></div>
+        <div class="flow-step"><div class="num">03</div><h3>本番利用開始</h3><p>11月16日（月）〜。すべてのお客様がシン・レポスルをご利用いただけます。</p></div>
+      </div>
+    </div>
 
     <div class="sp-tabs reveal" role="tablist" aria-label="シン・レポスルの新機能">
       <button class="sp-tab" type="button" role="tab" id="sp-tab-home" aria-controls="sp-panel-home" aria-selected="true">HOME</button>
@@ -652,8 +665,9 @@ footer a:hover{color:#fff;}
       <button class="sp-tab" type="button" role="tab" id="sp-tab-chat" aria-controls="sp-panel-chat" aria-selected="false" tabindex="-1">チャット通知</button>
     </div>
 
-    <div class="sp-demo reveal">
-      <a class="btn btn-primary sp-cta" href="https://reposul-next.vercel.app/demo" target="_blank" rel="noopener">先にデモ版を触ってみよう →</a>
+    <div class="sp-demo sp-cta-group reveal">
+      <a class="btn btn-primary sp-cta" href="https://app.reposul.com/login/select" target="_blank" rel="noopener">シン・レポスルにログイン →</a>
+      <a class="btn btn-secondary sp-cta" href="https://reposul-next.vercel.app/demo" target="_blank" rel="noopener">先にデモ版を触ってみよう →</a>
     </div>
 
     <div class="sp-panel" role="tabpanel" id="sp-panel-home" aria-labelledby="sp-tab-home">
@@ -1192,8 +1206,9 @@ function setupStagger(container, children, gap){
   },{threshold:0.12, rootMargin:'0px 0px -8% 0px'});
   sio.observe(container);
 }
-const flowSteps = document.querySelector('.flow-steps');
-if(flowSteps) setupStagger(flowSteps, Array.from(flowSteps.children), 110);
+document.querySelectorAll('.flow-steps').forEach(flowSteps=>{
+  setupStagger(flowSteps, Array.from(flowSteps.children), 110);
+});
 const compareTable = document.querySelector('table.compare');
 if(compareTable) setupStagger(compareTable, Array.from(compareTable.querySelectorAll('tbody tr')), 90);
 const checkList = document.querySelector('.check-list');
