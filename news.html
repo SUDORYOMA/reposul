@@ -426,6 +426,74 @@ footer a:hover{color:#fff;}
     <div class="eyebrow" style="margin-top:34px;">NEWS</div>
     <h1 class="reveal" style="margin-bottom:40px;">お知らせ</h1>
     <div class="news-articles">
+      <article class="news-article reveal" id="news-7">
+        <div class="na-date"><time>2026.11.03</time><span class="na-kind k-security">セキュリティ</span></div>
+        <h2 class="na-title">【図解】「シン・レポスル」のセキュリティを強化しました</h2>
+        <p class="na-body">新しい「シン・レポスル」では、日報・作業員の情報・請求書など、お客様の大切なデータを守るための仕組みを取り入れています。2026年11月には全体をあらためて点検し、見つかった点を改善しました。主な仕組みを図でご紹介します。</p>
+
+        <h3 class="sec-h">1. ほかの会社のデータは見えません</h3>
+        <figure class="sec-fig" aria-label="会社ごとにデータを分ける仕組みの図">
+          <div class="sec-walls">
+            <div class="sec-co">
+              <div class="sec-co-name">A社</div>
+              <div class="sec-co-data">日報・作業員・請求書</div>
+              <div class="sec-lock">🔒 A社の人だけ</div>
+            </div>
+            <div class="sec-wall"><span>壁</span></div>
+            <div class="sec-co">
+              <div class="sec-co-name">B社</div>
+              <div class="sec-co-data">日報・作業員・請求書</div>
+              <div class="sec-lock">🔒 B社の人だけ</div>
+            </div>
+            <div class="sec-wall"><span>壁</span></div>
+            <div class="sec-co">
+              <div class="sec-co-name">C社</div>
+              <div class="sec-co-data">日報・作業員・請求書</div>
+              <div class="sec-lock">🔒 C社の人だけ</div>
+            </div>
+          </div>
+          <div class="sec-share">
+            <span class="sec-share-badge">例外は1つだけ</span>
+            承認した協力会社が<b>自社宛てに出した日報</b>だけを、元請会社が見られます（見るだけで、直せません）
+          </div>
+        </figure>
+        <p class="na-body">データを保存しているデータベースそのものに、会社ごとの「壁」を作っています。画面のプログラムに万が一まちがいがあっても、ほかの会社のデータは取り出せません。この壁が正しく働いているかは、500項目以上の自動テストで確かめています。</p>
+
+        <h3 class="sec-h">2. ログインは「パスワード＋確認コード」</h3>
+        <figure class="sec-fig" aria-label="企業ログインの2段階認証の流れの図">
+          <ol class="sec-steps">
+            <li><span class="sec-num">1</span><b>企業IDとパスワード</b>を入れる</li>
+            <li class="sec-arrow" aria-hidden="true">→</li>
+            <li><span class="sec-num">2</span>登録したメールアドレスに<b>6桁の確認コード</b>が届く</li>
+            <li class="sec-arrow" aria-hidden="true">→</li>
+            <li><span class="sec-num">3</span>コードを入れて<b>はじめて入れる</b></li>
+          </ol>
+          <ul class="sec-notes">
+            <li>確認コードは10分で使えなくなります</li>
+            <li>同じパソコン・スマホなら、確認コードは1週間に1回だけ</li>
+            <li>コードの送り先は3つまで登録できます</li>
+          </ul>
+        </figure>
+        <p class="na-body">企業アカウント（会社の管理者のログイン）は、パスワードが知られてしまっても、確認コードが無ければ入れません。データベースの側でも、確認コードを入れる前は会社のデータを読めないようにしています。</p>
+
+        <h3 class="sec-h">3. もしものときの備え</h3>
+        <div class="sec-cards">
+          <div class="sec-card"><div class="sec-ic" aria-hidden="true">💾</div><b>毎日の自動バックアップ</b><p>データは毎日自動でバックアップしています。</p></div>
+          <div class="sec-card"><div class="sec-ic" aria-hidden="true">👀</div><b>怪しい動きの見張り</b><p>大量の削除などの普段と違う動きを自動で見張り、運営に知らせます。</p></div>
+          <div class="sec-card"><div class="sec-ic" aria-hidden="true">↩️</div><b>消した日報は戻せる</b><p>削除した日報は元に戻せます。完成した日報をあとから直すと、修正の履歴が残ります。</p></div>
+          <div class="sec-card"><div class="sec-ic" aria-hidden="true">📝</div><b>運営の操作も記録</b><p>運営の管理画面も確認コードが必要で、運営の操作はすべて記録しています。</p></div>
+        </div>
+
+        <h3 class="sec-h">4. 毎日の使い方を守る仕組み</h3>
+        <ul class="sec-list">
+          <li><b>通信はすべて暗号化</b>（https）。途中で中身を読まれません</li>
+          <li><b>パスワードはそのままの形で保存しません</b></li>
+          <li>パスワードを何度も試す・メールを大量に送らせるなどの<b>機械的な攻撃を回数の上限で防ぎます</b></li>
+          <li>アプリを作っている部品の<b>弱点を点検し、直った版に更新</b>しています</li>
+        </ul>
+
+        <p class="na-body">これからも、お客様に安心してお使いいただけるよう、セキュリティの点検と改善を続けてまいります。ご不明な点やご心配な点がございましたら、お気軽にお問い合わせください。</p>
+      </article>
       <article class="news-article reveal" id="news-6">
         <div class="na-date"><time>2026.10.22</time><span class="na-kind k-security">セキュリティ</span></div>
         <h2 class="na-title">PHPの脆弱性に関する報道について</h2>
@@ -507,6 +575,44 @@ footer a:hover{color:#fff;}
 .na-title{font-size:clamp(20px,2.6vw,26px); font-weight:900; line-height:1.5; margin-bottom:24px;}
 .na-photo{width:100%; aspect-ratio:16/9; border-radius:12px; overflow:hidden; background:var(--c-paper-warm); border:1px solid var(--c-line); margin-bottom:24px;}
 .na-body{font-size:15.5px; color:var(--c-ink-soft); line-height:1.9; margin:0 0 14px;}
+/* セキュリティの図解（news-7） */
+.sec-h{font-size:18px; font-weight:900; margin:34px 0 14px; padding-left:12px; border-left:4px solid var(--c-green-500);}
+.sec-fig{margin:0 0 18px; padding:20px; background:var(--c-paper-warm); border:1px solid var(--c-line); border-radius:14px;}
+.sec-walls{display:flex; align-items:stretch; gap:8px;}
+.sec-co{flex:1; min-width:0; background:#fff; border:1.5px solid var(--c-green-500); border-radius:12px; padding:14px 10px; text-align:center;}
+.sec-co-name{font-family:var(--f-display); font-weight:900; color:var(--c-green-900); font-size:17px;}
+.sec-co-data{font-size:12.5px; color:var(--c-ink-soft); margin:6px 0 8px; line-height:1.5;}
+.sec-lock{display:inline-block; font-size:12px; font-weight:700; color:var(--c-green-700); background:var(--c-green-100); border-radius:999px; padding:3px 10px;}
+.sec-wall{flex:0 0 18px; border-radius:4px; background:repeating-linear-gradient(0deg, #9fb5a8 0 6px, #c9d8cf 6px 12px); position:relative;}
+.sec-wall span{position:absolute; top:-22px; left:50%; transform:translateX(-50%); font-size:11px; font-weight:700; color:var(--c-ink-soft); white-space:nowrap;}
+.sec-walls{padding-top:16px;}
+.sec-share{margin-top:16px; font-size:14px; color:var(--c-ink); line-height:1.7; background:#fff; border:1px dashed var(--c-orange-500); border-radius:10px; padding:12px 14px;}
+.sec-share-badge{display:inline-block; font-size:11.5px; font-weight:700; color:#c85a0c; background:var(--c-orange-100); border-radius:999px; padding:2px 10px; margin-right:6px;}
+.sec-steps{list-style:none; margin:0; padding:0; display:flex; align-items:center; gap:8px;}
+.sec-steps li:not(.sec-arrow){flex:1; background:#fff; border:1.5px solid var(--c-green-500); border-radius:12px; padding:14px 12px; font-size:14px; line-height:1.6; color:var(--c-ink); text-align:center;}
+.sec-steps li:last-child{background:var(--c-green-100);}
+.sec-num{display:flex; align-items:center; justify-content:center; width:26px; height:26px; margin:0 auto 6px; border-radius:50%; background:var(--c-green-700); color:#fff; font-weight:900; font-size:13px;}
+.sec-arrow{flex:0 0 auto; color:var(--c-orange-500); font-weight:900; font-size:20px;}
+.sec-notes{margin:14px 0 0; padding-left:18px; font-size:13.5px; color:var(--c-ink-soft); line-height:1.8;}
+.sec-cards{display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-bottom:8px;}
+.sec-card{background:#fff; border:1px solid var(--c-line); border-radius:14px; padding:16px; box-shadow:0 10px 24px -18px rgba(18,51,36,.35);}
+.sec-card b{display:block; font-family:var(--f-display); color:var(--c-green-900); font-size:15.5px; margin-bottom:4px;}
+.sec-card p{margin:0; font-size:13.5px; color:var(--c-ink-soft); line-height:1.7;}
+.sec-ic{font-size:24px; margin-bottom:6px;}
+.sec-list{margin:0 0 18px; padding:0; list-style:none;}
+.sec-list li{position:relative; padding:10px 0 10px 30px; border-bottom:1px solid var(--c-line); font-size:15px; color:var(--c-ink-soft); line-height:1.7;}
+.sec-list li::before{content:"✓"; position:absolute; left:4px; top:9px; width:20px; height:20px; border-radius:50%; background:var(--c-green-100); color:var(--c-green-700); font-weight:900; font-size:12px; display:flex; align-items:center; justify-content:center;}
+.sec-list b{color:var(--c-green-900);}
+@media (max-width:640px){
+  .sec-fig{padding:14px;}
+  .sec-walls{flex-direction:column; padding-top:0;}
+  .sec-wall{flex:0 0 12px; height:12px; background:repeating-linear-gradient(90deg, #9fb5a8 0 6px, #c9d8cf 6px 12px);}
+  .sec-wall span{display:none;}
+  .sec-steps{flex-direction:column;}
+  .sec-steps li:not(.sec-arrow){width:100%; box-sizing:border-box;}
+  .sec-arrow{transform:rotate(90deg);}
+  .sec-cards{grid-template-columns:1fr;}
+}
 </style>
 
 <script>
