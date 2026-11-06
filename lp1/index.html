@@ -62,28 +62,33 @@ h1,h2,h3,p{margin:0}
 .sfx.l{left:clamp(10px,3.5vw,70px);--r:-9deg}
 .sfx.r{right:clamp(26px,4.5vw,92px);--r:8deg}
 
-/* 画面 */
-.show{position:relative;flex:1;min-height:0;width:100%;margin-top:clamp(12px,2.4vh,26px);display:flex;justify-content:center;transform:translateY(60px);opacity:0;transition:transform .85s var(--ease) .12s,opacity .4s ease .12s}
+/* 画面：枠ごと全部見える大きさに、残りの高さから決める */
+.show{position:relative;flex:1;min-height:0;width:100%;margin-top:clamp(12px,2.4vh,26px);container-type:size;display:flex;justify-content:center;align-items:flex-start;transform:translateY(60px);opacity:0;transition:transform .85s var(--ease) .12s,opacity .4s ease .12s}
 .scene.on .show{transform:none;opacity:1}
-.combo{position:relative;width:min(100%,calc((100dvh - var(--head) - 150px)*1.72));max-width:1020px;height:max-content}
-.lid{background:var(--ink);border-radius:14px 14px 0 0;padding:9px 9px 0;box-shadow:0 0 0 3px #fff}
-.lid img{display:block;width:100%;border-radius:4px 4px 0 0;background:#fff}
-.sheet{background:#fff;box-shadow:0 0 0 3px var(--ink),9px 9px 0 var(--ink)}
+.combo{position:relative;width:min(90cqw,calc((100cqh - 46px)*1.58),1080px);height:max-content}
+.lid{position:relative;background:#1c1c1a;border-radius:18px 18px 0 0;padding:13px 13px 0;box-shadow:0 0 0 3px #fff}
+.sv{aspect-ratio:16/10;overflow:hidden;background:#fff;border-radius:6px 6px 0 0}
+.sv img{display:block;width:100%}
+.foot{position:relative;height:22px;width:110%;margin-left:-5%;background:linear-gradient(#dfdfd8,#c9c9c2 45%,#a9a9a1);border-radius:0 0 18px 18px;box-shadow:0 0 0 3px #fff}
+.foot::before{content:"";position:absolute;left:50%;top:0;width:15%;height:8px;transform:translateX(-50%);background:#a4a49c;border-radius:0 0 9px 9px}
+.sheet{background:#fff;box-shadow:0 0 0 3px var(--ink),9px 9px 0 var(--ink);width:min(100cqw,calc((100cqh - 26px)*1.414),1000px)}
 .sheet img{display:block;width:100%}
-.ph{background:var(--ink);padding:7px 7px 0;border-radius:30px 30px 0 0;box-shadow:0 0 0 3px #fff}
-.sc{position:relative;overflow:hidden;background:#fff;border-radius:23px 23px 0 0}
-.sc>img,.sc>.im img{display:block;width:100%}
-.sc>.im{position:relative}
-.mini{position:absolute;right:-4%;top:17%;width:23%}
-.solo{width:min(calc((100dvh - var(--head) - 170px)*.62),340px,78vw)}
-.pair{display:flex;gap:clamp(10px,2vw,26px);align-items:flex-start;justify-content:center}
-.pair .solo{width:min(calc((100dvh - var(--head) - 170px)*.55),300px,45vw)}
-.pair .solo:first-child{transform:rotate(-3deg) translateY(10px)}
+.ph{background:var(--ink);padding:8px;border-radius:30px;box-shadow:0 0 0 3px #fff;aspect-ratio:9/17}
+.sc{position:relative;height:100%;overflow:hidden;background:#fff;border-radius:23px}
+.sc>img,.sc>.im{position:absolute;left:0;top:0;width:100%}
+.sc>img{display:block}
+.sc>.im img{display:block;width:100%}
+.sc.bottom>img{top:auto;bottom:0}
+.mini{position:absolute;right:-4%;bottom:0;width:23%}
+.solo{width:min(calc((100cqh - 18px)*.53),88cqw,430px)}
+.pair{display:flex;gap:clamp(12px,3cqw,44px);align-items:flex-start;justify-content:center}
+.pair .solo{width:min(calc((100cqh - 26px)*.53),47cqw,400px)}
+.pair .solo:first-child{transform:rotate(-3deg)}
 .cam{position:absolute;left:6.15%;top:59.66%;width:87.7%;height:30.4%;border-radius:8px;overflow:hidden;background:#e9eae5;display:flex;align-items:center;justify-content:center}
 .cam span{position:relative;display:block;height:80%;aspect-ratio:1;overflow:hidden;transform:rotate(-5deg)}
 .cam span img{position:absolute;width:139.3%;max-width:none;left:-19.6%;top:-67.9%}
 .cam::after{content:"";position:absolute;inset:9%;border:2px solid rgba(255,255,255,.95);border-radius:8px;box-shadow:0 0 0 1px rgba(0,0,0,.25)}
-.ai{background:#fff;padding:clamp(14px,2.6vh,28px) clamp(16px,3vw,34px) 40px;font-size:clamp(13px,1.9vh,17px);line-height:1.6}
+.ai{background:#fff;height:100%;overflow:hidden;padding:clamp(14px,2.6vh,28px) clamp(16px,3vw,34px) 14px;font-size:clamp(13px,1.9vh,17px);line-height:1.6}
 .ai .me{margin-left:auto;width:fit-content;background:var(--mint);border-radius:12px;padding:8px 16px;font-weight:700}
 .ai .re{margin-top:14px}
 .ai .who{display:flex;align-items:center;gap:8px;margin-bottom:6px}
@@ -165,8 +170,13 @@ footer{padding:22px 16px;text-align:center;font-size:13px;color:var(--soft)}
   .koma p{font-size:13px}
   .sfx{top:auto;bottom:clamp(30px,8vh,80px);font-size:clamp(38px,8vh,60px);-webkit-text-stroke-width:7px}
   .sfx.r{right:auto;left:12px}
-  .combo{width:min(100%,calc((100dvh - var(--head) - 150px)*1.3))}
-  .mini{right:-1%;top:34%;width:30%}
+  .mini{right:-1%;width:29%;bottom:-34%}
+  .lid{padding:7px 7px 0;border-radius:11px 11px 0 0}
+  .foot{height:11px;border-radius:0 0 10px 10px}
+  .foot::before{height:4px}
+  .combo{width:min(88cqw,calc((100cqh - 30px)*1.58))}
+  .ph{border-radius:24px;padding:6px}
+  .sc{border-radius:18px}
   .rail{display:none}
   .guard{grid-template-columns:1fr;padding-block:2px}
   .guard li:nth-last-child(2){border-bottom:1px solid rgba(255,255,255,.26)}
@@ -261,25 +271,25 @@ footer{padding:22px 16px;text-align:center;font-size:13px;color:var(--soft)}
   var bg = function (n) { return "img/bg-" + n + ".webp"; };
   var img = function (n) { return "img/" + n + ".webp"; };
   var phone = function (n, shift, cls) {
-    return '<div class="ph ' + cls + '"><div class="sc"><img src="' + img(n) + '" alt="" style="transform:translateY(-' + (shift || 0) + '%)"></div></div>';
+    return '<div class="ph ' + cls + '"><div class="sc' + (shift === "bottom" ? " bottom" : "") + '"><img src="' + img(n) + '" alt=""' + (shift && shift !== "bottom" ? ' style="transform:translateY(-' + shift + '%)"' : "") + "></div></div>";
   };
   var combo = function (pc, ph, shift) {
-    return '<div class="combo"><div class="lid"><img src="' + img(pc) + '" alt=""></div>' + phone(ph, shift || 5, "mini") + "</div>";
+    return '<div class="combo"><div class="lid"><div class="sv"><img src="' + img(pc) + '" alt=""></div></div><div class="foot"></div>' + phone(ph, shift || 5, "mini") + "</div>";
   };
   var SCENES = [
     { bg: bg("215793756_0"), pos: "50% 40%", hero: true, sfx: ["ドン！！", "r"] },
-    { bg: bg("215793757_0"), pos: "50% 60%", h: ["ログインは、", "LINEをワンプッシュ。"], sub: "アプリ不要。IDの入力は最初の1回だけ。", sfx: ["ピッ！", "l"], html: phone("p-line", 35, "solo") },
+    { bg: bg("215793757_0"), pos: "50% 60%", h: ["ログインは、", "LINEをワンプッシュ。"], sub: "アプリ不要。IDの入力は最初の1回だけ。", sfx: ["ピッ！", "l"], html: phone("p-line", "bottom", "solo") },
     { bg: bg("215793730_0"), pos: "50% 62%", h: ["だれが、どの現場に、", "何台で。"], sub: "作業員も作業車も、予定表で割り振り。", sfx: ["ドドン！", "r"], html: combo("pc-schedule", "c-schedule-new") },
     { bg: bg("215793758_0"), pos: "50% 50%", h: ["今日の日報は、", "予定からワンプッシュ。"], sub: "現場・時間・作業員が入った状態で始まる。", sfx: ["ポチッ", "l"], html: phone("p-schedule-open", 0, "solo") },
     { bg: bg("215801860_0"), pos: "50% 74%", h: ["作業員の追加は、", "QRを読むだけ。"], sub: "名前を探さない。打たない。続けて何人でも。", sfx: ["ピピッ！", "r"],
-      html: '<div class="pair">' + phone("p-qr", 5, "solo") + '<div class="ph solo"><div class="sc"><div class="im" style="transform:translateY(-15.4%)"><img src="' + img("p-scanner") + '" alt=""><div class="cam"><span><img src="' + img("p-qr") + '" alt=""></span></div></div></div></div></div>' },
+      html: '<div class="pair">' + phone("p-qr", 5, "solo") + '<div class="ph solo"><div class="sc"><div class="im" style="transform:translateY(-12.8%)"><img src="' + img("p-scanner") + '" alt=""><div class="cam"><span><img src="' + img("p-qr") + '" alt=""></span></div></div></div></div></div>' },
     { bg: bg("215793737_0"), pos: "50% 55%", h: ["集計は、", "質問を選ぶだけ。"], sub: "出勤簿・出面帳は PDF・Excel で出力できる。", sfx: ["ザッ！", "l"], html: combo("pc-attendance", "c-summary-2") },
     { bg: bg("215793729_0"), pos: "50% 34%", h: ["請求書は、", "質問に答えるだけ。"], sub: "PDF で出力して、そのままメールで送信。", sfx: ["シュッ", "r"], html: combo("pc-invoice-detail", "c-invoices") },
-    { bg: bg("215793738_0"), pos: "50% 60%", h: ["作業員名簿も、", "選ぶだけ。"], sub: "全建統一様式第5号を PDF で。", sfx: ["バン！", "l"], html: '<div class="combo" style="max-width:860px"><div class="sheet"><img src="' + img("pdf-roster") + '" alt=""></div></div>' },
+    { bg: bg("215793738_0"), pos: "50% 60%", h: ["作業員名簿も、", "選ぶだけ。"], sub: "全建統一様式第5号を PDF で。", sfx: ["バン！", "l"], html: '<div class="sheet"><img src="' + img("pdf-roster") + '" alt=""></div>' },
     { bg: bg("215793727_0"), pos: "50% 42%", h: ["車検の切れを、", "2か月前にお知らせ。"], sub: "どの現場で使うか、あと何台空いているかも分かる。", sfx: ["ブロロロ", "r"], html: combo("pc-vehicle-schedule", "c-vehicles") },
     { bg: bg("215793743"), pos: "50% 62%", h: ["日報のがんばりが、", "数字で見える。"], sub: "作成数・出勤日数・提出率をランキングに。", sfx: ["ドドドド", "l"], html: combo("pc-ranking", "c-ranking") },
     { bg: bg("215801859_0"), pos: "50% 72%", h: ["今月の工数、", "AIに聞くだけ。"], sub: "ChatGPT・Claude などの AI につなげられる。原価管理・給与計算アプリとも API 連携（相手側に API の窓口がある場合）。", sfx: ["ピコン！", "r"], note: "画面はイメージです",
-      html: '<div class="combo" style="max-width:760px"><div class="lid"><div class="ai"><div class="me">今月の工数を、元請会社ごとに教えて</div><div class="re"><div class="who"><i>AI</i>レポスルの完成した日報を読みました。</div><dl><div><dt>東都建設株式会社</dt><dd>9工</dd></div><div><dt>みなと総合建設株式会社</dt><dd>9工</dd></div><div><dt>さくら工務店</dt><dd>8工</dd></div><div class="sum"><dt>合計</dt><dd>26工</dd></div></dl><p style="margin-top:8px">残業は合計で 9時間でした。</p></div></div></div></div>' },
+      html: '<div class="combo"><div class="lid"><div class="sv"><div class="ai"><div class="me">今月の工数を、元請会社ごとに教えて</div><div class="re"><div class="who"><i>AI</i>レポスルの完成した日報を読みました。</div><dl><div><dt>東都建設株式会社</dt><dd>9工</dd></div><div><dt>みなと総合建設株式会社</dt><dd>9工</dd></div><div><dt>さくら工務店</dt><dd>8工</dd></div><div class="sum"><dt>合計</dt><dd>26工</dd></div></dl><p style="margin-top:8px">残業は合計で 9時間でした。</p></div></div></div></div><div class="foot"></div></div>' },
     { bg: bg("215793739_0"), pos: "50% 58%", tag: "セキュリティー", h: ["毎日の日報を、", "守る仕組み。"], sub: "セキュリティーも作り直しました。", sfx: ["ガシッ！", "l"], note: " ",
       html: '<ul class="guard">' + [["2段階認証", "企業ログインは、メールの確認コードも"], ["会社ごとのデータ分離", "他社からは見えない"], ["暗号化", "通信もパスワードも"], ["毎日のバックアップ", "別の場所に毎日保管"], ["不審な動きの見張り", "自動で運営に通知"], ["修正の履歴", "だれが・いつ・何を直したかを記録"]].map(function (x) { return "<li><span>" + x[0] + "</span><small>" + x[1] + "</small></li>"; }).join("") + "</ul>" }
   ];
