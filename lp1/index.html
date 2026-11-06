@@ -71,7 +71,9 @@ h1,h2,h3,p{margin:0}
 .sv img{display:block;width:100%}
 .foot{position:relative;height:22px;width:110%;margin-left:-5%;background:linear-gradient(#dfdfd8,#c9c9c2 45%,#a9a9a1);border-radius:0 0 18px 18px;box-shadow:0 0 0 3px #fff}
 .foot::before{content:"";position:absolute;left:50%;top:0;width:15%;height:8px;transform:translateX(-50%);background:#a4a49c;border-radius:0 0 9px 9px}
-.sheet{background:#fff;box-shadow:0 0 0 3px var(--ink),9px 9px 0 var(--ink);width:min(100cqw,calc((100cqh - 26px)*1.414),1000px)}
+.sheet{background:#fff;box-shadow:0 0 0 3px var(--ink),9px 9px 0 var(--ink)}
+.combo.roster{width:min(86cqw,calc((100cqh - 26px)*1.414),1000px)}
+.roster .mini{right:-7%;width:25%}
 .sheet img{display:block;width:100%}
 .ph{background:var(--ink);padding:8px;border-radius:30px;box-shadow:0 0 0 3px #fff;aspect-ratio:9/17}
 .sc{position:relative;height:100%;overflow:hidden;background:#fff;border-radius:23px}
@@ -168,13 +170,17 @@ footer{padding:22px 16px;text-align:center;font-size:13px;color:var(--soft)}
   .top .hide-s{display:none}
   .koma{box-shadow:5px 5px 0 var(--ink)}
   .koma p{font-size:13px}
-  .sfx{top:auto;bottom:clamp(30px,8vh,80px);font-size:clamp(38px,8vh,60px);-webkit-text-stroke-width:7px}
+  .sfx{top:auto;bottom:clamp(44px,8vh,80px);font-size:clamp(30px,5.4vh,44px);-webkit-text-stroke-width:6px}
   .sfx.r{right:auto;left:12px}
-  .mini{right:-1%;width:29%;bottom:-34%}
-  .lid{padding:7px 7px 0;border-radius:11px 11px 0 0}
+    .lid{padding:7px 7px 0;border-radius:11px 11px 0 0}
   .foot{height:11px;border-radius:0 0 10px 10px}
   .foot::before{height:4px}
-  .combo{width:min(88cqw,calc((100cqh - 30px)*1.58))}
+  /* スマホ：PC を上いっぱいに、スマホの画面を手前に大きく。残りの高さを全部使う */
+  .show{margin-top:12px}
+  .combo,.combo.roster{width:100cqw}
+  .combo:has(.mini){height:100cqh}
+  .foot{width:103%;margin-left:-1.5%}
+  .mini,.roster .mini{--t:clamp(84px,17cqh,132px);left:auto;right:0;bottom:auto;top:var(--t);width:min(60cqw,calc((100cqh - var(--t) - 16px)*.529))}
   .ph{border-radius:24px;padding:6px}
   .sc{border-radius:18px}
   .rail{display:none}
@@ -285,7 +291,7 @@ footer{padding:22px 16px;text-align:center;font-size:13px;color:var(--soft)}
       html: '<div class="pair">' + phone("p-qr", 5, "solo") + '<div class="ph solo"><div class="sc"><div class="im" style="transform:translateY(-12.8%)"><img src="' + img("p-scanner") + '" alt=""><div class="cam"><span><img src="' + img("p-qr") + '" alt=""></span></div></div></div></div></div>' },
     { bg: bg("215793737_0"), pos: "50% 55%", h: ["集計は、", "質問を選ぶだけ。"], sub: "出勤簿・出面帳は PDF・Excel で出力できる。", sfx: ["ザッ！", "l"], html: combo("pc-attendance", "c-summary-2") },
     { bg: bg("215793729_0"), pos: "50% 34%", h: ["請求書は、", "質問に答えるだけ。"], sub: "PDF で出力して、そのままメールで送信。", sfx: ["シュッ", "r"], html: combo("pc-invoice-detail", "c-invoices") },
-    { bg: bg("215793738_0"), pos: "50% 60%", h: ["作業員名簿も、", "選ぶだけ。"], sub: "全建統一様式第5号を PDF で。", sfx: ["バン！", "l"], html: '<div class="sheet"><img src="' + img("pdf-roster") + '" alt=""></div>' },
+    { bg: bg("215793738_0"), pos: "50% 60%", h: ["作業員名簿も、", "選ぶだけ。"], sub: "全建統一様式第5号を PDF で。", sfx: ["バン！", "l"], html: '<div class="combo roster"><div class="sheet"><img src="' + img("pdf-roster") + '" alt=""></div>' + phone("c-roster-pick", 5, "mini") + "</div>" },
     { bg: bg("215793727_0"), pos: "50% 42%", h: ["車検の切れを、", "2か月前にお知らせ。"], sub: "どの現場で使うか、あと何台空いているかも分かる。", sfx: ["ブロロロ", "r"], html: combo("pc-vehicle-schedule", "c-vehicles") },
     { bg: bg("215793743"), pos: "50% 62%", h: ["日報のがんばりが、", "数字で見える。"], sub: "作成数・出勤日数・提出率をランキングに。", sfx: ["ドドドド", "l"], html: combo("pc-ranking", "c-ranking") },
     { bg: bg("215801859_0"), pos: "50% 72%", h: ["今月の工数、", "AIに聞くだけ。"], sub: "ChatGPT・Claude などの AI につなげられる。原価管理・給与計算アプリとも API 連携（相手側に API の窓口がある場合）。", sfx: ["ピコン！", "r"], note: "画面はイメージです",
