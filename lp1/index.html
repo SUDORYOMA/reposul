@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>シン・レポスル</title>
+<link rel="icon" href="../favicon.ico">
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Noto+Sans+JP:wght@500;700;900&display=swap">
+<style>
+/* 全画面の漫画の現場を1コマずつめくる。見出しはコマ枠、画面は本物。1スクロールで1シーン */
+:root{
+  --paper:#f6f7f3; --ink:#1c1c1a; --soft:#55554f; --green:#1a7a4c; --deep:#125c38; --mint:#e6f4ec; --yellow:#ffe07a; --line:#d9dad3;
+  --body:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif; --sfx:"Dela Gothic One","Noto Sans JP",sans-serif;
+  --head:64px; --ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box}
+html{background:var(--paper)}
+html.locked,html.locked body{overflow:hidden;overscroll-behavior:none}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.7;font-feature-settings:"palt"}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 20px;border-radius:8px;font-weight:700;font-size:15px;text-decoration:none;white-space:nowrap}
+.btn.fill{background:var(--green);color:#fff}
+.btn.line{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
+
+/* ヘッダー */
+.top{position:fixed;z-index:30;top:0;left:0;right:0;height:var(--head);display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));pointer-events:none}
+.top>*{pointer-events:auto}
+.top .logo{display:block;background:#fff;border:2px solid var(--ink);border-radius:6px;padding:3px 10px}
+.top .logo img{display:block;height:36px;width:auto}
+.top nav{display:flex;gap:8px}
+.top .btn{min-height:40px;padding:0 14px;font-size:14px}
+
+/* 舞台：スクロールしても動かない1画面 */
+.stage{position:relative;height:100vh;height:100dvh;overflow:hidden;background:#fff;touch-action:none;isolation:isolate}
+.scene{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;padding:calc(var(--head) + 4px) 16px 0;
+  visibility:hidden;opacity:0;transition:opacity .45s ease,visibility 0s linear .45s}
+.scene.on{visibility:visible;opacity:1;transition:opacity .45s ease,visibility 0s}
+.bg{position:absolute;inset:0;z-index:-1;background:#fff center/cover no-repeat;transform:scale(1.07);transition:transform 1.3s var(--ease)}
+.scene.on .bg{transform:none}
+
+/* 見出しのコマ */
+.koma{position:relative;flex:none;width:min(860px,100%);background:var(--paper);border:3px solid var(--ink);box-shadow:7px 7px 0 var(--ink);
+  padding:clamp(10px,1.7vh,18px) clamp(16px,3vw,34px) clamp(12px,1.9vh,20px);text-align:center;
+  transform:translateY(26px);opacity:0;transition:transform .7s var(--ease) .06s,opacity .4s ease .06s}
+.scene.on .koma{transform:none;opacity:1}
+.tag{display:flex;align-items:center;justify-content:center;gap:10px;font-size:clamp(12px,1.6vh,15px);font-weight:700;color:var(--green);line-height:1.4}
+.tag i{font-style:normal;background:var(--green);color:#fff;border-radius:4px;padding:1px 8px;font-variant-numeric:tabular-nums}
+h1,h2,h3,p{margin:0}
+.koma h1,.koma h2{margin-top:clamp(2px,.7vh,8px);font-size:min(clamp(25px,5.3vh,54px),7vw);line-height:1.24;font-weight:900;letter-spacing:.005em}
+.koma b{color:var(--green);font-weight:900}
+.koma p{margin-top:clamp(3px,.7vh,8px);font-size:clamp(13px,2vh,18px);font-weight:500;color:#44443f;line-height:1.5}
+
+/* 効果音 */
+.sfx{position:absolute;z-index:4;top:calc(var(--head) + 8vh);font-family:var(--sfx);font-size:clamp(46px,11vh,112px);line-height:1;color:var(--ink);white-space:nowrap;
+  -webkit-text-stroke:9px #fff;paint-order:stroke fill;opacity:0;transform:scale(1.5) rotate(var(--r));transition:transform .5s cubic-bezier(.2,1.6,.4,1) .24s,opacity .15s linear .24s;pointer-events:none}
+.scene.on .sfx{opacity:1;transform:scale(1) rotate(var(--r))}
+.sfx.l{left:clamp(10px,3.5vw,70px);--r:-9deg}
+.sfx.r{right:clamp(26px,4.5vw,92px);--r:8deg}
+
+/* 画面 */
+.show{position:relative;flex:1;min-height:0;width:100%;margin-top:clamp(12px,2.4vh,26px);display:flex;justify-content:center;transform:translateY(60px);opacity:0;transition:transform .85s var(--ease) .12s,opacity .4s ease .12s}
+.scene.on .show{transform:none;opacity:1}
+.combo{position:relative;width:min(100%,calc((100dvh - var(--head) - 150px)*1.72));max-width:1020px;height:max-content}
+.lid{background:var(--ink);border-radius:14px 14px 0 0;padding:9px 9px 0;box-shadow:0 0 0 3px #fff}
+.lid img{display:block;width:100%;border-radius:4px 4px 0 0;background:#fff}
+.sheet{background:#fff;box-shadow:0 0 0 3px var(--ink),9px 9px 0 var(--ink)}
+.sheet img{display:block;width:100%}
+.ph{background:var(--ink);padding:7px 7px 0;border-radius:30px 30px 0 0;box-shadow:0 0 0 3px #fff}
+.sc{position:relative;overflow:hidden;background:#fff;border-radius:23px 23px 0 0}
+.sc>img,.sc>.im img{display:block;width:100%}
+.sc>.im{position:relative}
+.mini{position:absolute;right:-4%;top:17%;width:23%}
+.solo{width:min(calc((100dvh - var(--head) - 170px)*.62),340px,78vw)}
+.pair{display:flex;gap:clamp(10px,2vw,26px);align-items:flex-start;justify-content:center}
+.pair .solo{width:min(calc((100dvh - var(--head) - 170px)*.55),300px,45vw)}
+.pair .solo:first-child{transform:rotate(-3deg) translateY(10px)}
+.cam{position:absolute;left:6.15%;top:59.66%;width:87.7%;height:30.4%;border-radius:8px;overflow:hidden;background:#e9eae5;display:flex;align-items:center;justify-content:center}
+.cam span{position:relative;display:block;height:80%;aspect-ratio:1;overflow:hidden;transform:rotate(-5deg)}
+.cam span img{position:absolute;width:139.3%;max-width:none;left:-19.6%;top:-67.9%}
+.cam::after{content:"";position:absolute;inset:9%;border:2px solid rgba(255,255,255,.95);border-radius:8px;box-shadow:0 0 0 1px rgba(0,0,0,.25)}
+.ai{background:#fff;padding:clamp(14px,2.6vh,28px) clamp(16px,3vw,34px) 40px;font-size:clamp(13px,1.9vh,17px);line-height:1.6}
+.ai .me{margin-left:auto;width:fit-content;background:var(--mint);border-radius:12px;padding:8px 16px;font-weight:700}
+.ai .re{margin-top:14px}
+.ai .who{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.ai .who i{font-style:normal;display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;background:var(--ink);color:#fff;border-radius:6px;font-size:12px;font-weight:700}
+.ai dl{margin:0}
+.ai dl div{display:flex;justify-content:space-between;padding:5px 0;border-top:1px solid #e5e5df}
+.ai dt,.ai dd{margin:0}
+.ai .sum{font-weight:900;color:var(--green)}
+.note{position:absolute;z-index:3;left:max(12px,env(safe-area-inset-left,0px));bottom:10px;background:rgba(255,255,255,.94);padding:1px 8px;font-size:12px;color:var(--soft)}
+
+/* 守りのシーン */
+.guard{width:min(860px,100%);background:var(--deep);color:#fff;border:3px solid var(--ink);box-shadow:7px 7px 0 var(--ink);list-style:none;margin:0;padding:clamp(4px,1vh,10px) clamp(16px,3vw,32px);height:max-content;display:grid;grid-template-columns:1fr 1fr;column-gap:32px}
+.guard li{padding:clamp(6px,1.25vh,13px) 0;border-bottom:1px solid rgba(255,255,255,.26)}
+.guard li:nth-last-child(-n+2){border-bottom:0}
+.guard span{display:block;font-size:clamp(15px,2.4vh,21px);font-weight:900;line-height:1.35}
+.guard small{display:block;font-size:clamp(12px,1.65vh,14px);color:#d9efe3;line-height:1.5}
+
+/* はじめのコマ */
+.hero .koma{margin-top:clamp(8px,6vh,70px);width:min(800px,100%);padding-block:clamp(16px,3.2vh,34px)}
+.hero .lead{display:block;font-size:min(clamp(20px,3.9vh,36px),6.4vw);font-weight:900;line-height:1.3}
+.hero .date{white-space:nowrap;font-size:min(clamp(50px,13vh,132px),19vw);font-weight:900;line-height:1.02;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.hero .date small{font-size:.36em;font-weight:900}
+.hero .go{display:block;width:fit-content;margin:clamp(2px,.5vh,6px) auto 0;padding:0 .35em;white-space:nowrap;font-size:min(clamp(34px,8vh,78px),11vw);font-weight:900;line-height:1.25;color:var(--ink);background:var(--yellow)}
+.chips{display:flex;flex-wrap:wrap;gap:6px 8px;justify-content:center;margin-top:clamp(10px,1.8vh,18px);padding:0;list-style:none}
+.chips li{padding:1px 10px;font-size:clamp(12px,1.7vh,15px);font-weight:700;border:2px solid var(--green);border-radius:4px;color:var(--green);background:#fff}
+.hero .cta{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:clamp(10px,2vh,20px)}
+.hero .sfx{top:calc(var(--head) + 3vh)}
+
+/* 進み具合 */
+.rail{position:fixed;z-index:20;right:max(8px,env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:2px;transition:opacity .3s}
+.rail.off{opacity:0;pointer-events:none}
+.rail button{all:unset;cursor:pointer;display:flex;align-items:center;justify-content:center;width:22px;height:22px}
+.rail button::before{content:"";width:9px;height:9px;border:2px solid var(--ink);background:#fff;transition:transform .3s,background .3s}
+.rail button[aria-current="true"]::before{background:var(--green);transform:scale(1.35) rotate(45deg)}
+.rail button:focus-visible{outline:3px solid var(--yellow)}
+.hint{position:absolute;z-index:5;left:50%;bottom:calc(14px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:#fff;font-size:13px;font-weight:700;padding:5px 16px;animation:nudge 1.8s ease-in-out infinite}
+@keyframes nudge{50%{transform:translate(-50%,6px)}}
+.count{position:fixed;z-index:20;left:50%;bottom:calc(10px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:#fff;font-size:13px;font-weight:700;padding:2px 12px;font-variant-numeric:tabular-nums;transition:opacity .3s}
+.count.off{opacity:0}
+
+/* スクロールのあと */
+.wrap{width:min(1040px,100%);margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:clamp(56px,9vw,104px)}
+.title{font-size:clamp(30px,5vw,50px);font-weight:900;line-height:1.25;text-wrap:balance}
+.title b{color:var(--green);font-weight:900}
+.lede{margin-top:12px;color:#44443f;max-width:42em}
+.pains{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:34px}
+.pain{position:relative;background:#fff;border:3px solid var(--ink);border-radius:26px;padding:20px 22px;font-weight:700;line-height:1.55}
+.pain::after{content:"";position:absolute;left:34px;bottom:-15px;width:22px;height:22px;background:#fff;border-right:3px solid var(--ink);border-bottom:3px solid var(--ink);transform:skewX(32deg) rotate(45deg) scale(.8)}
+.band{background:var(--deep);color:#fff}
+.band .title b{color:var(--yellow)}
+.band .lede{color:#d9efe3}
+.prices{width:100%;margin-top:30px;border-collapse:collapse;background:#fff;border:3px solid var(--ink);box-shadow:7px 7px 0 var(--ink);font-variant-numeric:tabular-nums}
+.prices th,.prices td{padding:15px 22px;border-bottom:1px solid var(--line);text-align:left}
+.prices thead th{background:var(--ink);color:#fff;font-size:14px}
+.prices tbody tr:last-child>*{border-bottom:0}
+.prices .yen{text-align:right;font-size:clamp(20px,3vw,26px);font-weight:900}
+.prices thead .yen{font-size:14px;font-weight:700}
+.prices .yen small{font-size:13px;font-weight:700;color:var(--soft)}
+.fine{margin-top:18px;font-size:14px;color:var(--soft)}
+.faq{margin-top:26px;border-top:2px solid var(--ink)}
+.faq details{border-bottom:2px solid var(--ink)}
+.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px;padding:17px 2px;font-weight:700}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"＋";color:var(--green);font-weight:900}
+.faq details[open] summary::after{content:"－"}
+.faq details p{padding:0 2px 18px;color:#44443f;max-width:44em}
+.end{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.end .btn{min-height:52px;padding:0 26px;font-size:16px}
+.band .btn.line{box-shadow:none}
+.band .btn.fill{background:var(--yellow);color:var(--ink)}
+footer{padding:22px 16px;text-align:center;font-size:13px;color:var(--soft)}
+
+@media (max-width:760px){
+  :root{--head:56px}
+  .top .logo img{height:30px}
+  .top .btn{min-height:38px;padding:0 10px;font-size:13px}
+  .top .hide-s{display:none}
+  .koma{box-shadow:5px 5px 0 var(--ink)}
+  .koma p{font-size:13px}
+  .sfx{top:auto;bottom:clamp(30px,8vh,80px);font-size:clamp(38px,8vh,60px);-webkit-text-stroke-width:7px}
+  .sfx.r{right:auto;left:12px}
+  .combo{width:min(100%,calc((100dvh - var(--head) - 150px)*1.3))}
+  .mini{right:-1%;top:34%;width:30%}
+  .rail{display:none}
+  .guard{grid-template-columns:1fr;padding-block:2px}
+  .guard li:nth-last-child(2){border-bottom:1px solid rgba(255,255,255,.26)}
+  .guard li{padding:clamp(4px,.9vh,9px) 0}
+  .pains{grid-template-columns:minmax(0,1fr)}
+  .prices th,.prices td{padding:12px 14px}
+  .prices .cap{white-space:nowrap}
+  .hero .sfx{top:auto;bottom:46px;left:auto;right:14px}
+  .hero .koma{margin-top:6px}
+}
+@media (prefers-reduced-motion:reduce){
+  .scene,.bg,.koma,.show,.sfx{transition-duration:.01s!important;transition-delay:0s!important}
+  .bg,.koma,.show{transform:none}
+  .hint{animation:none}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <a class="logo" href="#top" aria-label="シン・レポスル"><img src="img/logo.webp" alt="シン・レポスル" width="260" height="113"></a>
+  <nav aria-label="ログイン">
+    <a class="btn line hide-s" href="https://app.reposul.com/demo" target="_blank" rel="noopener">デモを試す</a>
+    <a class="btn fill" href="https://app.reposul.com/login/select" target="_blank" rel="noopener">ログイン</a>
+  </nav>
+</header>
+
+<main>
+  <section class="stage" id="stage" aria-roledescription="スライド" aria-label="シン・レポスルの機能紹介"></section>
+  <nav class="rail" id="rail" aria-label="シーンを選ぶ"></nav>
+  <div class="count off" id="count" aria-live="polite"></div>
+
+  <div id="after">
+    <section class="wrap" id="pain">
+      <h2 class="title">こんなお悩み、<b>ありませんか？</b></h2>
+      <div class="pains">
+        <p class="pain">現場からLINEで送られてくる日報を、毎回まとめ直している</p>
+        <p class="pain">月末にならないと、工数が集計できない</p>
+        <p class="pain">請求書の単価を、毎回調べ直している</p>
+        <p class="pain">作業員名簿を、現場が変わるたびに書き直している</p>
+        <p class="pain">車検が切れそうな作業車に、あとから気づく</p>
+        <p class="pain">だれが日報を出しているか、分からない</p>
+      </div>
+    </section>
+    <section class="band">
+      <div class="wrap">
+        <h2 class="title">現場はLINE、事務所はブラウザ。<br><b>日報から書類まで、ひとつに。</b></h2>
+        <p class="lede">現場の入力が、そのまま集計・請求書・作業員名簿・作業車の管理につながります。アプリのインストールは要りません。</p>
+      </div>
+    </section>
+    <section class="wrap" id="price">
+      <h2 class="title">料金</h2>
+      <p class="lede">登録できる人数で決まる月額定額制です。</p>
+      <table class="prices">
+        <thead><tr><th scope="col">プラン</th><th scope="col">登録できる人数</th><th scope="col" class="yen">月額（税抜）</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">TRY</th><td class="cap">10名まで</td><td class="yen">11,000<small>円</small></td></tr>
+          <tr><th scope="row">LITE</th><td class="cap">25名まで</td><td class="yen">25,000<small>円</small></td></tr>
+          <tr><th scope="row">STANDARD</th><td class="cap">35名まで</td><td class="yen">33,250<small>円</small></td></tr>
+          <tr><th scope="row">PREMIUM</th><td class="cap">50名まで</td><td class="yen">45,000<small>円</small></td></tr>
+          <tr><th scope="row">VIP</th><td class="cap">上限なし</td><td class="yen">55,000<small>円</small></td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section class="wrap" id="faq" style="padding-top:0">
+      <h2 class="title">よくある質問</h2>
+      <div class="faq">
+        <details><summary>アプリのインストールが必要ですか？</summary><p>いいえ。現場の方はLINE、事務所の方はブラウザ（パソコン推奨）でご利用いただけます。</p></details>
+        <details><summary>今のレポスルを使っています。何か変わりますか？</summary><p>これまでのデータは引き継がれます。移行のご案内を各社にお送りします。今のアプリは、各社の移行完了次第で終了します。</p></details>
+        <details><summary>セキュリティは大丈夫ですか？</summary><p>企業ログインは2段階認証、通信とパスワードは暗号化、データは会社ごとに分離し、毎日別の場所へバックアップしています。</p></details>
+        <details><summary>協力会社もレポスルに登録が必要ですか？</summary><p>連携機能を使う場合は協力会社側の登録が必要です。レポスルを使っていない協力会社も登録できます。</p></details>
+        <details><summary>今すぐ申し込みできますか？</summary><p>現在は運営からのご案内、または代理店経由でのご登録です。まずはデモをお試しいただくか、お問い合わせください。</p></details>
+      </div>
+    </section>
+    <section class="band" id="contact">
+      <div class="wrap">
+        <h2 class="title">まずは、<b>触ってみてください。</b></h2>
+        <p class="lede">デモはログイン不要です。ご質問・資料請求は、お問い合わせからどうぞ。</p>
+        <div class="end">
+          <a class="btn fill" href="https://app.reposul.com/demo" target="_blank" rel="noopener">デモを試す</a>
+          <a class="btn line" href="https://app.reposul.com/demo/contact?type=inquiry" target="_blank" rel="noopener">お問い合わせ</a>
+          <a class="btn line" href="https://app.reposul.com/demo/contact?type=document" target="_blank" rel="noopener">資料請求</a>
+        </div>
+      </div>
+    </section>
+    <footer>© 株式会社SIXMATE</footer>
+  </div>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var bg = function (n) { return "img/bg-" + n + ".webp"; };
+  var img = function (n) { return "img/" + n + ".webp"; };
+  var phone = function (n, shift, cls) {
+    return '<div class="ph ' + cls + '"><div class="sc"><img src="' + img(n) + '" alt="" style="transform:translateY(-' + (shift || 0) + '%)"></div></div>';
+  };
+  var combo = function (pc, ph, shift) {
+    return '<div class="combo"><div class="lid"><img src="' + img(pc) + '" alt=""></div>' + phone(ph, shift || 5, "mini") + "</div>";
+  };
+  var SCENES = [
+    { bg: bg("215793756_0"), pos: "50% 40%", hero: true, sfx: ["ドン！！", "r"] },
+    { bg: bg("215793757_0"), pos: "50% 60%", h: ["ログインは、", "LINEをワンプッシュ。"], sub: "アプリ不要。IDの入力は最初の1回だけ。", sfx: ["ピッ！", "l"], html: phone("p-line", 35, "solo") },
+    { bg: bg("215793730_0"), pos: "50% 62%", h: ["だれが、どの現場に、", "何台で。"], sub: "作業員も作業車も、予定表で割り振り。", sfx: ["ドドン！", "r"], html: combo("pc-schedule", "c-schedule-new") },
+    { bg: bg("215793758_0"), pos: "50% 50%", h: ["今日の日報は、", "予定からワンプッシュ。"], sub: "現場・時間・作業員が入った状態で始まる。", sfx: ["ポチッ", "l"], html: phone("p-schedule-open", 0, "solo") },
+    { bg: bg("215801860_0"), pos: "50% 74%", h: ["作業員の追加は、", "QRを読むだけ。"], sub: "名前を探さない。打たない。続けて何人でも。", sfx: ["ピピッ！", "r"],
+      html: '<div class="pair">' + phone("p-qr", 5, "solo") + '<div class="ph solo"><div class="sc"><div class="im" style="transform:translateY(-15.4%)"><img src="' + img("p-scanner") + '" alt=""><div class="cam"><span><img src="' + img("p-qr") + '" alt=""></span></div></div></div></div></div>' },
+    { bg: bg("215793737_0"), pos: "50% 55%", h: ["集計は、", "質問を選ぶだけ。"], sub: "出勤簿・出面帳は PDF・Excel で出力できる。", sfx: ["ザッ！", "l"], html: combo("pc-attendance", "c-summary-2") },
+    { bg: bg("215793729_0"), pos: "50% 34%", h: ["請求書は、", "質問に答えるだけ。"], sub: "PDF で出力して、そのままメールで送信。", sfx: ["シュッ", "r"], html: combo("pc-invoice-detail", "c-invoices") },
+    { bg: bg("215793738_0"), pos: "50% 60%", h: ["作業員名簿も、", "選ぶだけ。"], sub: "全建統一様式第5号を PDF で。", sfx: ["バン！", "l"], html: '<div class="combo" style="max-width:860px"><div class="sheet"><img src="' + img("pdf-roster") + '" alt=""></div></div>' },
+    { bg: bg("215793727_0"), pos: "50% 42%", h: ["車検の切れを、", "2か月前にお知らせ。"], sub: "どの現場で使うか、あと何台空いているかも分かる。", sfx: ["ブロロロ", "r"], html: combo("pc-vehicle-schedule", "c-vehicles") },
+    { bg: bg("215793743"), pos: "50% 62%", h: ["日報のがんばりが、", "数字で見える。"], sub: "作成数・出勤日数・提出率をランキングに。", sfx: ["ドドドド", "l"], html: combo("pc-ranking", "c-ranking") },
+    { bg: bg("215801859_0"), pos: "50% 72%", h: ["今月の工数、", "AIに聞くだけ。"], sub: "ChatGPT・Claude などの AI につなげられる。原価管理・給与計算アプリとも API 連携（相手側に API の窓口がある場合）。", sfx: ["ピコン！", "r"], note: "画面はイメージです",
+      html: '<div class="combo" style="max-width:760px"><div class="lid"><div class="ai"><div class="me">今月の工数を、元請会社ごとに教えて</div><div class="re"><div class="who"><i>AI</i>レポスルの完成した日報を読みました。</div><dl><div><dt>東都建設株式会社</dt><dd>9工</dd></div><div><dt>みなと総合建設株式会社</dt><dd>9工</dd></div><div><dt>さくら工務店</dt><dd>8工</dd></div><div class="sum"><dt>合計</dt><dd>26工</dd></div></dl><p style="margin-top:8px">残業は合計で 9時間でした。</p></div></div></div></div>' },
+    { bg: bg("215793739_0"), pos: "50% 58%", tag: "セキュリティー", h: ["毎日の日報を、", "守る仕組み。"], sub: "セキュリティーも作り直しました。", sfx: ["ガシッ！", "l"], note: " ",
+      html: '<ul class="guard">' + [["2段階認証", "企業ログインは、メールの確認コードも"], ["会社ごとのデータ分離", "他社からは見えない"], ["暗号化", "通信もパスワードも"], ["毎日のバックアップ", "別の場所に毎日保管"], ["不審な動きの見張り", "自動で運営に通知"], ["修正の履歴", "だれが・いつ・何を直したかを記録"]].map(function (x) { return "<li><span>" + x[0] + "</span><small>" + x[1] + "</small></li>"; }).join("") + "</ul>" }
+  ];
+
+  var stage = document.getElementById("stage"), rail = document.getElementById("rail"), count = document.getElementById("count");
+  var root = document.documentElement;
+  var total = SCENES.length;
+
+  function koma(s, i) {
+    return '<div class="koma"><div class="tag"><i>' + String(i).padStart(2, "0") + "</i>" + (s.tag || "シン・レポスルの新機能") + "</div><h2>" + s.h[0] + "<br><b>" + s.h[1] + "</b></h2><p>" + s.sub + "</p></div>";
+  }
+  var HERO = '<div class="koma"><h1><span class="lead">シン・レポスル、</span><span class="date" style="display:block">11/16<small>（月）</small></span><span class="go">本格リリース！</span></h1>' +
+    '<ul class="chips"><li>LINEでログイン</li><li>予定表から日報作成</li><li>QRで作業員追加</li><li>かんたん集計</li><li>かんたん請求書</li><li>作業員名簿</li><li>作業車管理</li><li>ランキング</li><li>API連携</li></ul>' +
+    '<div class="cta"><a class="btn fill" href="https://app.reposul.com/demo" target="_blank" rel="noopener">デモを試す</a><a class="btn line" href="#price" data-jump>料金を見る</a></div></div><div class="hint">スクロールで次へ</div>';
+
+  stage.innerHTML = SCENES.map(function (s, i) {
+    return '<article class="scene' + (s.hero ? " hero" : "") + '" aria-hidden="true"><div class="bg" data-src="' + s.bg + '" style="background-position:' + s.pos + '"></div>' +
+      '<div class="sfx ' + s.sfx[1] + '" aria-hidden="true">' + s.sfx[0] + "</div>" + (s.hero ? HERO : koma(s, i) + '<div class="show">' + s.html + "</div>") +
+      (s.hero ? "" : '<div class="note">' + (s.note || "画面は見本です") + "</div>") + "</article>";
+  }).join("");
+  var scenes = [].slice.call(stage.children);
+  rail.innerHTML = SCENES.map(function (s, i) { return '<button type="button" aria-label="' + (s.hero ? "はじめ" : s.h.join("")) + '"></button>'; }).join("");
+  var dots = [].slice.call(rail.children);
+
+  // 画像は今のシーンと前後だけ読む
+  function load(i) {
+    [i, i + 1, i + 2, i - 1].forEach(function (k) {
+      var el = scenes[k] && scenes[k].querySelector(".bg");
+      if (el && el.dataset.src) { el.style.backgroundImage = "url(" + el.dataset.src + ")"; delete el.dataset.src; }
+    });
+  }
+
+  var cur = -1, pinned = true;
+  var STEP_MS = 850;      // 切り替えの間は次へ進まない
+  var QUIET_MS = 170;     // これだけ間が空いたら「次のひと回し」とみなす
+  var lockUntil = 0;
+
+  function show(i) {
+    if (i === cur) return;
+    if (cur >= 0) { scenes[cur].classList.remove("on"); scenes[cur].setAttribute("aria-hidden", "true"); }
+    cur = i;
+    load(i);
+    scenes[i].classList.add("on"); scenes[i].removeAttribute("aria-hidden");
+    dots.forEach(function (d, k) { d.setAttribute("aria-current", k === i ? "true" : "false"); });
+    count.textContent = i === 0 ? "" : i + " / " + (total - 1);
+    count.classList.toggle("off", i === 0);
+    lockUntil = performance.now() + STEP_MS;
+  }
+  function pin(on) {
+    pinned = on;
+    root.classList.toggle("locked", on);
+    rail.classList.toggle("off", !on);
+    if (!on) count.classList.add("off"); else show(cur);
+    if (on && cur > 0) count.classList.remove("off");
+  }
+  function leave(target) {
+    pin(false);
+    lockUntil = performance.now() + STEP_MS;
+    var y = target ? target.getBoundingClientRect().top + window.scrollY - 64 : stage.offsetHeight;
+    window.scrollTo({ top: y, behavior: matchMedia("(prefers-reduced-motion:reduce)").matches ? "auto" : "smooth" });
+  }
+  function move(dir) {
+    if (dir > 0 && cur === total - 1) return leave();
+    if (dir < 0 && cur === 0) return;
+    show(cur + dir);
+  }
+  function back() { window.scrollTo(0, 0); pin(true); lockUntil = performance.now() + STEP_MS; }
+
+  // ホイール・トラックパッド：ひと回しで1シーン。指を離したあとの惰性の動きは数えない
+  var lastT = 0, lastAbs = 0;
+  window.addEventListener("wheel", function (e) {
+    var dy = e.deltaMode === 1 ? e.deltaY * 32 : e.deltaMode === 2 ? e.deltaY * innerHeight : e.deltaY;
+    var abs = Math.abs(dy), t = performance.now(), gap = t - lastT;
+    var surge = abs > lastAbs * 2.2 && abs > 50;  // 惰性の途中でもう一度回した
+    lastT = t; lastAbs = abs;
+    if (pinned) {
+      e.preventDefault();
+      if (abs < 4 || t < lockUntil) return;
+      if (gap > QUIET_MS || surge) move(dy > 0 ? 1 : -1);
+    } else if (window.scrollY <= 1 && dy < 0 && t >= lockUntil && (gap > QUIET_MS || surge)) {
+      e.preventDefault();
+      back();
+    }
+  }, { passive: false });
+
+  // スマホ：1回のスワイプで1シーン
+  var sy = null, sx = 0;
+  window.addEventListener("touchstart", function (e) { sy = e.touches[0].clientY; sx = e.touches[0].clientX; }, { passive: true });
+  window.addEventListener("touchmove", function (e) { if (pinned && !e.target.closest("a,button,summary")) e.preventDefault(); }, { passive: false });
+  window.addEventListener("touchend", function (e) {
+    if (sy === null) return;
+    var dy = sy - e.changedTouches[0].clientY, dx = Math.abs(sx - e.changedTouches[0].clientX);
+    sy = null;
+    if (Math.abs(dy) < 36 || dx > Math.abs(dy) || performance.now() < lockUntil) return;
+    if (pinned) move(dy > 0 ? 1 : -1);
+    else if (window.scrollY <= 1 && dy < 0) back();
+  }, { passive: true });
+
+  // キーボード
+  window.addEventListener("keydown", function (e) {
+    if (!pinned || performance.now() < lockUntil) { if (pinned && /^(ArrowDown|ArrowUp|PageDown|PageUp| )$/.test(e.key)) e.preventDefault(); return; }
+    if (e.key === "ArrowDown" || e.key === "PageDown" || e.key === " ") { e.preventDefault(); move(e.shiftKey ? -1 : 1); }
+    else if (e.key === "ArrowUp" || e.key === "PageUp") { e.preventDefault(); move(-1); }
+  });
+
+  dots.forEach(function (d, i) { d.addEventListener("click", function () { if (performance.now() >= lockUntil) show(i); }); });
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest("a[href^='#']");
+    if (!a) return;
+    e.preventDefault();
+    if (a.getAttribute("href") === "#top") { pin(true); window.scrollTo(0, 0); lockUntil = 0; show(0); return; }
+    leave(document.querySelector(a.getAttribute("href")));
+  });
+
+  root.classList.add("locked");
+  dots[0].setAttribute("aria-current", "true");
+  show(0);
+  lockUntil = 0;
+  window.__scene = function () { return { cur: cur, pinned: pinned }; };
+})();
+</script>
+
+</body>
+</html>
