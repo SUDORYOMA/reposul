@@ -65,25 +65,30 @@ h1,h2,h3,p{margin:0}
 /* 画面：枠ごと全部見える大きさに、残りの高さから決める */
 .show{position:relative;flex:1;min-height:0;width:100%;margin-top:clamp(12px,2.4vh,26px);container-type:size;display:flex;justify-content:center;align-items:flex-start;transform:translateY(60px);opacity:0;transition:transform .85s var(--ease) .12s,opacity .4s ease .12s}
 .scene.on .show{transform:none;opacity:1}
-.combo{position:relative;width:min(90cqw,calc((100cqh - 46px)*1.58),1080px);height:max-content}
-.lid{position:relative;background:#1c1c1a;border-radius:18px 18px 0 0;padding:13px 13px 0;box-shadow:0 0 0 3px #fff}
-.sv{aspect-ratio:16/10;overflow:hidden;background:#fff;border-radius:6px 6px 0 0}
+.combo{position:relative;width:min(84cqw,calc((100cqh - 18px)*1.16),940px);height:max-content;perspective:2400px;perspective-origin:50% 20%}
+.lap{position:relative;transform-style:preserve-3d;transform-origin:50% 100%;transform:rotateX(-14deg) rotateY(15deg)}
+.lid{position:relative;background:#111214;border-radius:14px 14px 0 0;padding:11px 11px 15px;box-shadow:0 0 0 1.5px #9a9ca2,0 0 0 2.5px #55575c;transform-origin:50% 100%;transform:rotateX(20deg)}
+.lid::after{content:"";position:absolute;inset:11px 11px 15px;pointer-events:none;background:linear-gradient(115deg,rgba(255,255,255,.16),rgba(255,255,255,0) 34%)}
+.sv{aspect-ratio:16/10;overflow:hidden;background:#fff;border-radius:3px}
 .sv img{display:block;width:100%}
 /* 見本の画面の上のオレンジの帯（デモの案内）は見せない */
 .sv img.cut{width:106%;max-width:none;margin:-2.9% 0 0 -3%}
-.foot{position:relative;height:22px;width:110%;margin-left:-5%;background:linear-gradient(#dfdfd8,#c9c9c2 45%,#a9a9a1);border-radius:0 0 18px 18px;box-shadow:0 0 0 3px #fff}
-.foot::before{content:"";position:absolute;left:50%;top:0;width:15%;height:8px;transform:translateX(-50%);background:#a4a49c;border-radius:0 0 9px 9px}
+.foot{position:absolute;left:-1.5%;top:100%;width:103%;aspect-ratio:1/.44;transform-style:preserve-3d;transform-origin:50% 0;transform:rotateX(90deg);border-radius:4px 4px 14px 14px;background:linear-gradient(#d7d9dd,#d7d9dd) 50% 92%/26% 26% no-repeat,linear-gradient(#aeb0b5,#aeb0b5) 50% 92.6%/26.6% 27.6% no-repeat,linear-gradient(#1b1c1f,#1b1c1f) 50% 9%/88% 58% no-repeat,linear-gradient(#c6c8cd,#dfe1e5 60%,#cfd1d6)}
+.foot::before{content:"";position:absolute;left:0;right:0;bottom:0;height:9px;transform-origin:50% 100%;transform:rotateX(-90deg);background:linear-gradient(#b4b6bb,#6f7176);border-radius:0 0 8px 8px}
+.foot::after{content:"";position:absolute;inset:-6% -4% -14%;transform:translateZ(-3px);background:rgba(0,20,20,.5);filter:blur(16px);border-radius:30px}
+.foot b{position:absolute;left:6%;right:6%;top:6%;height:59%;background:repeating-linear-gradient(0deg,transparent 0 13.2%,#c9cbd0 13.2% 16.66%),repeating-linear-gradient(90deg,transparent 0 6.2%,#c9cbd0 6.2% 7.14%)}
 .sheet{background:#fff;box-shadow:0 0 0 3px var(--ink),9px 9px 0 var(--ink)}
 .combo.roster{width:min(86cqw,calc((100cqh - 26px)*1.414),1000px)}
-.roster .mini{right:-7%;width:25%}
+.roster .mini{right:-7%;bottom:0;width:27%}
 .sheet img{display:block;width:100%}
-.ph{background:var(--ink);padding:8px;border-radius:30px;box-shadow:0 0 0 3px #fff;aspect-ratio:9/17}
+.ph{background:#0d0e10;padding:8px;border-radius:30px;box-shadow:0 0 0 1.5px #a6a8ae,0 0 0 2.5px #4d4f54,0 18px 30px rgba(0,20,20,.42);aspect-ratio:9/17}
 .sc{position:relative;height:100%;overflow:hidden;background:#fff;border-radius:23px}
 .sc>img,.sc>.im{position:absolute;left:0;top:0;width:100%}
 .sc>img{display:block}
 .sc>.im img{display:block;width:100%}
 .sc.bottom>img{top:auto;bottom:0}
-.mini{position:absolute;right:-4%;bottom:0;width:23%}
+.mini{position:absolute;right:-6%;bottom:-9%;width:29%;aspect-ratio:3/4;padding:7px;border-radius:15px;transform-origin:50% 100%;transform:rotateY(-17deg) rotateX(4deg) rotateZ(1.5deg)}
+.mini .sc{border-radius:7px}
 .solo{width:min(calc((100cqh - 18px)*.53),88cqw,430px)}
 .pair{display:flex;gap:clamp(12px,3cqw,44px);align-items:flex-start;justify-content:center}
 .pair .solo{width:min(calc((100cqh - 26px)*.53),47cqw,400px)}
@@ -175,21 +180,24 @@ footer{padding:22px 16px;text-align:center;font-size:13px;color:var(--soft)}
   .koma p{font-size:13px}
   .sfx{top:auto;bottom:clamp(44px,8vh,80px);font-size:clamp(30px,5.4vh,44px);-webkit-text-stroke-width:6px}
   .sfx.r{right:auto;left:12px}
-    .lid{padding:7px 7px 0;border-radius:11px 11px 0 0}
-  .foot{height:11px;border-radius:0 0 10px 10px}
-  .foot::before{height:4px}
+    .lid{padding:6px 6px 9px;border-radius:9px 9px 0 0}
+  .lid::after{inset:6px 6px 9px}
+  .foot::before{height:5px}
   /* スマホ：PC を上いっぱいに、スマホの画面を手前に大きく。残りの高さを全部使う */
   .show{margin-top:12px}
-  .combo,.combo.roster{width:100cqw}
-  .foot{width:103%;margin-left:-1.5%}
+  .combo,.combo.roster{width:90cqw;perspective:1500px}
+  .lap{transform:rotateX(-13deg) rotateY(9deg)}
+  .ai{font-size:12px;line-height:1.4;padding:8px 14px 6px}
+  .ai .me{padding:5px 12px}
+  .ai .re{margin-top:6px}
   /* PC が主役：何も重ねず、左のメニューを切って中身を大きく。スマホの画面はその下 */
   .sv{aspect-ratio:16/11}
   .sv img,.sv img.cut{width:124%;max-width:none;margin:0 0 0 -23.5%}
   .sv img.cut{margin-top:-8.2%}
   /* スマホの画面は高さの 3/5 を PC に重ね、残り 2/5 を下に出す。全体を上下の真ん中に */
-  .combo:has(.mini){--pc:calc((100cqw - 14px)*.6875 + 18px);--pw:min(42cqw,calc((100cqh - var(--pc) - 8px)*1.3225));--ph:calc(var(--pw)*17/9);margin-top:calc((100cqh - var(--pc) - var(--ph)*.4)/2)}
+  .combo:has(.mini){--pc:calc(90cqw*.6875 + 2px);--pw:min(47cqw,calc((100cqh - var(--pc) - 8px)*1.875));--ph:calc(var(--pw)*4/3);margin-top:calc((100cqh - var(--pc) - var(--ph)*.4)/2)}
   .combo.roster:has(.mini){--pc:calc(100cqw*.7071)}
-  .mini,.roster .mini{left:auto;right:0;bottom:auto;top:calc(var(--pc) - var(--ph)*.6);width:var(--pw)}
+  .mini,.roster .mini{left:auto;right:-1cqw;bottom:auto;top:calc(var(--pc) - var(--ph)*.6);width:var(--pw);padding:6px;border-radius:12px}
   .note{bottom:6px}
   .end{display:grid;grid-template-columns:1fr 1fr;gap:10px}
   .end .btn{padding:0 8px}
@@ -294,7 +302,7 @@ footer{padding:22px 16px;text-align:center;font-size:13px;color:var(--soft)}
     return '<div class="ph ' + cls + '"><div class="sc' + (shift === "bottom" ? " bottom" : "") + '"><img src="' + img(n) + '" alt=""' + (shift && shift !== "bottom" ? ' style="transform:translateY(-' + shift + '%)"' : "") + "></div></div>";
   };
   var combo = function (pc, ph, shift) {
-    return '<div class="combo"><div class="lid"><div class="sv"><img' + (pc === "pc-attendance" ? "" : ' class="cut"') + ' src="' + img(pc) + '" alt=""></div></div><div class="foot"></div>' + phone(ph, shift || 5, "mini") + "</div>";
+    return '<div class="combo"><div class="lap"><div class="lid"><div class="sv"><img' + (pc === "pc-attendance" ? "" : ' class="cut"') + ' src="' + img(pc) + '" alt=""></div></div><div class="foot"><b></b></div></div>' + phone(ph, shift || 5, "mini") + "</div>";
   };
   var SCENES = [
     { bg: bg("215793756_0"), pos: "50% 40%", hero: true, sfx: ["ドン！！", "r"] },
@@ -309,7 +317,7 @@ footer{padding:22px 16px;text-align:center;font-size:13px;color:var(--soft)}
     { bg: bg("215793727_0"), pos: "50% 42%", h: ["車検の切れを、", "2か月前にお知らせ。"], sub: "どの現場で使うか、あと何台空いているかも分かる。", sfx: ["ブロロロ", "r"], html: combo("pc-vehicle-schedule", "c-vehicles") },
     { bg: bg("215793743"), pos: "50% 62%", h: ["日報のがんばりが、", "数字で見える。"], sub: "作成数・出勤日数・提出率をランキングに。", sfx: ["ドドドド", "l"], html: combo("pc-ranking", "c-ranking") },
     { bg: bg("215801859_0"), pos: "50% 72%", h: ["今月の工数、", "AIに聞くだけ。"], sub: "ChatGPT・Claude などの AI につなげられる。原価管理・給与計算アプリとも API 連携（相手側に API の窓口がある場合）。", sfx: ["ピコン！", "r"], note: "画面はイメージです",
-      html: '<div class="combo"><div class="lid"><div class="sv"><div class="ai"><div class="me">今月の工数を、元請会社ごとに教えて</div><div class="re"><div class="who"><i>AI</i>レポスルの完成した日報を読みました。</div><dl><div><dt>東都建設株式会社</dt><dd>9工</dd></div><div><dt>みなと総合建設株式会社</dt><dd>9工</dd></div><div><dt>さくら工務店</dt><dd>8工</dd></div><div class="sum"><dt>合計</dt><dd>26工</dd></div></dl><p style="margin-top:8px">残業は合計で 9時間でした。</p></div></div></div></div><div class="foot"></div></div>' },
+      html: '<div class="combo"><div class="lap"><div class="lid"><div class="sv"><div class="ai"><div class="me">今月の工数を、元請会社ごとに教えて</div><div class="re"><div class="who"><i>AI</i>レポスルの完成した日報を読みました。</div><dl><div><dt>東都建設株式会社</dt><dd>9工</dd></div><div><dt>みなと総合建設株式会社</dt><dd>9工</dd></div><div><dt>さくら工務店</dt><dd>8工</dd></div><div class="sum"><dt>合計</dt><dd>26工</dd></div></dl><p style="margin-top:8px">残業は合計で 9時間でした。</p></div></div></div></div><div class="foot"><b></b></div></div></div>' },
     { bg: bg("215793739_0"), pos: "50% 58%", tag: "セキュリティー", h: ["毎日の日報を、", "守る仕組み。"], sub: "セキュリティーも作り直しました。", sfx: ["ガシッ！", "l"], note: " ",
       html: '<ul class="guard">' + [["2段階認証", "企業ログインは、メールの確認コードも"], ["会社ごとのデータ分離", "他社からは見えない"], ["暗号化", "通信もパスワードも"], ["毎日のバックアップ", "別の場所に毎日保管"], ["不審な動きの見張り", "自動で運営に通知"], ["修正の履歴", "だれが・いつ・何を直したかを記録"]].map(function (x) { return "<li><span>" + x[0] + "</span><small>" + x[1] + "</small></li>"; }).join("") + "</ul>" }
   ];
