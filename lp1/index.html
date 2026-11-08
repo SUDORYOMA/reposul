@@ -446,6 +446,13 @@ footer{padding:22px 16px;text-align:center;font-size:13px;color:var(--soft)}
     else if (window.scrollY <= 1 && dy < 0) back();
   }, { passive: true });
 
+  // iPhone の Safari は、画面を固定していても少し下へずれることがある（上のバーが縮むときなど）。
+  // ずれるとヘッダーと見出しが重なるので、固定している間は一番上に戻す
+  function keepTop() { if (pinned && window.scrollY !== 0) window.scrollTo(0, 0); }
+  window.addEventListener("scroll", keepTop, { passive: true });
+  window.addEventListener("resize", keepTop);
+  if (window.visualViewport) window.visualViewport.addEventListener("resize", keepTop);
+
   // キーボード
   window.addEventListener("keydown", function (e) {
     if (!pinned || performance.now() < lockUntil) { if (pinned && /^(ArrowDown|ArrowUp|PageDown|PageUp| )$/.test(e.key)) e.preventDefault(); return; }
