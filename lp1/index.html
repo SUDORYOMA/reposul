@@ -53,6 +53,11 @@ a{color:inherit}
 h1,h2,h3,p{margin:0}
 .koma h1,.koma h2{margin-top:clamp(2px,.7vh,8px);font-size:min(clamp(25px,5.3vh,54px),7vw);line-height:1.24;font-weight:900;letter-spacing:.005em}
 .koma b{color:var(--green);font-weight:900}
+/* 困りごと → だから → 見出し */
+.koma .was{display:flex;flex-direction:column;align-items:center;gap:clamp(3px,.6vh,6px);margin-top:clamp(4px,1vh,10px);font-size:clamp(12px,1.75vh,16px);font-weight:700;color:#6b6b63;line-height:1.4}
+.koma .was span{border:1.5px dashed #9b9b92;border-radius:6px;padding:2px 12px;background:#fff}
+.koma .was em{position:relative;font-style:normal;background:var(--ink);color:var(--yellow);border-radius:999px;padding:1px 14px;font-size:.92em}
+.koma .was em::before{content:"";position:absolute;left:50%;top:calc(-1 * clamp(3px,.6vh,6px));height:clamp(3px,.6vh,6px);border-left:2px dotted #6b6b63}
 .koma p{margin-top:clamp(3px,.7vh,8px);font-size:clamp(13px,2vh,18px);font-weight:500;color:#44443f;line-height:1.5}
 
 /* 効果音 */
@@ -138,6 +143,22 @@ h1,h2,h3,p{margin:0}
 .rail button::before{content:"";width:9px;height:9px;border:2px solid var(--ink);background:#fff;transition:transform .3s,background .3s}
 .rail button[aria-current="true"]::before{background:var(--green);transform:scale(1.35) rotate(45deg)}
 .rail button:focus-visible{outline:3px solid var(--yellow)}
+/* 広い PC は目次として名前も出す（今の場面を緑に） */
+.rail span{display:none}
+@media (min-width:1280px) and (min-height:640px){
+  .rail{gap:0;background:#fff;border:2.5px solid var(--ink);box-shadow:4px 4px 0 var(--ink);padding:8px 12px 8px 8px;right:max(14px,env(safe-area-inset-right,0px))}
+  .rail::before{content:"INDEX";font-size:12px;font-weight:900;letter-spacing:.14em;padding:0 0 4px 6px}
+  .rail button{width:auto;height:auto;justify-content:flex-start;gap:9px;padding:4px 6px;font-size:13px;font-weight:700;color:#6b6b63;line-height:1.3}
+  .rail button::before{flex:none;width:7px;height:7px}
+  .rail span{display:inline}
+  .rail button[aria-current="true"]{color:var(--green)}
+  .rail button:hover{color:var(--ink)}
+  /* 右の擬音は目次と重ならないように、目次の上へ */
+  .sfx.r{top:calc(var(--head) + 2vh);right:clamp(26px,3vw,60px);font-size:clamp(46px,9vh,96px)}
+  .rail{top:calc(50% + 6vh)}
+}
+/* 背の低いスマホは「だから」を省いて画面を広く */
+@media (max-width:760px) and (max-height:700px){ .koma .was{display:none} }
 .hint{position:absolute;z-index:5;left:50%;bottom:calc(14px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:#fff;font-size:13px;font-weight:700;padding:5px 16px;animation:nudge 1.8s ease-in-out infinite}
 @keyframes nudge{50%{transform:translate(-50%,6px)}}
 .count{position:fixed;z-index:20;left:50%;bottom:calc(10px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:#fff;font-size:13px;font-weight:700;padding:2px 12px;font-variant-numeric:tabular-nums;transition:opacity .3s}
@@ -327,12 +348,16 @@ footer{padding:22px 16px;text-align:center;font-size:13px;color:var(--soft)}
       html: '<ul class="guard">' + [["2段階認証", "企業ログインは、メールの確認コードも"], ["会社ごとのデータ分離", "他社からは見えない"], ["暗号化", "通信もパスワードも"], ["毎日のバックアップ", "別の場所に毎日保管"], ["不審な動きの見張り", "自動で運営に通知"], ["修正の履歴", "だれが・いつ・何を直したかを記録"]].map(function (x) { return "<li><span>" + x[0] + "</span><small>" + x[1] + "</small></li>"; }).join("") + "</ul>" }
   ];
 
+  // 困りごと（見出しの前に「だから」でつなぐ）と目次の名前。SCENES と同じ順
+  var WAS = ["", "IDとパスワード、毎回打つのは面倒", "割り振りは、電話とホワイトボード", "日報を毎日ゼロから書くのは大変", "作業員の名前を探して打つのは手間", "月末に工数を数え直すのは大変", "請求書の単価、毎回調べ直し", "名簿を現場ごとに書き直すのは手間", "車検切れに、あとから気づく", "だれが日報を出しているか分からない", "数字を見たいのに、表を探すのが手間", "大事な日報、守りは大丈夫？"];
+  var LABEL = ["はじめに", "LINEでログイン", "予定表", "予定から日報", "QRで作業員追加", "かんたん集計", "かんたん請求書", "作業員名簿", "作業車管理", "ランキング", "AI・API連携", "セキュリティー"];
+  SCENES.forEach(function (s, i) { s.was = WAS[i]; s.label = LABEL[i]; });
   var stage = document.getElementById("stage"), rail = document.getElementById("rail"), count = document.getElementById("count");
   var root = document.documentElement;
   var total = SCENES.length;
 
   function koma(s, i) {
-    return '<div class="koma"><div class="tag"><i>' + String(i).padStart(2, "0") + "</i>" + (s.tag || "シン・レポスルの新機能") + "</div><h2>" + s.h[0] + "<br><b>" + s.h[1] + "</b></h2><p>" + s.sub + "</p></div>";
+    return '<div class="koma"><div class="tag"><i>' + String(i).padStart(2, "0") + "</i>" + (s.tag || "シン・レポスルの新機能") + "</div>" + (s.was ? '<p class="was"><span>' + s.was + "</span><em>だから</em></p>" : "") + "<h2>" + s.h[0] + "<br><b>" + s.h[1] + "</b></h2><p>" + s.sub + "</p></div>";
   }
   var HERO = '<div class="koma"><h1><img class="lead" src="img/logo.webp" alt="シン・レポスル"><span class="date" style="display:block">11/16<small>（月）</small></span><span class="go">本格リリース！</span></h1>' +
     '<ul class="chips"><li>LINEでログイン</li><li>予定表から日報作成</li><li>QRで作業員追加</li><li>かんたん集計</li><li>かんたん請求書</li><li>作業員名簿</li><li>作業車管理</li><li>ランキング</li><li>API連携</li></ul>' +
@@ -344,7 +369,7 @@ footer{padding:22px 16px;text-align:center;font-size:13px;color:var(--soft)}
       (s.hero ? "" : '<div class="note">' + (s.note || "画面は見本です") + "</div>") + "</article>";
   }).join("");
   var scenes = [].slice.call(stage.children);
-  rail.innerHTML = SCENES.map(function (s, i) { return '<button type="button" aria-label="' + (s.hero ? "はじめ" : s.h.join("")) + '"></button>'; }).join("");
+  rail.innerHTML = SCENES.map(function (s, i) { return '<button type="button" aria-label="' + (s.hero ? "はじめ" : s.h.join("")) + '"><span aria-hidden="true">' + s.label + "</span></button>"; }).join("");
   var dots = [].slice.call(rail.children);
 
   // 画像は今のシーンと前後だけ読む
