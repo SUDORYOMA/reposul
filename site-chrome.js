@@ -3,8 +3,9 @@
   var script = document.currentScript;
   var base = new URL('.', script ? script.src : location.href);
   var basePath = base.pathname;
-  var isHome = location.pathname === basePath || location.pathname === basePath + 'index.html';
-  var shinHref = isHome ? '#shin-reposul' : new URL('#shin-reposul', base).href;
+  var isHome = location.pathname === basePath + 'home.html';
+  // シン・レポスルの紹介は新しいトップ（lp.reposul.com/）
+  var shinHref = new URL('./', base).href;
   var header = document.querySelector('header');
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -44,7 +45,7 @@
     banner.className = 'sc-banner';
     banner.setAttribute('role', 'region');
     banner.setAttribute('aria-label', 'お知らせ');
-    banner.innerHTML = '<a href="' + shinHref + '">開発中の「シン・レポスル」デモ公開中 →</a>' +
+    banner.innerHTML = '<a href="' + shinHref + '">「シン・レポスル」11/16 本格リリース →</a>' +
       '<button type="button" class="sc-banner-x" aria-label="お知らせを閉じる">×</button>';
     header.insertBefore(banner, header.firstChild);
     document.body.classList.add('sc-has-banner');

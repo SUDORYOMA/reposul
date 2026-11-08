@@ -42,7 +42,8 @@
 
 ## 主要ページ
 
-- [レポスルとは](https://lp.reposul.com/)
+- [シン・レポスル（トップ）](https://lp.reposul.com/)
+- [レポスルとは（詳細）](https://lp.reposul.com/home.html)
 - [料金](https://lp.reposul.com/blog/pricing.html)
 - [導入事例](https://lp.reposul.com/case.html)
 - [ブログ](https://lp.reposul.com/blog/)

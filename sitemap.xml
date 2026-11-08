@@ -18,6 +18,13 @@
   </url>
 
   <url>
+    <loc>https://lp.reposul.com/home.html</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
     <loc>https://lp.reposul.com/case.html</loc>
     <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
