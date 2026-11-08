@@ -12,6 +12,31 @@
     try{ if(val === undefined) return localStorage.getItem(key); localStorage.setItem(key, val); }catch(e){ return null; }
   }
 
+  /* P0 ログイン（シン・レポスル）。どのページでも、ヘッダーのボタンからそのまま入力の画面へ（スマホでも見える） */
+  var LOGIN_URL = 'https://app.reposul.com/login';
+  var OLD_LOGIN_URL = 'https://reposul.com/mobile_ver-daily_report?Pages=%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3%E3%83%BB%E6%96%B0%E8%A6%8F%E4%BC%9A%E5%93%A1%E7%99%BB%E9%8C%B2&Status=%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3';
+  var navCta = document.querySelector('.nav-cta');
+  if(navCta && !navCta.querySelector('.sc-login')){
+    var loginBtn = document.createElement('a');
+    loginBtn.className = 'sc-login';
+    loginBtn.href = LOGIN_URL;
+    loginBtn.textContent = 'ログイン';
+    navCta.insertBefore(loginBtn, navCta.firstChild);
+  }
+  // 旧レポスルのログインはメニューパネルにだけ小さく残す（移行が済むまで）
+  var navForOld = document.querySelector('.nav-links');
+  if(navForOld){
+    var oldLogin = navForOld.querySelector('.nav-login');
+    if(!oldLogin){
+      oldLogin = document.createElement('a');
+      oldLogin.className = 'nav-login';
+      oldLogin.href = OLD_LOGIN_URL;
+      oldLogin.target = '_blank';
+      navForOld.appendChild(oldLogin);
+    }
+    oldLogin.textContent = '旧レポスルのログイン';
+  }
+
   /* P1 告知バナー */
   var BANNER_KEY = 'sc-banner-shin-closed';
   if(header && store(BANNER_KEY) !== '1'){
@@ -57,7 +82,7 @@
     var logoImg = header && header.querySelector('.nav-logo img');
     var fitNew = function(){
       newLink.classList.remove('sc-no-room');
-      if(window.innerWidth <= 1024) return;
+      if(window.innerWidth <= 1080) return;
       if(navLinks.scrollWidth > navLinks.clientWidth + 1) newLink.classList.add('sc-no-room');
     };
     fitNew();
@@ -90,7 +115,8 @@
     var cta = document.querySelector('.nav-cta .btn');
     drawer.innerHTML = '<div class="sc-drawer-head"><span>MENU</span><button type="button" class="sc-drawer-x" aria-label="メニューを閉じる">×</button></div>' +
       '<nav aria-label="サイト内メニュー">' + navHtml + '</nav>' +
-      (cta ? '<div class="sc-drawer-cta"><a class="btn btn-primary" href="' + cta.getAttribute('href') + '">' + cta.textContent.trim() + '</a></div>' : '');
+      '<div class="sc-drawer-cta"><a class="sc-login" href="' + LOGIN_URL + '">ログイン</a>' +
+      (cta ? '<a class="btn btn-primary" href="' + cta.getAttribute('href') + '">' + cta.textContent.trim() + '</a>' : '') + '</div>';
     document.body.appendChild(scrim);
     document.body.appendChild(drawer);
     toggle.setAttribute('aria-expanded', 'false');
@@ -128,7 +154,7 @@
         else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
       }
     });
-    window.addEventListener('resize', function(){ if(window.innerWidth > 1024 && drawer.classList.contains('show')) close(false); });
+    window.addEventListener('resize', function(){ if(window.innerWidth > 1080 && drawer.classList.contains('show')) close(false); });
   }
 
   /* P6 今読んでいるセクションをメニューに示す */
