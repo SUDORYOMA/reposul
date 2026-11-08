@@ -93,10 +93,15 @@ h1,h2,h3,p{margin:0}
 .pair{display:flex;gap:clamp(12px,3cqw,44px);align-items:flex-start;justify-content:center}
 .pair .solo{width:min(calc((100cqh - 26px)*.53),47cqw,400px)}
 .pair .solo:first-child{transform:rotate(-3deg)}
-.cam{position:absolute;left:6.15%;top:59.66%;width:87.7%;height:30.4%;border-radius:8px;overflow:hidden;background:#e9eae5;display:flex;align-items:center;justify-content:center}
-.cam span{position:relative;display:block;height:80%;aspect-ratio:1;overflow:hidden;transform:rotate(-5deg)}
-.cam span img{position:absolute;width:139.3%;max-width:none;left:-19.6%;top:-67.9%}
-.cam::after{content:"";position:absolute;inset:9%;border:2px solid rgba(255,255,255,.95);border-radius:8px;box-shadow:0 0 0 1px rgba(0,0,0,.25)}
+.cam{position:absolute;left:5.5%;top:59.1%;width:89%;height:31.5%;border-radius:10px;overflow:hidden;background:radial-gradient(120% 90% at 30% 25%,#7c827d 0%,#4d534f 45%,#2a2e2c 100%);display:flex;align-items:center;justify-content:center;perspective:500px}
+/* カメラに映ったヘルメットのシール（QR だけ） */
+.cam span{position:relative;display:block;flex:none;height:66%;width:48.7%;overflow:hidden;background:#fff;border-radius:7px;box-shadow:0 6px 14px rgba(0,0,0,.45);transform:rotateX(10deg) rotateY(-8deg) rotate(-5deg)}
+.sc .im .cam span img{position:absolute;width:133.3%;max-width:none;left:-16.5%;top:-67.5%}
+/* 読み取りの枠（四すみ）と動く線 */
+.cam::after{content:"";position:absolute;left:50%;top:50%;height:84%;width:62%;transform:translate(-50%,-50%);--c:#fff;background:linear-gradient(var(--c),var(--c)) 0 0/18% 3px,linear-gradient(var(--c),var(--c)) 0 0/3px 18%,linear-gradient(var(--c),var(--c)) 100% 0/18% 3px,linear-gradient(var(--c),var(--c)) 100% 0/3px 18%,linear-gradient(var(--c),var(--c)) 0 100%/18% 3px,linear-gradient(var(--c),var(--c)) 0 100%/3px 18%,linear-gradient(var(--c),var(--c)) 100% 100%/18% 3px,linear-gradient(var(--c),var(--c)) 100% 100%/3px 18%;background-repeat:no-repeat}
+.cam i{position:absolute;z-index:1;left:50%;top:12%;height:2px;width:56%;transform:translateX(-50%);background:#2dcb86;box-shadow:0 0 8px 2px rgba(45,203,134,.7);animation:camscan 2.2s ease-in-out infinite alternate}
+@keyframes camscan{from{top:14%}to{top:84%}}
+@media (prefers-reduced-motion:reduce){.cam i{animation:none;top:50%}}
 .ai{background:#fff;height:100%;overflow:hidden;padding:clamp(14px,2.6vh,28px) clamp(16px,3vw,34px) 14px;font-size:clamp(13px,1.9vh,17px);line-height:1.6}
 .ai .me{margin-left:auto;width:fit-content;background:var(--mint);border-radius:12px;padding:8px 16px;font-weight:700}
 .ai .re{margin-top:14px}
@@ -310,7 +315,7 @@ footer{padding:22px 16px;text-align:center;font-size:13px;color:var(--soft)}
     { bg: bg("215793730_0"), pos: "50% 62%", h: ["だれが、どの現場に、", "何台で。"], sub: "作業員も作業車も、予定表で割り振り。", sfx: ["ドドン！", "r"], html: combo("pc-schedule", "c-schedule-new") },
     { bg: bg("215793758_0"), pos: "50% 50%", h: ["今日の日報は、", "予定からワンプッシュ。"], sub: "現場・時間・作業員が入った状態で始まる。", sfx: ["ポチッ", "l"], html: phone("p-schedule-open", 0, "solo") },
     { bg: bg("215801860_0"), pos: "50% 74%", h: ["作業員の追加は、", "QRを読むだけ。"], sub: "名前を探さない。打たない。続けて何人でも。", sfx: ["ピピッ！", "r"],
-      html: '<div class="pair">' + phone("p-qr", 5, "solo") + '<div class="ph solo"><div class="sc"><div class="im" style="transform:translateY(-12.8%)"><img src="' + img("p-scanner") + '" alt=""><div class="cam"><span><img src="' + img("p-qr") + '" alt=""></span></div></div></div></div></div>' },
+      html: '<div class="pair">' + phone("p-qr", 5, "solo") + '<div class="ph solo"><div class="sc"><div class="im" style="transform:translateY(-12.8%)"><img src="' + img("p-scanner") + '" alt=""><div class="cam"><span><img src="' + img("p-qr") + '" alt=""></span><i></i></div></div></div></div></div>' },
     { bg: bg("215793737_0"), pos: "50% 55%", h: ["集計は、", "質問を選ぶだけ。"], sub: "出勤簿・出面帳は PDF・Excel で出力できる。", sfx: ["ザッ！", "l"], html: combo("pc-attendance", "c-summary-2") },
     { bg: bg("215793729_0"), pos: "50% 34%", h: ["請求書は、", "質問に答えるだけ。"], sub: "PDF で出力して、そのままメールで送信。", sfx: ["シュッ", "r"], html: combo("pc-invoice-detail", "c-invoices") },
     { bg: bg("215793738_0"), pos: "50% 60%", h: ["作業員名簿も、", "選ぶだけ。"], sub: "全建統一様式第5号を PDF で。", sfx: ["バン！", "l"], html: '<div class="combo roster"><div class="sheet"><img src="' + img("pdf-roster") + '" alt=""></div>' + phone("c-roster-pick", 5, "mini") + "</div>" },
