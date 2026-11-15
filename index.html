@@ -42,6 +42,7 @@ a{color:inherit}
 .btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 20px;border-radius:8px;font-weight:700;font-size:15px;text-decoration:none;white-space:nowrap}
 .btn.fill{background:var(--green);color:#fff}
 .btn.line{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
+button.btn{border:0;font-family:inherit;cursor:pointer}
 
 /* ヘッダー */
 .top{position:fixed;z-index:30;top:0;left:0;right:0;height:var(--head);display:flex;align-items:center;justify-content:space-between;gap:12px;
@@ -181,6 +182,28 @@ h1,h2,h3,p{margin:0}
 .count{position:fixed;z-index:20;left:50%;bottom:calc(10px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:#fff;font-size:13px;font-weight:700;padding:2px 12px;font-variant-numeric:tabular-nums;transition:opacity .3s}
 .count.off{opacity:0}
 
+/* スマホの「機能一覧」：押すと下から機能のボタンが出て、その場面へ飛ぶ */
+.only-s{display:none}
+.menu{position:fixed;inset:0;z-index:40}
+.menu[hidden]{display:none}
+.menu-back{position:absolute;inset:0;background:rgba(28,28,26,.5)}
+.menu-panel{position:absolute;left:0;right:0;bottom:0;max-height:88vh;max-height:88dvh;overflow:auto;overscroll-behavior:contain;background:var(--paper);border-top:3px solid var(--ink);
+  padding:12px max(16px,env(safe-area-inset-right,0px)) calc(18px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));animation:menuup .32s var(--ease)}
+@keyframes menuup{from{transform:translateY(40%);opacity:0}}
+.menu-head{display:flex;align-items:center;justify-content:space-between;font-size:17px;font-weight:900}
+.menu-x{all:unset;cursor:pointer;display:flex;align-items:center;justify-content:center;width:44px;height:44px;margin-right:-8px;font-size:28px;line-height:1}
+.menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:6px}
+.menu-grid button{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:8px;min-height:50px;padding:6px 10px;background:#fff;border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);font-size:14px;font-weight:700;line-height:1.3}
+.menu-grid button i{flex:none;font-style:normal;background:var(--green);color:#fff;border-radius:4px;padding:0 6px;font-size:12px;font-variant-numeric:tabular-nums}
+.menu-grid button[aria-current="true"]{background:var(--mint);border-color:var(--green);box-shadow:3px 3px 0 var(--green);color:var(--deep)}
+.menu-grid button:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.menu-more{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 20px;margin-top:16px;font-size:14px;font-weight:700}
+.menu-more a{color:var(--green);text-decoration:underline;text-underline-offset:3px;padding:6px 0}
+@media (prefers-reduced-motion:reduce){.menu-panel{animation:none}}
+/* はじめのコマの機能名も、押すとその場面へ */
+.chips button{all:unset;cursor:pointer}
+.chips li:has(button:hover){background:var(--mint)}
+
 /* スクロールのあと */
 .wrap{width:min(1040px,100%);margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:clamp(56px,9vw,104px)}
 .title{font-size:clamp(30px,5vw,50px);font-weight:900;line-height:1.25;text-wrap:balance}
@@ -219,6 +242,7 @@ footer{padding:22px 16px;text-align:center;font-size:13px;color:var(--soft)}
   .top .logo img{height:30px}
   .top .btn{min-height:38px;padding:0 10px;font-size:13px}
   .top .hide-s{display:none}
+  .top .only-s{display:inline-flex}
   .koma{box-shadow:5px 5px 0 var(--ink)}
   .koma p{font-size:13px}
   .sfx{top:auto;bottom:clamp(44px,8vh,80px);font-size:clamp(30px,5.4vh,44px);-webkit-text-stroke-width:6px}
@@ -258,6 +282,8 @@ footer{padding:22px 16px;text-align:center;font-size:13px;color:var(--soft)}
   .hero .sfx{top:auto;bottom:46px;left:auto;right:14px}
   .hero .koma{margin-top:6px}
 }
+/* 幅のせまいスマホは「詳細」を機能一覧の中へ */
+@media (max-width:359px){ .top .hide-xs{display:none} .top nav{gap:6px} }
 @media (prefers-reduced-motion:reduce){
   .scene,.bg,.koma,.show,.sfx{transition-duration:.01s!important;transition-delay:0s!important}
   .bg,.koma,.show{transform:none}
@@ -270,10 +296,20 @@ footer{padding:22px 16px;text-align:center;font-size:13px;color:var(--soft)}
   <a class="logo" href="#top" aria-label="シン・レポスル"><img src="lp1/img/logo.webp" alt="シン・レポスル" width="260" height="113"></a>
   <nav aria-label="ログイン">
     <a class="btn line hide-s" href="https://app.reposul.com/demo" target="_blank" rel="noopener">デモを試す</a>
-    <a class="btn line" href="home.html">詳細</a>
+    <button type="button" class="btn line only-s" id="menuBtn" aria-haspopup="dialog" aria-controls="menu" aria-expanded="false">機能一覧</button>
+    <a class="btn line hide-xs" href="home.html">詳細</a>
     <a class="btn fill" href="https://app.reposul.com/login">ログイン</a>
   </nav>
 </header>
+
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-labelledby="menuTitle" hidden>
+  <div class="menu-back" data-close></div>
+  <div class="menu-panel">
+    <div class="menu-head"><span id="menuTitle">見たい機能を選ぶ</span><button type="button" class="menu-x" data-close aria-label="閉じる">×</button></div>
+    <div class="menu-grid" id="menuGrid"></div>
+    <div class="menu-more"><a href="#price">料金</a><a href="#faq">よくある質問</a><a href="#contact">お問い合わせ</a><a href="home.html">詳細ページ</a></div>
+  </div>
+</div>
 
 <main>
   <section class="stage" id="stage" aria-roledescription="スライド" aria-label="シン・レポスルの機能紹介"></section>
@@ -378,7 +414,7 @@ footer{padding:22px 16px;text-align:center;font-size:13px;color:var(--soft)}
     return '<div class="koma"><div class="tag"><i>' + String(i).padStart(2, "0") + "</i>" + (s.tag || "シン・レポスルの新機能") + "</div>" + (s.was ? '<p class="was"><span>' + s.was + "</span><em>だから</em></p>" : "") + "<h2>" + s.h[0] + "<br><b>" + s.h[1] + "</b></h2><p>" + s.sub + "</p></div>";
   }
   var HERO = '<div class="koma"><h1><img class="lead" src="lp1/img/logo.webp" alt="シン・レポスル"><span class="date" style="display:block">11/16<small>（月）</small></span><span class="go">本格リリース！</span></h1>' +
-    '<ul class="chips"><li>LINEでログイン</li><li>予定表から日報作成</li><li>QRで作業員追加</li><li>かんたん集計</li><li>かんたん請求書</li><li>作業員名簿</li><li>作業車管理</li><li>ランキング</li><li>API連携</li></ul>' +
+    '<ul class="chips"><li><button type="button" data-scene="1">LINEでログイン</button></li><li><button type="button" data-scene="3">予定表から日報作成</button></li><li><button type="button" data-scene="4">QRで作業員追加</button></li><li><button type="button" data-scene="5">かんたん集計</button></li><li><button type="button" data-scene="6">かんたん請求書</button></li><li><button type="button" data-scene="7">作業員名簿</button></li><li><button type="button" data-scene="8">作業車管理</button></li><li><button type="button" data-scene="9">ランキング</button></li><li><button type="button" data-scene="10">API連携</button></li></ul>' +
     '<div class="cta"><a class="btn fill" href="https://app.reposul.com/demo" target="_blank" rel="noopener">デモを試す</a><a class="btn line" href="#price" data-jump>料金を見る</a></div></div><div class="hint">スクロールで次へ</div>';
 
   stage.innerHTML = SCENES.map(function (s, i) {
@@ -389,6 +425,24 @@ footer{padding:22px 16px;text-align:center;font-size:13px;color:var(--soft)}
   var scenes = [].slice.call(stage.children);
   rail.innerHTML = SCENES.map(function (s, i) { return '<button type="button" aria-label="' + (s.hero ? "はじめ" : s.h.join("")) + '"><span aria-hidden="true">' + s.label + "</span></button>"; }).join("");
   var dots = [].slice.call(rail.children);
+
+  // スマホの機能一覧
+  var menu = document.getElementById("menu"), menuBtn = document.getElementById("menuBtn"), menuGrid = document.getElementById("menuGrid");
+  menuGrid.innerHTML = SCENES.map(function (s, i) { return s.hero ? "" : '<button type="button" data-scene="' + i + '"><i>' + String(i).padStart(2, "0") + "</i>" + s.label + "</button>"; }).join("");
+  var items = [].slice.call(menuGrid.children);
+  function openMenu() {
+    items.forEach(function (b) { b.setAttribute("aria-current", pinned && +b.dataset.scene === cur ? "true" : "false"); });
+    menu.hidden = false;
+    menuBtn.setAttribute("aria-expanded", "true");
+    (menuGrid.querySelector('[aria-current="true"]') || items[0]).focus({ preventScroll: true });
+  }
+  function closeMenu() {
+    if (menu.hidden) return;
+    menu.hidden = true;
+    menuBtn.setAttribute("aria-expanded", "false");
+  }
+  menuBtn.addEventListener("click", function () { if (menu.hidden) openMenu(); else closeMenu(); });
+  menu.addEventListener("click", function (e) { if (e.target.closest("[data-close],a")) closeMenu(); });
 
   // 画像は今のシーンと前後だけ読む
   function load(i) {
@@ -433,6 +487,12 @@ footer{padding:22px 16px;text-align:center;font-size:13px;color:var(--soft)}
     show(cur + dir);
   }
   function back() { window.scrollTo(0, 0); pin(true); lockUntil = performance.now() + STEP_MS; }
+  // 機能一覧・はじめのコマから、その場面へ（下の料金などを見ていても戻る）
+  function jump(i) {
+    closeMenu();
+    if (!pinned) { window.scrollTo(0, 0); pin(true); }
+    show(i);
+  }
 
   // ホイール・トラックパッド：ひと回しで1シーン。指を離したあとの惰性の動きは数えない
   var lastT = 0, lastAbs = 0;
@@ -454,9 +514,10 @@ footer{padding:22px 16px;text-align:center;font-size:13px;color:var(--soft)}
   // スマホ：1回のスワイプで1シーン
   var sy = null, sx = 0;
   window.addEventListener("touchstart", function (e) { sy = e.touches[0].clientY; sx = e.touches[0].clientX; }, { passive: true });
-  window.addEventListener("touchmove", function (e) { if (pinned && !e.target.closest("a,button,summary")) e.preventDefault(); }, { passive: false });
+  window.addEventListener("touchmove", function (e) { if (pinned && !e.target.closest("a,button,summary,.menu")) e.preventDefault(); }, { passive: false });
   window.addEventListener("touchend", function (e) {
     if (sy === null) return;
+    if (!menu.hidden || e.target.closest(".menu")) { sy = null; return; }
     var dy = sy - e.changedTouches[0].clientY, dx = Math.abs(sx - e.changedTouches[0].clientX);
     sy = null;
     if (Math.abs(dy) < 36 || dx > Math.abs(dy) || performance.now() < lockUntil) return;
@@ -473,6 +534,7 @@ footer{padding:22px 16px;text-align:center;font-size:13px;color:var(--soft)}
 
   // キーボード
   window.addEventListener("keydown", function (e) {
+    if (!menu.hidden) { if (e.key === "Escape") { closeMenu(); menuBtn.focus(); } return; }
     if (!pinned || performance.now() < lockUntil) { if (pinned && /^(ArrowDown|ArrowUp|PageDown|PageUp| )$/.test(e.key)) e.preventDefault(); return; }
     if (e.key === "ArrowDown" || e.key === "PageDown" || e.key === " ") { e.preventDefault(); move(e.shiftKey ? -1 : 1); }
     else if (e.key === "ArrowUp" || e.key === "PageUp") { e.preventDefault(); move(-1); }
@@ -480,6 +542,8 @@ footer{padding:22px 16px;text-align:center;font-size:13px;color:var(--soft)}
 
   dots.forEach(function (d, i) { d.addEventListener("click", function () { if (performance.now() >= lockUntil) show(i); }); });
   document.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-scene]");
+    if (b) { jump(+b.dataset.scene); return; }
     var a = e.target.closest("a[href^='#']");
     if (!a) return;
     e.preventDefault();
