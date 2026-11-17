@@ -205,6 +205,11 @@ h1,h2,h3,p{margin:0}
 .chips li:has(button:hover){background:var(--mint)}
 
 /* スクロールのあと */
+.movies{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-top:30px}
+.movies figure{margin:0}
+.movies video{display:block;width:100%;aspect-ratio:16/9;background:#e9ebe4;border:3px solid var(--ink);border-radius:18px;box-shadow:6px 6px 0 var(--ink)}
+.movies figcaption{margin-top:12px;font-weight:700}
+@media (max-width:760px){.movies{grid-template-columns:1fr}}
 .wrap{width:min(1040px,100%);margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:clamp(56px,9vw,104px)}
 .title{font-size:clamp(30px,5vw,50px);font-weight:900;line-height:1.25;text-wrap:balance}
 .title b{color:var(--green);font-weight:900}
@@ -317,7 +322,22 @@ footer{padding:22px 16px;text-align:center;font-size:13px;color:var(--soft)}
   <div class="count off" id="count" aria-live="polite"></div>
 
   <div id="after">
-    <section class="wrap" id="pain">
+    <!-- 動画（スライドのあと。動画はアプリ側 reposul-next の public/flow に置いたもの。2026-11-17） -->
+    <section class="wrap" id="movie">
+      <h2 class="title"><span class="nb">2分で分かる、</span><b class="nb">シン・レポスル</b></h2>
+      <p class="lede">これまでの仕事が、どう変わるのか。現場の割り振りから、日報・集計・請求書まで。</p>
+      <div class="movies">
+        <figure>
+          <video controls playsinline preload="none" poster="https://app.reposul.com/flow/poster.jpg"><source src="https://app.reposul.com/flow/reposul-flow.mp4" type="video/mp4"></video>
+          <figcaption>2分で分かる動画</figcaption>
+        </figure>
+        <figure>
+          <video controls playsinline preload="none" poster="https://app.reposul.com/flow/poster-demo.jpg"><source src="https://app.reposul.com/flow/reposul-demo.mp4" type="video/mp4"></video>
+          <figcaption>実際の操作の様子</figcaption>
+        </figure>
+      </div>
+    </section>
+    <section class="wrap" id="pain" style="padding-top:0">
       <h2 class="title"><span class="nb">こんなお悩み、</span><b class="nb">ありませんか？</b></h2>
       <div class="pains">
         <p class="pain">現場からLINEで送られてくる日報を、毎回まとめ直している</p>
