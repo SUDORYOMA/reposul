@@ -148,7 +148,10 @@ h1,h2,h3,p{margin:0}
 .hero .lead{display:block;height:min(clamp(44px,8.6vh,84px),16vw);width:auto;margin:0 auto 2px;mix-blend-mode:multiply}
 .hero .date{white-space:nowrap;font-size:min(clamp(50px,13vh,132px),19vw);font-weight:900;line-height:1.02;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
 .hero .date small{font-size:.36em;font-weight:900}
+/* キャッチコピー（2026-11-17 「11/16 本格リリース！」から差し替え） */
+.hero .tag1{display:block;white-space:nowrap;font-size:min(clamp(30px,7.5vh,72px),8.6vw);font-weight:900;line-height:1.2;margin-top:clamp(4px,1vh,12px)}
 .hero .go{display:block;width:fit-content;margin:clamp(2px,.5vh,6px) auto 0;padding:0 .35em;white-space:nowrap;font-size:min(clamp(34px,8vh,78px),11vw);font-weight:900;line-height:1.25;color:var(--ink);background:var(--yellow)}
+.hero .go.tag2{font-size:min(clamp(30px,7.5vh,72px),8vw)}
 .chips{display:flex;flex-wrap:wrap;gap:6px 8px;justify-content:center;margin-top:clamp(10px,1.8vh,18px);padding:0;list-style:none}
 .chips li{padding:1px 10px;font-size:clamp(12px,1.7vh,15px);font-weight:700;border:2px solid var(--green);border-radius:4px;color:var(--green);background:#fff}
 .hero .cta{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:clamp(10px,2vh,20px)}
@@ -433,7 +436,7 @@ footer{padding:22px 16px;text-align:center;font-size:13px;color:var(--soft)}
   function koma(s, i) {
     return '<div class="koma"><div class="tag"><i>' + String(i).padStart(2, "0") + "</i>" + (s.tag || "シン・レポスルの新機能") + "</div>" + (s.was ? '<p class="was"><span>' + s.was + "</span><em>だから</em></p>" : "") + "<h2>" + s.h[0] + "<br><b>" + s.h[1] + "</b></h2><p>" + s.sub + "</p></div>";
   }
-  var HERO = '<div class="koma"><h1><img class="lead" src="lp1/img/logo.webp" alt="シン・レポスル"><span class="date" style="display:block">11/16<small>（月）</small></span><span class="go">本格リリース！</span></h1>' +
+  var HERO = '<div class="koma"><h1><img class="lead" src="lp1/img/logo.webp" alt="シン・レポスル"><span class="tag1">建設業の事務作業を</span><span class="go tag2">ひとつに。レポスル。</span></h1>' +
     '<ul class="chips"><li><button type="button" data-scene="1">LINEでログイン</button></li><li><button type="button" data-scene="3">予定表から日報作成</button></li><li><button type="button" data-scene="4">QRで作業員追加</button></li><li><button type="button" data-scene="5">かんたん集計</button></li><li><button type="button" data-scene="6">かんたん請求書</button></li><li><button type="button" data-scene="7">作業員名簿</button></li><li><button type="button" data-scene="8">作業車管理</button></li><li><button type="button" data-scene="9">ランキング</button></li><li><button type="button" data-scene="10">API連携</button></li></ul>' +
     '<div class="cta"><a class="btn fill" href="https://app.reposul.com/demo" target="_blank" rel="noopener">デモを試す</a><a class="btn line" href="#price" data-jump>料金を見る</a></div></div><div class="hint">スクロールで次へ</div>';
 
