@@ -35,7 +35,8 @@
 }
 *{box-sizing:border-box}
 html{background:var(--paper)}
-html.locked,html.locked body{overflow:hidden;overscroll-behavior:none}
+html.locked,html.locked body{overflow:hidden;overscroll-behavior:none;background:var(--ink)}
+html.locked #after{display:none}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.7;font-feature-settings:"palt"}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
@@ -147,7 +148,11 @@ h1,h2,h3,p{margin:0}
 .guard small{display:block;font-size:clamp(12px,1.65vh,14px);color:#d9efe3;line-height:1.5}
 
 /* はじめのコマ */
-.hero .koma{margin-top:clamp(8px,6vh,70px);width:min(800px,100%);padding-block:clamp(16px,3.2vh,34px)}
+/* はじめのコマ：画面の真ん中に。「ドン！！」はコマの右上の角に付ける */
+.scene.hero{justify-content:center;padding-bottom:calc(var(--head) + 24px)}
+.hero .koma{margin-top:0;width:min(800px,100%);padding-block:clamp(22px,4vh,40px)}
+.hero .koma .sfx{top:auto;left:auto;bottom:calc(100% - .42em);right:-.18em;font-size:min(clamp(48px,10vh,104px),15vw);-webkit-text-stroke-width:9px}
+.hero .sub{margin-top:clamp(8px,1.6vh,16px);font-size:clamp(14px,2.1vh,18px);font-weight:700;color:#44443f;line-height:1.6}
 .hero .lead{display:block;height:min(clamp(44px,8.6vh,84px),16vw);width:auto;margin:0 auto 2px;mix-blend-mode:multiply}
 .hero .date{white-space:nowrap;font-size:min(clamp(50px,13vh,132px),19vw);font-weight:900;line-height:1.02;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
 .hero .date small{font-size:.36em;font-weight:900}
@@ -307,8 +312,7 @@ footer{background:var(--ink);color:#d8d8d2;padding:22px 16px;text-align:center;f
   .pains{grid-template-columns:minmax(0,1fr)}
   .prices th,.prices td{padding:12px 14px}
   .prices .cap{white-space:nowrap}
-  .hero .sfx{top:auto;bottom:46px;left:auto;right:14px}
-  .hero .koma{margin-top:6px}
+  .hero .koma .sfx{-webkit-text-stroke-width:7px}
 }
 /* 幅のせまいスマホは「詳細」を機能一覧の中へ */
 @media (max-width:359px){ .top .hide-xs{display:none} .top nav{gap:6px} }
@@ -458,12 +462,13 @@ footer{background:var(--ink);color:#d8d8d2;padding:22px 16px;text-align:center;f
   function koma(s, i) {
     return '<div class="koma"><div class="tag"><i>' + String(i).padStart(2, "0") + "</i>" + (s.was ? '<span class="say">「' + s.was + "」</span>" : "") + "</div>" + (s.was ? '<p class="was"><em>だから</em></p>' : "") + "<h2>" + s.h[0] + "<br><b>" + s.h[1] + "</b></h2><p>" + s.sub + "</p></div>";
   }
-  var HERO = '<div class="koma"><h1><span class="tag1">建設業の事務作業を</span><span class="go tag2">ひとつに。レポスル。</span></h1>' +
+  var HERO = '<div class="koma"><h1><span class="tag1">建設業の事務作業を</span><span class="go tag2">ひとつに。レポスル。</span></h1><div class="sfx r" aria-hidden="true">ドン！！</div>' +
+    '<p class="sub"><span class="nb">日報・予定表・集計・請求書・</span><span class="nb">作業員名簿を、ひとつのアプリで。</span><br><span class="nb">現場はLINE、</span><span class="nb">事務所はブラウザ。</span></p>' +
     '<div class="cta"><a class="btn fill" href="https://app.reposul.com/demo" target="_blank" rel="noopener">デモを試す</a><a class="btn line" href="#price" data-jump>料金を見る</a></div></div><button type="button" class="hint" data-next>' + (matchMedia("(pointer:coarse)").matches ? "スワイプで次へ" : "スクロール・↓キーで次へ") + "</button>";
 
   stage.innerHTML = SCENES.map(function (s, i) {
     return '<article class="scene' + (s.hero ? " hero" : "") + '" aria-hidden="true"><div class="bg" data-src="' + s.bg + '" style="background-position:' + s.pos + '"></div>' +
-      '<div class="sfx ' + s.sfx[1] + '" aria-hidden="true">' + s.sfx[0] + "</div>" + (s.hero ? HERO : koma(s, i) + '<div class="show">' + s.html + "</div>") +
+      (s.hero ? "" : '<div class="sfx ' + s.sfx[1] + '" aria-hidden="true">' + s.sfx[0] + "</div>") + (s.hero ? HERO : koma(s, i) + '<div class="show">' + s.html + "</div>") +
       (s.hero ? "" : '<div class="note">' + (s.note || "画面は見本です") + "</div>") + "</article>";
   }).join("");
   var scenes = [].slice.call(stage.children);
