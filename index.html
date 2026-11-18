@@ -55,7 +55,7 @@ button.btn{border:0;font-family:inherit;cursor:pointer}
 
 /* 舞台：スクロールしても動かない1画面 */
 .stage{position:relative;height:100vh;height:100dvh;overflow:hidden;background:#fff;touch-action:none;isolation:isolate}
-.scene{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;padding:calc(var(--head) + 4px) 16px 0;
+.scene{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;padding:calc(var(--head) + 4px) 16px calc(46px + env(safe-area-inset-bottom,0px));
   visibility:hidden;opacity:0;transition:opacity .45s ease,visibility 0s linear .45s}
 .scene.on{visibility:visible;opacity:1;transition:opacity .45s ease,visibility 0s}
 .bg{position:absolute;inset:0;z-index:-1;background:#fff center/cover no-repeat;transform:scale(1.07);transition:transform 1.3s var(--ease)}
@@ -66,16 +66,19 @@ button.btn{border:0;font-family:inherit;cursor:pointer}
   padding:clamp(10px,1.7vh,18px) clamp(16px,3vw,34px) clamp(12px,1.9vh,20px);text-align:center;
   transform:translateY(26px);opacity:0;transition:transform .7s var(--ease) .06s,opacity .4s ease .06s}
 .scene.on .koma{transform:none;opacity:1}
-.tag{display:flex;align-items:center;justify-content:center;gap:10px;font-size:clamp(12px,1.6vh,15px);font-weight:700;color:var(--green);line-height:1.4}
+.tag{display:flex;align-items:center;justify-content:center;gap:16px;font-size:clamp(12px,1.6vh,15px);font-weight:700;color:var(--green);line-height:1.4}
 .tag i{font-style:normal;background:var(--green);color:#fff;border-radius:4px;padding:1px 8px;font-variant-numeric:tabular-nums}
 h1,h2,h3,p{margin:0}
 .koma h1,.koma h2{margin-top:clamp(2px,.7vh,8px);font-size:min(clamp(25px,5.3vh,54px),7vw);line-height:1.24;font-weight:900;letter-spacing:.005em}
 .koma b{color:var(--green);font-weight:900}
 /* 困りごと → だから → 見出し */
-.koma .was{display:flex;flex-direction:column;align-items:center;gap:clamp(3px,.6vh,6px);margin-top:clamp(4px,1vh,10px);font-size:clamp(12px,1.75vh,16px);font-weight:700;color:#6b6b63;line-height:1.4}
-.koma .was span{border:1.5px dashed #9b9b92;border-radius:6px;padding:2px 12px;background:#fff}
-.koma .was em{position:relative;font-style:normal;background:var(--ink);color:var(--yellow);border-radius:999px;padding:1px 14px;font-size:.92em}
-.koma .was em::before{content:"";position:absolute;left:50%;top:calc(-1 * clamp(3px,.6vh,6px));height:clamp(3px,.6vh,6px);border-left:2px dotted #6b6b63}
+/* 困りごとは現場の人のセリフ。吹き出しのしっぽは左下の番号へ */
+.say{position:relative;background:#fff;color:var(--ink);border:2.5px solid var(--ink);border-radius:999px;padding:2px 16px;font-size:clamp(12px,1.75vh,16px);font-weight:700;line-height:1.4}
+.say::before,.say::after{content:"";position:absolute;left:-9px;bottom:2px;border-style:solid;border-color:transparent;border-width:6px 12px 6px 0}
+.say::before{border-right-color:var(--ink);left:-12px}
+.say::after{border-right-color:#fff;left:-8px;border-width:4px 9px 4px 0;bottom:4px}
+.koma .was{display:block;margin-top:clamp(4px,.9vh,9px);line-height:1}
+.koma .was em{font-style:normal;display:inline-block;background:var(--ink);color:var(--yellow);border-radius:999px;padding:1px 14px;font-size:clamp(11px,1.6vh,14px);font-weight:700;line-height:1.5}
 .koma p{margin-top:clamp(3px,.7vh,8px);font-size:clamp(13px,2vh,18px);font-weight:500;color:#44443f;line-height:1.5}
 
 /* 効果音 */
@@ -152,8 +155,6 @@ h1,h2,h3,p{margin:0}
 .hero .tag1{display:block;white-space:nowrap;font-size:min(clamp(30px,7.5vh,72px),8.6vw);font-weight:900;line-height:1.2;margin-top:clamp(4px,1vh,12px)}
 .hero .go{display:block;width:fit-content;margin:clamp(2px,.5vh,6px) auto 0;padding:0 .35em;white-space:nowrap;font-size:min(clamp(34px,8vh,78px),11vw);font-weight:900;line-height:1.25;color:var(--ink);background:var(--yellow)}
 .hero .go.tag2{font-size:min(clamp(30px,7.5vh,72px),8vw)}
-.chips{display:flex;flex-wrap:wrap;gap:6px 8px;justify-content:center;margin-top:clamp(10px,1.8vh,18px);padding:0;list-style:none}
-.chips li{padding:1px 10px;font-size:clamp(12px,1.7vh,15px);font-weight:700;border:2px solid var(--green);border-radius:4px;color:var(--green);background:#fff}
 .hero .cta{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:clamp(10px,2vh,20px)}
 .hero .sfx{top:calc(var(--head) + 3vh)}
 
@@ -180,10 +181,16 @@ h1,h2,h3,p{margin:0}
 }
 /* 背の低いスマホは「だから」を省いて画面を広く */
 @media (max-width:760px) and (max-height:700px){ .koma .was{display:none} }
+@media (max-width:760px){ .say{padding:1px 12px} .tag{gap:14px} }
 .hint{position:absolute;z-index:5;left:50%;bottom:calc(14px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:#fff;font-size:13px;font-weight:700;padding:5px 16px;animation:nudge 1.8s ease-in-out infinite}
 @keyframes nudge{50%{transform:translate(-50%,6px)}}
-.count{position:fixed;z-index:20;left:50%;bottom:calc(10px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:#fff;font-size:13px;font-weight:700;padding:2px 12px;font-variant-numeric:tabular-nums;transition:opacity .3s}
-.count.off{opacity:0}
+.count{position:fixed;z-index:20;left:50%;bottom:calc(6px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);display:flex;align-items:center;background:var(--ink);color:#fff;font-size:13px;font-weight:700;font-variant-numeric:tabular-nums;border:2px solid var(--ink);box-shadow:3px 3px 0 #fff;transition:opacity .3s}
+.count.off{opacity:0;pointer-events:none}
+.count span{padding:0 10px;min-width:5.5em;text-align:center}
+.count button{all:unset;cursor:pointer;display:flex;align-items:center;justify-content:center;width:34px;height:32px;background:#fff;color:var(--ink);font-size:12px}
+.count button:hover{background:var(--yellow)}
+.count button:focus-visible{outline:3px solid var(--yellow)}
+button.hint{border:0;font-family:inherit;cursor:pointer}
 
 /* スマホの「機能一覧」：押すと下から機能のボタンが出て、その場面へ飛ぶ */
 .only-s{display:none}
@@ -203,15 +210,15 @@ h1,h2,h3,p{margin:0}
 .menu-more{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 20px;margin-top:16px;font-size:14px;font-weight:700}
 .menu-more a{color:var(--green);text-decoration:underline;text-underline-offset:3px;padding:6px 0}
 @media (prefers-reduced-motion:reduce){.menu-panel{animation:none}}
-/* はじめのコマの機能名も、押すとその場面へ */
-.chips button{all:unset;cursor:pointer}
-.chips li:has(button:hover){background:var(--mint)}
 
-/* スクロールのあと */
+/* スクロールのあと：上と同じ漫画の紙（網点）とコマ枠を続ける */
+#after{background:var(--paper) radial-gradient(rgba(28,28,26,.13) 1.1px,transparent 1.5px) 0 0/11px 11px}
+#after .title{position:relative;display:inline-block;background:var(--paper);border:3px solid var(--ink);box-shadow:6px 6px 0 var(--ink);padding:6px 20px 8px}
+.band .title{background:transparent;border:0;box-shadow:none;padding:0}
 .movies{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-top:30px}
 .movies figure{margin:0}
 .movies video{display:block;width:100%;aspect-ratio:16/9;background:#e9ebe4;border:3px solid var(--ink);border-radius:18px;box-shadow:6px 6px 0 var(--ink)}
-.movies figcaption{margin-top:12px;font-weight:700}
+.movies figcaption{display:inline-block;margin-top:14px;background:var(--ink);color:#fff;padding:1px 12px;font-weight:700}
 @media (max-width:760px){.movies{grid-template-columns:1fr}}
 .wrap{width:min(1040px,100%);margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:clamp(56px,9vw,104px)}
 .title{font-size:clamp(30px,5vw,50px);font-weight:900;line-height:1.25;text-wrap:balance}
@@ -220,7 +227,7 @@ h1,h2,h3,p{margin:0}
 .pains{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:34px}
 .pain{position:relative;background:#fff;border:3px solid var(--ink);border-radius:26px;padding:20px 22px;font-weight:700;line-height:1.55}
 .pain::after{content:"";position:absolute;left:34px;bottom:-15px;width:22px;height:22px;background:#fff;border-right:3px solid var(--ink);border-bottom:3px solid var(--ink);transform:skewX(32deg) rotate(45deg) scale(.8)}
-.band{background:var(--deep);color:#fff}
+.band{background:var(--deep) radial-gradient(rgba(255,255,255,.12) 1.2px,transparent 1.6px) 0 0/10px 10px;color:#fff;border-block:3px solid var(--ink)}
 .band .title b{color:var(--yellow)}
 .band .lede{color:#d9efe3}
 .prices{width:100%;margin-top:30px;border-collapse:collapse;background:#fff;border:3px solid var(--ink);box-shadow:7px 7px 0 var(--ink);font-variant-numeric:tabular-nums}
@@ -231,7 +238,8 @@ h1,h2,h3,p{margin:0}
 .prices thead .yen{font-size:14px;font-weight:700}
 .prices .yen small{font-size:13px;font-weight:700;color:var(--soft)}
 .fine{margin-top:18px;font-size:14px;color:var(--soft)}
-.faq{margin-top:26px;border-top:2px solid var(--ink)}
+.faq{margin-top:30px;background:#fff;border:3px solid var(--ink);box-shadow:7px 7px 0 var(--ink);padding:0 20px}
+.faq details:last-child{border-bottom:0}
 .faq details{border-bottom:2px solid var(--ink)}
 .faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px;padding:17px 2px;font-weight:700}
 .faq summary::-webkit-details-marker{display:none}
@@ -241,9 +249,21 @@ h1,h2,h3,p{margin:0}
 .end{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
 .end .btn{min-height:52px;padding:0 26px;font-size:16px}
 .nb{display:inline-block}
-.band .btn.line{box-shadow:none}
-.band .btn.fill{background:var(--yellow);color:var(--ink)}
-footer{padding:22px 16px;text-align:center;font-size:13px;color:var(--soft)}
+.finale{position:relative;overflow:hidden;border-top:3px solid var(--ink);background:#fff url(lp1/img/bg-215793758_0.webp) 50% 50%/cover no-repeat}
+.finale .wrap{position:relative}
+.finale .koma{opacity:1;transform:none;width:min(760px,100%);margin-inline:auto;padding:clamp(22px,4vw,40px) clamp(18px,4vw,44px)}
+#after .finale .title{border:0;box-shadow:none;padding:0;background:none}
+.finale .lede{margin-inline:auto}
+.finale .end{justify-content:center}
+.finale .btn.line{box-shadow:inset 0 0 0 2px var(--ink)}
+.finale .btn.fill{position:relative;min-height:60px;padding:0 34px;font-size:18px;border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);transition:transform .12s,box-shadow .12s}
+.finale .end{margin-top:52px}
+.finale .btn.fill:hover{transform:translate(2px,2px);box-shadow:3px 3px 0 var(--ink)}
+.finale .btn.fill:active{transform:translate(5px,5px);box-shadow:0 0 0 var(--ink)}
+.finale .push{position:relative;display:inline-flex}
+.finale .pochi{position:absolute;left:-1.5em;top:-.9em;z-index:1;font-family:var(--sfx);font-size:clamp(30px,4.4vw,50px);line-height:1;color:var(--ink);-webkit-text-stroke:9px #fff;paint-order:stroke fill;transform:rotate(-12deg);pointer-events:none}
+@media (max-width:760px){ .finale .push{grid-column:1/-1} .finale .push .btn{width:100%} .finale .pochi{left:-.2em;top:-.85em} }
+footer{background:var(--ink);color:#d8d8d2;padding:22px 16px;text-align:center;font-size:13px}
 
 @media (max-width:760px){
   :root{--head:56px}
@@ -303,10 +323,10 @@ footer{padding:22px 16px;text-align:center;font-size:13px;color:var(--soft)}
 <header class="top">
   <a class="logo" href="#top" aria-label="シン・レポスル"><img src="lp1/img/logo.webp" alt="シン・レポスル" width="260" height="113"></a>
   <nav aria-label="ログイン">
-    <a class="btn line hide-s" href="https://app.reposul.com/demo" target="_blank" rel="noopener">デモを試す</a>
+    <a class="btn fill hide-s" href="https://app.reposul.com/demo" target="_blank" rel="noopener">デモを試す</a>
     <button type="button" class="btn line only-s" id="menuBtn" aria-haspopup="dialog" aria-controls="menu" aria-expanded="false">機能一覧</button>
     <a class="btn line hide-xs" href="home.html">詳細</a>
-    <a class="btn fill" href="https://app.reposul.com/login">ログイン</a>
+    <a class="btn line" href="https://app.reposul.com/login">ログイン</a>
   </nav>
 </header>
 
@@ -322,7 +342,7 @@ footer{padding:22px 16px;text-align:center;font-size:13px;color:var(--soft)}
 <main>
   <section class="stage" id="stage" aria-roledescription="スライド" aria-label="シン・レポスルの機能紹介"></section>
   <nav class="rail" id="rail" aria-label="シーンを選ぶ"></nav>
-  <div class="count off" id="count" aria-live="polite"></div>
+  <div class="count off" id="count"><button type="button" data-prev aria-label="前のシーンへ">▲</button><span id="countNum" aria-live="polite"></span><button type="button" data-next aria-label="次のシーンへ">▼</button></div>
 
   <div id="after">
     <!-- 動画（スライドのあと。動画はアプリ側 reposul-next の public/flow に置いたもの。2026-11-17） -->
@@ -381,14 +401,16 @@ footer{padding:22px 16px;text-align:center;font-size:13px;color:var(--soft)}
         <details><summary>今すぐ申し込みできますか？</summary><p>現在は運営からのご案内、または代理店経由でのご登録です。まずはデモをお試しいただくか、お問い合わせください。</p></details>
       </div>
     </section>
-    <section class="band" id="contact">
+    <section class="finale" id="contact">
       <div class="wrap">
+        <div class="koma">
         <h2 class="title"><span class="nb">まずは、</span><b class="nb">触ってみてください。</b></h2>
         <p class="lede">デモはログイン不要です。ご質問・資料請求は、お問い合わせからどうぞ。</p>
         <div class="end">
-          <a class="btn fill" href="https://app.reposul.com/demo" target="_blank" rel="noopener">デモを試す</a>
+          <span class="push"><span class="pochi" aria-hidden="true">ポチッ！</span><a class="btn fill" href="https://app.reposul.com/demo" target="_blank" rel="noopener">デモを試す</a></span>
           <a class="btn line" href="https://app.reposul.com/demo/contact?type=inquiry" target="_blank" rel="noopener">お問い合わせ</a>
           <a class="btn line" href="https://app.reposul.com/demo/contact?type=document" target="_blank" rel="noopener">資料請求</a>
+        </div>
         </div>
       </div>
     </section>
@@ -429,16 +451,15 @@ footer{padding:22px 16px;text-align:center;font-size:13px;color:var(--soft)}
   var WAS = ["", "IDとパスワード、毎回打つのは面倒", "割り振りは、電話とホワイトボード", "日報を毎日ゼロから書くのは大変", "作業員の名前を探して打つのは手間", "月末に工数を数え直すのは大変", "請求書の単価、毎回調べ直し", "名簿を現場ごとに書き直すのは手間", "車検切れに、あとから気づく", "だれが日報を出しているか分からない", "数字を見たいのに、表を探すのが手間", "大事な日報、守りは大丈夫？"];
   var LABEL = ["はじめに", "LINEでログイン", "予定表", "予定から日報", "QRで作業員追加", "かんたん集計", "かんたん請求書", "作業員名簿", "作業車管理", "ランキング", "AI・API連携", "セキュリティー"];
   SCENES.forEach(function (s, i) { s.was = WAS[i]; s.label = LABEL[i]; });
-  var stage = document.getElementById("stage"), rail = document.getElementById("rail"), count = document.getElementById("count");
+  var stage = document.getElementById("stage"), rail = document.getElementById("rail"), count = document.getElementById("count"), countNum = document.getElementById("countNum");
   var root = document.documentElement;
   var total = SCENES.length;
 
   function koma(s, i) {
-    return '<div class="koma"><div class="tag"><i>' + String(i).padStart(2, "0") + "</i>" + (s.tag || "シン・レポスルの新機能") + "</div>" + (s.was ? '<p class="was"><span>' + s.was + "</span><em>だから</em></p>" : "") + "<h2>" + s.h[0] + "<br><b>" + s.h[1] + "</b></h2><p>" + s.sub + "</p></div>";
+    return '<div class="koma"><div class="tag"><i>' + String(i).padStart(2, "0") + "</i>" + (s.was ? '<span class="say">「' + s.was + "」</span>" : "") + "</div>" + (s.was ? '<p class="was"><em>だから</em></p>' : "") + "<h2>" + s.h[0] + "<br><b>" + s.h[1] + "</b></h2><p>" + s.sub + "</p></div>";
   }
-  var HERO = '<div class="koma"><h1><img class="lead" src="lp1/img/logo.webp" alt="シン・レポスル"><span class="tag1">建設業の事務作業を</span><span class="go tag2">ひとつに。レポスル。</span></h1>' +
-    '<ul class="chips"><li><button type="button" data-scene="1">LINEでログイン</button></li><li><button type="button" data-scene="3">予定表から日報作成</button></li><li><button type="button" data-scene="4">QRで作業員追加</button></li><li><button type="button" data-scene="5">かんたん集計</button></li><li><button type="button" data-scene="6">かんたん請求書</button></li><li><button type="button" data-scene="7">作業員名簿</button></li><li><button type="button" data-scene="8">作業車管理</button></li><li><button type="button" data-scene="9">ランキング</button></li><li><button type="button" data-scene="10">API連携</button></li></ul>' +
-    '<div class="cta"><a class="btn fill" href="https://app.reposul.com/demo" target="_blank" rel="noopener">デモを試す</a><a class="btn line" href="#price" data-jump>料金を見る</a></div></div><div class="hint">スクロールで次へ</div>';
+  var HERO = '<div class="koma"><h1><span class="tag1">建設業の事務作業を</span><span class="go tag2">ひとつに。レポスル。</span></h1>' +
+    '<div class="cta"><a class="btn fill" href="https://app.reposul.com/demo" target="_blank" rel="noopener">デモを試す</a><a class="btn line" href="#price" data-jump>料金を見る</a></div></div><button type="button" class="hint" data-next>' + (matchMedia("(pointer:coarse)").matches ? "スワイプで次へ" : "スクロール・↓キーで次へ") + "</button>";
 
   stage.innerHTML = SCENES.map(function (s, i) {
     return '<article class="scene' + (s.hero ? " hero" : "") + '" aria-hidden="true"><div class="bg" data-src="' + s.bg + '" style="background-position:' + s.pos + '"></div>' +
@@ -487,7 +508,7 @@ footer{padding:22px 16px;text-align:center;font-size:13px;color:var(--soft)}
     load(i);
     scenes[i].classList.add("on"); scenes[i].removeAttribute("aria-hidden");
     dots.forEach(function (d, k) { d.setAttribute("aria-current", k === i ? "true" : "false"); });
-    count.textContent = i === 0 ? "" : i + " / " + (total - 1);
+    countNum.textContent = i === 0 ? "" : i + " / " + (total - 1);
     count.classList.toggle("off", i === 0);
     lockUntil = performance.now() + STEP_MS;
   }
@@ -565,6 +586,8 @@ footer{padding:22px 16px;text-align:center;font-size:13px;color:var(--soft)}
 
   dots.forEach(function (d, i) { d.addEventListener("click", function () { if (performance.now() >= lockUntil) show(i); }); });
   document.addEventListener("click", function (e) {
+    var nb = e.target.closest("[data-next],[data-prev]");
+    if (nb) { if (pinned && performance.now() >= lockUntil) move(nb.hasAttribute("data-next") ? 1 : -1); return; }
     var b = e.target.closest("[data-scene]");
     if (b) { jump(+b.dataset.scene); return; }
     var a = e.target.closest("a[href^='#']");
