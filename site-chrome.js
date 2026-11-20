@@ -15,7 +15,6 @@
 
   /* P0 ログイン（シン・レポスル）。どのページでも、ヘッダーのボタンからそのまま入力の画面へ（スマホでも見える） */
   var LOGIN_URL = 'https://app.reposul.com/login';
-  var OLD_LOGIN_URL = 'https://reposul.com/mobile_ver-daily_report?Pages=%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3%E3%83%BB%E6%96%B0%E8%A6%8F%E4%BC%9A%E5%93%A1%E7%99%BB%E9%8C%B2&Status=%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3';
   var navCta = document.querySelector('.nav-cta');
   if(navCta && !navCta.querySelector('.sc-login')){
     var loginBtn = document.createElement('a');
@@ -24,19 +23,8 @@
     loginBtn.textContent = 'ログイン';
     navCta.insertBefore(loginBtn, navCta.firstChild);
   }
-  // 旧レポスルのログインはメニューパネルにだけ小さく残す（移行が済むまで）
-  var navForOld = document.querySelector('.nav-links');
-  if(navForOld){
-    var oldLogin = navForOld.querySelector('.nav-login');
-    if(!oldLogin){
-      oldLogin = document.createElement('a');
-      oldLogin.className = 'nav-login';
-      oldLogin.href = OLD_LOGIN_URL;
-      oldLogin.target = '_blank';
-      navForOld.appendChild(oldLogin);
-    }
-    oldLogin.textContent = '旧レポスルのログイン';
-  }
+  // 旧レポスルのログインは出さない（2026-11-20）。ページに残っている旧のリンクも消す
+  Array.prototype.forEach.call(document.querySelectorAll('.nav-login'), function(a){ a.remove(); });
 
   /* P1 告知バナー */
   var BANNER_KEY = 'sc-banner-shin-closed';
