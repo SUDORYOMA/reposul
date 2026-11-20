@@ -453,6 +453,19 @@ footer{background:var(--ink);color:#d8d8d2;padding:22px 16px;text-align:center;f
   .note{bottom:calc(30px + env(safe-area-inset-bottom,0px))}
   .hint{bottom:calc(30px + env(safe-area-inset-bottom,0px))}
 }
+
+/* QR の読み取りの画面（カメラは見本。今のアプリと同じ、画面いっぱいのカメラに枠） */
+.sc.scan{background:radial-gradient(120% 80% at 40% 30%,#737a74 0%,#434944 50%,#202422 100%)}
+.cam.full{left:0;top:0;width:100%;height:100%;border-radius:0;background:transparent;display:block}
+.cam.full::after{top:38%;width:80%;height:auto;aspect-ratio:1}
+.cam.full span{position:absolute;left:50%;top:38%;width:52%;height:auto;aspect-ratio:1;transform:translate(-50%,-50%) rotateX(10deg) rotateY(-8deg) rotate(-5deg)}
+.cam.full span.away{transform:translate(-50%,-50%) translate(-95%,95%) rotate(-28deg) scale(.7)}
+.cam.full span img{position:absolute;width:126%;max-width:none;left:-13.2%;top:-53.6%}
+.cam.full i{width:68%;animation-name:camscan2}
+@keyframes camscan2{from{top:20%}to{top:56%}}
+.scan-x{position:absolute;z-index:3;right:5%;top:3%;width:11%;aspect-ratio:1;border-radius:50%;background:rgba(0,0,0,.45);color:#fff;display:flex;align-items:center;justify-content:center;font-size:clamp(12px,2vh,20px);font-weight:400}
+.sc .scan-hint{position:absolute;z-index:3;left:50%;top:64%;transform:translateX(-50%);margin:0;white-space:nowrap;background:rgba(255,255,255,.9);color:#1f2a24;border-radius:8px;padding:4px 12px;font-size:clamp(8px,1.3vh,12px);font-weight:700;line-height:1.5}
+.sc .scan-end{position:absolute;z-index:3;left:5%;right:5%;bottom:4%;margin:0;background:#1a7a4c;color:#fff;border-radius:8px;text-align:center;padding:7px 0;font-size:clamp(9px,1.4vh,13px);font-weight:700;line-height:1.5}
 </style>
 </head>
 <body>
@@ -601,7 +614,7 @@ footer{background:var(--ink);color:#d8d8d2;padding:22px 16px;text-align:center;f
   var combo = function (pc, ph, shift, opt) {
     opt = opt || {};
     var pcs = [].concat(pc);
-    var cls = /^pc-(attendance|ledger)$/.test(pcs[0]) ? "" : pcs[0] === "pc-board" ? " full" : " cut";
+    var cls = /^pc-(attendance|ledger|schedule)$/.test(pcs[0]) ? "" : pcs[0] === "pc-board" ? " full" : " cut";
     var sv = opt.sv || pcs.map(function (n, k) { return '<img class="ly' + (k ? "" : " on") + cls + '" src="' + img(n) + '" alt="">'; }).join("") + (pcs.length > 1 ? '<i class="ptr"></i>' : "");
     var phs = Array.isArray(ph) ? stack(ph.map(function (n) { return { n: n }; }), "mini" + (opt.tall ? " tall" : ""), opt.phExtra) : phone(ph, shift === undefined ? 5 : shift, "mini");
     return '<div class="combo"><div class="lap"><div class="lid"><div class="sv">' + sv + '</div></div><div class="foot"><b></b></div></div>' + phs + "</div>";
@@ -641,7 +654,7 @@ footer{background:var(--ink);color:#d8d8d2;padding:22px 16px;text-align:center;f
     { bg: bg("215793758_0"), pos: "50% 50%", h: ["予定から日報は、", "ワンプッシュ。"], sub: "現場・時間・作業員が|入った状態で始まる。", sfx: ["ポチッ", "l"],
       html: combo("pc-schedule", ["p-schedule-open", "p-report-edit", "p-report-bottom", "p-sign"], 0, { tall: true, phExtra: SIGN }), anim: animSign },
     { bg: bg("215801860_0"), pos: "50% 74%", h: ["作業員の追加は、", "QRを読むだけ。"], sub: "名前を探さない。|打たない。|続けて何人でも。", sfx: ["ピピッ！", "r"],
-      html: '<div class="pair">' + phone("p-qr", 5, "solo") + '<div class="ph solo"><div class="sc"><div class="im" style="transform:translateY(-12.8%)"><img src="' + img("p-scanner") + '" alt=""><div class="cam"><span><img src="' + img("p-qr") + '" alt=""></span><i></i></div></div><p class="qr-toast">山田 一郎さんを追加しました</p></div></div></div>', anim: animQr },
+      html: '<div class="pair">' + phone("p-qr", 5, "solo") + '<div class="ph solo"><div class="sc scan"><div class="cam full"><span><img src="' + img("p-qr") + '" alt=""></span><i></i></div><b class="scan-x">×</b><p class="scan-hint">QRコードを読み込んでください</p><p class="scan-end">読み取りを終える</p><p class="qr-toast">山田 一郎さんを追加しました</p></div></div></div>', anim: animQr },
     { bg: bg("215793737_0"), pos: "50% 55%", h: ["集計も請求書も、", "質問を選ぶだけ。"], sub: "出勤簿・出面帳は|Excel・PDF に。|請求書は PDF で|そのままメール送信。", sfx: ["ザッ！", "l"],
       html: combo(["pc-attendance", "pc-ledger"], "c-invoices"), anim: animLedger },
     { bg: bg("215793739_0"), pos: "50% 58%", more: true, h: ["他にも、", "こんな機能が！"], sub: "日報のまわりの事務作業を、|まとめて。", sfx: ["ドーン！", "r"], note: " ",
@@ -666,7 +679,7 @@ footer{background:var(--ink);color:#d8d8d2;padding:22px 16px;text-align:center;f
   function animLine(el) {
     var sc = el.querySelector(".sc"), L = layers(sc), dot = sc.querySelector(".tap");
     swap(sc, 0); dot.classList.remove("vis"); place(dot, L[0], 70, 70, true);
-    later(500, function () { dot.classList.add("vis"); place(dot, L[0], 17, 86.7); });
+    later(500, function () { dot.classList.add("vis"); place(dot, L[0], 17, 86.3); });
     press(dot, 1400);
     later(1600, function () { swap(sc, 1); dot.classList.remove("vis"); });
     return 5200;
@@ -676,10 +689,10 @@ footer{background:var(--ink);color:#d8d8d2;padding:22px 16px;text-align:center;f
     swap(sc, 0); dot.classList.remove("vis"); sig.classList.remove("draw"); place(dot, L[0], 75, 60, true);
     sig.style.left = L[3].offsetLeft + L[3].offsetWidth * 0.07 + "px"; sig.style.top = L[3].offsetTop + L[3].offsetHeight * 0.70 + "px";
     sig.style.width = L[3].offsetWidth * 0.86 + "px"; sig.style.height = L[3].offsetHeight * 0.145 + "px";
-    later(400, function () { dot.classList.add("vis"); place(dot, L[0], 50, 33); });
+    later(400, function () { dot.classList.add("vis"); place(dot, L[0], 50, 34.2); });
     press(dot, 1200);
     later(1400, function () { swap(sc, 1); });
-    later(2300, function () { place(dot, L[1], 11.2, 83.4); });
+    later(2300, function () { place(dot, L[1], 12, 83.7); });
     press(dot, 3000);
     later(3200, function () { swap(sc, 2); });
     later(3600, function () { place(dot, L[2], 67.3, 83.7); });
