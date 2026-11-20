@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="google-site-verification" content="bpIV_LCRWmrh5Sj40mC8qFnWzcd51dtSj07Pz0Wx6Ik" />
-<title>レポスル日報管理【LINE日報】【工数管理】</title>
+<title>レポスル日報【LINE日報】【工数管理】</title>
 <meta name="description" content="スマホで日報入力、工数は自動集計。紙・Excelの月末集計業務をなくす建設業向け日報・工数管理アプリ「レポスル」。協力会社との連携機能も。まずはお気軽にお問い合わせください。">
 <link rel="canonical" href="https://lp.reposul.com/">
 <link rel="icon" href="favicon.ico">
@@ -293,6 +293,7 @@ footer{background:var(--ink);color:#d8d8d2;padding:22px 16px;text-align:center;f
   .sv{aspect-ratio:16/11}
   .sv img,.sv img.cut{width:124%;max-width:none;margin:0 0 0 -23.5%}
   .sv img.cut{margin-top:-8.2%}
+  .sv img.full{width:100%;margin:0}
   /* スマホの画面は高さの 3/5 を PC に重ね、残り 2/5 を下に出す。全体を上下の真ん中に */
   .combo:has(.mini){--pc:calc(90cqw*.6875 + 2px);--pw:min(47cqw,calc((100cqh - var(--pc) - 8px)*1.875));--ph:calc(var(--pw)*4/3);margin-top:calc((100cqh - var(--pc) - var(--ph)*.4)/2)}
   .combo.roster:has(.mini){--pc:calc(100cqw*.7071)}
@@ -362,10 +363,10 @@ footer{background:var(--ink);color:#d8d8d2;padding:22px 16px;text-align:center;f
 <header class="top">
   <div class="brand">
     <a class="logo" href="#top" aria-label="シン・レポスル"><img src="lp1/img/logo.webp" alt="シン・レポスル" width="260" height="113"></a>
-    <nav class="prods" aria-label="レポスルのアプリ">
-      <a href="#top" aria-current="page">レポスル日報管理</a>
-      <a href="genka.html">レポスル工事原価<em>近日公開！</em></a>
-      <a href="roumu.html">レポスル労務管理<em>近日公開！</em></a>
+    <nav class="prods" aria-label="レポスルシリーズ">
+      <a href="#top" aria-current="page">レポスル日報</a>
+      <a href="genka.html">レポスル原価<em>近日公開！</em></a>
+      <a href="roumu.html">レポスル労務<em>近日公開！</em></a>
     </nav>
   </div>
   <nav aria-label="ログイン">
@@ -391,8 +392,8 @@ footer{background:var(--ink);color:#d8d8d2;padding:22px 16px;text-align:center;f
     <p class="menu-sub">見たい機能を選ぶ</p>
     <div class="menu-grid" id="menuGrid"></div>
     <div class="menu-prods">
-      <a href="genka.html">レポスル工事原価<em>近日公開！</em></a>
-      <a href="roumu.html">レポスル労務管理<em>近日公開！</em></a>
+      <a href="genka.html">レポスル原価<em>近日公開！</em></a>
+      <a href="roumu.html">レポスル労務<em>近日公開！</em></a>
     </div>
     <div class="menu-more"><a href="#faq">よくある質問</a><a href="home.html">詳しくはこちら！</a><a href="agent.html">代理店募集</a></div>
   </div>
@@ -437,12 +438,12 @@ footer{background:var(--ink);color:#d8d8d2;padding:22px 16px;text-align:center;f
       </div>
     </section>
     <section class="wrap" id="series">
-      <h2 class="title"><span class="nb">レポスルの</span><b class="nb">アプリ</b></h2>
-      <p class="lede">ひとつのアプリの中で、ご契約に合わせて使えます。</p>
+      <h2 class="title"><span class="nb">レポスル</span><b class="nb">シリーズ</b></h2>
+      <p class="lede">各サービスが連携・同期することで、事務作業をレポスルですべて完結！</p>
       <div class="series">
-        <a href="#top" aria-current="page"><b>レポスル日報管理</b><span>日報・予定表・集計・請求書・作業員名簿</span></a>
-        <a href="genka.html"><em>近日公開！</em><b>レポスル工事原価</b><span>案件ごとの原価管理。人工はレポスル日報管理から同期。工事原価で作った案件は、日報管理にも同期。</span></a>
-        <a href="roumu.html"><em>近日公開！</em><b>レポスル労務管理</b><span>レポスル日報管理と打刻機能で、勤怠管理まで完結。</span></a>
+        <a href="#top" aria-current="page"><b>レポスル日報</b><span>日報・予定表・集計・請求書・作業員名簿</span></a>
+        <a href="genka.html"><em>近日公開！</em><b>レポスル原価</b><span>案件ごとの原価管理。人工はレポスル日報から同期。レポスル原価で作った案件は、レポスル日報にも同期。</span></a>
+        <a href="roumu.html"><em>近日公開！</em><b>レポスル労務</b><span>レポスル日報と打刻機能で、勤怠管理まで完結。</span></a>
       </div>
       <p class="fine">※セット契約で割引あり</p>
     </section>
@@ -496,13 +497,13 @@ footer{background:var(--ink);color:#d8d8d2;padding:22px 16px;text-align:center;f
     return '<div class="ph ' + cls + '"><div class="sc' + (shift === "bottom" ? " bottom" : "") + '"><img src="' + img(n) + '" alt=""' + (shift && shift !== "bottom" ? ' style="transform:translateY(-' + shift + '%)"' : "") + "></div></div>";
   };
   var combo = function (pc, ph, shift) {
-    return '<div class="combo"><div class="lap"><div class="lid"><div class="sv"><img' + (pc === "pc-attendance" ? "" : ' class="cut"') + ' src="' + img(pc) + '" alt=""></div></div><div class="foot"><b></b></div></div>' + phone(ph, shift === undefined ? 5 : shift, "mini") + "</div>";
+    return '<div class="combo"><div class="lap"><div class="lid"><div class="sv"><img' + (pc === "pc-attendance" ? "" : pc === "pc-board" ? ' class="full"' : ' class="cut"') + ' src="' + img(pc) + '" alt=""></div></div><div class="foot"><b></b></div></div>' + phone(ph, shift === undefined ? 5 : shift, "mini") + "</div>";
   };
   var SCENES = [
     { bg: bg("215793756_0"), pos: "50% 40%", hero: true, sfx: ["ドン！！", "r"] },
     { bg: bg("215793757_0"), pos: "50% 60%", h: ["ログインは、", "LINEをワンプッシュ。"], sub: "アプリ不要。IDの入力は最初の1回だけ。", sfx: ["ピッ！", "l"], html: phone("p-line", "bottom", "solo") },
-    { bg: bg("215793730_0"), pos: "50% 62%", h: ["ホワイトボード感覚で、", "予定を共有！"], sub: "作業員も作業車も割り振り。車検の切れも2か月前にお知らせ。", sfx: ["ドドン！", "r"], html: combo("pc-schedule", "c-vehicles") },
-    { bg: bg("215793758_0"), pos: "50% 50%", h: ["予定から日報は、", "ワンプッシュ。"], sub: "現場・時間・作業員が入った状態で始まる。", sfx: ["ポチッ", "l"], html: phone("p-schedule-open", 0, "solo") },
+    { bg: bg("215793730_0"), pos: "50% 62%", h: ["ホワイトボード感覚で、", "予定を共有！"], sub: "作業員も作業車も割り振り。車検の切れも2か月前にお知らせ。", sfx: ["ドドン！", "r"], html: combo("pc-board", "p-schedule-mine", "0") },
+    { bg: bg("215793758_0"), pos: "50% 50%", h: ["予定から日報は、", "ワンプッシュ。"], sub: "現場・時間・作業員が入った状態で始まる。", sfx: ["ポチッ", "l"], html: combo("pc-schedule", "p-schedule-open", "0") },
     { bg: bg("215801860_0"), pos: "50% 74%", h: ["作業員の追加は、", "QRを読むだけ。"], sub: "名前を探さない。打たない。続けて何人でも。", sfx: ["ピピッ！", "r"],
       html: '<div class="pair">' + phone("p-qr", 5, "solo") + '<div class="ph solo"><div class="sc"><div class="im" style="transform:translateY(-12.8%)"><img src="' + img("p-scanner") + '" alt=""><div class="cam"><span><img src="' + img("p-qr") + '" alt=""></span><i></i></div></div></div></div></div>' },
     { bg: bg("215793737_0"), pos: "50% 55%", h: ["集計も請求書も、", "質問を選ぶだけ。"], sub: "出勤簿・出面帳は Excel・PDF に。請求書は PDF でそのままメール送信。", sfx: ["ザッ！", "l"], html: combo("pc-attendance", "c-invoices") },
@@ -521,7 +522,7 @@ footer{background:var(--ink);color:#d8d8d2;padding:22px 16px;text-align:center;f
   function koma(s, i) {
     return '<div class="koma"><div class="tag"><i>' + String(i).padStart(2, "0") + "</i>" + (s.was ? '<span class="say">「' + s.was + "」</span>" : "") + "</div>" + (s.was ? '<p class="was"><em>だから</em></p>' : "") + "<h2>" + s.h[0] + "<br><b>" + s.h[1] + "</b></h2><p>" + s.sub + "</p></div>";
   }
-  var HERO = '<div class="koma"><p class="prodname">レポスル日報管理</p><h1><span class="tag1">建設業の事務作業を</span><span class="go tag2">ひとつに。レポスル。</span></h1><div class="sfx r" aria-hidden="true">ドン！！</div>' +
+  var HERO = '<div class="koma"><p class="prodname">レポスル日報</p><h1><span class="tag1">建設業の事務作業を</span><span class="go tag2">ひとつに。レポスル。</span></h1><div class="sfx r" aria-hidden="true">ドン！！</div>' +
     '<p class="sub"><span class="nb">日報・予定表・集計・請求書・</span><span class="nb">作業員名簿を、ひとつのアプリで。</span><br><span class="nb">現場はLINE、</span><span class="nb">事務所はブラウザ。</span></p>' +
     '<div class="cta"><a class="btn fill" href="https://app.reposul.com/demo" target="_blank" rel="noopener">デモを試す</a><a class="btn line" href="#price" data-jump>料金を見る</a><a class="btn line" href="https://app.reposul.com/demo/contact?type=inquiry" target="_blank" rel="noopener">お問い合わせ</a></div></div>' +
     '<div class="show">' + combo("pc-attendance", "p-qr") + '</div><button type="button" class="hint" data-next>' + (matchMedia("(pointer:coarse)").matches ? "スワイプで次へ" : "スクロール・↓キーで次へ") + "</button>";
