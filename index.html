@@ -741,13 +741,13 @@ footer{background:var(--ink);color:#d8d8d2;padding:22px 16px;text-align:center;f
     var wb = sv.querySelector(".wb");
     if (wb) wb.style.transform = "scale(" + sv.clientWidth / 1200 + ")";
   }
-  var reduced = matchMedia("(prefers-reduced-motion:reduce)").matches;
+  // 「視差効果を減らす」「アニメーションを表示しない」の設定でも、画面の操作の見本は動かす（ここが一番伝えたいところのため）
   var playing = -1;
   function play(i) {
     stopAnim();
     playing = i;
     var s = SCENES[i];
-    if (!s || !s.anim || reduced) return;
+    if (!s || !s.anim) return;
     var el = scenes[i];
     (function loop() { var d = s.anim(el); later(d, loop); })();
   }
