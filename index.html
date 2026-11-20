@@ -466,6 +466,12 @@ footer{background:var(--ink);color:#d8d8d2;padding:22px 16px;text-align:center;f
 .scan-x{position:absolute;z-index:3;right:5%;top:3%;width:11%;aspect-ratio:1;border-radius:50%;background:rgba(0,0,0,.45);color:#fff;display:flex;align-items:center;justify-content:center;font-size:clamp(12px,2vh,20px);font-weight:400}
 .sc .scan-hint{position:absolute;z-index:3;left:50%;top:64%;transform:translateX(-50%);margin:0;white-space:nowrap;background:rgba(255,255,255,.9);color:#1f2a24;border-radius:8px;padding:4px 12px;font-size:clamp(8px,1.3vh,12px);font-weight:700;line-height:1.5}
 .sc .scan-end{position:absolute;z-index:3;left:5%;right:5%;bottom:4%;margin:0;background:#1a7a4c;color:#fff;border-radius:8px;text-align:center;padding:7px 0;font-size:clamp(9px,1.4vh,13px);font-weight:700;line-height:1.5}
+
+/* はじめのコマ：スマホの予定表を、パソコンの画面の右側に重ねる（スマホで見たときも見えるように） */
+@media (max-width:760px){
+  .hero .combo:has(.mini.tall){margin-top:calc((100cqh - var(--pc)) / 2)}
+  .hero .mini.tall{top:calc(var(--pc) * .06);right:5cqw;width:min(31cqw,calc(var(--pc) * .52))}
+}
 </style>
 </head>
 <body>
@@ -616,7 +622,7 @@ footer{background:var(--ink);color:#d8d8d2;padding:22px 16px;text-align:center;f
     var pcs = [].concat(pc);
     var cls = /^pc-(attendance|ledger|schedule)$/.test(pcs[0]) ? "" : pcs[0] === "pc-board" ? " full" : " cut";
     var sv = opt.sv || pcs.map(function (n, k) { return '<img class="ly' + (k ? "" : " on") + cls + '" src="' + img(n) + '" alt="">'; }).join("") + (pcs.length > 1 ? '<i class="ptr"></i>' : "");
-    var phs = Array.isArray(ph) ? stack(ph.map(function (n) { return { n: n }; }), "mini" + (opt.tall ? " tall" : ""), opt.phExtra) : phone(ph, shift === undefined ? 5 : shift, "mini");
+    var phs = Array.isArray(ph) ? stack(ph.map(function (n) { return { n: n }; }), "mini" + (opt.tall ? " tall" : ""), opt.phExtra) : phone(ph, shift === undefined ? 5 : shift, "mini" + (opt.tall ? " tall" : ""));
     return '<div class="combo"><div class="lap"><div class="lid"><div class="sv">' + sv + '</div></div><div class="foot"><b></b></div></div>' + phs + "</div>";
   };
 
@@ -792,7 +798,7 @@ footer{background:var(--ink);color:#d8d8d2;padding:22px 16px;text-align:center;f
   var HERO = '<div class="koma"><p class="prodname">レポスル日報</p><h1><span class="tag1">建設業の事務作業は</span><span class="go tag2">レポスルで完結</span></h1><div class="sfx r" aria-hidden="true">ドン！！</div>' +
     '<p class="sub">スマホひとつで全てができる</p>' +
     '<div class="cta"><a class="btn fill" href="https://app.reposul.com/demo" target="_blank" rel="noopener">デモを試す</a><a class="btn line" href="https://app.reposul.com/demo/contact?type=inquiry" target="_blank" rel="noopener">お問い合わせ</a></div></div>' +
-    '<div class="show">' + combo("pc-attendance", "p-qr") + '</div><button type="button" class="hint" data-next>' + (matchMedia("(pointer:coarse)").matches ? "スワイプで次へ" : "スクロール・↓キーで次へ") + "</button>";
+    '<div class="show">' + combo("pc-attendance", "p-schedule-mine", 0, { tall: true }) + '</div><button type="button" class="hint" data-next>' + (matchMedia("(pointer:coarse)").matches ? "スワイプで次へ" : "スクロール・↓キーで次へ") + "</button>";
 
   stage.innerHTML = SCENES.map(function (s, i) {
     return '<article class="scene' + (s.hero ? " hero" : "") + '" aria-hidden="true"><div class="bg" data-src="' + s.bg + '" style="background-position:' + s.pos + '"></div>' +
