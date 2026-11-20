@@ -313,6 +313,9 @@ footer{background:var(--ink);color:#d8d8d2;padding:22px 16px;text-align:center;f
   .prices th,.prices td{padding:12px 14px}
   .prices .cap{white-space:nowrap}
   .hero .koma .sfx{-webkit-text-stroke-width:7px}
+  .hero .prodname{display:none}
+  .combo:has(.mini.tall){--pw:min(34cqw,calc((100cqh - var(--pc) - 8px)*1.32));--ph:calc(var(--pw)*17/9)}
+  .mini.tall{width:var(--pw)}
 }
 /* 幅のせまいスマホは「詳細」を機能一覧の中へ */
 @media (max-width:359px){ .top .hide-xs{display:none} .top nav{gap:6px} }
@@ -357,6 +360,86 @@ footer{background:var(--ink);color:#d8d8d2;padding:22px 16px;text-align:center;f
 .series span{display:block;margin-top:6px;color:#44443f;font-size:14px}
 .series em{position:absolute;top:-14px;right:12px;font-size:13px;padding:1px 8px}
 @media (max-width:760px){.series{grid-template-columns:1fr}}
+
+/* 動くスライド（2026-11-20） */
+.sv{position:relative}
+.sv img.ly{transition:opacity .35s}
+.sv img.ly:not(:first-child){position:absolute;left:0;top:0}
+.ly{opacity:0}
+.ly.on{opacity:1}
+.sc.stack>img.ly{transition:opacity .35s}
+.sc.stack>img.bt{top:auto;bottom:0}
+.tap{position:absolute;z-index:6;left:50%;top:50%;width:15%;aspect-ratio:1;border-radius:50%;background:rgba(26,122,76,.3);border:2px solid #fff;box-shadow:0 0 0 2px rgba(26,122,76,.85),0 4px 10px rgba(0,0,0,.35);
+  transform:translate(-50%,-50%);opacity:0;pointer-events:none;transition:left .75s var(--ease),top .75s var(--ease),opacity .25s,transform .15s}
+.tap.vis{opacity:1}
+.tap.press{transform:translate(-50%,-50%) scale(.72);background:rgba(26,122,76,.6)}
+.ptr,.wb-ptr{position:absolute;z-index:6;width:2.4%;aspect-ratio:12/18;opacity:0;pointer-events:none;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 18'%3E%3Cpath d='M1 1v14l3.6-3.4 2.6 5.6 2.4-1.1-2.6-5.5H12z' fill='%23111' stroke='%23fff' stroke-width='1.2' stroke-linejoin='round'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat;
+  transition:left .8s var(--ease),top .8s var(--ease),opacity .25s;filter:drop-shadow(0 2px 3px rgba(0,0,0,.35))}
+.ptr.vis,.wb-ptr.vis{opacity:1}
+.ptr::after{content:"";position:absolute;left:-90%;top:-60%;width:180%;aspect-ratio:1;border-radius:50%;border:3px solid var(--green);opacity:0;transform:scale(.3)}
+.ptr.press::after{animation:ring .5s ease-out}
+@keyframes ring{0%{opacity:1;transform:scale(.3)}100%{opacity:0;transform:scale(1.3)}}
+.mini.tall{aspect-ratio:9/17;width:22%;bottom:-16%;right:-5%}
+.sig{position:absolute;z-index:5;pointer-events:none;overflow:visible}
+.sig path{fill:none;stroke:#1b2a5e;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;vector-effect:non-scaling-stroke}
+.sig.draw path{transition:stroke-dashoffset 1.8s ease-in-out;stroke-dashoffset:0}
+.cam span{transition:transform 1.1s var(--ease),opacity .4s}
+.cam span.away{transform:translate(-95%,85%) rotate(-28deg) scale(.7);opacity:0}
+.cam.hit{--c:#2dcb86}
+.cam.hit i{opacity:0}
+.cam::before{content:"";position:absolute;inset:0;z-index:2;background:#fff;opacity:0;pointer-events:none}
+.cam.hit::before{animation:flash .45s ease-out}
+@keyframes flash{0%{opacity:.75}100%{opacity:0}}
+.sc .qr-toast{display:block;height:auto;min-height:0;position:absolute;z-index:4;left:6%;top:9%;width:88%;text-align:center;transform:translateY(-12px);margin:0;background:#1c1c1a;color:#fff;border-radius:999px;padding:5px 10px;font-size:clamp(9px,1.35vh,13px);font-weight:700;line-height:1.4;opacity:0;transition:opacity .3s,transform .4s var(--ease);box-shadow:0 6px 14px rgba(0,0,0,.3)}
+.qr-toast::before{content:"✓ ";color:#2dcb86}
+.sc .qr-toast.vis{opacity:1;transform:translateY(0)}
+/* ホワイトボードの見本（幅 1200px で作って、画面の幅に縮める） */
+.sv .wb{position:absolute;left:0;top:0;width:1200px;height:750px;transform-origin:0 0;background:#f6f6f3;padding:18px 22px;font-size:13px;line-height:1.45;color:#1f2a24;text-align:left;overflow:hidden}
+.wb *{box-sizing:border-box}
+.wb p{margin:0}
+.wb-h{display:flex;align-items:center;gap:12px}
+.wb-h>b{font-size:21px;font-weight:900}
+.wb-btn{display:inline-flex;align-items:center;height:32px;padding:0 12px;border:1px solid #d6d9d3;border-radius:8px;background:#fff;font-weight:700;font-size:13px}
+.wb-add{margin-left:auto;background:#1a7a4c;color:#fff;border-radius:8px;padding:8px 16px;font-weight:700}
+.wb-nav{display:flex;align-items:center;gap:10px;margin-top:12px}
+.wb-nav>b{font-size:18px}
+.wb-c{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border:1px solid #d6d9d3;border-radius:50%;background:#fff}
+.wb-today{color:#1a7a4c;border-color:#1a7a4c}
+.wb-seg{display:inline-flex;border:1px solid #d6d9d3;border-radius:8px;background:#fff;overflow:hidden}
+.wb-seg i{font-style:normal;padding:6px 12px;font-weight:700}
+.wb-seg i.on{background:#1a7a4c;color:#fff}
+.wb-free{display:flex;gap:16px;margin-top:12px;background:#fff;border:1px solid #d6d9d3;border-radius:12px;padding:10px 14px}
+.wb-fl{flex:1}
+.wb-fl p b{font-size:14px}
+.wb-n{margin-left:8px;font-weight:900;color:#b42318}
+.wb-fl small{margin-left:10px;color:#6b7280;font-size:11px}
+.wb-fv{border-left:1px solid #e5e7e3;padding-left:14px;width:300px}
+.wb-fv p{font-weight:700;font-size:12px;color:#4b5563}
+.wb-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;min-height:34px}
+.wb-chip{display:inline-flex;align-items:center;gap:4px;height:30px;padding:0 12px;border:1px solid #cfd4cd;border-radius:999px;background:#fff;font-weight:700;font-size:13px;white-space:nowrap}
+.wb-chip small{font-size:10px;color:#1d4ed8;font-weight:700}
+.wb-chip.ghost{position:absolute;z-index:5;margin:0;box-shadow:0 10px 22px rgba(0,0,0,.28);border-color:#1a7a4c;transition:transform .9s var(--ease);transform:rotate(-3deg) scale(1.06)}
+.wb-chip.drop{animation:drop .9s ease-out}
+@keyframes drop{0%{background:#c9f0dc;border-color:#1a7a4c}100%{background:#fff}}
+.wb-cars{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.wb-car{display:inline-block;background:#eef6f1;color:#1a7a4c;border-radius:6px;padding:2px 8px;font-size:11.5px;font-weight:700;white-space:nowrap}
+.wb-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.wb-g{background:#eceee9;border:1px solid #d6d9d3;border-radius:12px;padding:8px 10px 10px}
+.wb-g h4{margin:0 0 6px;border-left:4px solid #1a7a4c;padding-left:8px;font-size:14px;font-weight:900;line-height:1.4}
+.wb-cards{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.wb-card{background:#fff;border:1px solid #dfe2dc;border-radius:10px;padding:8px 10px}
+.wb-t{display:flex;justify-content:space-between;gap:6px}
+.wb-t b{font-size:13.5px;line-height:1.35}
+.wb-t em{flex:none;align-self:flex-start;font-style:normal;font-size:10.5px;font-weight:700;border-radius:4px;padding:1px 6px}
+.st-0{border:1px solid #1a7a4c;color:#1a7a4c}
+.st-1{background:#fdf1c8;color:#8a5a00}
+.st-2{background:#1a7a4c;color:#fff}
+.wb-time{color:#6b7280;font-size:11.5px}
+.wb-l{margin-top:4px;color:#4b5563;font-size:11px;font-weight:700}
+.wb-drop{border:1px dashed #c8ccc6;border-radius:8px;padding:4px;margin-top:3px;min-height:40px}
+.wb-empty{color:#9aa19a;font-size:11.5px;padding:5px 4px}
+.wb .wb-ptr{width:22px;z-index:7;transition:left .85s var(--ease),top .85s var(--ease),opacity .25s}
 </style>
 </head>
 <body>
@@ -496,20 +579,178 @@ footer{background:var(--ink);color:#d8d8d2;padding:22px 16px;text-align:center;f
   var phone = function (n, shift, cls) {
     return '<div class="ph ' + cls + '"><div class="sc' + (shift === "bottom" ? " bottom" : "") + '"><img src="' + img(n) + '" alt=""' + (shift && shift !== "bottom" ? ' style="transform:translateY(-' + shift + '%)"' : "") + "></div></div>";
   };
-  var combo = function (pc, ph, shift) {
-    return '<div class="combo"><div class="lap"><div class="lid"><div class="sv"><img' + (pc === "pc-attendance" ? "" : pc === "pc-board" ? ' class="full"' : ' class="cut"') + ' src="' + img(pc) + '" alt=""></div></div><div class="foot"><b></b></div></div>' + phone(ph, shift === undefined ? 5 : shift, "mini") + "</div>";
+  // 動くスマホ：画面を重ねておき、押したら次の画面へ（bt は下にそろえる画面）
+  var stack = function (list, cls, extra) {
+    return '<div class="ph ' + cls + '"><div class="sc stack">' + list.map(function (l, k) {
+      return '<img class="ly' + (k ? "" : " on") + (l.bt ? " bt" : "") + '" src="' + img(l.n) + '" alt="">';
+    }).join("") + (extra || "") + '<i class="tap"></i></div></div>';
   };
+  var combo = function (pc, ph, shift, opt) {
+    opt = opt || {};
+    var pcs = [].concat(pc);
+    var cls = /^pc-(attendance|ledger)$/.test(pcs[0]) ? "" : pcs[0] === "pc-board" ? " full" : " cut";
+    var sv = opt.sv || pcs.map(function (n, k) { return '<img class="ly' + (k ? "" : " on") + cls + '" src="' + img(n) + '" alt="">'; }).join("") + (pcs.length > 1 ? '<i class="ptr"></i>' : "");
+    var phs = Array.isArray(ph) ? stack(ph.map(function (n) { return { n: n }; }), "mini" + (opt.tall ? " tall" : ""), opt.phExtra) : phone(ph, shift === undefined ? 5 : shift, "mini");
+    return '<div class="combo"><div class="lap"><div class="lid"><div class="sv">' + sv + '</div></div><div class="foot"><b></b></div></div>' + phs + "</div>";
+  };
+
+  // ホワイトボード（画面と同じ形の見本。作業員をドラッグして現場に入れる）
+  var chip = function (n, co) { return '<span class="wb-chip" data-name="' + n + '">' + n + (co ? "<small>" + co + "</small>" : "") + "</span>"; };
+  var card = function (id, kind, name, st, time, ws, cars) {
+    var stc = { "まだ": "st-0", "一時保存": "st-1", "作成済み": "st-2" }[st];
+    return '<div class="wb-card"><div class="wb-t"><b>【' + kind + "】" + name + '</b><em class="' + stc + '">' + st + "</em></div>" +
+      '<p class="wb-time">' + time + '</p><p class="wb-l">作業員 <span data-cnt="' + id + '">' + ws.length + "</span>人</p>" +
+      '<div class="wb-chips wb-drop" data-zone="' + id + '">' + (ws.length ? ws.map(function (w) { return chip(w); }).join("") : '<span class="wb-empty">ここへドラッグ</span>') + "</div>" +
+      '<p class="wb-l">作業車</p><div class="wb-cars">' + cars.map(function (c) { return '<span class="wb-car">' + c + "</span>"; }).join("") + "</div></div>";
+  };
+  var group = function (name, cards) { return '<section class="wb-g"><h4>' + name + '</h4><div class="wb-cards">' + cards.join("") + "</div></section>"; };
+  var BOARD = '<div class="wb"><div class="wb-h"><span class="wb-btn">‹ 戻る</span><b>ホワイトボード</b><span class="wb-add">＋ 予定を入れる</span></div>' +
+    '<div class="wb-nav"><span class="wb-c">‹</span><b>11月20日（金）</b><span class="wb-c">›</span><span class="wb-btn wb-today">今日</span><span class="wb-seg"><i>月</i><i>週</i><i class="on">ホワイトボード</i></span></div>' +
+    '<div class="wb-free"><div class="wb-fl"><p><b>割り振りされていない作業員</b><span class="wb-n"><span data-free>5</span>人</span><small>ここへ戻すと、その日だけ現場から外れます</small></p><div class="wb-chips" data-zone="free">' +
+    chip("伊藤 誠") + chip("小林 隼人") + chip("木村 亮", "加藤設備") + chip("斎藤 陽介") + chip("清水 健") + "</div></div>" +
+    '<div class="wb-fv"><p>空いている自社の作業車（2）</p><div class="wb-cars"><span class="wb-car">軽 エブリイ 品川480あ90-12</span><span class="wb-car">2t ダンプ 品川100う12-34</span></div></div></div>' +
+    '<div class="wb-grid">' +
+    group("東都建設株式会社", [card("a", "常用", "品川駅前再開発（A棟）", "作成済み", "08:00〜17:00　躯体工事", ["山田 一郎", "佐藤 健太", "鈴木 大輔"], ["中/エルフ/3456"]), card("b", "常用", "品川駅前再開発（B棟）", "まだ", "08:00〜17:00　型枠工事", ["高橋 翔", "田中 誠二"], ["軽/キャリイ/7788"])]) +
+    group("みなと総合建設株式会社", [card("c", "常用", "横浜みなとみらいオフィス", "一時保存", "08:00〜17:00　設備工事", ["吉田 拓海", "山本 涼", "松本 大地"], ["協力会社1台"]), card("d", "請負", "川崎物流センター新築", "まだ", "08:00〜17:00　鉄骨工事", ["井上 隆"], ["2t/ダンプ/5521"])]) +
+    group("さくら工務店", [card("e", "請負", "千葉ニュータウン戸建て", "まだ", "08:00〜17:00　外構工事", ["中村 光", "渡辺 拓也"], ["中/エルフ/2210"]), card("f", "請負", "船橋 店舗改修", "まだ", "09:00〜18:00　内装工事", [], ["リース1台"])]) +
+    group("港北ハウス工業", [card("g", "請負", "横浜青葉台 戸建て新築", "まだ", "08:00〜17:00　基礎工事", ["林 修平", "森 拓也"], ["軽/ハイゼット/3012"]), card("h", "常用", "川崎 マンション改修", "一時保存", "08:30〜17:30　塗装工事", ["石川 亮太"], ["協力会社1台"])]) +
+    '</div><i class="wb-ptr"></i></div>';
+
+  // サイン（線を引いていく）
+  var SIGN = '<svg class="sig" viewBox="0 0 300 80" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M18 58 C 30 18, 44 18, 40 52 C 38 66, 58 30, 70 24 C 78 20, 74 60, 88 54 C 100 48, 104 26, 116 30 C 128 34, 110 62, 128 58 C 146 54, 150 22, 166 26 C 180 30, 160 60, 182 56 C 204 52, 214 30, 230 34 C 246 38, 236 58, 254 52 L 282 40"/></svg>';
+
   var SCENES = [
     { bg: bg("215793756_0"), pos: "50% 40%", hero: true, sfx: ["ドン！！", "r"] },
-    { bg: bg("215793757_0"), pos: "50% 60%", h: ["ログインは、", "LINEをワンプッシュ。"], sub: "アプリ不要。IDの入力は最初の1回だけ。", sfx: ["ピッ！", "l"], html: phone("p-line", "bottom", "solo") },
-    { bg: bg("215793730_0"), pos: "50% 62%", h: ["ホワイトボード感覚で、", "予定を共有！"], sub: "作業員も作業車も割り振り。車検の切れも2か月前にお知らせ。", sfx: ["ドドン！", "r"], html: combo("pc-board", "p-schedule-mine", "0") },
-    { bg: bg("215793758_0"), pos: "50% 50%", h: ["予定から日報は、", "ワンプッシュ。"], sub: "現場・時間・作業員が入った状態で始まる。", sfx: ["ポチッ", "l"], html: combo("pc-schedule", "p-schedule-open", "0") },
+    { bg: bg("215793757_0"), pos: "50% 60%", h: ["ログインは、", "LINEをワンプッシュ。"], sub: "アプリ不要。IDの入力は最初の1回だけ。", sfx: ["ピッ！", "l"],
+      html: stack([{ n: "p-line", bt: true }, { n: "p-schedule-mine" }], "solo"), anim: animLine },
+    { bg: bg("215793730_0"), pos: "50% 62%", h: ["ホワイトボード感覚で、", "予定を共有！"], sub: "作業員も作業車も割り振り。車検の切れも2か月前にお知らせ。", sfx: ["ドドン！", "r"],
+      html: combo("pc-board", "p-schedule-mine", "0", { sv: BOARD }), anim: animBoard },
+    { bg: bg("215793758_0"), pos: "50% 50%", h: ["予定から日報は、", "ワンプッシュ。"], sub: "現場・時間・作業員が入った状態で始まる。", sfx: ["ポチッ", "l"],
+      html: combo("pc-schedule", ["p-schedule-open", "p-report-edit", "p-report-bottom", "p-sign"], 0, { tall: true, phExtra: SIGN }), anim: animSign },
     { bg: bg("215801860_0"), pos: "50% 74%", h: ["作業員の追加は、", "QRを読むだけ。"], sub: "名前を探さない。打たない。続けて何人でも。", sfx: ["ピピッ！", "r"],
-      html: '<div class="pair">' + phone("p-qr", 5, "solo") + '<div class="ph solo"><div class="sc"><div class="im" style="transform:translateY(-12.8%)"><img src="' + img("p-scanner") + '" alt=""><div class="cam"><span><img src="' + img("p-qr") + '" alt=""></span><i></i></div></div></div></div></div>' },
-    { bg: bg("215793737_0"), pos: "50% 55%", h: ["集計も請求書も、", "質問を選ぶだけ。"], sub: "出勤簿・出面帳は Excel・PDF に。請求書は PDF でそのままメール送信。", sfx: ["ザッ！", "l"], html: combo("pc-attendance", "c-invoices") },
+      html: '<div class="pair">' + phone("p-qr", 5, "solo") + '<div class="ph solo"><div class="sc"><div class="im" style="transform:translateY(-12.8%)"><img src="' + img("p-scanner") + '" alt=""><div class="cam"><span><img src="' + img("p-qr") + '" alt=""></span><i></i></div></div><p class="qr-toast">山田 一郎さんを追加しました</p></div></div></div>', anim: animQr },
+    { bg: bg("215793737_0"), pos: "50% 55%", h: ["集計も請求書も、", "質問を選ぶだけ。"], sub: "出勤簿・出面帳は Excel・PDF に。請求書は PDF でそのままメール送信。", sfx: ["ザッ！", "l"],
+      html: combo(["pc-attendance", "pc-ledger"], "c-invoices"), anim: animLedger },
     { bg: bg("215793739_0"), pos: "50% 58%", more: true, h: ["他にも、", "こんな機能が！"], sub: "日報のまわりの事務作業を、まとめて。", sfx: ["ドーン！", "r"], note: " ",
       html: '<ul class="guard more">' + [["作業員名簿", "全建統一様式第5号を、選ぶだけで PDF に"], ["日報の PDF・CSV", "用紙を選んで PDF に。CSV でも"], ["チャットにお知らせ", "日報が届いたら Slack・Teams などに"], ["協力会社との連携", "協力会社の日報・工数も、まとめて見える"], ["ランキング", "日報の作成数・出勤日数・提出率を数字で"], ["AI・API連携", "ChatGPT・Claude に今月の工数を聞くだけ"], ["17言語", "外国人の作業員も、自分の言葉で"], ["セキュリティー", "2段階認証・会社ごとのデータ分離・毎日のバックアップ"]].map(function (x) { return "<li><span>" + x[0] + "</span><small>" + x[1] + "</small></li>"; }).join("") + "</ul>" }
   ];
+
+  // ---------- 動き（今のシーンだけ、くり返し） ----------
+  // 押す場所は画像の中の％（公開デモから撮ったときに測った値：lp1/img/spots.json）
+  var timers = [];
+  function later(ms, fn) { timers.push(setTimeout(fn, ms)); }
+  function stopAnim() { timers.forEach(clearTimeout); timers = []; }
+  function layers(box) { return [].slice.call(box.querySelectorAll(":scope > .ly")); }
+  function swap(box, k) { layers(box).forEach(function (l, j) { l.classList.toggle("on", j === k); }); }
+  // 画像の中の％ → 画面の枠の中の位置（3D の傾きに左右されない offset で測る）
+  function place(dot, layer, x, y, jump) {
+    if (jump) dot.style.transition = "none";
+    dot.style.left = layer.offsetLeft + layer.offsetWidth * x / 100 + "px";
+    dot.style.top = layer.offsetTop + layer.offsetHeight * y / 100 + "px";
+    if (jump) { void dot.offsetWidth; dot.style.transition = ""; }
+  }
+  function press(dot, t) { later(t, function () { dot.classList.add("press"); }); later(t + 220, function () { dot.classList.remove("press"); }); }
+  function animLine(el) {
+    var sc = el.querySelector(".sc"), L = layers(sc), dot = sc.querySelector(".tap");
+    swap(sc, 0); dot.classList.remove("vis"); place(dot, L[0], 70, 70, true);
+    later(500, function () { dot.classList.add("vis"); place(dot, L[0], 17, 86.7); });
+    press(dot, 1400);
+    later(1600, function () { swap(sc, 1); dot.classList.remove("vis"); });
+    return 5200;
+  }
+  function animSign(el) {
+    var sc = el.querySelector(".mini .sc"), L = layers(sc), dot = sc.querySelector(".tap"), sig = sc.querySelector(".sig");
+    swap(sc, 0); dot.classList.remove("vis"); sig.classList.remove("draw"); place(dot, L[0], 75, 60, true);
+    sig.style.left = L[3].offsetLeft + L[3].offsetWidth * 0.07 + "px"; sig.style.top = L[3].offsetTop + L[3].offsetHeight * 0.70 + "px";
+    sig.style.width = L[3].offsetWidth * 0.86 + "px"; sig.style.height = L[3].offsetHeight * 0.145 + "px";
+    later(400, function () { dot.classList.add("vis"); place(dot, L[0], 50, 33); });
+    press(dot, 1200);
+    later(1400, function () { swap(sc, 1); });
+    later(2300, function () { place(dot, L[1], 11.2, 83.4); });
+    press(dot, 3000);
+    later(3200, function () { swap(sc, 2); });
+    later(3600, function () { place(dot, L[2], 67.3, 83.7); });
+    press(dot, 4300);
+    later(4500, function () { swap(sc, 3); dot.classList.remove("vis"); });
+    later(5100, function () { sig.classList.add("draw"); });
+    return 9000;
+  }
+  function animQr(el) {
+    var cam = el.querySelector(".cam"), st = cam.querySelector("span"), toast = el.querySelector(".qr-toast");
+    cam.classList.remove("hit"); toast.classList.remove("vis"); st.classList.add("away");
+    later(500, function () { st.classList.remove("away"); });
+    later(1700, function () { cam.classList.add("hit"); });
+    later(1900, function () { toast.classList.add("vis"); });
+    return 5600;
+  }
+  function animLedger(el) {
+    var sv = el.querySelector(".sv"), L = layers(sv), ptr = sv.querySelector(".ptr");
+    swap(sv, 0); ptr.classList.remove("vis"); place(ptr, L[0], 60, 75, true);
+    later(400, function () { ptr.classList.add("vis"); place(ptr, L[0], 27.1, 38); });
+    press(ptr, 1500);
+    later(1700, function () { swap(sv, 1); });
+    later(2600, function () { ptr.classList.remove("vis"); });
+    return 5600;
+  }
+  // ホワイトボード：割り振りされていない作業員を、現場の枠へドラッグ
+  function rel(e, root) { var x = 0, y = 0; while (e && e !== root) { x += e.offsetLeft; y += e.offsetTop; e = e.offsetParent; } return { x: x, y: y }; }
+  function animBoard(el) {
+    var sv = el.querySelector(".sv");
+    sv.innerHTML = BOARD;
+    fitBoard(sv);
+    var wb = sv.querySelector(".wb"), ptr = wb.querySelector(".wb-ptr");
+    ptr.style.transition = "none"; ptr.style.left = "760px"; ptr.style.top = "520px"; void ptr.offsetWidth; ptr.style.transition = "";
+    function drag(name, zone, t) {
+      var src, ghost, dst;
+      later(t, function () {
+        src = wb.querySelector('[data-zone="free"] [data-name="' + name + '"]');
+        var a = rel(src, wb);
+        ptr.classList.add("vis");
+        ptr.style.left = a.x + src.offsetWidth * 0.55 + "px"; ptr.style.top = a.y + src.offsetHeight * 0.6 + "px";
+      });
+      later(t + 900, function () {
+        var a = rel(src, wb);
+        ghost = src.cloneNode(true); ghost.classList.add("ghost");
+        ghost.style.left = a.x + "px"; ghost.style.top = a.y + "px";
+        wb.appendChild(ghost);
+        ptr.classList.add("grab");
+        src.remove();
+        var n = wb.querySelector("[data-free]"); n.textContent = +n.textContent - 1;
+        var z = wb.querySelector('[data-zone="' + zone + '"]'), empty = z.querySelector(".wb-empty");
+        if (empty) empty.remove();
+        dst = src.cloneNode(true); dst.style.visibility = "hidden"; z.appendChild(dst);
+      });
+      later(t + 1050, function () {
+        var b = rel(dst, wb), g = rel(ghost, wb);
+        var dx = b.x - g.x, dy = b.y - g.y;
+        ghost.style.transform = "translate(" + dx + "px," + dy + "px) rotate(-3deg) scale(1.06)";
+        ptr.style.left = parseFloat(ptr.style.left) + dx + "px"; ptr.style.top = parseFloat(ptr.style.top) + dy + "px";
+      });
+      later(t + 2000, function () {
+        ghost.remove(); dst.style.visibility = ""; dst.classList.add("drop");
+        ptr.classList.remove("grab");
+        var c = wb.querySelector('[data-cnt="' + zone + '"]'); c.textContent = +c.textContent + 1;
+      });
+    }
+    drag("伊藤 誠", "d", 500);
+    drag("小林 隼人", "f", 3000);
+    later(5300, function () { ptr.classList.remove("vis"); });
+    return 8000;
+  }
+  function fitBoard(sv) {
+    var wb = sv.querySelector(".wb");
+    if (wb) wb.style.transform = "scale(" + sv.clientWidth / 1200 + ")";
+  }
+  var reduced = matchMedia("(prefers-reduced-motion:reduce)").matches;
+  var playing = -1;
+  function play(i) {
+    stopAnim();
+    playing = i;
+    var s = SCENES[i];
+    if (!s || !s.anim || reduced) return;
+    var el = scenes[i];
+    (function loop() { var d = s.anim(el); later(d, loop); })();
+  }
 
   // 困りごと（見出しの前に「だから」でつなぐ）と目次の名前。SCENES と同じ順
   var WAS = ["", "IDとパスワード、毎回打つのは面倒", "割り振りは、電話とホワイトボード", "日報を毎日ゼロから書くのは大変", "作業員の名前を探して打つのは手間", "月末の集計も請求書も、手作業", ""];
@@ -522,9 +763,9 @@ footer{background:var(--ink);color:#d8d8d2;padding:22px 16px;text-align:center;f
   function koma(s, i) {
     return '<div class="koma"><div class="tag"><i>' + String(i).padStart(2, "0") + "</i>" + (s.was ? '<span class="say">「' + s.was + "」</span>" : "") + "</div>" + (s.was ? '<p class="was"><em>だから</em></p>' : "") + "<h2>" + s.h[0] + "<br><b>" + s.h[1] + "</b></h2><p>" + s.sub + "</p></div>";
   }
-  var HERO = '<div class="koma"><p class="prodname">レポスル日報</p><h1><span class="tag1">建設業の事務作業を</span><span class="go tag2">ひとつに。レポスル。</span></h1><div class="sfx r" aria-hidden="true">ドン！！</div>' +
-    '<p class="sub"><span class="nb">日報・予定表・集計・請求書・</span><span class="nb">作業員名簿を、ひとつのアプリで。</span><br><span class="nb">現場はLINE、</span><span class="nb">事務所はブラウザ。</span></p>' +
-    '<div class="cta"><a class="btn fill" href="https://app.reposul.com/demo" target="_blank" rel="noopener">デモを試す</a><a class="btn line" href="#price" data-jump>料金を見る</a><a class="btn line" href="https://app.reposul.com/demo/contact?type=inquiry" target="_blank" rel="noopener">お問い合わせ</a></div></div>' +
+  var HERO = '<div class="koma"><p class="prodname">レポスル日報</p><h1><span class="tag1">建設業の事務作業は</span><span class="go tag2">レポスルで完結</span></h1><div class="sfx r" aria-hidden="true">ドン！！</div>' +
+    '<p class="sub">スマホひとつで全てができる</p>' +
+    '<div class="cta"><a class="btn fill" href="https://app.reposul.com/demo" target="_blank" rel="noopener">デモを試す</a><a class="btn line" href="https://app.reposul.com/demo/contact?type=inquiry" target="_blank" rel="noopener">お問い合わせ</a></div></div>' +
     '<div class="show">' + combo("pc-attendance", "p-qr") + '</div><button type="button" class="hint" data-next>' + (matchMedia("(pointer:coarse)").matches ? "スワイプで次へ" : "スクロール・↓キーで次へ") + "</button>";
 
   stage.innerHTML = SCENES.map(function (s, i) {
@@ -533,6 +774,10 @@ footer{background:var(--ink);color:#d8d8d2;padding:22px 16px;text-align:center;f
       (s.hero ? "" : '<div class="note">' + (s.note || "画面は見本です") + "</div>") + "</article>";
   }).join("");
   var scenes = [].slice.call(stage.children);
+  // 画面が入ってくる動きのあとで始める
+  var startT;
+  function later2(i) { stopAnim(); clearTimeout(startT); startT = setTimeout(function () { if (pinned && cur === i) play(i); }, 700); }
+  window.addEventListener("resize", function () { [].forEach.call(stage.querySelectorAll(".sv"), fitBoard); });
   rail.innerHTML = SCENES.map(function (s, i) { return '<button type="button" aria-label="' + (s.hero ? "はじめ" : s.h.join("")) + '"><span aria-hidden="true">' + s.label + "</span></button>"; }).join("");
   var dots = [].slice.call(rail.children);
 
@@ -575,11 +820,13 @@ footer{background:var(--ink);color:#d8d8d2;padding:22px 16px;text-align:center;f
     scenes[i].classList.add("on"); scenes[i].removeAttribute("aria-hidden");
     dots.forEach(function (d, k) { d.setAttribute("aria-current", k === i ? "true" : "false"); });
     countNum.textContent = i === 0 ? "" : i + " / " + (total - 1);
+    later2(i);
     count.classList.toggle("off", i === 0);
     lockUntil = performance.now() + STEP_MS;
   }
   function pin(on) {
     pinned = on;
+    if (on) later2(cur); else { stopAnim(); clearTimeout(startT); }
     root.classList.toggle("locked", on);
     rail.classList.toggle("off", !on);
     if (!on) count.classList.add("off"); else show(cur);
