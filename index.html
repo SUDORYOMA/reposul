@@ -144,7 +144,7 @@ h1,h2,h3,p{margin:0}
 .guard{width:min(860px,100%);background:var(--deep);color:#fff;border:3px solid var(--ink);box-shadow:7px 7px 0 var(--ink);list-style:none;margin:0;padding:clamp(4px,1vh,10px) clamp(16px,3vw,32px);height:max-content;display:grid;grid-template-columns:1fr 1fr;column-gap:32px}
 .guard li{padding:clamp(6px,1.25vh,13px) 0;border-bottom:1px solid rgba(255,255,255,.26)}
 .guard li:nth-last-child(-n+2){border-bottom:0}
-.guard span{display:block;font-size:clamp(15px,2.4vh,21px);font-weight:900;line-height:1.35}
+.guard li>span{display:block;font-size:clamp(15px,2.4vh,21px);font-weight:900;line-height:1.35}
 .guard small{display:block;font-size:clamp(12px,1.65vh,14px);color:#d9efe3;line-height:1.5}
 
 /* はじめのコマ */
@@ -185,7 +185,7 @@ h1,h2,h3,p{margin:0}
 }
 /* 背の低いスマホは「だから」を省いて画面を広く */
 @media (max-width:760px) and (max-height:700px){ .koma .was{display:none} .hero .sub{display:none} }
-@media (max-width:760px){ .say{padding:1px 12px} .tag{gap:14px} }
+@media (max-width:760px){ .say{padding:1px 12px;font-size:min(3.4vw,15px);white-space:nowrap} .tag{gap:14px} }
 .hint{position:absolute;z-index:5;left:50%;bottom:calc(14px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:#fff;font-size:13px;font-weight:700;padding:5px 16px;animation:nudge 1.8s ease-in-out infinite}
 @keyframes nudge{50%{transform:translate(-50%,6px)}}
 .count{position:fixed;z-index:20;left:50%;bottom:calc(6px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);display:flex;align-items:center;background:var(--ink);color:#fff;font-size:13px;font-weight:700;font-variant-numeric:tabular-nums;border:2px solid var(--ink);box-shadow:3px 3px 0 #fff;transition:opacity .3s}
@@ -346,10 +346,12 @@ footer{background:var(--ink);color:#d8d8d2;padding:22px 16px;text-align:center;f
 /* 他にもこんな機能が！ */
 .guard.more{width:min(860px,100%)}
 @media (max-width:760px){
-  .guard.more{grid-template-columns:1fr 1fr;column-gap:14px;padding-inline:12px}
+  .guard.more{grid-template-columns:1fr;padding-inline:14px}
+  .guard.more li{display:flex;align-items:baseline;gap:10px;padding:6px 0}
+  .guard.more li>span{flex:none;width:8.8em;white-space:nowrap}
   .guard.more li,.guard.more li:nth-last-child(2){border-bottom:1px solid rgba(255,255,255,.26)}
-  .guard.more li:nth-last-child(-n+2){border-bottom:0}
-  .guard.more span{font-size:15px}
+  .guard.more li:last-child{border-bottom:0}
+  .guard.more li>span{font-size:14px}
   .guard.more small{font-size:11.5px;line-height:1.4}
 }
 /* レポスルのシリーズ */
@@ -502,7 +504,7 @@ footer{background:var(--ink);color:#d8d8d2;padding:22px 16px;text-align:center;f
     <!-- 動画（スライドのあと。動画はアプリ側 reposul-next の public/flow に置いたもの。2026-11-17） -->
     <section class="wrap" id="movie">
       <h2 class="title"><span class="nb">2分で分かる、</span><b class="nb">シン・レポスル</b></h2>
-      <p class="lede">これまでの仕事が、どう変わるのか。現場の割り振りから、日報・集計・請求書まで。</p>
+      <p class="lede"><span class="nb">これまでの仕事が、</span><span class="nb">どう変わるのか。</span><span class="nb">現場の割り振りから、</span><span class="nb">日報・集計・請求書まで。</span></p>
       <div class="movies">
         <figure>
           <video controls playsinline preload="none" poster="https://app.reposul.com/flow/poster.jpg"><source src="https://app.reposul.com/flow/reposul-flow.mp4" type="video/mp4"></video>
@@ -517,27 +519,27 @@ footer{background:var(--ink);color:#d8d8d2;padding:22px 16px;text-align:center;f
     <section class="wrap" id="pain">
       <h2 class="title"><span class="nb">こんなお悩み、</span><b class="nb">ありませんか？</b></h2>
       <div class="pains">
-        <p class="pain">現場からLINEで送られてくる日報を、毎回まとめ直している</p>
-        <p class="pain">月末にならないと、工数が集計できない</p>
-        <p class="pain">請求書の単価を、毎回調べ直している</p>
-        <p class="pain">作業員名簿を、現場が変わるたびに書き直している</p>
-        <p class="pain">車検が切れそうな作業車に、あとから気づく</p>
-        <p class="pain">だれが日報を出しているか、分からない</p>
+        <p class="pain"><span class="nb">現場からLINEで送られてくる日報を、</span><span class="nb">毎回まとめ直している</span></p>
+        <p class="pain"><span class="nb">月末にならないと、</span><span class="nb">工数が集計できない</span></p>
+        <p class="pain"><span class="nb">請求書の単価を、</span><span class="nb">毎回調べ直している</span></p>
+        <p class="pain"><span class="nb">作業員名簿を、</span><span class="nb">現場が変わるたびに</span><span class="nb">書き直している</span></p>
+        <p class="pain"><span class="nb">車検が切れそうな作業車に、</span><span class="nb">あとから気づく</span></p>
+        <p class="pain"><span class="nb">だれが日報を出しているか、</span><span class="nb">分からない</span></p>
       </div>
     </section>
     <section class="band" id="band">
       <div class="wrap">
         <h2 class="title"><span class="nb">建設業の事務作業を</span><b class="nb">ひとつに。</b><br><b class="nb">レポスル。</b></h2>
-        <p class="lede">現場はLINE、事務所はブラウザ。現場の入力が、そのまま集計・請求書・作業員名簿・作業車の管理につながります。アプリのインストールは要りません。</p>
+        <p class="lede"><span class="nb">現場はLINE、</span><span class="nb">事務所はブラウザ。</span><span class="nb">現場の入力が、</span><span class="nb">そのまま集計・請求書・</span><span class="nb">作業員名簿・作業車の管理に</span><span class="nb">つながります。</span><span class="nb">アプリのインストールは</span><span class="nb">要りません。</span></p>
       </div>
     </section>
     <section class="wrap" id="series">
       <h2 class="title"><span class="nb">レポスル</span><b class="nb">シリーズ</b></h2>
-      <p class="lede">各サービスが連携・同期することで、事務作業をレポスルですべて完結！</p>
+      <p class="lede"><span class="nb">各サービスが連携・同期することで、</span><span class="nb">事務作業をレポスルで</span><span class="nb">すべて完結！</span></p>
       <div class="series">
-        <a href="#top" aria-current="page"><b>レポスル日報</b><span>日報・予定表・集計・請求書・作業員名簿</span></a>
-        <a href="genka.html"><em>近日公開！</em><b>レポスル原価</b><span>案件ごとの原価管理。人工はレポスル日報から同期。レポスル原価で作った案件は、レポスル日報にも同期。</span></a>
-        <a href="roumu.html"><em>近日公開！</em><b>レポスル労務</b><span>レポスル日報と打刻機能で、勤怠管理まで完結。</span></a>
+        <a href="#top" aria-current="page"><b>レポスル日報</b><span><span class="nb">日報・予定表・集計・</span><span class="nb">請求書・作業員名簿</span></span></a>
+        <a href="genka.html"><em>近日公開！</em><b>レポスル原価</b><span><span class="nb">案件ごとの原価管理。</span><span class="nb">人工はレポスル日報から同期。</span><span class="nb">レポスル原価で作った案件は、</span><span class="nb">レポスル日報にも同期。</span></span></a>
+        <a href="roumu.html"><em>近日公開！</em><b>レポスル労務</b><span><span class="nb">レポスル日報と打刻機能で、</span><span class="nb">勤怠管理まで完結。</span></span></a>
       </div>
       <p class="fine">※セット契約で割引あり</p>
     </section>
@@ -558,18 +560,18 @@ footer{background:var(--ink);color:#d8d8d2;padding:22px 16px;text-align:center;f
     <section class="wrap" id="faq">
       <h2 class="title">よくある質問</h2>
       <div class="faq">
-        <details><summary>アプリのインストールが必要ですか？</summary><p>いいえ。現場の方はLINE、事務所の方はブラウザ（パソコン推奨）でご利用いただけます。</p></details>
-        <details><summary>今のレポスルを使っています。何か変わりますか？</summary><p>これまでのデータは引き継がれます。移行のご案内を各社にお送りします。今のアプリは、各社の移行完了次第で終了します。</p></details>
-        <details><summary>セキュリティは大丈夫ですか？</summary><p>企業ログインは2段階認証、通信とパスワードは暗号化、データは会社ごとに分離し、毎日別の場所へバックアップしています。</p></details>
-        <details><summary>協力会社もレポスルに登録が必要ですか？</summary><p>連携機能を使う場合は協力会社側の登録が必要です。レポスルを使っていない協力会社も登録できます。</p></details>
-        <details><summary>今すぐ申し込みできますか？</summary><p>現在は運営からのご案内、または代理店経由でのご登録です。まずはデモをお試しいただくか、お問い合わせください。</p></details>
+        <details><summary><span><span class="nb">アプリのインストールが</span><span class="nb">必要ですか？</span></span></summary><p>いいえ。現場の方はLINE、事務所の方はブラウザ（パソコン推奨）でご利用いただけます。</p></details>
+        <details><summary><span><span class="nb">今のレポスルを使っています。</span><span class="nb">何か変わりますか？</span></span></summary><p>これまでのデータは引き継がれます。移行のご案内を各社にお送りします。今のアプリは、各社の移行完了次第で終了します。</p></details>
+        <details><summary><span><span class="nb">セキュリティは</span><span class="nb">大丈夫ですか？</span></span></summary><p>企業ログインは2段階認証、通信とパスワードは暗号化、データは会社ごとに分離し、毎日別の場所へバックアップしています。</p></details>
+        <details><summary><span><span class="nb">協力会社もレポスルに</span><span class="nb">登録が必要ですか？</span></span></summary><p>連携機能を使う場合は協力会社側の登録が必要です。レポスルを使っていない協力会社も登録できます。</p></details>
+        <details><summary><span><span class="nb">今すぐ申し込み</span><span class="nb">できますか？</span></span></summary><p>現在は運営からのご案内、または代理店経由でのご登録です。まずはデモをお試しいただくか、お問い合わせください。</p></details>
       </div>
     </section>
     <section class="finale" id="contact">
       <div class="wrap">
         <div class="koma">
         <h2 class="title"><span class="nb">まずは、</span><b class="nb">触ってみてください。</b></h2>
-        <p class="lede">デモはログイン不要です。ご質問・資料請求は、お問い合わせからどうぞ。</p>
+        <p class="lede"><span class="nb">デモはログイン不要です。</span><span class="nb">ご質問・資料請求は、</span><span class="nb">お問い合わせからどうぞ。</span></p>
         <div class="end">
           <span class="push"><span class="pochi" aria-hidden="true">ポチッ！</span><a class="btn fill" href="https://app.reposul.com/demo" target="_blank" rel="noopener">デモを試す</a></span>
           <a class="btn line" href="https://app.reposul.com/demo/contact?type=inquiry" target="_blank" rel="noopener">お問い合わせ</a>
@@ -632,18 +634,18 @@ footer{background:var(--ink);color:#d8d8d2;padding:22px 16px;text-align:center;f
 
   var SCENES = [
     { bg: bg("215793756_0"), pos: "50% 40%", hero: true, sfx: ["ドン！！", "r"] },
-    { bg: bg("215793757_0"), pos: "50% 60%", h: ["ログインは、", "LINEをワンプッシュ。"], sub: "アプリ不要。IDの入力は最初の1回だけ。", sfx: ["ピッ！", "l"],
+    { bg: bg("215793757_0"), pos: "50% 60%", h: ["ログインは、", "LINEをワンプッシュ。"], sub: "アプリ不要。|IDの入力は最初の1回だけ。", sfx: ["ピッ！", "l"],
       html: stack([{ n: "p-line", bt: true }, { n: "p-schedule-mine" }], "solo"), anim: animLine },
-    { bg: bg("215793730_0"), pos: "50% 62%", h: ["ホワイトボード感覚で、", "予定を共有！"], sub: "作業員も作業車も割り振り。車検の切れも2か月前にお知らせ。", sfx: ["ドドン！", "r"],
+    { bg: bg("215793730_0"), pos: "50% 62%", h: ["ホワイトボード感覚で、", "予定を共有！"], sub: "作業員も作業車も割り振り。|車検の切れも|2か月前にお知らせ。", sfx: ["ドドン！", "r"],
       html: combo("pc-board", "p-schedule-mine", "0", { sv: BOARD }), anim: animBoard },
-    { bg: bg("215793758_0"), pos: "50% 50%", h: ["予定から日報は、", "ワンプッシュ。"], sub: "現場・時間・作業員が入った状態で始まる。", sfx: ["ポチッ", "l"],
+    { bg: bg("215793758_0"), pos: "50% 50%", h: ["予定から日報は、", "ワンプッシュ。"], sub: "現場・時間・作業員が|入った状態で始まる。", sfx: ["ポチッ", "l"],
       html: combo("pc-schedule", ["p-schedule-open", "p-report-edit", "p-report-bottom", "p-sign"], 0, { tall: true, phExtra: SIGN }), anim: animSign },
-    { bg: bg("215801860_0"), pos: "50% 74%", h: ["作業員の追加は、", "QRを読むだけ。"], sub: "名前を探さない。打たない。続けて何人でも。", sfx: ["ピピッ！", "r"],
+    { bg: bg("215801860_0"), pos: "50% 74%", h: ["作業員の追加は、", "QRを読むだけ。"], sub: "名前を探さない。|打たない。|続けて何人でも。", sfx: ["ピピッ！", "r"],
       html: '<div class="pair">' + phone("p-qr", 5, "solo") + '<div class="ph solo"><div class="sc"><div class="im" style="transform:translateY(-12.8%)"><img src="' + img("p-scanner") + '" alt=""><div class="cam"><span><img src="' + img("p-qr") + '" alt=""></span><i></i></div></div><p class="qr-toast">山田 一郎さんを追加しました</p></div></div></div>', anim: animQr },
-    { bg: bg("215793737_0"), pos: "50% 55%", h: ["集計も請求書も、", "質問を選ぶだけ。"], sub: "出勤簿・出面帳は Excel・PDF に。請求書は PDF でそのままメール送信。", sfx: ["ザッ！", "l"],
+    { bg: bg("215793737_0"), pos: "50% 55%", h: ["集計も請求書も、", "質問を選ぶだけ。"], sub: "出勤簿・出面帳は|Excel・PDF に。|請求書は PDF で|そのままメール送信。", sfx: ["ザッ！", "l"],
       html: combo(["pc-attendance", "pc-ledger"], "c-invoices"), anim: animLedger },
-    { bg: bg("215793739_0"), pos: "50% 58%", more: true, h: ["他にも、", "こんな機能が！"], sub: "日報のまわりの事務作業を、まとめて。", sfx: ["ドーン！", "r"], note: " ",
-      html: '<ul class="guard more">' + [["作業員名簿", "全建統一様式第5号を、選ぶだけで PDF に"], ["日報の PDF・CSV", "用紙を選んで PDF に。CSV でも"], ["チャットにお知らせ", "日報が届いたら Slack・Teams などに"], ["協力会社との連携", "協力会社の日報・工数も、まとめて見える"], ["ランキング", "日報の作成数・出勤日数・提出率を数字で"], ["AI・API連携", "ChatGPT・Claude に今月の工数を聞くだけ"], ["17言語", "外国人の作業員も、自分の言葉で"], ["セキュリティー", "2段階認証・会社ごとのデータ分離・毎日のバックアップ"]].map(function (x) { return "<li><span>" + x[0] + "</span><small>" + x[1] + "</small></li>"; }).join("") + "</ul>" }
+    { bg: bg("215793739_0"), pos: "50% 58%", more: true, h: ["他にも、", "こんな機能が！"], sub: "日報のまわりの事務作業を、|まとめて。", sfx: ["ドーン！", "r"], note: " ",
+      html: '<ul class="guard more">' + [["作業員名簿", "全建統一様式第5号を、|選ぶだけで PDF に"], ["日報の PDF・CSV", "用紙を選んで PDF に。|CSV でも"], ["チャットにお知らせ", "日報が届いたら|Slack・Teams などに"], ["協力会社との連携", "協力会社の日報・工数も、|まとめて見える"], ["ランキング", "日報の作成数・出勤日数・|提出率を数字で"], ["AI・API連携", "ChatGPT・Claude に|今月の工数を聞くだけ"], ["17言語", "外国人の作業員も、|自分の言葉で"], ["セキュリティー", "2段階認証・|会社ごとのデータ分離・|毎日のバックアップ"]].map(function (x) { return "<li><span>" + x[0] + "</span><small>" + x[1].split("|").map(function (y) { return '<span class="nb">' + y + "</span>"; }).join("") + "</small></li>"; }).join("") + "</ul>" }
   ];
 
   // ---------- 動き（今のシーンだけ、くり返し） ----------
@@ -772,7 +774,7 @@ footer{background:var(--ink);color:#d8d8d2;padding:22px 16px;text-align:center;f
   var total = SCENES.length;
 
   function koma(s, i) {
-    return '<div class="koma"><div class="tag"><i>' + String(i).padStart(2, "0") + "</i>" + (s.was ? '<span class="say">「' + s.was + "」</span>" : "") + "</div>" + (s.was ? '<p class="was"><em>だから</em></p>' : "") + "<h2>" + s.h[0] + "<br><b>" + s.h[1] + "</b></h2><p>" + s.sub + "</p></div>";
+    return '<div class="koma"><div class="tag"><i>' + String(i).padStart(2, "0") + "</i>" + (s.was ? '<span class="say"><span class="nb">「' + s.was + "」</span></span>" : "") + "</div>" + (s.was ? '<p class="was"><em>だから</em></p>' : "") + "<h2>" + s.h[0] + "<br><b>" + s.h[1] + "</b></h2><p>" + s.sub.split("|").map(function (x) { return '<span class="nb">' + x + "</span>"; }).join("") + "</p></div>";
   }
   var HERO = '<div class="koma"><p class="prodname">レポスル日報</p><h1><span class="tag1">建設業の事務作業は</span><span class="go tag2">レポスルで完結</span></h1><div class="sfx r" aria-hidden="true">ドン！！</div>' +
     '<p class="sub">スマホひとつで全てができる</p>' +
