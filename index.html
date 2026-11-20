@@ -218,13 +218,13 @@ button.hint{border:0;font-family:inherit;cursor:pointer}
 /* スクロールのあと：上と同じ漫画の紙（網点）とコマ枠を続ける */
 #after{background:var(--paper) radial-gradient(rgba(28,28,26,.13) 1.1px,transparent 1.5px) 0 0/11px 11px}
 #after .title{position:relative;display:inline-block;background:var(--paper);border:3px solid var(--ink);box-shadow:6px 6px 0 var(--ink);padding:6px 20px 8px}
-.band .title{background:transparent;border:0;box-shadow:none;padding:0}
+#after .band .title{display:block;background:transparent;border:0;box-shadow:none;padding:0;color:#fff;font-size:clamp(34px,6.4vw,64px);line-height:1.2}
 .movies{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-top:30px}
 .movies figure{margin:0}
 .movies video{display:block;width:100%;aspect-ratio:16/9;background:#e9ebe4;border:3px solid var(--ink);border-radius:18px;box-shadow:6px 6px 0 var(--ink)}
 .movies figcaption{display:inline-block;margin-top:14px;background:var(--ink);color:#fff;padding:1px 12px;font-weight:700}
 @media (max-width:760px){.movies{grid-template-columns:1fr}}
-.wrap{width:min(1040px,100%);margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:clamp(56px,9vw,104px)}
+.wrap{width:min(1040px,100%);margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:clamp(44px,6vw,72px)}
 .title{font-size:clamp(30px,5vw,50px);font-weight:900;line-height:1.25;text-wrap:balance}
 .title b{color:var(--green);font-weight:900}
 .lede{margin-top:12px;color:#44443f;max-width:42em}
@@ -233,7 +233,7 @@ button.hint{border:0;font-family:inherit;cursor:pointer}
 .pain::after{content:"";position:absolute;left:34px;bottom:-15px;width:22px;height:22px;background:#fff;border-right:3px solid var(--ink);border-bottom:3px solid var(--ink);transform:skewX(32deg) rotate(45deg) scale(.8)}
 .band{background:var(--deep) radial-gradient(rgba(255,255,255,.12) 1.2px,transparent 1.6px) 0 0/10px 10px;color:#fff;border-block:3px solid var(--ink)}
 .band .title b{color:var(--yellow)}
-.band .lede{color:#d9efe3}
+.band .lede{color:#fff;font-size:clamp(15px,1.8vw,18px);font-weight:700;margin-top:18px}
 .prices{width:100%;margin-top:30px;border-collapse:collapse;background:#fff;border:3px solid var(--ink);box-shadow:7px 7px 0 var(--ink);font-variant-numeric:tabular-nums}
 .prices th,.prices td{padding:15px 22px;border-bottom:1px solid var(--line);text-align:left}
 .prices thead th{background:var(--ink);color:#fff;font-size:14px}
@@ -370,7 +370,7 @@ footer{background:var(--ink);color:#d8d8d2;padding:22px 16px;text-align:center;f
   </div>
   <nav aria-label="ログイン">
     <a class="btn fill hide-s" href="https://app.reposul.com/demo" target="_blank" rel="noopener">デモを試す</a>
-    <a class="btn line hide-xs" href="#price">料金</a>
+    <a class="btn line hide-s" href="#price">料金</a>
     <a class="btn line" href="https://app.reposul.com/demo/contact?type=inquiry" target="_blank" rel="noopener">お問い合わせ</a>
     <a class="btn line hide-s" href="home.html">詳しくはこちら！</a>
     <a class="btn line hide-s" href="https://app.reposul.com/login">ログイン</a>
@@ -419,7 +419,7 @@ footer{background:var(--ink);color:#d8d8d2;padding:22px 16px;text-align:center;f
         </figure>
       </div>
     </section>
-    <section class="wrap" id="pain" style="padding-top:0">
+    <section class="wrap" id="pain">
       <h2 class="title"><span class="nb">こんなお悩み、</span><b class="nb">ありませんか？</b></h2>
       <div class="pains">
         <p class="pain">現場からLINEで送られてくる日報を、毎回まとめ直している</p>
@@ -430,20 +430,21 @@ footer{background:var(--ink);color:#d8d8d2;padding:22px 16px;text-align:center;f
         <p class="pain">だれが日報を出しているか、分からない</p>
       </div>
     </section>
-    <section class="band">
+    <section class="band" id="band">
       <div class="wrap">
         <h2 class="title"><span class="nb">建設業の事務作業を</span><b class="nb">ひとつに。</b><br><b class="nb">レポスル。</b></h2>
         <p class="lede">現場はLINE、事務所はブラウザ。現場の入力が、そのまま集計・請求書・作業員名簿・作業車の管理につながります。アプリのインストールは要りません。</p>
       </div>
     </section>
-    <section class="wrap" id="series" style="padding-top:0">
+    <section class="wrap" id="series">
       <h2 class="title"><span class="nb">レポスルの</span><b class="nb">アプリ</b></h2>
       <p class="lede">ひとつのアプリの中で、ご契約に合わせて使えます。</p>
       <div class="series">
         <a href="#top" aria-current="page"><b>レポスル日報管理</b><span>日報・予定表・集計・請求書・作業員名簿</span></a>
-        <a href="genka.html"><em>近日公開！</em><b>レポスル工事原価</b><span>案件ごとの原価・粗利を、日報の工数から（準備中）</span></a>
-        <a href="roumu.html"><em>近日公開！</em><b>レポスル労務管理</b><span>ただいま準備中です</span></a>
+        <a href="genka.html"><em>近日公開！</em><b>レポスル工事原価</b><span>案件ごとの原価管理。人工はレポスル日報管理から同期。工事原価で作った案件は、日報管理にも同期。</span></a>
+        <a href="roumu.html"><em>近日公開！</em><b>レポスル労務管理</b><span>レポスル日報管理と打刻機能で、勤怠管理まで完結。</span></a>
       </div>
+      <p class="fine">※セット契約で割引あり</p>
     </section>
     <section class="wrap" id="price">
       <h2 class="title">料金</h2>
@@ -459,7 +460,7 @@ footer{background:var(--ink);color:#d8d8d2;padding:22px 16px;text-align:center;f
         </tbody>
       </table>
     </section>
-    <section class="wrap" id="faq" style="padding-top:0">
+    <section class="wrap" id="faq">
       <h2 class="title">よくある質問</h2>
       <div class="faq">
         <details><summary>アプリのインストールが必要ですか？</summary><p>いいえ。現場の方はLINE、事務所の方はブラウザ（パソコン推奨）でご利用いただけます。</p></details>
@@ -500,17 +501,18 @@ footer{background:var(--ink);color:#d8d8d2;padding:22px 16px;text-align:center;f
   var SCENES = [
     { bg: bg("215793756_0"), pos: "50% 40%", hero: true, sfx: ["ドン！！", "r"] },
     { bg: bg("215793757_0"), pos: "50% 60%", h: ["ログインは、", "LINEをワンプッシュ。"], sub: "アプリ不要。IDの入力は最初の1回だけ。", sfx: ["ピッ！", "l"], html: phone("p-line", "bottom", "solo") },
-    { bg: bg("215793758_0"), pos: "50% 50%", h: ["予定を入れたら、", "日報はワンプッシュ。"], sub: "予定表で作業員・作業車を割り振り。現場・時間・作業員が入った日報ができる。", sfx: ["ポチッ", "r"], html: combo("pc-schedule", "p-schedule-open", "0") },
-    { bg: bg("215801860_0"), pos: "50% 74%", h: ["作業員の追加は、", "QRを読むだけ。"], sub: "名前を探さない。打たない。続けて何人でも。", sfx: ["ピピッ！", "l"],
+    { bg: bg("215793730_0"), pos: "50% 62%", h: ["ホワイトボード感覚で、", "予定を共有！"], sub: "作業員も作業車も割り振り。車検の切れも2か月前にお知らせ。", sfx: ["ドドン！", "r"], html: combo("pc-schedule", "c-vehicles") },
+    { bg: bg("215793758_0"), pos: "50% 50%", h: ["予定から日報は、", "ワンプッシュ。"], sub: "現場・時間・作業員が入った状態で始まる。", sfx: ["ポチッ", "l"], html: phone("p-schedule-open", 0, "solo") },
+    { bg: bg("215801860_0"), pos: "50% 74%", h: ["作業員の追加は、", "QRを読むだけ。"], sub: "名前を探さない。打たない。続けて何人でも。", sfx: ["ピピッ！", "r"],
       html: '<div class="pair">' + phone("p-qr", 5, "solo") + '<div class="ph solo"><div class="sc"><div class="im" style="transform:translateY(-12.8%)"><img src="' + img("p-scanner") + '" alt=""><div class="cam"><span><img src="' + img("p-qr") + '" alt=""></span><i></i></div></div></div></div></div>' },
-    { bg: bg("215793737_0"), pos: "50% 55%", h: ["集計も請求書も、", "質問を選ぶだけ。"], sub: "出勤簿・出面帳は Excel・PDF に。請求書は PDF でそのままメール送信。", sfx: ["ザッ！", "r"], html: combo("pc-attendance", "c-invoices") },
-    { bg: bg("215793739_0"), pos: "50% 58%", more: true, h: ["他にも、", "こんな機能が！"], sub: "日報のまわりの事務作業を、まとめて。", sfx: ["ドドン！", "l"], note: " ",
-      html: '<ul class="guard more">' + [["作業員名簿", "全建統一様式第5号を、選ぶだけで PDF に"], ["作業車・車検", "車検の切れを2か月前にお知らせ。空き台数も"], ["ホワイトボード", "その日の割り振りを、ドラッグで"], ["協力会社との連携", "協力会社の日報・工数も、まとめて見える"], ["ランキング", "日報の作成数・出勤日数・提出率を数字で"], ["AI・API連携", "ChatGPT・Claude に今月の工数を聞くだけ"], ["17言語", "外国人の作業員も、自分の言葉で"], ["セキュリティー", "2段階認証・会社ごとのデータ分離・毎日のバックアップ"]].map(function (x) { return "<li><span>" + x[0] + "</span><small>" + x[1] + "</small></li>"; }).join("") + "</ul>" }
+    { bg: bg("215793737_0"), pos: "50% 55%", h: ["集計も請求書も、", "質問を選ぶだけ。"], sub: "出勤簿・出面帳は Excel・PDF に。請求書は PDF でそのままメール送信。", sfx: ["ザッ！", "l"], html: combo("pc-attendance", "c-invoices") },
+    { bg: bg("215793739_0"), pos: "50% 58%", more: true, h: ["他にも、", "こんな機能が！"], sub: "日報のまわりの事務作業を、まとめて。", sfx: ["ドーン！", "r"], note: " ",
+      html: '<ul class="guard more">' + [["作業員名簿", "全建統一様式第5号を、選ぶだけで PDF に"], ["日報の PDF・CSV", "用紙を選んで PDF に。CSV でも"], ["チャットにお知らせ", "日報が届いたら Slack・Teams などに"], ["協力会社との連携", "協力会社の日報・工数も、まとめて見える"], ["ランキング", "日報の作成数・出勤日数・提出率を数字で"], ["AI・API連携", "ChatGPT・Claude に今月の工数を聞くだけ"], ["17言語", "外国人の作業員も、自分の言葉で"], ["セキュリティー", "2段階認証・会社ごとのデータ分離・毎日のバックアップ"]].map(function (x) { return "<li><span>" + x[0] + "</span><small>" + x[1] + "</small></li>"; }).join("") + "</ul>" }
   ];
 
   // 困りごと（見出しの前に「だから」でつなぐ）と目次の名前。SCENES と同じ順
-  var WAS = ["", "IDとパスワード、毎回打つのは面倒", "割り振りも日報も、毎日ゼロから", "作業員の名前を探して打つのは手間", "月末の集計も請求書も、手作業", ""];
-  var LABEL = ["はじめに", "LINEでログイン", "予定表から日報", "QRで作業員追加", "かんたん集計・請求書", "他にもこんな機能が！"];
+  var WAS = ["", "IDとパスワード、毎回打つのは面倒", "割り振りは、電話とホワイトボード", "日報を毎日ゼロから書くのは大変", "作業員の名前を探して打つのは手間", "月末の集計も請求書も、手作業", ""];
+  var LABEL = ["はじめに", "LINEでログイン", "予定表・作業車", "予定から日報", "QRで作業員追加", "かんたん集計・請求書", "他にもこんな機能が！"];
   SCENES.forEach(function (s, i) { s.was = WAS[i]; s.label = LABEL[i]; });
   var stage = document.getElementById("stage"), rail = document.getElementById("rail"), count = document.getElementById("count"), countNum = document.getElementById("countNum");
   var root = document.documentElement;
