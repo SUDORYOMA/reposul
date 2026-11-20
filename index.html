@@ -440,6 +440,17 @@ footer{background:var(--ink);color:#d8d8d2;padding:22px 16px;text-align:center;f
 .wb-drop{border:1px dashed #c8ccc6;border-radius:8px;padding:4px;margin-top:3px;min-height:40px}
 .wb-empty{color:#9aa19a;font-size:11.5px;padding:5px 4px}
 .wb .wb-ptr{width:22px;z-index:7;transition:left .85s var(--ease),top .85s var(--ease),opacity .25s}
+
+/* スマホ：▲▼ は画面の下の端から離す（iPhone の Safari は下の端を押すとツールバーが出て、ボタンが押せない） */
+@media (pointer:coarse){
+  .count{bottom:calc(26px + env(safe-area-inset-bottom,0px))}
+  .count button{width:48px;height:42px;font-size:14px;touch-action:manipulation}
+  .count button:hover{background:#fff}
+  .count button:active{background:var(--yellow)}
+  .scene{padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+  .note{bottom:calc(30px + env(safe-area-inset-bottom,0px))}
+  .hint{bottom:calc(30px + env(safe-area-inset-bottom,0px))}
+}
 </style>
 </head>
 <body>
@@ -897,6 +908,13 @@ footer{background:var(--ink);color:#d8d8d2;padding:22px 16px;text-align:center;f
     else if (e.key === "ArrowUp" || e.key === "PageUp") { e.preventDefault(); move(-1); }
   });
 
+  // スマホの ▲▼ は指を離したときに進める（iPhone で click が届かないことがあるため。click は止めて二重に進まないように）
+  count.addEventListener("touchend", function (e) {
+    var b = e.target.closest("[data-next],[data-prev]");
+    if (!b) return;
+    e.preventDefault();
+    if (pinned) { lockUntil = 0; move(b.hasAttribute("data-next") ? 1 : -1); }
+  });
   dots.forEach(function (d, i) { d.addEventListener("click", function () { if (performance.now() >= lockUntil) show(i); }); });
   document.addEventListener("click", function (e) {
     var nb = e.target.closest("[data-next],[data-prev]");
