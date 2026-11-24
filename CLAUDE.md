@@ -23,3 +23,4 @@
 
 ## Google 広告のタグ（2026-11-24）
 - すべてのページの </head> の直前に Google タグ（gtag.js・AW-16769513601）。新しいページを足したら同じものを入れる
+- アイコン（2026-11-24）：favicon.ico・favicon.png（512）・apple-touch-icon.png はアプリ（reposul-next）と同じ、余白を切ったスマホと日報・作業員・グラフの絵。全ページの </head> の前に3つの link を入れる
