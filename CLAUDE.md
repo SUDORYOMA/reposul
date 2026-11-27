@@ -24,3 +24,7 @@
 ## Google 広告のタグ（2026-11-24）
 - すべてのページの </head> の直前に Google タグ（gtag.js・AW-16769513601）。新しいページを足したら同じものを入れる
 - アイコン（2026-11-24）：favicon.ico・favicon.png（512）・apple-touch-icon.png はアプリ（reposul-next）と同じ、余白を切ったスマホと日報・作業員・グラフの絵。全ページの </head> の前に3つの link を入れる
+
+## シェアしたときの画像（og-image.png。2026-11-27）
+- LINE・SNS に URL を貼ると出る画像。トップのはじめのコマと同じ漫画の形（網点の現場・コマ枠・「ドン！！」・黄色の「レポスルで完結」・スマホの予定表・「LINEから日報！」）
+- 元は `og/og.html`。直したら `node og/build.mjs`（reposul-next の docs/flow/cdp.mjs で Chrome を使う）で 1200×630 に撮り直す
