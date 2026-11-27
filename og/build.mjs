@@ -1,14 +1,15 @@
 // og/og.html を 1200×630 で撮って og-image.png にする（Chrome の画面なし起動）
-// 使い方：node og/build.mjs（サイト）／node og/build.mjs demo（アプリの公開デモ。reposul-next に書く）
+// 使い方：node og/build.mjs（サイト）／node og/build.mjs demo|login（アプリの公開デモ・ログイン。reposul-next に書く）
 import { launch, sleep } from "../../reposul-next/docs/flow/cdp.mjs";
 import { writeFileSync } from "node:fs";
 import path from "node:path";
 import { pathToFileURL, fileURLToPath } from "node:url";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
-const demo = process.argv[2] === "demo";
-const src = demo ? "demo.html" : "og.html";
-const out = demo ? path.join(here, "..", "..", "reposul-next", "src", "app", "demo", "opengraph-image.png") : path.join(here, "..", "og-image.png");
+// 引数なし＝サイト／demo・login＝アプリのその画面（reposul-next に書く）
+const kind = process.argv[2];
+const src = kind ? `${kind}.html` : "og.html";
+const out = kind ? path.join(here, "..", "..", "reposul-next", "src", "app", kind, "opengraph-image.png") : path.join(here, "..", "og-image.png");
 const p = await launch({ port: 9371, width: 1200, height: 630 });
 await p.size(1200, 630, false, 1);
 await p.send("Page.navigate", { url: pathToFileURL(path.join(here, src)).href });

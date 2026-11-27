@@ -1,0 +1,53 @@
+<!doctype html>
+<!-- アプリのログイン（app.reposul.com/login）のシェア画像の元。node og/build.mjs login で reposul-next/src/app/login/opengraph-image.png に書く。スマホの中身は node og/shot-login.mjs -->
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Noto+Sans+JP:wght@500;700;900&display=swap">
+<style>
+:root{--paper:#f6f7f3;--ink:#1c1c1a;--green:#1a7a4c;--yellow:#ffe07a;--sfx:"Dela Gothic One","Noto Sans JP",sans-serif}
+*{box-sizing:border-box;margin:0}
+html,body{width:1200px;height:630px;overflow:hidden}
+body{position:relative;font-family:"Noto Sans JP",sans-serif;color:var(--ink);font-feature-settings:"palt";
+  background:#fff url(../lp1/img/bg-215793756_0.webp) 50% 40%/cover no-repeat}
+/* 集中線 */
+.burst{position:absolute;inset:0;background:repeating-conic-gradient(from 0deg at 78% 46%,rgba(28,28,26,.0) 0 3deg,rgba(28,28,26,.10) 3deg 4deg)}
+.koma{position:absolute;left:56px;top:92px;width:680px;padding:34px 40px 36px;background:var(--paper);border:4px solid var(--ink);box-shadow:10px 10px 0 var(--ink);transform:rotate(-1.2deg)}
+.logo{display:block;height:68px;width:auto;margin-bottom:14px}
+.tag{display:inline-block;background:var(--ink);color:#fff;padding:2px 14px;font-size:22px;font-weight:900;letter-spacing:.06em}
+h1{margin-top:12px;font-weight:900;line-height:1.18}
+h1 .a{display:block;font-size:52px;white-space:nowrap}
+h1 .b{display:inline-block;margin-top:6px;padding:0 .3em;font-size:68px;background:var(--yellow);white-space:nowrap}
+.sub{margin-top:16px;font-size:24px;font-weight:700;color:#44443f}
+.sub b{color:var(--green);font-weight:900}
+.sfx{position:absolute;font-family:var(--sfx);line-height:1;color:var(--ink);white-space:nowrap;-webkit-text-stroke:12px #fff;paint-order:stroke fill}
+.don{left:470px;top:14px;font-size:104px;transform:rotate(9deg)}
+/* スマホ */
+.phone{position:absolute;right:92px;top:62px;width:262px;height:526px;padding:11px;border-radius:40px;background:#111;border:3px solid var(--ink);
+  box-shadow:12px 12px 0 var(--ink);transform:rotate(6deg)}
+.phone .sc{width:100%;height:100%;border-radius:30px;overflow:hidden;background:#fff url(login-phone.png) 50% 0/100% auto no-repeat}
+.phone::before{content:"";position:absolute;left:50%;top:20px;width:78px;height:20px;margin-left:-39px;border-radius:12px;background:#111;z-index:1}
+/* 吹き出し */
+.bubble{position:absolute;right:300px;bottom:44px;background:#fff;border:4px solid var(--ink);border-radius:999px;padding:10px 26px;font-size:26px;font-weight:900;box-shadow:6px 6px 0 var(--ink);transform:rotate(-4deg);white-space:nowrap}
+.bubble b{color:#06c755}
+.bubble::after{content:"";position:absolute;right:46px;top:-22px;width:28px;height:28px;background:#fff;border-left:4px solid var(--ink);border-top:4px solid var(--ink);transform:skewX(-25deg) rotate(20deg)}
+.pochi{position:absolute;right:44px;bottom:26px;font-family:var(--sfx);font-size:46px;transform:rotate(-12deg)}
+.kinds{display:flex;gap:16px;margin-top:22px}
+.k{flex:1;text-align:center;padding:12px 0;border:4px solid var(--ink);border-radius:14px;background:var(--green);color:#fff;font-size:32px;font-weight:900;box-shadow:5px 5px 0 var(--ink)}
+.k+.k{background:#fff;color:var(--green)}
+</style>
+</head>
+<body>
+<div class="burst"></div>
+<div class="phone"><div class="sc"></div></div>
+<div class="koma">
+  <img class="logo" src="../reposul-logo.png" alt="">
+  <span class="tag">ログインはこちら</span>
+  <h1><span class="b">レポスルにログイン</span></h1>
+  <div class="kinds"><span class="k">企業ログイン</span><span class="k">個人ログイン</span></div><p class="sub">企業ID・個人IDとパスワードで入れます</p>
+</div>
+<div class="sfx don">ガチャ！</div>
+<div class="bubble">おかえりなさい！</div>
+<div class="sfx pochi">ポチッ</div>
+</body>
+</html>

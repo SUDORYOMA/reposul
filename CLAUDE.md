@@ -27,5 +27,5 @@
 
 ## シェアしたときの画像（og-image.png。2026-11-27）
 - LINE・SNS に URL を貼ると出る画像。トップのはじめのコマと同じ漫画の形（網点の現場・コマ枠・「ドン！！」・黄色の「レポスルで完結」・スマホの予定表・「LINEから日報！」）
-- アプリの公開デモ（app.reposul.com/demo）の画像の元は `og/demo.html`（`node og/build.mjs demo` で reposul-next/src/app/demo/opengraph-image.png に書く。向こうでコミットする）
+- アプリの公開デモ（app.reposul.com/demo）の画像の元は `og/demo.html`（`node og/build.mjs demo` で reposul-next/src/app/demo/opengraph-image.png に書く。向こうでコミットする）。ログインは `og/login.html`（`node og/build.mjs login`。スマホの中身は `node og/shot-login.mjs` で本番のログインの画面を撮る）
 - 元は `og/og.html`。直したら `node og/build.mjs`（reposul-next の docs/flow/cdp.mjs で Chrome を使う）で 1200×630 に撮り直す
