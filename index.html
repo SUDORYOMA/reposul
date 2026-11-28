@@ -65,6 +65,8 @@ button.btn{border:0;font-family:inherit;cursor:pointer}
   padding:clamp(10px,1.7vh,18px) clamp(16px,3vw,34px) clamp(12px,1.9vh,20px);text-align:center;
   transform:translateY(26px);opacity:0;transition:transform .7s var(--ease) .06s,opacity .4s ease .06s}
 .scene.on .koma{transform:none;opacity:1}
+/* 見出しのコマ（ボタン）は下の画面より手前に。iPhone で斜めの画面が押した指を取らないように */
+.koma{z-index:3}
 .tag{display:flex;align-items:center;justify-content:center;gap:16px;font-size:clamp(12px,1.6vh,15px);font-weight:700;color:var(--green);line-height:1.4}
 .tag i{font-style:normal;background:var(--green);color:#fff;border-radius:4px;padding:1px 8px;font-variant-numeric:tabular-nums}
 h1,h2,h3,p{margin:0}
@@ -157,7 +159,7 @@ h1,h2,h3,p{margin:0}
 .hero .tag1{display:block;white-space:nowrap;font-size:min(clamp(30px,7.5vh,72px),8.6vw);font-weight:900;line-height:1.2;margin-top:clamp(4px,1vh,12px)}
 .hero .go{display:block;width:fit-content;margin:clamp(2px,.5vh,6px) auto 0;padding:0 .35em;white-space:nowrap;font-size:min(clamp(34px,8vh,78px),11vw);font-weight:900;line-height:1.25;color:var(--ink);background:var(--yellow)}
 .hero .go.tag2{font-size:min(clamp(30px,7.5vh,72px),8vw)}
-.hero .cta{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:clamp(10px,2vh,20px)}
+.hero .cta{position:relative;z-index:5;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:clamp(10px,2vh,20px)}
 .hero .sfx{top:calc(var(--head) + 3vh)}
 
 /* 進み具合 */
@@ -912,7 +914,8 @@ footer{background:var(--ink);color:#d8d8d2;padding:22px 16px;text-align:center;f
   // スマホ：1回のスワイプで1シーン
   var sy = null, sx = 0;
   window.addEventListener("touchstart", function (e) { sy = e.touches[0].clientY; sx = e.touches[0].clientX; }, { passive: true });
-  window.addEventListener("touchmove", function (e) { if (pinned && !e.target.closest("a,button,summary,.menu")) e.preventDefault(); }, { passive: false });
+  // ボタンの上でも止める（止めないと iPhone で指が少し動いただけで画面がずれ、押したことにならない）
+  window.addEventListener("touchmove", function (e) { if (pinned && !e.target.closest(".menu")) e.preventDefault(); }, { passive: false });
   window.addEventListener("touchend", function (e) {
     if (sy === null) return;
     if (!menu.hidden || e.target.closest(".menu")) { sy = null; return; }
